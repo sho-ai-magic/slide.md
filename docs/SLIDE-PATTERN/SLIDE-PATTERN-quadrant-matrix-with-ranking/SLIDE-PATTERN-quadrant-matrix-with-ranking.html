@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-quadrant-matrix-with-ranking</title>
+<style>
+  body {
+    background: #E8E8E8;
+    padding: 40px 20px;
+    font-family: sans-serif;
+  }
+  .slide-label {
+    text-align: center;
+    color: #666;
+    font-size: 16px;
+    margin-bottom: 12px;
+  }
+  .slide-outer {
+    margin: 0 auto 32px;
+    width: 1440px; /* 1920 × 0.75 */
+  }
+  .slide-wrapper {
+    width: 1920px;
+    transform-origin: top left;
+    transform: scale(0.75);
+    margin-bottom: -270px; /* 1080 × (1 - 0.75) = 270px */
+  }
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .area-label {
+    font-size: 20px;
+    color: #999999;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+  .placeholder-box {
+    background: #F0F0F0;
+    border: 2px dashed #CCCCCC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #AAAAAA;
+    font-size: 24px;
+  }
+  .quadrant-box {
+    border: 2px solid #CCCCCC;
+    border-radius: 12px;
+    background: #F8F8F8;
+    padding: 20px 24px;
+    box-sizing: border-box;
+  }
+  .quadrant-box.highlight {
+    background: #BBBBBB;
+    border-color: #999999;
+  }
+  .quadrant-box .q-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 8px;
+  }
+  .quadrant-box.highlight .q-title {
+    color: #FFFFFF;
+  }
+  .quadrant-box .q-body {
+    font-size: 18px;
+    color: #777;
+    line-height: 1.5;
+  }
+  .quadrant-box.highlight .q-body {
+    color: #EEEEEE;
+  }
+  .axis-label {
+    font-size: 18px;
+    color: #999;
+    text-align: center;
+  }
+  .rank-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 16px 0;
+    border-bottom: 1px solid #DDDDDD;
+  }
+  .rank-item .rank-label {
+    font-size: 22px;
+    color: #555;
+  }
+  .rank-item .rank-value {
+    font-size: 28px;
+    font-weight: bold;
+    color: #444;
+  }
+  .rank-item.highlight .rank-label,
+  .rank-item.highlight .rank-value {
+    color: #777777;
+  }
+</style>
+</head>
+<body>
+
+<p class="slide-label">[quadrant-matrix-with-ranking]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+
+      <!-- コンテンツエリア（このパターンが定義する領域） -->
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:32px 80px;">
+
+        <!-- リード文エリア -->
+        <div style="flex-shrink:0; margin-bottom:24px;">
+          <div class="area-label">Lead Text</div>
+          <div style="font-size:22px; color:#555; line-height:1.7;">
+            リード文が入ります。1〜2行程度の説明文でスライドの主張を補足します。
+          </div>
+        </div>
+
+        <!-- 下段：左右2カラム -->
+        <div style="display:flex; flex:1; gap:64px; overflow:hidden;">
+
+          <!-- 左カラム：4象限マトリクス -->
+          <div style="width:68%; display:flex; flex-direction:column; justify-content:center;">
+            <div class="area-label">Quadrant Matrix</div>
+            <div style="flex:1; display:flex; flex-direction:column; position:relative; padding:20px 0;">
+
+              <div class="axis-label" style="margin-bottom:12px;">縦軸ラベル（高い）</div>
+
+              <div style="display:flex; flex:1; align-items:stretch;">
+                <div class="axis-label" style="writing-mode:vertical-rl; margin-right:16px; display:flex; align-items:center;">横軸ラベル（低い）</div>
+
+                <div style="flex:1; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:24px; position:relative;">
+                  <div class="quadrant-box">
+                    <div class="q-title">分類A</div>
+                    <div class="q-body">説明テキストが<br>入ります</div>
+                  </div>
+                  <div class="quadrant-box highlight">
+                    <div class="q-title">当社（強調）</div>
+                    <div class="q-body">説明テキストが<br>入ります</div>
+                  </div>
+                  <div class="quadrant-box">
+                    <div class="q-title">分類C</div>
+                    <div class="q-body">説明テキストが<br>入ります</div>
+                  </div>
+                  <div class="quadrant-box">
+                    <div class="q-title">分類D</div>
+                    <div class="q-body">説明テキストが<br>入ります</div>
+                  </div>
+                </div>
+
+                <div class="axis-label" style="writing-mode:vertical-rl; margin-left:16px; display:flex; align-items:center;">横軸ラベル（高い）</div>
+              </div>
+
+              <div class="axis-label" style="margin-top:12px;">縦軸ラベル（低い）</div>
+            </div>
+          </div>
+
+          <!-- 右カラム：ランキングリスト -->
+          <div style="width:32%; display:flex; flex-direction:column; justify-content:center; border-left:1px solid #DDDDDD; padding-left:48px;">
+            <div class="area-label">Ranking List</div>
+            <div style="font-size:24px; font-weight:bold; color:#444; margin-bottom:16px;">リストの見出しが入ります</div>
+
+            <div class="rank-item">
+              <span class="rank-label">項目A</span>
+              <span class="rank-value">22%</span>
+            </div>
+            <div class="rank-item">
+              <span class="rank-label">項目B</span>
+              <span class="rank-value">18%</span>
+            </div>
+            <div class="rank-item highlight">
+              <span class="rank-label">当社</span>
+              <span class="rank-value">11%</span>
+            </div>
+            <div class="rank-item">
+              <span class="rank-label">項目D</span>
+              <span class="rank-value">7%</span>
+            </div>
+            <div class="rank-item">
+              <span class="rank-label">その他</span>
+              <span class="rank-value">42%</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

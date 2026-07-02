@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-four-card-grid-with-two-card-footer</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; }
+  .slide-label { text-align: center; color: #666; font-size: 16px; margin-bottom: 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 18px; color: #999999; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 16px; }
+  .card { border: 1px solid #CCCCCC; border-radius: 8px; padding: 20px; box-sizing: border-box; display: flex; flex-direction: column; }
+  .card-icon { width: 48px; height: 48px; border-radius: 50%; border: 2px dashed #CCCCCC; background: #F0F0F0; display:flex; align-items:center; justify-content:center; color:#AAAAAA; font-size:10px; text-align:center; margin-bottom: 10px; }
+  .card-heading { font-size: 24px; font-weight: bold; color: #555; margin-bottom: 6px; }
+  .card-body { font-size: 19px; color: #888; line-height: 1.5; margin-bottom: 12px; }
+</style>
+</head>
+<body>
+
+<p class="slide-label">[four-card-grid-with-two-card-footer]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:28px 80px;">
+
+        <div style="flex-shrink:0; margin-bottom:20px;">
+          <div class="area-label">Key Message</div>
+          <div style="font-size:26px; font-weight:bold; color:#333;">キーメッセージが入ります。1行程度の主張文。</div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:24px; flex:0 0 55%; margin-bottom:24px;">
+          <div class="card">
+            <div class="area-label">Top Card 1</div>
+            <div class="card-icon">アイコン</div>
+            <div class="card-heading">分類名1</div>
+            <div class="card-body">本文テキストが入ります。</div>
+            <div class="placeholder-box" style="flex:1; margin-bottom:10px;">ミニ図解</div>
+            <div style="background:#F0F0F0; border:1px dashed #CCCCCC; padding:6px 10px; font-size:16px; color:#AAAAAA; text-align:center;">例：具体例テキスト</div>
+          </div>
+          <div class="card">
+            <div class="area-label">Top Card 2</div>
+            <div class="card-icon">アイコン</div>
+            <div class="card-heading">分類名2</div>
+            <div class="card-body">本文テキストが入ります。</div>
+            <div class="placeholder-box" style="flex:1; margin-bottom:10px;">ミニ図解</div>
+            <div style="background:#F0F0F0; border:1px dashed #CCCCCC; padding:6px 10px; font-size:16px; color:#AAAAAA; text-align:center;">例：具体例テキスト</div>
+          </div>
+          <div class="card">
+            <div class="area-label">Top Card 3</div>
+            <div class="card-icon">アイコン</div>
+            <div class="card-heading">分類名3</div>
+            <div class="card-body">本文テキストが入ります。</div>
+            <div class="placeholder-box" style="flex:1; margin-bottom:10px;">ミニ図解</div>
+            <div style="background:#F0F0F0; border:1px dashed #CCCCCC; padding:6px 10px; font-size:16px; color:#AAAAAA; text-align:center;">例：具体例テキスト</div>
+          </div>
+          <div class="card">
+            <div class="area-label">Top Card 4</div>
+            <div class="card-icon">アイコン</div>
+            <div class="card-heading">分類名4</div>
+            <div class="card-body">本文テキストが入ります。</div>
+            <div class="placeholder-box" style="flex:1; margin-bottom:10px;">ミニ図解</div>
+            <div style="background:#F0F0F0; border:1px dashed #CCCCCC; padding:6px 10px; font-size:16px; color:#AAAAAA; text-align:center;">例：具体例テキスト</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:24px; flex:1;">
+          <div class="card" style="flex-direction:row; align-items:center; gap:20px;">
+            <div style="flex-shrink:0;">
+              <div class="area-label">Bottom Card 1</div>
+              <div class="card-icon">アイコン</div>
+              <div class="card-heading">補足トピック1</div>
+              <div class="card-body" style="margin-bottom:0;">本文テキストが入ります。2行程度の説明。</div>
+            </div>
+            <div class="placeholder-box" style="flex:1; height:100%;">補助図解</div>
+          </div>
+          <div class="card" style="flex-direction:row; align-items:center; gap:20px;">
+            <div style="flex-shrink:0;">
+              <div class="area-label">Bottom Card 2</div>
+              <div class="card-icon">アイコン</div>
+              <div class="card-heading">補足トピック2</div>
+              <div class="card-body" style="margin-bottom:0;">本文テキストが入ります。2行程度の説明。</div>
+            </div>
+            <div class="placeholder-box" style="flex:1; height:100%;">補助図解</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

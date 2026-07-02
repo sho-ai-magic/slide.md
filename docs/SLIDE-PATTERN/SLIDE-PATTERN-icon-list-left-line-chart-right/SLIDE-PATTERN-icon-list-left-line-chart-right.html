@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-icon-list-left-line-chart-right</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; }
+  .slide-label { text-align: center; color: #666; font-size: 16px; margin-bottom: 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
+  .list-item { display: flex; align-items: flex-start; gap: 20px; padding: 18px 0; border-bottom: 1px solid #DDDDDD; }
+  .list-icon { width: 60px; height: 60px; border-radius: 50%; border: 2px dashed #CCCCCC; background: #F0F0F0; flex-shrink: 0; display:flex; align-items:center; justify-content:center; color:#AAAAAA; font-size:12px; text-align:center; }
+  .list-heading { font-size: 28px; font-weight: bold; color: #555; margin-bottom: 6px; }
+  .list-body { font-size: 22px; color: #888; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<p class="slide-label">[icon-list-left-line-chart-right]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:32px 80px;">
+
+        <div style="flex-shrink:0; margin-bottom:20px;">
+          <div class="area-label">Key Message</div>
+          <div style="font-size:28px; font-weight:bold; color:#333;">キーメッセージが入ります。1行程度の主張文。</div>
+        </div>
+
+        <div style="display:flex; flex:1; gap:56px; overflow:hidden;">
+
+          <div style="width:30%; display:flex; flex-direction:column; justify-content:center;">
+            <div class="area-label">Icon List</div>
+            <div class="list-item">
+              <div class="list-icon">アイコン<br>(SVG生成)</div>
+              <div>
+                <div class="list-heading">項目見出し1</div>
+                <div class="list-body">本文テキストが入ります。2行程度の説明文。</div>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="list-icon">アイコン<br>(SVG生成)</div>
+              <div>
+                <div class="list-heading">項目見出し2</div>
+                <div class="list-body">本文テキストが入ります。2行程度の説明文。</div>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="list-icon">アイコン<br>(SVG生成)</div>
+              <div>
+                <div class="list-heading">項目見出し3</div>
+                <div class="list-body">本文テキストが入ります。2行程度の説明文。</div>
+              </div>
+            </div>
+            <div class="list-item" style="border-bottom:none;">
+              <div class="list-icon">アイコン<br>(SVG生成)</div>
+              <div>
+                <div class="list-heading">項目見出し4</div>
+                <div class="list-body">本文テキストが入ります。2行程度の説明文。</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="width:70%; display:flex; flex-direction:column; border-left:1px solid #DDDDDD; padding-left:56px;">
+            <div class="area-label">Line Chart</div>
+            <div style="display:flex; gap:32px; margin-bottom:16px; font-size:22px; color:#888;">
+              <span>—— 系列A</span>
+              <span>- - - 系列B</span>
+              <span>····· 系列C</span>
+            </div>
+            <div class="placeholder-box" style="flex:1;">折れ線グラフ（複数系列・軸ラベル付き）</div>
+            <div style="display:flex; justify-content:space-between; font-size:20px; color:#AAAAAA; margin-top:8px;">
+              <span>段階1</span><span>段階2</span><span>段階3</span><span>段階4</span><span>段階5</span>
+            </div>
+            <div style="font-size:20px; color:#AAAAAA; text-align:center; margin-top:12px;">← 補足注釈テキストが入ります →</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

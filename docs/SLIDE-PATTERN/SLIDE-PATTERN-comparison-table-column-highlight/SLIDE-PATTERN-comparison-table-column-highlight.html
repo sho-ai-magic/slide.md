@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-comparison-table-column-highlight</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; }
+  .slide-label { text-align: center; color: #666; font-size: 16px; margin-bottom: 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 18px; color: #999999; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .table-wrap { position: relative; flex: 1; }
+  .own-frame { position: absolute; top: 0; left: 18%; width: 20.5%; height: 100%; border: 4px solid #999999; border-radius: 16px; box-sizing: border-box; pointer-events: none; }
+  table { width: 100%; height: 100%; border-collapse: collapse; table-layout: fixed; }
+  th, td { border: 1px solid #DDDDDD; padding: 10px 16px; text-align: center; vertical-align: middle; }
+  th { background: #EEEEEE; color: #777777; font-size: 24px; }
+  th.own { background: #999999; color: #FFFFFF; }
+  td.own { background: #F5F5F5; }
+  td.label { text-align: left; background: #F8F8F8; color: #666666; font-size: 24px; font-weight: bold; }
+  td.value { font-size: 26px; color: #999999; }
+  .own-value { font-size: 36px; font-weight: bold; color: #666666; }
+  .sub { font-size: 18px; color: #AAAAAA; display: block; margin-top: 2px; }
+  td.own .badge { font-size: 18px; color: #AAAAAA; margin-left: 6px; }
+  td.qual { font-size: 20px; color: #999999; line-height: 1.6; }
+  td.own.qual { color: #666666; font-weight: bold; }
+  td.strength { text-align: left; font-size: 20px; color: #666666; line-height: 1.7; }
+  td.strength-other { text-align: left; font-size: 18px; color: #999999; line-height: 1.8; }
+</style>
+</head>
+<body>
+
+<p class="slide-label">[comparison-table-column-highlight]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:32px 80px;">
+
+        <div style="flex-shrink:0; margin-bottom:20px;">
+          <div class="area-label">Lead Text</div>
+          <div style="font-size:24px; color:#555;">リード文が入ります。比較の主旨を1〜2行で説明します。</div>
+        </div>
+
+        <div class="table-wrap">
+          <div class="own-frame"></div>
+          <table>
+            <colgroup>
+              <col style="width:18%"><col style="width:20.5%"><col style="width:15.375%"><col style="width:15.375%"><col style="width:15.375%"><col style="width:15.375%">
+            </colgroup>
+            <tr>
+              <th>比較項目</th>
+              <th class="own">自社</th>
+              <th>A社</th>
+              <th>B社</th>
+              <th>C社</th>
+              <th>D社</th>
+            </tr>
+            <tr>
+              <td class="label">指標1</td>
+              <td class="own"><span class="own-value">2,430</span><span class="sub">(前年比+32%)</span></td>
+              <td class="value">1,620</td>
+              <td class="value">980</td>
+              <td class="value">660</td>
+              <td class="value">420</td>
+            </tr>
+            <tr>
+              <td class="label">指標2</td>
+              <td class="own"><span class="own-value">+28.7%</span></td>
+              <td class="value">+16.4%</td>
+              <td class="value">+11.8%</td>
+              <td class="value">+9.7%</td>
+              <td class="value">+7.3%</td>
+            </tr>
+            <tr>
+              <td class="label">指標3</td>
+              <td class="own"><span class="own-value">78.4%</span><span class="badge">★No.1</span></td>
+              <td class="value">65.2%</td>
+              <td class="value">60.1%</td>
+              <td class="value">55.3%</td>
+              <td class="value">49.8%</td>
+            </tr>
+            <tr>
+              <td class="label">指標4</td>
+              <td class="own"><span class="own-value">0.72%</span><span class="badge">★No.1</span></td>
+              <td class="value">1.35%</td>
+              <td class="value">2.10%</td>
+              <td class="value">2.45%</td>
+              <td class="value">2.80%</td>
+            </tr>
+            <tr>
+              <td class="label">主なターゲット</td>
+              <td class="own qual">中堅企業<br>（100〜999名）</td>
+              <td class="qual">大企業中心</td>
+              <td class="qual">中小企業中心</td>
+              <td class="qual">中堅企業中心</td>
+              <td class="qual">中小企業中心</td>
+            </tr>
+            <tr>
+              <td class="label">主な強み</td>
+              <td class="own strength">
+                ✓ 強みテキスト1<br>✓ 強みテキスト2<br>✓ 強みテキスト3
+              </td>
+              <td class="strength-other">強み概要が入ります</td>
+              <td class="strength-other">強み概要が入ります</td>
+              <td class="strength-other">強み概要が入ります</td>
+              <td class="strength-other">強み概要が入ります</td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

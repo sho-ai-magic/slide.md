@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-two-step-comparison-with-recommendation</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; }
+  .slide-label { text-align: center; color: #666; font-size: 16px; margin-bottom: 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 18px; color: #999999; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .step-card { flex: 1; border: 1px solid #CCCCCC; border-radius: 16px; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; }
+  .step-badge { display: inline-block; background: #999999; color: #FFFFFF; font-size: 20px; font-weight: bold; padding: 6px 18px; border-radius: 6px; margin-bottom: 16px; }
+  .snippet-box { background: #555555; color: #EEEEEE; border-radius: 8px; padding: 14px 18px; font-size: 24px; font-family: monospace; margin-bottom: 18px; }
+  .check-item { font-size: 20px; color: #666666; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px; }
+  .check-icon { flex-shrink: 0; color: #999999; font-size: 20px; }
+  .arrow-right { display: flex; align-items: center; justify-content: center; font-size: 48px; color: #BBBBBB; }
+  .reco-box { border: 2px solid #CCCCCC; border-radius: 16px; background: #F7F7F7; padding: 18px 28px; display: flex; align-items: center; gap: 20px; }
+  .reco-badge { width: 52px; height: 52px; border-radius: 50%; background: #999999; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<p class="slide-label">[two-step-comparison-with-recommendation]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:28px 80px;">
+
+        <div style="flex-shrink:0; margin-bottom:48px;">
+          <div class="area-label">Key Message</div>
+          <div style="font-size:32px; font-weight:bold; color:#333; line-height:1.4;">キーメッセージが入ります。<br>2行程度で推奨手順の要点を示します。</div>
+        </div>
+
+        <div style="display:flex; align-items:stretch; gap:40px; flex:1; margin-bottom:56px;">
+          <div class="step-card">
+            <div class="area-label">Step A Card</div>
+            <span class="step-badge">Step A</span>
+            <div class="snippet-box">&gt;_ コマンド例A</div>
+            <div class="check-item"><span class="check-icon">✓</span>補足項目テキストが入ります</div>
+            <div class="check-item"><span class="check-icon">✓</span>補足項目テキストが入ります</div>
+          </div>
+          <div class="arrow-right">→</div>
+          <div class="step-card">
+            <div class="area-label">Step B Card</div>
+            <span class="step-badge">Step B</span>
+            <div class="snippet-box">&gt;_ コマンド例B</div>
+            <div class="check-item"><span class="check-icon">✓</span>補足項目テキストが入ります</div>
+            <div class="check-item"><span class="check-icon">✓</span>補足項目テキストが入ります</div>
+          </div>
+        </div>
+
+        <div class="reco-box" style="flex-shrink:0;">
+          <div class="reco-badge">★</div>
+          <div>
+            <div class="area-label" style="margin-bottom:4px;">Recommendation Box</div>
+            <div style="font-size:22px; font-weight:bold; color:#555; margin-bottom:4px;">推奨理由：</div>
+            <div style="font-size:26px; color:#666;">推奨理由の本文テキストが入ります。1〜2行程度で結論を示します。</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

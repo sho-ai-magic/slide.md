@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-checklist-data-left-structure-right</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; }
+  .slide-label { text-align: center; color: #666; font-size: 16px; margin-bottom: 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 18px; color: #999999; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .col-heading { font-size: 26px; font-weight: bold; color: #555; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #CCCCCC; }
+  .data-item { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-bottom: 1px solid #DDDDDD; flex: 1; }
+  .data-left { display: flex; align-items: center; gap: 14px; }
+  .check-box { width: 32px; height: 32px; border: 2px solid #999999; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #999999; font-size: 20px; flex-shrink: 0; }
+  .data-label { font-size: 24px; color: #555; }
+  .data-value { font-size: 36px; font-weight: bold; color: #666; }
+  .struct-item { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid #DDDDDD; flex: 1; }
+  .struct-heading { font-size: 26px; font-weight: bold; color: #555; margin-bottom: 4px; }
+  .struct-body { font-size: 20px; color: #888; }
+</style>
+</head>
+<body>
+
+<p class="slide-label">[checklist-data-left-structure-right]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:28px 80px;">
+
+        <div style="flex-shrink:0; margin-bottom:20px;">
+          <div class="area-label">Lead Text</div>
+          <div style="font-size:24px; color:#555; line-height:1.6;">リード文が入ります。2〜3行程度で現状・背景を説明します。</div>
+        </div>
+
+        <div style="display:flex; flex:1; gap:64px; overflow:hidden;">
+
+          <div style="width:48%; display:flex; flex-direction:column;">
+            <div class="area-label">Left Column</div>
+            <div class="col-heading">カラム見出しが入ります</div>
+            <div class="data-item">
+              <div class="data-left"><div class="check-box">✓</div><div class="data-label">指標ラベル1</div></div>
+              <div class="data-value">50%</div>
+            </div>
+            <div class="data-item">
+              <div class="data-left"><div class="check-box">✓</div><div class="data-label">指標ラベル2</div></div>
+              <div class="data-value">75%</div>
+            </div>
+            <div class="data-item">
+              <div class="data-left"><div class="check-box">✓</div><div class="data-label">指標ラベル3</div></div>
+              <div class="data-value">2.5時間</div>
+            </div>
+            <div class="data-item" style="border-bottom:none;">
+              <div class="data-left"><div class="check-box">✓</div><div class="data-label">指標ラベル4</div></div>
+              <div class="data-value">20時間</div>
+            </div>
+          </div>
+
+          <div style="width:48%; display:flex; flex-direction:column; border-left:1px solid #DDDDDD; padding-left:32px;">
+            <div class="area-label">Right Column</div>
+            <div class="col-heading">カラム見出しが入ります</div>
+            <div class="struct-item">
+              <div class="check-box">✓</div>
+              <div><div class="struct-heading">課題見出し1</div><div class="struct-body">説明文テキストが入ります</div></div>
+            </div>
+            <div class="struct-item">
+              <div class="check-box">✓</div>
+              <div><div class="struct-heading">課題見出し2</div><div class="struct-body">説明文テキストが入ります</div></div>
+            </div>
+            <div class="struct-item">
+              <div class="check-box">✓</div>
+              <div><div class="struct-heading">課題見出し3</div><div class="struct-body">説明文テキストが入ります</div></div>
+            </div>
+            <div class="struct-item" style="border-bottom:none;">
+              <div class="check-box">✓</div>
+              <div><div class="struct-heading">課題見出し4</div><div class="struct-body">説明文テキストが入ります</div></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
