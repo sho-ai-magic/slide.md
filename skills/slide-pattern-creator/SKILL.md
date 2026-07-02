@@ -29,17 +29,33 @@ description: スライドの画像・ファイルからレイアウトパター�
 
 ### 分析する観点
 
+元スライドと同じ構図を再現できるよう、コンテンツエリアを以下の観点で分析する：
+
 - **カラム構成**：1カラム・2カラム・3カラム・グリッド等
+- **分割構造と比率**：縦横の段組み（行×列）と各エリアのおおよその比率（例：上段30%・下段70%、左60%・右40%）
 - **主要エリアの配置**：画像・テキスト・アイコン・チャートがどこにあるか
 - **コンテンツの種類**：見出し・箇条書き・引用・データ・図解 等
+- **繰り返し要素**：カード・箇条書き・ステップ等の個数、並び方向（横並び／縦積み）、等幅かどうか
+- **整列・揃え**：各エリア内の水平・垂直方向の揃え（左揃え／中央揃え／上下中央 等）
+- **余白・密度**：エリア間のギャップ・内側余白の相対的な大きさ（詰まっている／ゆったり）。主要なオブジェクト間の隙間は、スライドの幅・高さに対する比率で見積もる（例：カード群と下部ボックスの間の隙間 ≒ スライド高さの5% ≒ 1080px基準で約54px）
+- **縦方向の分布**：コンテンツがエリアの高さ全体に均等に分配されているか、上寄せ・中央寄せか（下部の余白が意図的なものか）
+- **形状・囲み**：角丸・ピル型・枠線・背景塗りの有無、矢印・接続線の有無と向き。強調用の囲み枠がある場合は角丸かどうか・線の太さも読み取る
+- **文字サイズの階層**：各テキスト要素の相対的な大きさ（スライドの高さと比べてどのくらいの大きさか、どの文字が大きく・どの文字が小さいか）
+- **視覚階層**：どの要素が最も大きく目立つか、視線の流れ（上→下、左→右、Z型 等）
+- **要素内部の構成**：カード等の繰り返し要素1つの中身の並び（例：アイコン→見出し→本文の縦積み）
 - **強調の仕方**：フルスクリーン要素・中央配置・左右分割 等
+
+### 写真・アイコンの扱い
+
+- **写真等の画像**：位置・大きさ・役割のみを抽出する。画像の中身自体は言語化せず、「写真添付エリア」（ユーザーが後から実際の写真に差し替えるプレースホルダー）として扱う。
+- **アイコン**：位置・個数・役割のみを抽出する。元のアイコンの見た目は再現せず、スライド生成時に内容に沿ったSVGアイコンを生成する扱いとする。
 
 ### 分析対象外（SLIDE.mdで定義）
 
 以下の要素はSLIDE.mdの `Slide Frame` セクションで一括管理されるため、パターン分析には含めない：
 
 - タイトルエリア（スライドタイトルの位置・フォント・装飾）
-- ページ番号（位置・スタイル）
+- フッター（ブランドフッター・ページ番号の位置・スタイル）
 - スライド全体の背景色・共通装飾（アクセントバー・装飾図形等）
 
 **パターンとして定義するのは、タイトル行より下のコンテンツエリアの構造のみとする。**
@@ -106,6 +122,15 @@ STEP 2で提示した命名候補をユーザーが承認していない場合�
 
     SLIDE-PATTERN/SLIDE-PATTERN-{name}/SLIDE-PATTERN-{name}.md
 
+### 文言のサンプル化ルール（.md・HTML共通）
+
+`SLIDE-PATTERN-{name}.md` とスケルトンHTML（STEP 5）のどちらにも、元スライドの実際の文言（固有名詞・社名・製品名・具体的な数値・日付等）をそのまま転記しない：
+
+- **見出し・本文** → 「見出しが入ります」「本文テキストが入ります」等の汎用ダミーテキストに置き換える
+- **数値** → 「50%」「1,234」等のキリのいいダミー値に置き換える
+- **社名・人名・製品名** → 「サンプル株式会社」「山田 太郎」等のダミー名に置き換える
+- ただし、文字数・行数の**規模感**（例：見出しは10〜15文字程度、本文は2〜4行）は構図の再現に必要なため記述してよい
+
 ### SLIDE-PATTERN-{name}.mdの出力形式
 
 以下の4セクション構成で出力する。各 `[　]` に解析・確認で得た実際の値を入れる。
@@ -115,7 +140,7 @@ STEP 2で提示した命名候補をユーザーが承認していない場合�
 
 # SLIDE-PATTERN-{name}
 
-このファイルはスライドのコンテンツエリア（タイトル行より下の領域）のレイアウトパターン定義書です。SLIDE.mdと組み合わせてAIツールに渡すことで、このパターンのスライドを生成できます。タイトルエリア・ページ番号・装飾はSLIDE.mdの `Slide Frame` セクションで定義されるため、このファイルには含みません。
+このファイルはスライドのコンテンツエリア（タイトル行より下の領域）のレイアウトパターン定義書です。SLIDE.mdと組み合わせてAIツールに渡すことで、このパターンのスライドを生成できます。タイトルエリア・フッター（ブランドフッター・ページ番号）・装飾はSLIDE.mdの `Slide Frame` セクションで定義されるため、このファイルには含みません。文言はすべてサンプル（ダミーテキスト）です。
 
 ## Overview
 
@@ -125,31 +150,43 @@ STEP 2で提示した命名候補をユーザーが承認していない場合�
 
 ## Structure（構造）
 
-[コンテンツエリアの構造を1〜3文で説明する。タイトル行より下のエリアがどう分割されているかを記述する。タイトル・ページ番号・装飾は含めない。]
+[コンテンツエリアの構造を「分割構造 → 各エリアの中身 → 視覚階層」の順で3〜5文で説明する。縦横の段組みと各エリアの比率、繰り返し要素の個数と並び方向、どの要素が最も大きく目立つか（視線の流れ）まで記述する。タイトル・フッター・装飾は含めない。]
 
     structure:
-      layout: [two-column / single / grid / full / 等]
+      layout: [two-column / single / grid / top-bottom-split / 等]
       columns: [カラム数（該当する場合）]
+      gap: [エリア間の隙間。元画像での比率から1920×1080基準に換算した値 例: 54px（高さの約5%）]
       left:
-        width: [割合 例: 50%]
+        width: [割合 例: 60%]
         type: [image / text / icon / chart / 等]
+        align: [エリア内の揃え 例: 上下中央・左揃え]
         role: [このエリアの役割]
       right:
-        width: [割合 例: 50%]
+        width: [割合 例: 40%]
         type: [image / text / icon / chart / 等]
+        align: [エリア内の揃え 例: 上下中央・左揃え]
         elements: [含まれる要素のリスト 例: [heading, body, caption]]
+      items:                          # カード・箇条書き等の繰り返し要素がある場合
+        count: [基本の個数（元スライドと同じ） 例: 4]
+        count_range: [可変範囲 例: 3〜5]
+        direction: [並び方向 例: 横並び・等幅]
+        shape: [形状 例: 角丸カード・背景塗り / ピル型 / 枠線のみ]
+        item_structure: [1アイテムの内部構成 例: アイコン → 見出し → 本文の縦積み]
 
-（レイアウト構造に応じてYAMLのキーは適宜変更する）
+（レイアウト構造に応じてYAMLのキーは適宜変更する。エリアの幅・高さは比率（%）で記述し、ギャップ・余白など細部のみ1920px基準のpxの目安を添える）
 
 ## Elements（各要素の役割）
 
-※ タイトル（H1）はSLIDE.mdの Slide Frame で定義されるため、この表には含めない。コンテンツエリアの要素のみを記述する。
+※ タイトル（H1）・フッターはSLIDE.mdの Slide Frame で定義されるため、この表には含めない。コンテンツエリアの要素のみを記述する。
+※ 写真は「写真添付エリア（後から実際の写真に差し替え）」、アイコンは「内容に沿ったSVGアイコンを生成して配置」として役割を記述する。
+※ 文字要素には、元スライドの見た目から見積もった1920px基準のフォントサイズの目安を役割欄に添える（例：本文24px相当、強調数値48px相当）。
 
 | 要素 | 配置 | 役割 |
 |---|---|---|
-| [要素名（例：画像）] | [配置場所（例：左カラム全体）] | [この要素が担う意味・機能（例：メッセージを補強するビジュアル）] |
-| [要素名（例：見出し H2）] | [配置場所（例：右カラム上部）] | [役割（例：スライドの主張・サブタイトル）] |
+| [要素名（例：写真添付エリア）] | [配置場所（例：左カラム全体）] | [役割（例：メッセージを補強するビジュアル。ユーザーが後から実際の写真に差し替える）] |
+| [要素名（例：見出し H2）] | [配置場所（例：右カラム上部）] | [役割（例：スライドの主張・サブタイトル。10〜15文字程度）] |
 | [要素名（例：本文）] | [配置場所（例：右カラム中央）] | [役割（例：見出しを支える説明文（2〜4行））] |
+| [要素名（例：アイコン）] | [配置場所（例：各カード上部）] | [役割（例：カードの内容を象徴する視覚要素。生成時に内容に沿ったSVGアイコンを生成する）] |
 
 ## Usage Guide（AIへの使い方）
 
@@ -159,6 +196,8 @@ STEP 2で提示した命名候補をユーザーが承認していない場合�
 
 **注意点：**
 - [このパターン特有の注意点や代替案（例：画像がない場合は左カラムをカラーブロックで代替できる）]
+- [写真エリアがある場合に記載]写真は「写真添付エリア」としてプレースホルダーのまま生成し、ユーザーが後から実際の写真に差し替える
+- [アイコンがある場合に記載]アイコンは元スライドの見た目を再現せず、スライドの内容に沿ったSVGアイコンを生成して配置する
 ---
 
 ## STEP 5：SLIDE-PATTERN-{name}.htmlの生成
@@ -173,86 +212,131 @@ STEP 4と同じフォルダ内にスケルトンHTMLを生成する。
 
 - **色**：グレースケールのみ（背景：#FFFFFF、ボーダー：#CCCCCC、エリア背景：#F0F0F0、テキスト：#333333）
 - **フォント**：システムデフォルト（font-family: sans-serif）
-- **サイズ**：960px × 540px固定（16:9）
-- **各エリアにラベル表示**：`font-size: 11px; color: #999; text-transform: uppercase;` で何のエリアか明示
-- **コンテンツ**：ダミーテキスト（「見出しが入ります」「本文テキストが入ります。2〜4行程度の説明文が配置されます。」「キャプション」等）
+- **サイズ**：1920px × 1080px固定（16:9）。SLIDE.mdのサンプルHTMLと同じサイズに揃え、ブラウザ確認用に0.75スケールで縮小表示する（後述のCSS参照）
+- **各エリアにラベル表示**：`font-size: 20px; color: #999; text-transform: uppercase;` で何のエリアか明示
+- **コンテンツ**：ダミーテキスト（「見出しが入ります」「本文テキストが入ります。2〜4行程度の説明文が配置されます。」「キャプション」等）。STEP 4の「文言のサンプル化ルール」に従い、元スライドの実文言（固有名詞・数値・社名等）は転記しない
 - **JavaScriptは使用しない**
 - **外部リソース不要**（フォントCDN等は使わない）
-- **タイトルエリアのプレースホルダーを必ず上部に配置する**：薄いグレーで "Title Area — SLIDE.md 参照" とラベル表示し、このエリアがSLIDE.mdで定義されることを明示する。タイトルより下がコンテンツエリア（このパターンが定義する領域）となる。
-- **スライド全体は `display:flex; flex-direction:column;` で構成する**：タイトルエリアを `flex-shrink:0` で固定し、コンテンツエリアを `flex:1` で残りを埋める。
+- **タイトルエリアのプレースホルダーを必ず上部に配置する**：薄いグレーで "Title Area — SLIDE.md 参照" とラベル表示し、このエリアがSLIDE.mdで定義されることを明示する。
+- **フッターのプレースホルダーを必ず下部に配置する**：薄いグレーで "Footer Area — SLIDE.md 参照" とラベル表示し、帯の中に左「ブランドフッター」・右「ページ番号」の薄字プレースホルダーを置く。タイトルエリアとフッターに挟まれた領域がコンテンツエリア（このパターンが定義する領域）となる。
+- **タイトル帯・フッター帯の高さは仮置きとする**：スケルトン上の帯の高さは目印用の仮の値であり、実際のスライド生成時のタイトルエリア・フッターの高さ・見た目はSLIDE.mdの `Slide Frame` 定義に従う。
+- **スライド全体は `display:flex; flex-direction:column;` で構成する**：タイトルエリアとフッターを `flex-shrink:0` で固定し、コンテンツエリアを `flex:1` で残りを埋める。
+- **写真エリアは点線枠で「写真添付エリア」と表記する**：`border: dashed` の枠内に「写真添付エリア（後から差し替え）」とラベル表示し、ユーザーが後から実際の写真に差し替えやすいことがわかるようにする。
+- **アイコンは簡易プレースホルダーにする**：円形の枠等で位置・個数のみ示し、「アイコン（内容に沿ってSVG生成）」とラベル表示する。元スライドのアイコンの見た目は再現しない。
+- **構図を忠実に再現する**：STEP 2で抽出した比率・整列・ギャップ・形状・繰り返し個数をHTMLにそのまま反映する。エリアの幅・高さは width:% や flex比で表現し、ギャップ・内側余白など細部はpxで表現する。
+- **フォントサイズは元スライドの見た目に合わせる**：元スライドの各テキストの大きさをスライド全体の高さとの比率から見積もり、1920×1080基準のpxに換算して適用する。**縮小を優先して文字を小さくしない**こと。目安として、本文・表のセルは最低24px、キャプション・補足でも最低18pxを確保する。表や繰り返し要素の中の文字も例外にせず、元スライドで大きく見える文字（強調数値等）は40〜56px程度まで大きくする。
+- **角丸・強調枠を再現する**：元スライドでカード・強調枠・テーブルの外枠などの角が丸い場合は `border-radius` で再現する。特定のカラムや要素を囲む強調枠は、角丸・線の太さ・囲む範囲を含めて忠実に再現する（色はグレースケールに置き換えてよいが、形状は省略しない）。
+- **コンテンツエリア内に必ず収める**：コンテンツの合計高さがコンテンツエリア（タイトル帯とフッター帯に挟まれた領域）を超えて見切れないようにする。フォントサイズを大きくした場合は、その分セルの余白・行間・エリア間ギャップを詰めて高さを吸収する。**収まらないからといってフォントサイズを最低目安より小さくしない**。目安：表のセル余白は上下10〜14px程度、行間は1.5〜1.7程度から調整する。
+- **縦方向にバランスよく配置する**：元スライドでコンテンツがエリアの高さ全体に分配されている場合、上詰めにして下だけが大きく空いた状態にしない。リスト・カード等の繰り返し要素は各アイテムに `flex:1` を与えるか、親要素に `justify-content: space-between / space-evenly` を指定して高さ全体に均等分配する（元スライドが意図的に下を空けている場合のみ上寄せを維持する）。
+- **オブジェクト間の隙間も比率で再現する**：エリア間・カード間・ボックス間の縦横の隙間は、元スライドでの見た目の比率（スライドの幅・高さの何%か）から1920×1080基準のpxに換算して適用する。**目分量で一律の小さな値（16〜24px程度）にしない**。元スライドで大きく空いている隙間（高さの5%＝約54pxなど）はそのまま大きく取る。
 
 ### CSSの基本構造
 
+1920pxのスライドをブラウザで確認しやすいよう、SLIDE.mdのサンプルと同じ0.75スケール表示を使う。各スライドは `.slide-outer > .slide-wrapper > .slide` の構造で出力し、ブラウザ上では1440×810px相当で表示される。
+
     body {
       background: #E8E8E8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       padding: 40px 20px;
       font-family: sans-serif;
     }
 
+    .slide-outer {
+      margin: 0 auto 32px;
+      width: 1440px; /* 1920 × 0.75 */
+    }
+
+    .slide-wrapper {
+      width: 1920px;
+      transform-origin: top left;
+      transform: scale(0.75);
+      margin-bottom: -270px; /* 1080 × (1 - 0.75) = 270px */
+    }
+
     .slide {
-      width: 960px;
-      height: 540px;
+      width: 1920px;
+      height: 1080px;
       background: #FFFFFF;
       border: 1px solid #CCCCCC;
+      box-sizing: border-box;
       position: relative;
       overflow: hidden;
-      margin-bottom: 8px;
+      display: flex;
+      flex-direction: column;
     }
 
     .area-label {
-      font-size: 11px;
+      font-size: 20px;
       color: #999999;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
     }
 
     .placeholder-box {
       background: #F0F0F0;
-      border: 1px dashed #CCCCCC;
+      border: 2px dashed #CCCCCC;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #AAAAAA;
-      font-size: 13px;
+      font-size: 24px;
     }
 
 ### HTMLの構成例（image-left-text-rightの場合）
 
-パターンの構造に応じてHTMLを生成する。以下は2カラム（左画像・右テキスト）の構成例：
+パターンの構造に応じてHTMLを生成する。以下は2カラム（左写真・右テキスト）の構成例。タイトルエリア＋コンテンツエリア＋フッターエリアの3層構成とする：
 
     <p class="slide-label">[{name}]</p>
-    <div class="slide" style="display:flex; flex-direction:column;">
-      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
-      <div style="padding:14px 40px 12px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
-        <div class="area-label">Title Area — SLIDE.md 参照</div>
-        <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-      </div>
-      <!-- コンテンツエリア（このパターンが定義する領域） -->
-      <div style="display:flex; flex:1; overflow:hidden;">
-        <div style="width:50%; padding:24px 32px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid #CCCCCC;">
-          <div class="area-label">Image Area</div>
-          <div class="placeholder-box" style="flex:1;">[IMAGE]</div>
-        </div>
-        <div style="width:50%; padding:24px 32px; display:flex; flex-direction:column; justify-content:center;">
-          <div class="area-label">Heading (H2)</div>
-          <div style="font-size:20px; font-weight:bold; color:#333; margin-bottom:12px;">見出しが入ります</div>
-          <div class="area-label">Body Text</div>
-          <div style="font-size:13px; color:#555; line-height:1.7; margin-bottom:12px;">本文テキストが入ります。2〜4行程度の説明文が配置されます。ここにメッセージの詳細を記述します。</div>
-          <div class="area-label">Caption (optional)</div>
-          <div style="font-size:11px; color:#999;">補足・注釈テキスト</div>
+    <div class="slide-outer">
+      <div class="slide-wrapper">
+        <div class="slide">
+          <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+          <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+            <div class="area-label">Title Area — SLIDE.md 参照</div>
+            <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+          </div>
+          <!-- コンテンツエリア（このパターンが定義する領域） -->
+          <div style="display:flex; flex:1; overflow:hidden;">
+            <div style="width:50%; padding:48px 64px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid #CCCCCC;">
+              <div class="area-label">Photo Area</div>
+              <div class="placeholder-box" style="flex:1;">写真添付エリア（後から差し替え）</div>
+            </div>
+            <div style="width:50%; padding:48px 64px; display:flex; flex-direction:column; justify-content:center;">
+              <div class="area-label">Heading (H2)</div>
+              <div style="font-size:40px; font-weight:bold; color:#333; margin-bottom:24px;">見出しが入ります</div>
+              <div class="area-label">Body Text</div>
+              <div style="font-size:24px; color:#555; line-height:1.7; margin-bottom:24px;">本文テキストが入ります。2〜4行程度の説明文が配置されます。ここにメッセージの詳細を記述します。</div>
+              <div class="area-label">Caption (optional)</div>
+              <div style="font-size:20px; color:#999;">補足・注釈テキスト</div>
+            </div>
+          </div>
+          <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+          <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+            <div>
+              <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+              <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+            </div>
+            <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+          </div>
         </div>
       </div>
     </div>
 
+アイコンのプレースホルダーが必要な場合の例（円形枠＋ラベル）：
+
+    <div style="width:80px; height:80px; border-radius:50%; border:2px dashed #CCCCCC; background:#F0F0F0; display:flex; align-items:center; justify-content:center; color:#AAAAAA; font-size:14px; text-align:center;">アイコン<br>(SVG生成)</div>
+
 ### 生成時の注意
 
-- パターンの構造（カラム数・配置）に合わせてHTMLを柔軟に組み立てる
+- パターンの構造（カラム数・配置・比率・繰り返し個数）に合わせてHTMLを柔軟に組み立てる
 - ラベルは必ずすべてのエリアに表示する
-- ダミーテキストは日本語で記述する
+- ダミーテキストは日本語で記述する（元スライドの実文言は転記しない）
+- 生成後、Structure（YAML）とHTMLの構図（比率・繰り返し個数・並び方向・整列）が一致していることを確認する
+- 生成後、フォントサイズやオブジェクト間の隙間が元スライドの見た目より小さく・狭くなっていないか、角丸・強調枠などの形状が抜けていないかを確認する
+- 生成後、CSSで定義したすべてのセレクタがHTML側の要素に正しく対応しているか確認する（例：`td.own-value` と書いたのにクラスが `<td>` ではなく内側の `<span>` に付いている等の対応ずれがあると、そのスタイルは適用されず文字がデフォルトサイズのままになる）
+- 生成後、コンテンツの合計高さを概算し（各行の文字サイズ×行間＋余白の合計）、コンテンツエリアからはみ出して下が見切れていないか確認する。はみ出す場合は余白・行間を詰めて調整する
+- 生成後、コンテンツが上詰めになって下部だけが不自然に空いていないか確認する（元スライドが全体に分配しているなら均等分配に直す）
+- 生成後、元スライドの実文言・実数値（見出し・数値・固有名詞）が残っていないか確認し、残っていればダミーに置き換える
 
 ## STEP 6：繰り返し・完了通知
 
