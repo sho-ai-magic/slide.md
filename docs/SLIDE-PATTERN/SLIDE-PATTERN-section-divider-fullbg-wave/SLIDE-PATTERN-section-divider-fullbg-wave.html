@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-section-divider-fullbg-wave</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; }
+  .slide-label { text-align: center; color: #666; font-size: 16px; margin-bottom: 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 18px; color: #999999; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .wave-bg { background: repeating-linear-gradient(120deg, #F0F0F0 0px, #E5E5E5 60px, #F5F5F5 140px, #EAEAEA 220px); }
+</style>
+</head>
+<body>
+
+<p class="slide-label">[section-divider-fullbg-wave]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <div class="area-label-overlay" style="position:absolute; top:16px; left:16px; font-size:14px; color:#AAAAAA; z-index:1;">Cover / Section Divider — タイトルエリア・フッターエリアなし（専用デザイン）</div>
+
+      <div class="wave-bg" style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:56px 70px; box-sizing:border-box; position:relative;">
+        <div class="area-label" style="position:absolute; top:20px; left:20px;">Background Image Area</div>
+
+        <div class="area-label">Logo</div>
+        <div style="width:130px; height:36px; border:2px dashed #CCCCCC; display:flex; align-items:center; justify-content:center; color:#AAAAAA; font-size:14px; margin-bottom:auto;">ロゴ</div>
+
+        <div style="margin-top:auto;">
+          <div class="area-label">Section Label</div>
+          <div style="font-size:16px; color:#999; margin-bottom:12px;">Section 01</div>
+          <div class="area-label">Section Title</div>
+          <div style="font-size:40px; font-weight:bold; color:#444; margin-bottom:10px;">01 セクションタイトルが入ります</div>
+          <div class="area-label">Subtitle</div>
+          <div style="font-size:18px; color:#999;">Section Subtitle</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

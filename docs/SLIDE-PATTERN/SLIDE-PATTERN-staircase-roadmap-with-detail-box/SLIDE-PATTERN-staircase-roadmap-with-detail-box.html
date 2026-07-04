@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-staircase-roadmap-with-detail-box</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; }
+  .slide-label { text-align: center; color: #666; font-size: 16px; margin-bottom: 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 18px; color: #999999; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .step-box { position: absolute; display: flex; align-items: center; gap: 20px; background: #FFFFFF; border: 2px solid #CCCCCC; border-radius: 14px; padding: 16px 28px; box-sizing: border-box; }
+  .step-num { font-size: 48px; font-weight: bold; color: #BBBBBB; flex-shrink: 0; }
+  .step-icon { width: 56px; height: 56px; border-radius: 10px; border: 2px dashed #CCCCCC; background: #F0F0F0; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 10px; text-align: center; flex-shrink: 0; }
+  .step-main { flex: 1; }
+  .step-heading { font-size: 26px; font-weight: bold; color: #555; margin-bottom: 4px; }
+  .step-body { font-size: 18px; color: #888; }
+  .step-side { text-align: right; flex-shrink: 0; }
+  .step-difficulty { font-size: 18px; color: #AAAAAA; margin-bottom: 4px; }
+  .step-time { font-size: 22px; font-weight: bold; color: #777; }
+</style>
+</head>
+<body>
+
+<p class="slide-label">[staircase-roadmap-with-detail-box]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:28px 80px;">
+
+        <div style="flex-shrink:0; margin-bottom:20px;">
+          <div class="area-label">Lead Text</div>
+          <div style="font-size:20px; color:#555;">リード文が入ります。全体の主旨と難易度順の並びを1〜2行で説明します。</div>
+        </div>
+
+        <div style="position:relative; flex:1;">
+          <div class="area-label" style="position:absolute; top:0; left:0;">Staircase Steps</div>
+
+          <div class="step-box" style="left:0%; bottom:0%; width:58%; height:15%;">
+            <div class="step-num">1</div>
+            <div class="step-icon">アイコン</div>
+            <div class="step-main">
+              <div class="step-heading">ステップ見出し1</div>
+              <div class="step-body">説明テキストが入ります</div>
+            </div>
+            <div class="step-side">
+              <div class="step-difficulty">難易度 ★☆☆☆☆</div>
+              <div class="step-time">45分 → 10分</div>
+            </div>
+          </div>
+
+          <div class="step-box" style="left:8%; bottom:18%; width:58%; height:15%;">
+            <div class="step-num">2</div>
+            <div class="step-icon">アイコン</div>
+            <div class="step-main">
+              <div class="step-heading">ステップ見出し2</div>
+              <div class="step-body">説明テキストが入ります</div>
+            </div>
+            <div class="step-side">
+              <div class="step-difficulty">難易度 ★★☆☆☆</div>
+              <div class="step-time">1時間 → 10分</div>
+            </div>
+          </div>
+
+          <div class="step-box" style="left:16%; bottom:36%; width:58%; height:15%;">
+            <div class="step-num">3</div>
+            <div class="step-icon">アイコン</div>
+            <div class="step-main">
+              <div class="step-heading">ステップ見出し3</div>
+              <div class="step-body">説明テキストが入ります</div>
+            </div>
+            <div class="step-side">
+              <div class="step-difficulty">難易度 ★★★☆☆</div>
+              <div class="step-time">半日 → 30分</div>
+            </div>
+          </div>
+
+          <div class="step-box" style="left:24%; bottom:54%; width:58%; height:15%;">
+            <div class="step-num">4</div>
+            <div class="step-icon">アイコン</div>
+            <div class="step-main">
+              <div class="step-heading">ステップ見出し4</div>
+              <div class="step-body">説明テキストが入ります</div>
+            </div>
+            <div class="step-side">
+              <div class="step-difficulty">難易度 ★★★★☆</div>
+              <div class="step-time">数日 → 数時間</div>
+            </div>
+          </div>
+
+          <div class="step-box" style="left:32%; bottom:72%; width:58%; height:15%;">
+            <div class="step-num">5</div>
+            <div class="step-icon">アイコン</div>
+            <div class="step-main">
+              <div class="step-heading">ステップ見出し5</div>
+              <div class="step-body">説明テキストが入ります</div>
+            </div>
+            <div class="step-side">
+              <div class="step-difficulty">難易度 ★★★★★</div>
+              <div class="step-time">1日 → 1時間</div>
+            </div>
+          </div>
+
+          <div style="position:absolute; top:0; right:0; font-size:20px; color:#AAAAAA; text-align:right;">
+            <div class="area-label" style="margin-bottom:2px;">Progress Arrow</div>
+            応用（難易度高） ↗
+          </div>
+
+          <div style="position:absolute; right:0; bottom:0; width:30%; height:32%; background:#F5F5F5; border:1px dashed #CCCCCC; border-radius:12px; padding:16px 20px; box-sizing:border-box;">
+            <div class="area-label">Supplementary Box</div>
+            <div style="font-size:18px; font-weight:bold; color:#666; margin-bottom:8px;">まず何から始める？</div>
+            <div style="font-size:15px; color:#999; line-height:1.6;">補足テキストが入ります。最初に着手すべき内容を案内します。</div>
+          </div>
+
+        </div>
+      </div>
+
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-gantt-swimlane-arrow-timeline</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; }
+  .slide-label { text-align: center; color: #666; font-size: 16px; margin-bottom: 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 18px; color: #999999; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .category-row { display: flex; flex: 1; border-bottom: 2px solid #333333; }
+  .category-row:last-child { border-bottom: none; }
+  .category-name { width: 34%; background: #999999; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: bold; text-align: center; }
+  .category-desc { flex: 1; background: #EFEFEF; padding: 20px 24px; font-size: 16px; color: #777; line-height: 1.6; }
+  .month-seg { flex: 1; text-align: center; font-size: 24px; font-weight: bold; color: #666; position: relative; }
+  .month-divider { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1px dashed #BBBBBB; }
+  .arrow-bar { position: absolute; height: 70px; background: #CCCCCC; clip-path: polygon(0 15%, 88% 15%, 88% 0%, 100% 50%, 88% 100%, 88% 85%, 0 85%); display: flex; align-items: center; padding-left: 24px; box-sizing: border-box; }
+  .arrow-bar.dark { background: #888888; }
+  .arrow-bar .label { color: #FFFFFF; font-size: 18px; font-weight: bold; }
+  .arrow-bar .label span { font-weight: normal; margin-left: 8px; }
+</style>
+</head>
+<body>
+
+<p class="slide-label">[gantt-swimlane-arrow-timeline]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:24px 60px;">
+
+        <div style="flex-shrink:0; margin-bottom:20px;">
+          <div class="area-label">Lead Text</div>
+          <div style="font-size:20px; color:#555; line-height:1.6;">リード文が入ります。<br>スケジュール全体の背景・目的を2行程度で説明します。</div>
+        </div>
+
+        <div style="display:flex; flex:1;">
+
+          <div style="width:32%; display:flex; flex-direction:column; border:1px solid #333333;">
+            <div class="area-label" style="padding:4px 12px 0;">Category Swimlane</div>
+            <div class="category-row">
+              <div class="category-name">カテゴリA</div>
+              <div class="category-desc">詳細説明テキストが入ります。実績データや補足情報をここに記載します。</div>
+            </div>
+            <div class="category-row">
+              <div class="category-name">カテゴリB</div>
+              <div class="category-desc">詳細説明テキストが入ります。実績データや補足情報をここに記載します。</div>
+            </div>
+          </div>
+
+          <div style="width:68%; display:flex; flex-direction:column; border:1px solid #333333; border-left:none;">
+            <div style="display:flex; flex-shrink:0; padding:10px 0; border-bottom:1px solid #DDDDDD;">
+              <div class="area-label" style="position:absolute;">Month Axis</div>
+              <div class="month-seg">← 　月1　 →<div class="month-divider" style="right:0;"></div></div>
+              <div class="month-seg">← 　月2　 →<div class="month-divider" style="right:0;"></div></div>
+              <div class="month-seg">← 　月3　 →</div>
+            </div>
+
+            <div style="position:relative; flex:1;">
+              <div class="month-divider" style="left:33.3%;"></div>
+              <div class="month-divider" style="left:66.6%;"></div>
+
+              <div class="arrow-bar" style="left:2%; width:36%; top:14%;">
+                <div class="label">3月初旬〜6月中旬<span>約3ヶ月間の取り組み内容</span></div>
+              </div>
+              <div class="arrow-bar dark" style="left:60%; width:36%; top:14%;">
+                <div class="label">6月中旬〜<span>取り組み内容が入ります</span></div>
+              </div>
+
+              <div class="arrow-bar" style="left:2%; width:70%; top:60%;">
+                <div class="label">5月〜<span>取り組み内容が入ります</span></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

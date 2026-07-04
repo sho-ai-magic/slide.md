@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-donut-chart-4up-with-box</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; }
+  .slide-label { text-align: center; color: #666; font-size: 16px; margin-bottom: 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 18px; color: #999999; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .donut-col { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 16px; }
+  .donut-label { font-size: 20px; font-weight: bold; color: #555; display: flex; align-items: center; gap: 6px; margin-bottom: 16px; }
+  .donut-caption { font-size: 17px; color: #888; line-height: 1.5; margin-top: 16px; }
+  .donut-value { font-size: 48px; font-weight: bold; color: #555; }
+</style>
+</head>
+<body>
+
+<p class="slide-label">[donut-chart-4up-with-box]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:28px 80px;">
+
+        <div style="flex-shrink:0; margin-bottom:20px;">
+          <div class="area-label">Heading</div>
+          <div style="font-size:22px; font-weight:bold; color:#444; margin-bottom:10px;">見出しが入ります</div>
+          <div style="font-size:32px; font-weight:bold; color:#666; margin-bottom:10px;">リード文が入ります。調査結果の要点を1行で強調します。</div>
+          <div style="font-size:18px; color:#999;">補足小見出しが入ります</div>
+        </div>
+
+        <div style="flex:1; background:#F5F5F5; border-radius:16px; display:flex; align-items:center; padding:24px 32px;">
+
+          <div class="donut-col">
+            <div class="area-label">Donut 1</div>
+            <div class="donut-label">ラベル1 ↑</div>
+            <svg width="180" height="180" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#E0E0E0" stroke-width="14"/>
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#888888" stroke-width="14" stroke-dasharray="286" stroke-dashoffset="26" transform="rotate(-90 60 60)"/>
+              <text x="60" y="70" text-anchor="middle" font-size="26" font-weight="bold" fill="#555">91%</text>
+            </svg>
+            <div class="donut-caption">キャプションが入ります。1〜2行程度の補足説明。</div>
+          </div>
+
+          <div class="donut-col">
+            <div class="area-label">Donut 2</div>
+            <div class="donut-label">ラベル2 ↑</div>
+            <svg width="180" height="180" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#E0E0E0" stroke-width="14"/>
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#888888" stroke-width="14" stroke-dasharray="286" stroke-dashoffset="101" transform="rotate(-90 60 60)"/>
+              <text x="60" y="70" text-anchor="middle" font-size="26" font-weight="bold" fill="#555">68%</text>
+            </svg>
+            <div class="donut-caption">キャプションが入ります。1〜2行程度の補足説明。</div>
+          </div>
+
+          <div class="donut-col">
+            <div class="area-label">Donut 3</div>
+            <div class="donut-label">ラベル3 ↑</div>
+            <svg width="180" height="180" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#E0E0E0" stroke-width="14"/>
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#888888" stroke-width="14" stroke-dasharray="286" stroke-dashoffset="129" transform="rotate(-90 60 60)"/>
+              <text x="60" y="70" text-anchor="middle" font-size="26" font-weight="bold" fill="#555">55%</text>
+            </svg>
+            <div class="donut-caption">キャプションが入ります。1〜2行程度の補足説明。</div>
+          </div>
+
+          <div class="donut-col">
+            <div class="area-label">Donut 4</div>
+            <div class="donut-label">ラベル4 ↑</div>
+            <svg width="180" height="180" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#E0E0E0" stroke-width="14"/>
+              <circle cx="60" cy="60" r="50" fill="none" stroke="#888888" stroke-width="14" stroke-dasharray="286" stroke-dashoffset="115" transform="rotate(-90 60 60)"/>
+              <text x="60" y="70" text-anchor="middle" font-size="26" font-weight="bold" fill="#555">64%</text>
+            </svg>
+            <div class="donut-caption">キャプションが入ります。1〜2行程度の補足説明。</div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

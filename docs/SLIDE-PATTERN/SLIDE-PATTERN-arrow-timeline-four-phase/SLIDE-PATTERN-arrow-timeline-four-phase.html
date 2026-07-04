@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-arrow-timeline-four-phase</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; }
+  .slide-label { text-align: center; color: #666; font-size: 16px; margin-bottom: 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 18px; color: #999999; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .phase-col { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 20px; }
+  .period-label { font-size: 26px; font-weight: bold; color: #666; margin-bottom: 8px; }
+  .vline { width: 2px; height: 40px; background: #AAAAAA; }
+  .marker { width: 44px; height: 44px; border-radius: 50%; background: #999999; border: 4px solid #FFFFFF; box-shadow: 0 0 0 2px #999999; }
+  .phase-heading { font-size: 24px; font-weight: bold; color: #666; margin: 16px 0 10px; }
+  .phase-body { font-size: 18px; color: #888; line-height: 1.6; }
+  .arrow-bar { position: relative; height: 126px; background: #DDDDDD; margin: 0 32px; clip-path: polygon(0 16.5%, 90% 16.5%, 90% 0%, 100% 50%, 90% 100%, 90% 83.5%, 0 83.5%); display: flex; align-items: center; }
+  .nav-icon { width: 44px; height: 44px; border-radius: 50%; border: 2px solid #CCCCCC; background: #FFFFFF; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 22px; flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<p class="slide-label">[arrow-timeline-four-phase]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:32px 80px;">
+
+        <div style="flex-shrink:0; margin-bottom:48px;">
+          <div class="area-label">Lead Text</div>
+          <div style="font-size:22px; font-weight:bold; color:#444; margin-bottom:8px;">見出しが入ります（4フェーズ構成）</div>
+          <div style="font-size:18px; color:#888; line-height:1.6;">リード文が入ります。全体の流れと目的を2〜3行程度で説明します。<br>各フェーズの取り組み内容を時系列で示します。</div>
+        </div>
+
+        <div style="display:flex; align-items:center; flex-shrink:0; margin-bottom:48px;">
+          <div class="nav-icon">‹</div>
+          <div style="flex:1; display:flex; flex-direction:column; padding:0 24px;">
+
+            <div style="display:flex;">
+              <div class="phase-col" style="flex:1;">
+                <div class="area-label">Period 1</div>
+                <div class="period-label">期間1</div>
+              </div>
+              <div class="phase-col" style="flex:1;">
+                <div class="area-label">Period 2</div>
+                <div class="period-label">期間2</div>
+              </div>
+              <div class="phase-col" style="flex:1;">
+                <div class="area-label">Period 3</div>
+                <div class="period-label">期間3</div>
+              </div>
+              <div class="phase-col" style="flex:1;">
+                <div class="area-label">Period 4</div>
+                <div class="period-label">期間4</div>
+              </div>
+            </div>
+
+            <div style="display:flex; margin-bottom:4px;">
+              <div style="flex:1; display:flex; justify-content:center;"><div class="vline"></div></div>
+              <div style="flex:1; display:flex; justify-content:center;"><div class="vline"></div></div>
+              <div style="flex:1; display:flex; justify-content:center;"><div class="vline"></div></div>
+              <div style="flex:1; display:flex; justify-content:center;"><div class="vline"></div></div>
+            </div>
+
+            <div class="arrow-bar" style="display:flex; margin:0;">
+              <div style="flex:1; display:flex; justify-content:center;"><div class="marker"></div></div>
+              <div style="flex:1; display:flex; justify-content:center;"><div class="marker"></div></div>
+              <div style="flex:1; display:flex; justify-content:center;"><div class="marker"></div></div>
+              <div style="flex:1; display:flex; justify-content:center;"><div class="marker"></div></div>
+            </div>
+
+          </div>
+          <div class="nav-icon">›</div>
+        </div>
+
+        <div style="display:flex; flex:1; align-items:center;">
+          <div style="width:44px; flex-shrink:0;"></div>
+          <div style="flex:1; display:flex; padding:0 24px;">
+            <div class="phase-col">
+              <div class="area-label">Phase 1</div>
+              <div class="phase-heading">フェーズ見出し1</div>
+              <div class="phase-body">本文テキストが入ります。3〜4行程度の説明文が配置されます。</div>
+            </div>
+            <div class="phase-col">
+              <div class="area-label">Phase 2</div>
+              <div class="phase-heading">フェーズ見出し2</div>
+              <div class="phase-body">本文テキストが入ります。3〜4行程度の説明文が配置されます。</div>
+            </div>
+            <div class="phase-col">
+              <div class="area-label">Phase 3</div>
+              <div class="phase-heading">フェーズ見出し3</div>
+              <div class="phase-body">本文テキストが入ります。3〜4行程度の説明文が配置されます。</div>
+            </div>
+            <div class="phase-col">
+              <div class="area-label">Phase 4</div>
+              <div class="phase-heading">フェーズ見出し4</div>
+              <div class="phase-body">本文テキストが入ります。3〜4行程度の説明文が配置されます。</div>
+            </div>
+          </div>
+          <div style="width:44px; flex-shrink:0;"></div>
+        </div>
+
+      </div>
+
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-three-col-icon-diagram-with-effect-box</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; }
+  .slide-label { text-align: center; color: #666; font-size: 16px; margin-bottom: 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 18px; color: #999999; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 14px; text-align: center; }
+  .col { flex: 1; display: flex; flex-direction: column; }
+  .col-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .num-badge { width: 36px; height: 36px; border-radius: 50%; background: #999999; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; flex-shrink: 0; }
+  .col-heading { font-size: 24px; font-weight: bold; color: #555; }
+  .underline { border-bottom: 2px solid #CCCCCC; margin-bottom: 20px; }
+  .body-text { font-size: 18px; color: #888; line-height: 1.6; margin-bottom: 20px; }
+  .effect-box { background: #F0F0F0; border-radius: 8px; padding: 16px 20px; flex: 1; }
+  .effect-heading { font-size: 18px; font-weight: bold; color: #666; margin-bottom: 10px; }
+  .effect-item { font-size: 17px; color: #777; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<p class="slide-label">[three-col-icon-diagram-with-effect-box]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:28px 80px;">
+
+        <div style="flex-shrink:0; margin-bottom:24px;">
+          <div class="area-label">Lead Text</div>
+          <div style="font-size:22px; color:#555;">リード文が入ります。3つの方向性の主旨を1行で説明します。</div>
+        </div>
+
+        <div style="display:flex; flex:1; gap:48px;">
+          <div class="col">
+            <div class="area-label">Column 1</div>
+            <div class="col-header"><div class="num-badge">1</div><div class="col-heading">施策見出し1</div></div>
+            <div class="underline"></div>
+            <div class="placeholder-box" style="height:140px; margin-bottom:16px;">関係性アイコン図解<br>(SVG生成)</div>
+            <div class="body-text">本文テキストが入ります。2行程度の説明文が配置されます。</div>
+            <div class="effect-box">
+              <div class="effect-heading">期待される効果</div>
+              <div class="effect-item">✓ 効果項目テキストが入ります</div>
+              <div class="effect-item">✓ 効果項目テキストが入ります</div>
+              <div class="effect-item">✓ 効果項目テキストが入ります</div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="area-label">Column 2</div>
+            <div class="col-header"><div class="num-badge">2</div><div class="col-heading">施策見出し2</div></div>
+            <div class="underline"></div>
+            <div class="placeholder-box" style="height:140px; margin-bottom:16px;">関係性アイコン図解<br>(SVG生成)</div>
+            <div class="body-text">本文テキストが入ります。2行程度の説明文が配置されます。</div>
+            <div class="effect-box">
+              <div class="effect-heading">期待される効果</div>
+              <div class="effect-item">✓ 効果項目テキストが入ります</div>
+              <div class="effect-item">✓ 効果項目テキストが入ります</div>
+              <div class="effect-item">✓ 効果項目テキストが入ります</div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="area-label">Column 3</div>
+            <div class="col-header"><div class="num-badge">3</div><div class="col-heading">施策見出し3</div></div>
+            <div class="underline"></div>
+            <div class="placeholder-box" style="height:140px; margin-bottom:16px;">関係性アイコン図解<br>(SVG生成)</div>
+            <div class="body-text">本文テキストが入ります。2行程度の説明文が配置されます。</div>
+            <div class="effect-box">
+              <div class="effect-heading">期待される効果</div>
+              <div class="effect-item">✓ 効果項目テキストが入ります</div>
+              <div class="effect-item">✓ 効果項目テキストが入ります</div>
+              <div class="effect-item">✓ 効果項目テキストが入ります</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

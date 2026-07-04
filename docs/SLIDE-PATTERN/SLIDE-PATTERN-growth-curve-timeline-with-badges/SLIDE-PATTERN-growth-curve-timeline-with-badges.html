@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-growth-curve-timeline-with-badges</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; }
+  .slide-label { text-align: center; color: #666; font-size: 16px; margin-bottom: 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 18px; color: #999999; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .phase-band { flex: 1; border: 2px solid #BBBBBB; border-radius: 24px; padding: 10px 20px; font-size: 22px; font-weight: bold; color: #666; background: #FFFFFF; text-align: center; box-sizing: border-box; }
+  .phase-divider { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1px dashed #CCCCCC; }
+  .dot { position: absolute; width: 14px; height: 14px; border-radius: 50%; background: #999999; transform: translate(-50%, -50%); z-index: 2; }
+  .star-badge { position: absolute; width: 160px; height: 160px; background: #F0F0F0; border: 2px solid #BBBBBB; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; transform: translateX(-50%); text-align: center; z-index: 2; }
+  .star-badge .val { font-size: 28px; font-weight: bold; color: #666; line-height: 1.25; }
+  .star-badge .yr { font-size: 15px; color: #999; }
+  .event-label { position: absolute; font-size: 16px; color: #777; text-align: center; width: 170px; transform: translateX(-50%); }
+  .date-label { position: absolute; font-size: 16px; color: #999; font-weight: bold; text-align: center; width: 110px; transform: translateX(-50%); }
+</style>
+</head>
+<body>
+
+<p class="slide-label">[growth-curve-timeline-with-badges]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:24px 60px;">
+
+        <div style="flex-shrink:0; display:flex; gap:16px; margin-bottom:14px;">
+          <div class="area-label" style="position:absolute;">Phase Bands</div>
+          <div class="phase-band">期間帯1</div>
+          <div class="phase-band">期間帯2</div>
+          <div class="phase-band">期間帯3</div>
+        </div>
+
+        <div style="flex-shrink:0; margin-bottom:8px;">
+          <div class="area-label">Legend</div>
+          <div style="font-size:16px; color:#777;">— 凡例テキストが入ります</div>
+        </div>
+
+        <div style="position:relative; flex:1; margin:0 60px;">
+          <div class="area-label" style="position:absolute; top:0; left:-60px;">Growth Curve Timeline</div>
+
+          <div class="phase-divider" style="left:33%;"></div>
+          <div class="phase-divider" style="left:66%;"></div>
+
+          <svg viewBox="0 0 1000 400" preserveAspectRatio="none" style="position:absolute; top:0; left:0; width:100%; height:100%;">
+            <path d="M 30 348 C 150 340, 260 320, 380 262 C 480 214, 560 170, 660 125 C 740 90, 850 55, 970 30" fill="none" stroke="#BBBBBB" stroke-width="4"/>
+          </svg>
+
+          <!-- milestone 1: 2014.04 -->
+          <div class="dot" style="left:3%; top:87%;"></div>
+          <div class="event-label" style="left:3%; top:90%;">出来事の説明が入ります</div>
+          <div class="date-label" style="left:3%; top:98%;">2014.04</div>
+
+          <!-- milestone 2: 2016.01 -->
+          <div class="dot" style="left:17%; top:78%;"></div>
+          <div class="event-label" style="left:17%; top:56%;">出来事の説明が入ります</div>
+          <div class="date-label" style="left:17%; top:83%;">2016.01</div>
+
+          <!-- milestone 3: 2019.12 + star badge -->
+          <div class="dot" style="left:33%; top:63%;"></div>
+          <div class="star-badge" style="left:33%; top:8%;">
+            <div class="val">20億円<br>突破</div>
+            <div class="yr">2019年実績</div>
+          </div>
+          <div class="event-label" style="left:33%; top:68%;">出来事の説明が入ります</div>
+          <div class="date-label" style="left:33%; top:88%;">2019.12</div>
+
+          <!-- milestone 4: 2021.07 -->
+          <div class="dot" style="left:50%; top:46%;"></div>
+          <div class="event-label" style="left:50%; top:51%;">出来事の説明が入ります</div>
+          <div class="date-label" style="left:50%; top:74%;">2021.07</div>
+
+          <!-- milestone 5: 2023.08 + star badge -->
+          <div class="dot" style="left:66%; top:31%;"></div>
+          <div class="star-badge" style="left:66%; top:2%;">
+            <div class="val">50億円<br>突破</div>
+            <div class="yr">2024年実績</div>
+          </div>
+          <div class="event-label" style="left:66%; top:36%;">出来事の説明が入ります</div>
+          <div class="date-label" style="left:66%; top:59%;">2023.08</div>
+
+          <!-- milestone 6: 2025.04 -->
+          <div class="dot" style="left:97%; top:8%;"></div>
+          <div class="event-label" style="left:90%; top:34%;">出来事の説明が入ります</div>
+          <div class="date-label" style="left:90%; top:13%;">2025.04</div>
+
+        </div>
+
+      </div>
+
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

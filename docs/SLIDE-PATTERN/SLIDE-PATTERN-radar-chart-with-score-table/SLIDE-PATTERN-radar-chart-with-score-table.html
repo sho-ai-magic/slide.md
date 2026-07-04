@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-radar-chart-with-score-table</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; }
+  .slide-label { text-align: center; color: #666; font-size: 16px; margin-bottom: 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 18px; color: #999999; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .score-box { border: 2px solid #CCCCCC; border-radius: 8px; overflow: hidden; }
+  .score-box-heading { background: #666666; color: #FFFFFF; text-align: center; font-size: 20px; font-weight: bold; padding: 10px; }
+  .score-box-value { text-align: center; padding: 16px; font-size: 56px; font-weight: bold; color: #555; }
+  .score-box-value .denom { font-size: 24px; color: #999; }
+  table.score-table { width: 100%; border-collapse: collapse; }
+  .score-table th { background: #666666; color: #FFFFFF; font-size: 22px; text-align: left; padding: 12px 20px; }
+  .score-table td { border-bottom: 1px solid #DDDDDD; padding: 14px 20px; vertical-align: top; }
+  .item-name { font-size: 22px; font-weight: bold; color: #666; margin-bottom: 4px; }
+  .item-desc { font-size: 17px; color: #888; }
+  .item-score { font-size: 32px; font-weight: bold; color: #666; text-align: right; }
+</style>
+</head>
+<body>
+
+<p class="slide-label">[radar-chart-with-score-table]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:28px 80px;">
+
+        <div style="flex-shrink:0; margin-bottom:20px;">
+          <div class="area-label">Lead Text</div>
+          <div style="font-size:22px; color:#555; line-height:1.6;">リード文が入ります。診断の背景・結論を2〜3行程度で説明します。</div>
+        </div>
+
+        <div style="display:flex; flex:1; gap:48px;">
+
+          <div style="width:38%; display:flex; flex-direction:column;">
+            <div class="area-label">Score Summary</div>
+            <div class="score-box" style="margin-bottom:24px;">
+              <div class="score-box-heading">総合スコアの見出しが入ります</div>
+              <div class="score-box-value">62<span class="denom">/100</span></div>
+            </div>
+            <div style="flex:1; display:flex; align-items:center; justify-content:center;">
+              <svg viewBox="0 0 220 220" width="100%" height="100%" style="max-height:340px;">
+                <polygon points="110,25 190.8,83.7 160,178.8 60,178.8 29.2,83.7" fill="none" stroke="#DDDDDD" stroke-width="1.5"/>
+                <polygon points="110,46.25 170.6,90.3 147.5,161.6 72.5,161.6 49.4,90.3" fill="none" stroke="#DDDDDD" stroke-width="1.5"/>
+                <polygon points="110,67.5 150.3,96.9 135,144.4 85,144.4 69.7,96.9" fill="none" stroke="#DDDDDD" stroke-width="1.5"/>
+                <polygon points="110,88.75 130.2,103.4 122.5,127.2 97.5,127.2 89.8,103.4" fill="none" stroke="#DDDDDD" stroke-width="1.5"/>
+                <line x1="110" y1="110" x2="110" y2="25" stroke="#DDDDDD" stroke-width="1"/>
+                <line x1="110" y1="110" x2="190.8" y2="83.7" stroke="#DDDDDD" stroke-width="1"/>
+                <line x1="110" y1="110" x2="160" y2="178.8" stroke="#DDDDDD" stroke-width="1"/>
+                <line x1="110" y1="110" x2="60" y2="178.8" stroke="#DDDDDD" stroke-width="1"/>
+                <line x1="110" y1="110" x2="29.2" y2="83.7" stroke="#DDDDDD" stroke-width="1"/>
+                <polygon points="110,40.3 161.7,93.2 134,143 82.5,147.8 60.7,94" fill="#BBBBBB" fill-opacity="0.5" stroke="#777777" stroke-width="3"/>
+                <text x="110" y="14" text-anchor="middle" font-size="15" fill="#666">軸ラベル1 82</text>
+                <text x="205" y="79" text-anchor="start" font-size="15" fill="#666">軸ラベル2 64</text>
+                <text x="169" y="200" text-anchor="middle" font-size="15" fill="#666">軸ラベル3 48</text>
+                <text x="51" y="200" text-anchor="middle" font-size="15" fill="#666">軸ラベル4 55</text>
+                <text x="15" y="79" text-anchor="end" font-size="15" fill="#666">軸ラベル5 61</text>
+              </svg>
+            </div>
+          </div>
+
+          <div style="width:58%; display:flex; flex-direction:column; border:1px solid #DDDDDD; border-radius:8px; overflow:hidden;">
+            <div class="area-label" style="padding:8px 20px 0;">Score Table</div>
+            <table class="score-table">
+              <colgroup><col style="width:70%"><col style="width:30%"></colgroup>
+              <tr><th>評価項目</th><th>スコア</th></tr>
+              <tr>
+                <td><div class="item-name">評価項目1</div><div class="item-desc">評価項目の説明テキストが入ります</div></td>
+                <td class="item-score">82点</td>
+              </tr>
+              <tr>
+                <td><div class="item-name">評価項目2</div><div class="item-desc">評価項目の説明テキストが入ります</div></td>
+                <td class="item-score">64点</td>
+              </tr>
+              <tr>
+                <td><div class="item-name">評価項目3</div><div class="item-desc">評価項目の説明テキストが入ります</div></td>
+                <td class="item-score">48点</td>
+              </tr>
+              <tr>
+                <td><div class="item-name">評価項目4</div><div class="item-desc">評価項目の説明テキストが入ります</div></td>
+                <td class="item-score">55点</td>
+              </tr>
+              <tr>
+                <td><div class="item-name">評価項目5</div><div class="item-desc">評価項目の説明テキストが入ります</div></td>
+                <td class="item-score">61点</td>
+              </tr>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

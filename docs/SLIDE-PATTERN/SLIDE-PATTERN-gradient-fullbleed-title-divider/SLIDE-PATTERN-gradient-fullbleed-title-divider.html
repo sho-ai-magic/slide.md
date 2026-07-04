@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-gradient-fullbleed-title-divider</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; }
+  .slide-label { text-align: center; color: #666; font-size: 16px; margin-bottom: 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 18px; color: #999999; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .gradient-bg { background: linear-gradient(135deg, #DDDDDD 0%, #BBBBBB 35%, #CCCCCC 60%, #EEEEEE 100%); }
+</style>
+</head>
+<body>
+
+<p class="slide-label">[gradient-fullbleed-title-divider]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <div class="area-label-overlay" style="position:absolute; top:16px; left:16px; font-size:14px; color:#AAAAAA; z-index:1;">Cover / Section Divider — タイトルエリア・フッターエリアなし（専用デザイン）</div>
+
+      <div class="gradient-bg" style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:40px 60px; position:relative;">
+
+        <div style="position:absolute; top:24px; left:60px;">
+          <div class="area-label" style="color:#FFFFFF;">Logo</div>
+          <div style="width:120px; height:32px; border:2px dashed #FFFFFF; display:flex; align-items:center; justify-content:center; color:#FFFFFF; font-size:14px;">ロゴ</div>
+        </div>
+
+        <div style="position:absolute; left:60px; bottom:60px;">
+          <div class="area-label" style="color:#FFFFFF;">Section Title</div>
+          <div style="font-size:56px; font-weight:bold; color:#FFFFFF;">セクションタイトルが入ります</div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
