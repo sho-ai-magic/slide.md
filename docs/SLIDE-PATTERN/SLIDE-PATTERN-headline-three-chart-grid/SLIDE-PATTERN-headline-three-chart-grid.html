@@ -1,368 +1,222 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-headline-three-chart-grid</title>
-  <style>
-    /* ページ全体のスタイル */
-    body {
-      background: #E8E8E8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      font-family: sans-serif;
-      margin: 0;
-    }
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-headline-three-chart-grid</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
 
-    /* スライドラベル */
-    .slide-label {
-      font-size: 12px;
-      color: #888;
-      margin-bottom: 8px;
-      letter-spacing: 0.05em;
-    }
+  /* コンテンツエリア全体 */
+  .content-area { display: flex; flex-direction: column; padding: 24px 80px; gap: 24px; flex: 1; }
 
-    /* スライド本体 */
-    .slide {
-      width: 960px;
-      height: 540px;
-      background: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
+  /* 上部見出しエリア */
+  .headline-zone { flex-shrink: 0; }
+  .main-headline { font-size: 30px; font-weight: bold; color: #333; line-height: 1.5; margin: 0 0 12px; }
+  .headline-divider { border: none; border-top: 1px solid #CCCCCC; margin: 12px 0; }
+  .headline-desc { font-size: 20px; color: #555; line-height: 1.7; margin: 0; }
 
-    /* タイトルエリア */
-    .slide-title {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      background: #FAFAFA;
-      flex-shrink: 0;
-    }
+  /* 下部グラフエリア */
+  .chart-grid { flex: 1; display: flex; gap: 32px; padding-top: 8px; }
 
-    .slide-title h1 {
-      font-size: 15px;
-      font-weight: bold;
-      color: #333;
-      margin: 0;
-    }
+  /* 各グラフパネル */
+  .chart-panel { flex: 1; border: 1px solid #E0E0E0; padding: 24px; display: flex; flex-direction: column; }
+  .panel-title { font-size: 20px; font-weight: bold; color: #333; margin: 0 0 4px; }
+  .panel-sub { font-size: 18px; color: #888; margin: 0 0 16px; }
 
-    /* エリアラベル共通 */
-    .area-label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      display: block;
-      margin-bottom: 3px;
-    }
+  /* パネル1：横棒グラフ */
+  .hbar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; font-size: 18px; color: #555; }
+  .hbar-label { width: 104px; flex-shrink: 0; text-align: right; }
+  .hbar-track { flex: 1; height: 16px; background: #F0F0F0; }
+  .hbar-fill { height: 100%; background: #CCCCCC; }
+  .hbar-value { width: 56px; flex-shrink: 0; text-align: left; }
 
-    /* コンテンツエリア全体 */
-    .content-area {
-      display: flex;
-      flex-direction: column;
-      padding: 12px 40px;
-      gap: 12px;
-      flex: 1;
-    }
+  /* パネル2：縦棒グラフ */
+  .vbar-chart { display: flex; align-items: flex-end; gap: 6px; height: 160px; flex: 1; }
+  .vbar-group { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .vbar-bar { width: 28px; background: #CCCCCC; }
+  .vbar-xlabel { font-size: 18px; color: #AAAAAA; }
 
-    /* 上部見出しエリア */
-    .headline-zone {
-      flex-shrink: 0;
-    }
+  /* パネル3：折れ線グラフ */
+  .line-chart-wrap { flex: 1; display: flex; flex-direction: column; }
 
-    .main-headline {
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-      line-height: 1.5;
-      margin: 0 0 6px;
-    }
+  /* 凡例 */
+  .panel-legend { font-size: 18px; color: #888; margin-top: 12px; }
 
-    .headline-divider {
-      border: none;
-      border-top: 1px solid #CCCCCC;
-      margin: 6px 0;
-    }
-
-    .headline-desc {
-      font-size: 12px;
-      color: #555;
-      line-height: 1.7;
-      margin: 0;
-    }
-
-    /* 下部グラフエリア */
-    .chart-grid {
-      flex: 1;
-      display: flex;
-      gap: 16px;
-      padding-top: 4px;
-    }
-
-    /* 各グラフパネル */
-    .chart-panel {
-      flex: 1;
-      border: 1px solid #E0E0E0;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .panel-title {
-      font-size: 12px;
-      font-weight: bold;
-      color: #333;
-      margin: 0 0 2px;
-    }
-
-    .panel-sub {
-      font-size: 10px;
-      color: #888;
-      margin: 0 0 8px;
-    }
-
-    /* パネル1：横棒グラフ */
-    .hbar-row {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 4px;
-      font-size: 10px;
-      color: #555;
-    }
-
-    .hbar-label {
-      width: 52px;
-      flex-shrink: 0;
-      text-align: right;
-    }
-
-    .hbar-track {
-      flex: 1;
-      height: 8px;
-      background: #F0F0F0;
-    }
-
-    .hbar-fill {
-      height: 100%;
-      background: #CCCCCC;
-    }
-
-    .hbar-value {
-      width: 28px;
-      flex-shrink: 0;
-      text-align: left;
-    }
-
-    /* パネル2：縦棒グラフ */
-    .vbar-chart {
-      display: flex;
-      align-items: flex-end;
-      gap: 3px;
-      height: 80px;
-      flex: 1;
-    }
-
-    .vbar-group {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2px;
-    }
-
-    .vbar-bar {
-      width: 14px;
-      background: #CCCCCC;
-    }
-
-    .vbar-xlabel {
-      font-size: 9px;
-      color: #AAAAAA;
-    }
-
-    /* パネル3：折れ線グラフ */
-    .line-chart-wrap {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* 凡例 */
-    .panel-legend {
-      font-size: 10px;
-      color: #888;
-      margin-top: 6px;
-    }
-
-    /* 出典テキスト */
-    .source-text {
-      font-size: 10px;
-      color: #AAAAAA;
-      text-align: right;
-      margin-top: 4px;
-    }
-  </style>
+  /* 出典テキスト */
+  .source-text { font-size: 18px; color: #AAAAAA; text-align: right; margin-top: 8px; }
+</style>
 </head>
 <body>
 
-  <!-- スライドラベル -->
-  <p class="slide-label">[headline-three-chart-grid]</p>
+<p class="slide-label">[headline-three-chart-grid]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-  <!-- スライド本体 -->
-  <div class="slide">
-
-    <!-- タイトルエリア -->
-    <div class="slide-title">
-      <h1>市場動向・競合比較・業績推移 データ分析サマリー</h1>
-    </div>
-
-    <!-- コンテンツエリア -->
-    <div class="content-area">
-
-      <!-- 上部見出しエリア -->
-      <div class="headline-zone">
-        <p class="main-headline">国内市場は5年連続で成長を続けており、2024年度は前年比12.4%増を達成<br>競合他社比較では顧客満足度・価格競争力の両面で優位性が確認された</p>
-        <hr class="headline-divider">
-        <p class="headline-desc">
-          本分析は2024年1月〜12月の自社データおよび業界調査レポートをもとに集計しています。<br>
-          左から順に：業種別シェア比較・四半期別売上推移・顧客満足度スコアの時系列変化を示します。
-        </p>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
 
-      <!-- 下部グラフエリア（3列） -->
-      <div class="chart-grid">
+      <!-- コンテンツエリア -->
+      <div class="content-area">
 
-        <!-- パネル1：横棒グラフ（業種別シェア） -->
-        <div class="chart-panel">
-          <p class="panel-title">業種別市場シェア</p>
-          <p class="panel-sub">2024年度（単位：%）</p>
-
-          <div class="hbar-row">
-            <span class="hbar-label">製造業</span>
-            <div class="hbar-track"><div class="hbar-fill" style="width:82%;"></div></div>
-            <span class="hbar-value">32.4</span>
-          </div>
-          <div class="hbar-row">
-            <span class="hbar-label">金融・保険</span>
-            <div class="hbar-track"><div class="hbar-fill" style="width:64%;"></div></div>
-            <span class="hbar-value">25.1</span>
-          </div>
-          <div class="hbar-row">
-            <span class="hbar-label">情報通信</span>
-            <div class="hbar-track"><div class="hbar-fill" style="width:49%;"></div></div>
-            <span class="hbar-value">19.3</span>
-          </div>
-          <div class="hbar-row">
-            <span class="hbar-label">小売・EC</span>
-            <div class="hbar-track"><div class="hbar-fill" style="width:33%;"></div></div>
-            <span class="hbar-value">13.0</span>
-          </div>
-          <div class="hbar-row">
-            <span class="hbar-label">その他</span>
-            <div class="hbar-track"><div class="hbar-fill" style="width:26%;"></div></div>
-            <span class="hbar-value">10.2</span>
-          </div>
-
-          <div class="panel-legend">■ 自社シェア</div>
-          <div class="source-text">出典：業界調査レポート 2024</div>
+        <!-- 上部見出しエリア（コンテンツ本体のキーメッセージ） -->
+        <div class="headline-zone">
+          <p class="main-headline">国内市場は5年連続で成長を続けており、直近期は前年比12.4%増を達成<br>競合比較では顧客満足度・価格競争力の両面で優位性が確認された</p>
+          <hr class="headline-divider">
+          <p class="headline-desc">
+            本分析は直近1年間の自社データおよび業界調査レポートをもとに集計しています。<br>
+            左から順に：業種別シェア比較・四半期別売上推移・顧客満足度スコアの時系列変化を示します。
+          </p>
         </div>
 
-        <!-- パネル2：縦棒グラフ（四半期別売上） -->
-        <div class="chart-panel">
-          <p class="panel-title">四半期別売上推移</p>
-          <p class="panel-sub">2023〜2024年度（単位：億円）</p>
+        <!-- 下部グラフエリア（3列） -->
+        <div class="chart-grid">
 
-          <div class="vbar-chart">
-            <!-- 2023Q1 -->
-            <div class="vbar-group">
-              <div class="vbar-bar" style="height:40px;"></div>
-              <span class="vbar-xlabel">Q1'23</span>
+          <!-- パネル1：横棒グラフ（業種別シェア） -->
+          <div class="chart-panel">
+            <p class="panel-title">業種別市場シェア</p>
+            <p class="panel-sub">直近年度（単位：%）</p>
+
+            <div class="hbar-row">
+              <span class="hbar-label">製造業</span>
+              <div class="hbar-track"><div class="hbar-fill" style="width:82%;"></div></div>
+              <span class="hbar-value">32.4</span>
             </div>
-            <!-- 2023Q2 -->
-            <div class="vbar-group">
-              <div class="vbar-bar" style="height:46px;"></div>
-              <span class="vbar-xlabel">Q2</span>
+            <div class="hbar-row">
+              <span class="hbar-label">金融・保険</span>
+              <div class="hbar-track"><div class="hbar-fill" style="width:64%;"></div></div>
+              <span class="hbar-value">25.1</span>
             </div>
-            <!-- 2023Q3 -->
-            <div class="vbar-group">
-              <div class="vbar-bar" style="height:52px;"></div>
-              <span class="vbar-xlabel">Q3</span>
+            <div class="hbar-row">
+              <span class="hbar-label">情報通信</span>
+              <div class="hbar-track"><div class="hbar-fill" style="width:49%;"></div></div>
+              <span class="hbar-value">19.3</span>
             </div>
-            <!-- 2023Q4 -->
-            <div class="vbar-group">
-              <div class="vbar-bar" style="height:55px;"></div>
-              <span class="vbar-xlabel">Q4</span>
+            <div class="hbar-row">
+              <span class="hbar-label">小売・EC</span>
+              <div class="hbar-track"><div class="hbar-fill" style="width:33%;"></div></div>
+              <span class="hbar-value">13.0</span>
             </div>
-            <!-- 2024Q1 -->
-            <div class="vbar-group">
-              <div class="vbar-bar" style="height:58px;"></div>
-              <span class="vbar-xlabel">Q1'24</span>
+            <div class="hbar-row">
+              <span class="hbar-label">その他</span>
+              <div class="hbar-track"><div class="hbar-fill" style="width:26%;"></div></div>
+              <span class="hbar-value">10.2</span>
             </div>
-            <!-- 2024Q2 -->
-            <div class="vbar-group">
-              <div class="vbar-bar" style="height:63px;"></div>
-              <span class="vbar-xlabel">Q2</span>
-            </div>
-            <!-- 2024Q3 -->
-            <div class="vbar-group">
-              <div class="vbar-bar" style="height:70px;"></div>
-              <span class="vbar-xlabel">Q3</span>
-            </div>
-            <!-- 2024Q4 -->
-            <div class="vbar-group">
-              <div class="vbar-bar" style="height:78px;"></div>
-              <span class="vbar-xlabel">Q4</span>
-            </div>
+
+            <div class="panel-legend">■ 自社シェア</div>
+            <div class="source-text">出典：業界調査レポート</div>
           </div>
 
-          <div class="panel-legend">■ 売上高（億円）</div>
-          <div class="source-text">出典：社内経営管理データ</div>
-        </div>
+          <!-- パネル2：縦棒グラフ（四半期別売上） -->
+          <div class="chart-panel">
+            <p class="panel-title">四半期別売上推移</p>
+            <p class="panel-sub">直近2年度（単位：億円）</p>
 
-        <!-- パネル3：折れ線グラフ（満足度スコア） -->
-        <div class="chart-panel">
-          <p class="panel-title">顧客満足度スコア推移</p>
-          <p class="panel-sub">2022〜2024年（NPS換算）</p>
+            <div class="vbar-chart">
+              <!-- 前年度Q1 -->
+              <div class="vbar-group">
+                <div class="vbar-bar" style="height:80px;"></div>
+                <span class="vbar-xlabel">Q1'23</span>
+              </div>
+              <!-- 前年度Q2 -->
+              <div class="vbar-group">
+                <div class="vbar-bar" style="height:92px;"></div>
+                <span class="vbar-xlabel">Q2</span>
+              </div>
+              <!-- 前年度Q3 -->
+              <div class="vbar-group">
+                <div class="vbar-bar" style="height:104px;"></div>
+                <span class="vbar-xlabel">Q3</span>
+              </div>
+              <!-- 前年度Q4 -->
+              <div class="vbar-group">
+                <div class="vbar-bar" style="height:110px;"></div>
+                <span class="vbar-xlabel">Q4</span>
+              </div>
+              <!-- 当年度Q1 -->
+              <div class="vbar-group">
+                <div class="vbar-bar" style="height:116px;"></div>
+                <span class="vbar-xlabel">Q1'24</span>
+              </div>
+              <!-- 当年度Q2 -->
+              <div class="vbar-group">
+                <div class="vbar-bar" style="height:126px;"></div>
+                <span class="vbar-xlabel">Q2</span>
+              </div>
+              <!-- 当年度Q3 -->
+              <div class="vbar-group">
+                <div class="vbar-bar" style="height:140px;"></div>
+                <span class="vbar-xlabel">Q3</span>
+              </div>
+              <!-- 当年度Q4 -->
+              <div class="vbar-group">
+                <div class="vbar-bar" style="height:156px;"></div>
+                <span class="vbar-xlabel">Q4</span>
+              </div>
+            </div>
 
-          <div class="line-chart-wrap">
-            <svg width="100%" height="80" viewBox="0 0 160 80" preserveAspectRatio="none">
-              <!-- Y軸補助線 -->
-              <line x1="0" y1="20" x2="160" y2="20" stroke="#F0F0F0" stroke-width="1"/>
-              <line x1="0" y1="40" x2="160" y2="40" stroke="#F0F0F0" stroke-width="1"/>
-              <line x1="0" y1="60" x2="160" y2="60" stroke="#F0F0F0" stroke-width="1"/>
-              <!-- ベースライン -->
-              <line x1="0" y1="70" x2="160" y2="70" stroke="#EEEEEE" stroke-width="1"/>
-              <!-- 折れ線 -->
-              <polyline
-                points="10,60 35,52 60,55 85,40 110,30 135,22 155,18"
-                fill="none"
-                stroke="#CCCCCC"
-                stroke-width="2"/>
-              <!-- データポイント -->
-              <circle cx="10"  cy="60" r="3" fill="#CCCCCC"/>
-              <circle cx="35"  cy="52" r="3" fill="#CCCCCC"/>
-              <circle cx="60"  cy="55" r="3" fill="#CCCCCC"/>
-              <circle cx="85"  cy="40" r="3" fill="#CCCCCC"/>
-              <circle cx="110" cy="30" r="3" fill="#CCCCCC"/>
-              <circle cx="135" cy="22" r="3" fill="#CCCCCC"/>
-              <circle cx="155" cy="18" r="3" fill="#AAAAAA"/>
-            </svg>
+            <div class="panel-legend">■ 売上高（億円）</div>
+            <div class="source-text">出典：社内経営管理データ</div>
           </div>
 
-          <div class="panel-legend">— NPS スコア推移</div>
-          <div class="source-text">出典：顧客アンケート集計</div>
+          <!-- パネル3：折れ線グラフ（満足度スコア） -->
+          <div class="chart-panel">
+            <p class="panel-title">顧客満足度スコア推移</p>
+            <p class="panel-sub">直近3年（NPS換算）</p>
+
+            <div class="line-chart-wrap">
+              <svg width="100%" height="160" viewBox="0 0 160 80" preserveAspectRatio="none">
+                <!-- Y軸補助線 -->
+                <line x1="0" y1="20" x2="160" y2="20" stroke="#F0F0F0" stroke-width="1"/>
+                <line x1="0" y1="40" x2="160" y2="40" stroke="#F0F0F0" stroke-width="1"/>
+                <line x1="0" y1="60" x2="160" y2="60" stroke="#F0F0F0" stroke-width="1"/>
+                <!-- ベースライン -->
+                <line x1="0" y1="70" x2="160" y2="70" stroke="#EEEEEE" stroke-width="1"/>
+                <!-- 折れ線 -->
+                <polyline
+                  points="10,60 35,52 60,55 85,40 110,30 135,22 155,18"
+                  fill="none"
+                  stroke="#CCCCCC"
+                  stroke-width="2"/>
+                <!-- データポイント -->
+                <circle cx="10"  cy="60" r="3" fill="#CCCCCC"/>
+                <circle cx="35"  cy="52" r="3" fill="#CCCCCC"/>
+                <circle cx="60"  cy="55" r="3" fill="#CCCCCC"/>
+                <circle cx="85"  cy="40" r="3" fill="#CCCCCC"/>
+                <circle cx="110" cy="30" r="3" fill="#CCCCCC"/>
+                <circle cx="135" cy="22" r="3" fill="#CCCCCC"/>
+                <circle cx="155" cy="18" r="3" fill="#AAAAAA"/>
+              </svg>
+            </div>
+
+            <div class="panel-legend">— NPS スコア推移</div>
+            <div class="source-text">出典：顧客アンケート集計</div>
+          </div>
+
+        </div><!-- /.chart-grid -->
+
+      </div><!-- /.content-area -->
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
         </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
 
-      </div><!-- /.chart-grid -->
-
-    </div><!-- /.content-area -->
-
-  </div><!-- /.slide -->
+    </div><!-- /.slide -->
+  </div>
+</div>
 
 </body>
 </html>

@@ -4,77 +4,98 @@
 <meta charset="UTF-8">
 <title>SLIDE-PATTERN-org-chart-tree</title>
 <style>
-  body { background: #E8E8E8; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; font-family: sans-serif; }
-  .slide-label { font-size: 12px; color: #666; margin-bottom: 6px; }
-  .slide { width: 960px; height: 540px; background: #FFFFFF; border: 1px solid #CCCCCC; overflow: hidden; display: flex; flex-direction: column; }
-  .area-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
-  .title-area { padding: 14px 40px 12px; border-bottom: 1px dashed #CCCCCC; flex-shrink: 0; background: #FAFAFA; }
-  .content-area { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 16px 32px 12px; overflow: hidden; }
-  .tree-level { display: flex; align-items: flex-start; justify-content: center; gap: 16px; }
-  .org-node-top { padding: 8px 20px; background: #AAAAAA; border-radius: 20px; font-size: 13px; font-weight: bold; color: #FFFFFF; white-space: nowrap; }
-  .org-node-dept { padding: 6px 12px; background: #DDDDDD; border-radius: 6px; font-size: 12px; font-weight: bold; color: #444; white-space: nowrap; }
-  .role-list { display: flex; flex-direction: column; gap: 4px; padding: 6px 0; }
-  .role-item { font-size: 11px; color: #555; text-align: center; padding: 2px 0; }
-  .dept-col { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-  .connector-v { width: 2px; height: 16px; background: #CCCCCC; margin: 0 auto; }
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .tree-level { display: flex; align-items: flex-start; justify-content: center; gap: 32px; }
+  .org-node-top { padding: 16px 40px; background: #AAAAAA; border-radius: 40px; font-size: 26px; font-weight: bold; color: #FFFFFF; white-space: nowrap; }
+  .org-node-dept { padding: 12px 24px; background: #DDDDDD; border-radius: 12px; font-size: 24px; font-weight: bold; color: #444; white-space: nowrap; }
+  .role-list { display: flex; flex-direction: column; gap: 8px; padding: 12px 0; }
+  .role-item { font-size: 22px; color: #555; text-align: center; padding: 4px 0; }
+  .dept-col { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .connector-v { width: 4px; height: 32px; background: #CCCCCC; margin: 0 auto; }
 </style>
 </head>
 <body>
 <p class="slide-label">[org-chart-tree]</p>
-<div class="slide">
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-  </div>
-  <div class="content-area">
-    <!-- 第1層 -->
-    <div class="area-label">Level 1 — Top Management</div>
-    <div class="tree-level" style="margin-bottom:0;">
-      <div class="org-node-top">取締役会</div>
-      <div class="org-node-top" style="background:#888;">監査役会</div>
-    </div>
-    <div class="connector-v"></div>
-    <!-- 第2層（水平線 + 部門） -->
-    <div style="display:flex; align-items:flex-start; gap:0; width:100%; justify-content:center; position:relative;">
-      <div style="position:absolute; top:0; left:12%; right:12%; height:2px; background:#CCCCCC;"></div>
-      <!-- 4部門 -->
-      <div class="dept-col" style="width:23%; padding-top:0;">
-        <div class="connector-v"></div>
-        <div class="org-node-dept">CEO直下</div>
-        <div class="role-list">
-          <div class="role-item">経営企画</div>
-          <div class="role-item">内部監査</div>
-          <div class="role-item">エンプロイー<br>エクスペリエンス</div>
-        </div>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
-      <div class="dept-col" style="width:23%; padding-top:0;">
-        <div class="connector-v"></div>
-        <div class="org-node-dept">ビジネスG</div>
-        <div class="role-list">
-          <div class="role-item">事業開発推進</div>
-          <div class="role-item">マーケティング</div>
-          <div class="role-item">カスタマー<br>サクセス</div>
+
+      <!-- コンテンツエリア -->
+      <div style="flex:1; display:flex; flex-direction:column; align-items:center; padding:32px 64px 24px; overflow:hidden;">
+
+        <!-- 第1層 -->
+        <div class="area-label">Level 1 — Top Management</div>
+        <div class="tree-level" style="margin-bottom:0;">
+          <div class="org-node-top">取締役会</div>
+          <div class="org-node-top" style="background:#888;">監査役会</div>
         </div>
-      </div>
-      <div class="dept-col" style="width:23%; padding-top:0;">
         <div class="connector-v"></div>
-        <div class="org-node-dept">プロダクトG</div>
-        <div class="role-list">
-          <div class="role-item">プロダクト<br>マネジメント</div>
-          <div class="role-item">デザイン</div>
-          <div class="role-item">開発・研究</div>
-          <div class="role-item">情報システム</div>
+
+        <!-- 第2層（水平線 + 部門） -->
+        <div style="display:flex; align-items:flex-start; gap:0; width:100%; justify-content:center; position:relative; flex:1;">
+          <div style="position:absolute; top:0; left:12%; right:12%; height:4px; background:#CCCCCC;"></div>
+
+          <div class="dept-col" style="width:23%; padding-top:0;">
+            <div class="connector-v"></div>
+            <div class="org-node-dept">部門A</div>
+            <div class="role-list">
+              <div class="role-item">経営企画</div>
+              <div class="role-item">内部監査</div>
+              <div class="role-item">人事・組織開発</div>
+            </div>
+          </div>
+          <div class="dept-col" style="width:23%; padding-top:0;">
+            <div class="connector-v"></div>
+            <div class="org-node-dept">部門B</div>
+            <div class="role-list">
+              <div class="role-item">事業開発推進</div>
+              <div class="role-item">マーケティング</div>
+              <div class="role-item">カスタマー<br>サクセス</div>
+            </div>
+          </div>
+          <div class="dept-col" style="width:23%; padding-top:0;">
+            <div class="connector-v"></div>
+            <div class="org-node-dept">部門C</div>
+            <div class="role-list">
+              <div class="role-item">プロダクト<br>マネジメント</div>
+              <div class="role-item">デザイン</div>
+              <div class="role-item">開発・研究</div>
+              <div class="role-item">情報システム</div>
+            </div>
+          </div>
+          <div class="dept-col" style="width:23%; padding-top:0;">
+            <div class="connector-v"></div>
+            <div class="org-node-dept">部門D</div>
+            <div class="role-list">
+              <div class="role-item">経理・財務企画</div>
+              <div class="role-item">法務・リスク<br>マネジメント</div>
+              <div class="role-item">審査企画</div>
+            </div>
+          </div>
         </div>
+
       </div>
-      <div class="dept-col" style="width:23%; padding-top:0;">
-        <div class="connector-v"></div>
-        <div class="org-node-dept">コーポレートG</div>
-        <div class="role-list">
-          <div class="role-item">経理・財務企画</div>
-          <div class="role-item">法務・リスク<br>マネジメント</div>
-          <div class="role-item">審査企画</div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
         </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
       </div>
+
     </div>
   </div>
 </div>

@@ -4,71 +4,87 @@
 <meta charset="UTF-8">
 <title>SLIDE-PATTERN-chart-left-text-right</title>
 <style>
-  body { background: #E8E8E8; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; font-family: sans-serif; }
-  .slide-label { font-size: 12px; color: #666; margin-bottom: 6px; }
-  .slide { width: 960px; height: 540px; background: #FFFFFF; border: 1px solid #CCCCCC; overflow: hidden; display: flex; flex-direction: column; }
-  .area-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
-  .title-area { padding: 14px 40px 12px; border-bottom: 1px dashed #CCCCCC; flex-shrink: 0; background: #FAFAFA; }
-  .content-area { flex: 1; display: flex; padding: 16px 24px; gap: 20px; }
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
   .left-panel { width: 55%; display: flex; flex-direction: column; }
-  .right-panel { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 20px; }
+  .right-panel { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 40px; }
   .chart-wrapper { flex: 1; display: flex; flex-direction: column; }
-  .chart-area { flex: 1; display: flex; align-items: flex-end; gap: 8px; padding: 0 0 24px 24px; border-bottom: 2px solid #CCCCCC; border-left: 1px solid #CCCCCC; }
-  .line-chart-placeholder { flex: 1; background: #F8F8F8; border: 1px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #AAAAAA; position: relative; }
-  .xaxis { display: flex; padding: 4px 0 0 24px; }
-  .xaxis-item { flex: 1; text-align: center; font-size: 10px; color: #999; }
-  .legend-row { display: flex; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
-  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #666; }
-  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .series-block { border-left: 3px solid #DDDDDD; padding-left: 12px; }
-  .series-name { font-size: 13px; font-weight: bold; color: #333; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
-  .series-body { font-size: 11px; color: #666; line-height: 1.6; }
+  .chart-area { flex: 1; display: flex; align-items: flex-end; gap: 16px; padding: 0 0 48px 48px; border-bottom: 4px solid #CCCCCC; border-left: 2px solid #CCCCCC; }
+  .line-chart-placeholder { flex: 1; background: #F8F8F8; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #AAAAAA; position: relative; }
+  .xaxis { display: flex; padding: 8px 0 0 48px; }
+  .xaxis-item { flex: 1; text-align: center; font-size: 20px; color: #999; }
+  .legend-row { display: flex; gap: 24px; margin-bottom: 16px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 10px; font-size: 20px; color: #666; }
+  .legend-dot { width: 20px; height: 20px; border-radius: 50%; }
+  .series-block { border-left: 6px solid #DDDDDD; padding-left: 24px; }
+  .series-name { font-size: 26px; font-weight: bold; color: #333; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
+  .series-body { font-size: 22px; color: #666; line-height: 1.6; }
 </style>
 </head>
 <body>
 <p class="slide-label">[chart-left-text-right]</p>
-<div class="slide">
-  <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-  </div>
-  <!-- コンテンツエリア -->
-  <div class="content-area">
-    <div class="left-panel">
-      <div class="area-label">グラフエリア（左）</div>
-      <div class="legend-row">
-        <div class="legend-item"><div class="legend-dot" style="background:#AAAAAA;"></div>系列A</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#CCCCCC;"></div>系列B</div>
-        <div class="legend-item"><div class="legend-dot" style="background:#888888;"></div>系列C</div>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
-      <div class="chart-wrapper">
-        <div class="chart-area">
-          <div class="line-chart-placeholder">[グラフ]<br>折れ線・棒グラフ</div>
+
+      <!-- コンテンツエリア -->
+      <div style="display:flex; flex:1; overflow:hidden; padding:32px 48px;">
+        <div class="left-panel">
+          <div class="area-label">グラフエリア（左）</div>
+          <div class="legend-row">
+            <div class="legend-item"><div class="legend-dot" style="background:#AAAAAA;"></div>系列A</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#CCCCCC;"></div>系列B</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#888888;"></div>系列C</div>
+          </div>
+          <div class="chart-wrapper">
+            <div class="chart-area">
+              <div class="line-chart-placeholder">[グラフ]<br>折れ線・棒グラフ</div>
+            </div>
+            <div class="xaxis">
+              <div class="xaxis-item">1月</div>
+              <div class="xaxis-item">3月</div>
+              <div class="xaxis-item">6月</div>
+              <div class="xaxis-item">9月</div>
+              <div class="xaxis-item">12月</div>
+            </div>
+          </div>
         </div>
-        <div class="xaxis">
-          <div class="xaxis-item">1月</div>
-          <div class="xaxis-item">3月</div>
-          <div class="xaxis-item">6月</div>
-          <div class="xaxis-item">9月</div>
-          <div class="xaxis-item">12月</div>
+        <div class="right-panel">
+          <div class="area-label" style="margin-bottom:16px;">テキスト解説（右）</div>
+          <div class="series-block" style="border-color:#AAAAAA;">
+            <div class="series-name"><div class="legend-dot" style="background:#AAAAAA; width:20px; height:20px; border-radius:50%; flex-shrink:0;"></div>系列Aの名称</div>
+            <div class="series-body">この系列の説明が入ります。特徴や傾向、注目ポイントを2〜3行で解説します。</div>
+          </div>
+          <div class="series-block" style="border-color:#CCCCCC;">
+            <div class="series-name"><div class="legend-dot" style="background:#CCCCCC; width:20px; height:20px; border-radius:50%; flex-shrink:0;"></div>系列Bの名称</div>
+            <div class="series-body">この系列の説明が入ります。特徴や傾向、注目ポイントを2〜3行で解説します。</div>
+          </div>
+          <div class="series-block" style="border-color:#888888;">
+            <div class="series-name"><div class="legend-dot" style="background:#888888; width:20px; height:20px; border-radius:50%; flex-shrink:0;"></div>系列Cの名称</div>
+            <div class="series-body">この系列の説明が入ります。特徴や傾向、注目ポイントを2〜3行で解説します。</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="right-panel">
-      <div class="area-label" style="margin-bottom:8px;">テキスト解説（右）</div>
-      <div class="series-block" style="border-color:#AAAAAA;">
-        <div class="series-name"><div class="legend-dot" style="background:#AAAAAA; width:10px; height:10px; border-radius:50%; flex-shrink:0;"></div>系列Aの名称</div>
-        <div class="series-body">この系列の説明が入ります。特徴や傾向、注目ポイントを2〜3行で解説します。</div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
       </div>
-      <div class="series-block" style="border-color:#CCCCCC;">
-        <div class="series-name"><div class="legend-dot" style="background:#CCCCCC; width:10px; height:10px; border-radius:50%; flex-shrink:0;"></div>系列Bの名称</div>
-        <div class="series-body">この系列の説明が入ります。特徴や傾向、注目ポイントを2〜3行で解説します。</div>
-      </div>
-      <div class="series-block" style="border-color:#888888;">
-        <div class="series-name"><div class="legend-dot" style="background:#888888; width:10px; height:10px; border-radius:50%; flex-shrink:0;"></div>系列Cの名称</div>
-        <div class="series-body">この系列の説明が入ります。特徴や傾向、注目ポイントを2〜3行で解説します。</div>
-      </div>
+
     </div>
   </div>
 </div>

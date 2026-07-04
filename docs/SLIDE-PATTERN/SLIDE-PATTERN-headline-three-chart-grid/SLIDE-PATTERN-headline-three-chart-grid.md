@@ -1,29 +1,19 @@
 # SLIDE-PATTERN-headline-three-chart-grid
 
-このファイルはスライドのコンテンツエリア（タイトル行より下の領域）のレイアウトパターン定義書です。スライド生成AIや人間のデザイナーが一貫したレイアウトを再現できるよう、構造・要素・使用方法を定義します。
-
----
+このファイルはスライドのコンテンツエリア（タイトル行より下の領域）のレイアウトパターン定義書です。SLIDE.mdと組み合わせてAIツールに渡すことで、このパターンのスライドを生成できます。タイトルエリア・フッター（ブランドフッター・ページ番号）・装飾はSLIDE.mdの `Slide Frame` セクションで定義されるため、このファイルには含みません。文言はすべてサンプル（ダミーテキスト）です。
 
 ## Overview
 
-| 項目 | 内容 |
-|------|------|
-| パターン名 | headline-three-chart-grid |
-| 別名・通称 | 見出し＋3グラフグリッド |
-| 用途 | 上部の大きな見出し（キーメッセージ）と説明文、下部に3種類のグラフを並べてデータを多角的に解説するレイアウト |
-| 適したコンテンツ | 市場分析報告、データドリブンな洞察提示、業績サマリー、調査結果発表 |
-| レイアウト種別 | 上下分割（見出し＋3列グラフ） |
+**パターン名：** headline-three-chart-grid
+**概要：** コンテンツエリア上部の大きな見出し（キーメッセージ）と説明文、下部に3種類のグラフを並べてデータを多角的に解説するレイアウト（上下分割：見出し＋3列グラフ）。
+**適したシーン：** 市場分析報告、データドリブンな洞察提示、業績サマリー、調査結果発表
 
----
-
-## Structure
+## Structure（構造）
 
 コンテンツエリアを上部見出しゾーンと下部グラフゾーンに分割する構造です。
 
 ```
 ┌──────────────────────────────────────────────┐
-│ タイトルエリア（スライドタイトル）            │
-├──────────────────────────────────────────────┤
 │ 大見出し（キーメッセージ・1〜2行）            │ ← 上部見出しゾーン
 │ ─────────────────────────────────────── │
 │ 説明テキスト（2行）                          │
@@ -33,49 +23,63 @@
 └────────────┴────────────┴────────────────────┘
 ```
 
----
+    structure:
+      frame: standard
+      layout: headline-top-chart-grid-bottom
+      headline_zone:
+        elements: [main-headline, divider, description]
+      chart_grid:
+        columns: 3
+        gap: 32px（高さの約3%）
+        panels: [horizontal-bar, vertical-bar, line-chart]
 
-## Elements
+## Elements（各要素の役割）
+
+※ タイトル（H1）・フッターはSLIDE.mdの Slide Frame で定義されるため、この表には含めない。コンテンツエリアの要素のみを記述する。
+※ 文字要素には、元スライドの見た目から見積もった1920px基準のフォントサイズの目安を役割欄に添える。
 
 ### コンテンツエリア全体
-- `display: flex; flex-direction: column; padding: 12px 40px; gap: 12px;`
+- `display: flex; flex-direction: column; padding: 24px 80px; gap: 24px;`
 
 ### 上部見出しエリア
 - `flex-shrink: 0;`
-- 大見出し: `font-size: 18px; font-weight: bold; color: #333; line-height: 1.5;` — 1〜2行
-- 区切り線: `border: none; border-top: 1px solid #CCCCCC; margin: 6px 0;`
-- 説明テキスト: `font-size: 12px; color: #555; line-height: 1.7;` — 2行
+- 大見出し（コンテンツ本体のキーメッセージ。スライドタイトルではない）: `font-size: 30px; font-weight: bold; color: #333; line-height: 1.5;` — 1〜2行
+- 区切り線: `border: none; border-top: 1px solid #CCCCCC; margin: 12px 0;`
+- 説明テキスト: `font-size: 20px; color: #555; line-height: 1.7;` — 2行
 
 ### 下部グラフエリア（3列）
-- コンテナ: `flex: 1; display: flex; gap: 16px; padding-top: 4px;`
-- 各グラフパネル（3つ）: `flex: 1; border: 1px solid #E0E0E0; padding: 12px;`
-  - パネル見出し: `font-size: 12px; font-weight: bold; color: #333;`
-  - サブテキスト: `font-size: 10px; color: #888; margin-bottom: 6px;`
+- コンテナ: `flex: 1; display: flex; gap: 32px; padding-top: 8px;`
+- 各グラフパネル（3つ）: `flex: 1; border: 1px solid #E0E0E0; padding: 24px;`
+  - パネル見出し: `font-size: 20px; font-weight: bold; color: #333;`
+  - サブテキスト: `font-size: 18px; color: #888; margin-bottom: 12px;`
 
 #### パネル1：横棒グラフ
-- 5〜7本の横棒: `display: flex; align-items: center; gap: 6px; margin-bottom: 4px; font-size: 10px; color: #555;`
-- 棒部分: `height: 8px; background: #CCCCCC;` + 幅でデータ比率を表現
+- 5〜7本の横棒: `display: flex; align-items: center; gap: 12px; margin-bottom: 8px; font-size: 18px; color: #555;`
+- 棒部分: `height: 16px; background: #CCCCCC;` + 幅でデータ比率を表現
 
 #### パネル2：縦棒グラフ
-- グラフコンテナ: `display: flex; align-items: flex-end; gap: 3px; height: 80px;`
-- 各棒: `width: 14px; background: #CCCCCC;` + 高さでデータ比率を表現
+- グラフコンテナ: `display: flex; align-items: flex-end; gap: 6px; height: 160px;`
+- 各棒: `width: 28px; background: #CCCCCC;` + 高さでデータ比率を表現
 
 #### パネル3：折れ線グラフ（SVG）
 ```html
-<svg width="100%" height="80" viewBox="0 0 160 80" preserveAspectRatio="none">
+<svg width="100%" height="160" viewBox="0 0 160 80" preserveAspectRatio="none">
   <polyline points="10,60 40,45 70,55 100,25 130,20 150,30"
     fill="none" stroke="#CCCCCC" stroke-width="2"/>
   <line x1="0" y1="70" x2="160" y2="70" stroke="#EEEEEE" stroke-width="1"/>
 </svg>
 ```
+（viewBox内座標・stroke-widthはスケール追従のため変換しない。SVGのwidth/heightのみ1920px基準に変換する）
 
 ### 凡例・出典テキスト
-- 凡例: `font-size: 10px; color: #888; margin-top: 6px;`
-- 出典: `font-size: 10px; color: #AAAAAA; text-align: right; margin-top: 4px;`
+- 凡例: `font-size: 18px; color: #888; margin-top: 12px;`
+- 出典: `font-size: 18px; color: #AAAAAA; text-align: right; margin-top: 8px;`
 
----
+## Usage Guide（AIへの使い方）
 
-## Usage Guide
+このパターンをAIに指示する際のプロンプト例：
+
+> 「SLIDE-PATTERN-headline-three-chart-gridのレイアウトで、〔伝えたいキーメッセージ〕を大見出しに、〔根拠・補足〕を説明文に配置し、下部に〔比較データ・時系列データ・トレンド〕の3つのグラフを配置してください。デザインはSLIDE.mdに従ってください。」
 
 ### 適した場面
 - 複数の指標を一画面で比較したいデータ分析スライド

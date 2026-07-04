@@ -1,188 +1,103 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>SLIDE-PATTERN-faq-stacked-qa-boxes</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      width: 960px;
-      height: 540px;
-      font-family: sans-serif;
-      background: #FFFFFF;
-      color: #333333;
-      overflow: hidden;
-    }
-    .slide {
-      width: 960px;
-      height: 540px;
-      display: flex;
-      flex-direction: column;
-    }
-    /* タイトルエリア */
-    .title-area {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      flex-shrink: 0;
-      background: #FAFAFA;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999999;
-      text-transform: uppercase;
-    }
-    .title-placeholder {
-      font-size: 16px;
-      color: #CCCCCC;
-      margin-top: 4px;
-    }
-    /* コンテンツエリア */
-    .content-area {
-      flex: 1;
-      padding: 18px 40px 20px;
-      display: flex;
-      flex-direction: column;
-    }
-    .content-label {
-      font-size: 11px;
-      color: #999999;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      flex-shrink: 0;
-    }
-    /* Q&Aボックス群のラッパー */
-    .qa-stack {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    /* 各Q&Aボックス */
-    .qa-box {
-      flex: 1;
-      background: #F0F0F0;
-      border: 1px solid #CCCCCC;
-      border-radius: 6px;
-      padding: 16px 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    /* Q行 */
-    .q-row {
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-      margin-bottom: 8px;
-    }
-    .q-prefix {
-      font-size: 13px;
-      font-weight: bold;
-      color: #555555;
-      flex-shrink: 0;
-    }
-    .q-prefix-label {
-      font-size: 10px;
-      color: #BBBBBB;
-      text-transform: uppercase;
-      margin-left: 4px;
-    }
-    .q-text {
-      font-size: 14px;
-      font-weight: bold;
-      color: #444444;
-      line-height: 1.5;
-    }
-    /* A行 */
-    .a-row {
-      display: flex;
-      align-items: baseline;
-      gap: 6px;
-    }
-    .a-prefix {
-      font-size: 13px;
-      font-weight: bold;
-      color: #888888;
-      flex-shrink: 0;
-    }
-    .a-text {
-      font-size: 13px;
-      color: #444444;
-      line-height: 1.7;
-    }
-    .a-row-label {
-      font-size: 10px;
-      color: #BBBBBB;
-      text-transform: uppercase;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-faq-stacked-qa-boxes</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .qa-stack { flex: 1; display: flex; flex-direction: column; gap: 28px; }
+  .qa-box { flex: 1; background: #F0F0F0; border: 1px solid #CCCCCC; border-radius: 12px; padding: 32px 48px; display: flex; flex-direction: column; justify-content: center; }
+  .q-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+  .q-prefix { font-size: 26px; font-weight: bold; color: #555555; flex-shrink: 0; }
+  .q-text { font-size: 28px; font-weight: bold; color: #444444; line-height: 1.5; }
+  .a-row { display: flex; align-items: baseline; gap: 12px; }
+  .a-prefix { font-size: 26px; font-weight: bold; color: #888888; flex-shrink: 0; }
+  .a-text { font-size: 26px; color: #444444; line-height: 1.7; }
+</style>
 </head>
 <body>
-  <div class="slide">
-    <!-- タイトルエリア（SLIDE.md参照） -->
-    <div class="title-area">
-      <div class="area-label">Title Area — SLIDE.md 参照</div>
-      <div class="title-placeholder">スライドタイトルが入ります</div>
-    </div>
+<p class="slide-label">[faq-stacked-qa-boxes]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-    <!-- コンテンツエリア -->
-    <div class="content-area">
-      <div class="content-label">Content Area — faq-stacked-qa-boxes</div>
-
-      <!-- Q&Aボックス群（縦積み） -->
-      <div class="qa-stack">
-
-        <!-- Q&Aボックス1 -->
-        <div class="qa-box">
-          <div class="q-row">
-            <span class="q-prefix">Q.
-              <span class="q-prefix-label">← accent color</span>
-            </span>
-            <span class="q-text">よくある質問の文章がここに入ります？</span>
-          </div>
-          <div class="a-row">
-            <span class="a-prefix">A.
-              <span class="a-row-label">← body text</span>
-            </span>
-            <span class="a-text">
-              回答文がここに入ります。はい、可能です。詳細については担当者にお問い合わせください。<br>
-              複数行にまたがる場合もこのように続きます。
-            </span>
-          </div>
-        </div>
-
-        <!-- Q&Aボックス2 -->
-        <div class="qa-box">
-          <div class="q-row">
-            <span class="q-prefix">Q.</span>
-            <span class="q-text">2つめのよくある質問の文章がここに入ります？</span>
-          </div>
-          <div class="a-row">
-            <span class="a-prefix">A.</span>
-            <span class="a-text">
-              回答文がここに入ります。プランをご決定いただければ対応可能です。<br>
-              オプション料金は一切発生せず、シンプルな料金体系となっています。
-            </span>
-          </div>
-        </div>
-
-        <!-- Q&Aボックス3 -->
-        <div class="qa-box">
-          <div class="q-row">
-            <span class="q-prefix">Q.</span>
-            <span class="q-text">3つめのよくある質問の文章がここに入ります？</span>
-          </div>
-          <div class="a-row">
-            <span class="a-prefix">A.</span>
-            <span class="a-text">
-              回答文がここに入ります。問題ございません。納品後も編集しやすいデザインで制作しておりますので、<br>
-              社内で修正のご対応が可能です。
-            </span>
-          </div>
-        </div>
-
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
+
+      <!-- コンテンツエリア -->
+      <div style="flex:1; overflow:hidden; padding:36px 80px 40px; display:flex; flex-direction:column;">
+        <div class="area-label">Content Area — faq-stacked-qa-boxes</div>
+
+        <!-- Q&Aボックス群（縦積み） -->
+        <div class="qa-stack">
+
+          <!-- Q&Aボックス1 -->
+          <div class="qa-box">
+            <div class="q-row">
+              <span class="q-prefix">Q.</span>
+              <span class="q-text">よくある質問の文章がここに入ります？</span>
+            </div>
+            <div class="a-row">
+              <span class="a-prefix">A.</span>
+              <span class="a-text">
+                回答文がここに入ります。はい、可能です。詳細については担当者にお問い合わせください。<br>
+                複数行にまたがる場合もこのように続きます。
+              </span>
+            </div>
+          </div>
+
+          <!-- Q&Aボックス2 -->
+          <div class="qa-box">
+            <div class="q-row">
+              <span class="q-prefix">Q.</span>
+              <span class="q-text">2つめのよくある質問の文章がここに入ります？</span>
+            </div>
+            <div class="a-row">
+              <span class="a-prefix">A.</span>
+              <span class="a-text">
+                回答文がここに入ります。プランをご決定いただければ対応可能です。<br>
+                オプション料金は一切発生せず、シンプルな料金体系となっています。
+              </span>
+            </div>
+          </div>
+
+          <!-- Q&Aボックス3 -->
+          <div class="qa-box">
+            <div class="q-row">
+              <span class="q-prefix">Q.</span>
+              <span class="q-text">3つめのよくある質問の文章がここに入ります？</span>
+            </div>
+            <div class="a-row">
+              <span class="a-prefix">A.</span>
+              <span class="a-text">
+                回答文がここに入ります。問題ございません。納品後も編集しやすいデザインで制作しておりますので、<br>
+                社内で修正のご対応が可能です。
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
     </div>
   </div>
+</div>
 </body>
 </html>

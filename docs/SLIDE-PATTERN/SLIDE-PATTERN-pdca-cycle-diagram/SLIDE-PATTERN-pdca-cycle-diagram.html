@@ -1,211 +1,140 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>SLIDE-PATTERN-pdca-cycle-diagram</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      width: 960px;
-      height: 540px;
-      overflow: hidden;
-      font-family: sans-serif;
-      background: #FFFFFF;
-      display: flex;
-      flex-direction: column;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    /* タイトルエリア */
-    .title-area {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      flex-shrink: 0;
-      background: #FAFAFA;
-    }
-    .title-placeholder {
-      font-size: 16px;
-      color: #CCCCCC;
-      margin-top: 4px;
-    }
-    /* コンテンツエリア */
-    .content-area {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      padding: 0 32px 10px;
-    }
-    /* リード文エリア */
-    .lead-area {
-      flex-shrink: 0;
-      padding: 10px 0 8px;
-      position: relative;
-    }
-    .lead-area .area-label {
-      margin-bottom: 4px;
-    }
-    .lead-text {
-      font-size: 12px;
-      color: #333333;
-      line-height: 1.6;
-    }
-    /* メインダイアグラム行 */
-    .diagram-row {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 180px 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 8px;
-      position: relative;
-    }
-    /* 中央の円形ダイアグラム：グリッドのrow1/col2 と row2/col2 を結合 */
-    .diagram-center {
-      grid-column: 2;
-      grid-row: 1 / 3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    /* 各フェーズブロック */
-    .phase-block {
-      background: #F0F0F0;
-      border: 1px solid #CCCCCC;
-      border-radius: 4px;
-      padding: 10px 12px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      position: relative;
-    }
-    .phase-block .area-label {
-      margin-bottom: 4px;
-    }
-    .phase-title {
-      font-size: 14px;
-      font-weight: bold;
-      color: #555555;
-      margin-bottom: 5px;
-    }
-    .phase-desc {
-      font-size: 11px;
-      color: #444444;
-      line-height: 1.55;
-    }
-    /* 配置指定 */
-    .action-block  { grid-column: 1; grid-row: 1; }
-    .plan-block    { grid-column: 3; grid-row: 1; }
-    .check-block   { grid-column: 1; grid-row: 2; }
-    .do-block      { grid-column: 3; grid-row: 2; }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-pdca-cycle-diagram</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .lead-area { flex-shrink: 0; padding: 20px 0 16px; position: relative; }
+  .lead-text { font-size: 24px; color: #333333; line-height: 1.6; }
+  .diagram-row { flex: 1; display: grid; grid-template-columns: 1fr 360px 1fr; grid-template-rows: 1fr 1fr; gap: 16px; position: relative; }
+  .diagram-center { grid-column: 2; grid-row: 1 / 3; display: flex; align-items: center; justify-content: center; }
+  .phase-block { background: #F0F0F0; border: 1px solid #CCCCCC; border-radius: 8px; padding: 20px 24px; display: flex; flex-direction: column; justify-content: flex-start; position: relative; }
+  .phase-title { font-size: 28px; font-weight: bold; color: #555555; margin-bottom: 10px; }
+  .phase-desc { font-size: 22px; color: #444444; line-height: 1.55; }
+  .action-block  { grid-column: 1; grid-row: 1; }
+  .plan-block    { grid-column: 3; grid-row: 1; }
+  .check-block   { grid-column: 1; grid-row: 2; }
+  .do-block      { grid-column: 3; grid-row: 2; }
+</style>
 </head>
 <body>
+<p class="slide-label">[pdca-cycle-diagram]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-  <!-- タイトルエリア -->
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div class="title-placeholder">スライドタイトルが入ります</div>
-  </div>
-
-  <!-- コンテンツエリア -->
-  <div class="content-area">
-
-    <!-- リード文 -->
-    <div class="lead-area">
-      <div class="area-label">Lead Text — スライドの概要・主旨（1〜2文）</div>
-      <div class="lead-text">
-        PDCAサイクルは仕事と業務改善を継続的に進めるための基本フレームです。まず目標を定めて計画を立て、実行し、結果を検証して改善策を反映します。このフローを活性化させることで成果の再現性を高めていきます。
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
+
+      <!-- コンテンツエリア -->
+      <div style="flex:1; display:flex; flex-direction:column; overflow:hidden; padding:0 64px 20px;">
+
+        <!-- リード文 -->
+        <div class="lead-area">
+          <div class="area-label" style="margin-bottom:8px;">Lead Text — スライドの概要・主旨（1〜2文）</div>
+          <div class="lead-text">
+            PDCAサイクルは仕事と業務改善を継続的に進めるための基本フレームです。まず目標を定めて計画を立て、実行し、結果を検証して改善策を反映します。このフローを活性化させることで成果の再現性を高めていきます。
+          </div>
+        </div>
+
+        <!-- ダイアグラム行 -->
+        <div class="diagram-row">
+
+          <!-- 左上：Action -->
+          <div class="phase-block action-block">
+            <div class="area-label" style="margin-bottom:8px;">phase-block / top-left</div>
+            <div class="phase-title">Action（対策・改善）</div>
+            <div class="phase-desc">
+              Check段階で得られた検証結果から、気付きや課題などを元に改善策を考えていきます。次のPlanサイクルへとつなげる行動を定めます。
+            </div>
+          </div>
+
+          <!-- 右上：Plan -->
+          <div class="phase-block plan-block">
+            <div class="area-label" style="margin-bottom:8px;">phase-block / top-right</div>
+            <div class="phase-title">Plan（計画）</div>
+            <div class="phase-desc">
+              まず目標や目的を明確に設定し、それらを達成するための具体的な行動計画（アクションプラン）を作成します。
+            </div>
+          </div>
+
+          <!-- 中央：円形サイクル図 -->
+          <div class="diagram-center">
+            <div class="area-label" style="position:absolute; top:8px; left:50%; transform:translateX(-50%); white-space:nowrap;">circular cycle diagram</div>
+            <!-- SVGによる4分割ドーナツ型サイクル（viewBox座標は元のまま、width/heightのみ2倍） -->
+            <svg width="320" height="320" viewBox="0 0 160 160">
+              <!-- Plan：右上（0° → 90°） -->
+              <path d="M80,80 L80,20 A60,60 0 0,1 140,80 Z" fill="#BBBBBB" />
+              <!-- Do：右下（90° → 180°） -->
+              <path d="M80,80 L140,80 A60,60 0 0,1 80,140 Z" fill="#999999" />
+              <!-- Check：左下（180° → 270°） -->
+              <path d="M80,80 L80,140 A60,60 0 0,1 20,80 Z" fill="#BBBBBB" />
+              <!-- Action：左上（270° → 360°） -->
+              <path d="M80,80 L20,80 A60,60 0 0,1 80,20 Z" fill="#999999" />
+
+              <!-- 中央の白抜き円（ドーナツ） -->
+              <circle cx="80" cy="80" r="32" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="1"/>
+
+              <!-- 中央テキスト -->
+              <text x="80" y="76" text-anchor="middle" font-size="11" fill="#555" font-family="sans-serif">PDCA</text>
+              <text x="80" y="90" text-anchor="middle" font-size="9" fill="#888" font-family="sans-serif">サイクル</text>
+
+              <!-- 各象限のラベル -->
+              <text x="112" y="54" text-anchor="middle" font-size="10" fill="#FFF" font-family="sans-serif" font-weight="bold">Plan</text>
+              <text x="112" y="110" text-anchor="middle" font-size="10" fill="#FFF" font-family="sans-serif" font-weight="bold">Do</text>
+              <text x="48" y="110" text-anchor="middle" font-size="9" fill="#FFF" font-family="sans-serif" font-weight="bold">Check</text>
+              <text x="48" y="54" text-anchor="middle" font-size="9" fill="#FFF" font-family="sans-serif" font-weight="bold">Action</text>
+
+              <!-- 時計回り矢印（外周の矢印マーカー代わりに小三角形） -->
+              <polygon points="148,76 148,84 155,80" fill="#777" />
+              <polygon points="76,148 84,148 80,155" fill="#777" />
+              <polygon points="12,76 12,84 5,80" fill="#777" />
+              <polygon points="76,12 84,12 80,5" fill="#777" />
+            </svg>
+          </div>
+
+          <!-- 左下：Check -->
+          <div class="phase-block check-block">
+            <div class="area-label" style="margin-bottom:8px;">phase-block / bottom-left</div>
+            <div class="phase-title">Check（評価）</div>
+            <div class="phase-desc">
+              設定した目標やアクションプランに対する達成度や進捗を検証・評価します。結果だけでなく、その結果に至った原因を分析することが重要です。
+            </div>
+          </div>
+
+          <!-- 右下：Do -->
+          <div class="phase-block do-block">
+            <div class="area-label" style="margin-bottom:8px;">phase-block / bottom-right</div>
+            <div class="phase-title">Do（実行）</div>
+            <div class="phase-desc">
+              Planで立てた計画を実行します。「やりっぱなし」にならないよう記録を残し、次のCheckフェーズで振り返れるようにします。
+            </div>
+          </div>
+
+        </div><!-- /diagram-row -->
+
+      </div><!-- /コンテンツエリア -->
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
     </div>
-
-    <!-- ダイアグラム行 -->
-    <div class="diagram-row">
-
-      <!-- 左上：Action -->
-      <div class="phase-block action-block">
-        <div class="area-label">phase-block / top-left</div>
-        <div class="phase-title">Action（対策・改善）</div>
-        <div class="phase-desc">
-          Check段階で得られた検証結果から、気付きや課題などを元に改善策を考えていきます。次のPlanサイクルへとつなげる行動を定めます。
-        </div>
-      </div>
-
-      <!-- 右上：Plan -->
-      <div class="phase-block plan-block">
-        <div class="area-label">phase-block / top-right</div>
-        <div class="phase-title">Plan（計画）</div>
-        <div class="phase-desc">
-          まず目標や目的を明確に設定し、それらを達成するための具体的な行動計画（アクションプラン）を作成します。
-        </div>
-      </div>
-
-      <!-- 中央：円形サイクル図 -->
-      <div class="diagram-center">
-        <div class="area-label" style="position:absolute; top:4px; left:50%; transform:translateX(-50%); white-space:nowrap;">circular cycle diagram</div>
-        <!-- SVGによる4分割ドーナツ型サイクル -->
-        <svg width="160" height="160" viewBox="0 0 160 160">
-          <!-- 外枠円 -->
-          <!-- 4分割の扇形（時計回り：右上=Plan, 右下=Do, 左下=Check, 左上=Action） -->
-
-          <!-- Plan：右上（0° → 90°） -->
-          <path d="M80,80 L80,20 A60,60 0 0,1 140,80 Z" fill="#BBBBBB" />
-          <!-- Do：右下（90° → 180°） -->
-          <path d="M80,80 L140,80 A60,60 0 0,1 80,140 Z" fill="#999999" />
-          <!-- Check：左下（180° → 270°） -->
-          <path d="M80,80 L80,140 A60,60 0 0,1 20,80 Z" fill="#BBBBBB" />
-          <!-- Action：左上（270° → 360°） -->
-          <path d="M80,80 L20,80 A60,60 0 0,1 80,20 Z" fill="#999999" />
-
-          <!-- 中央の白抜き円（ドーナツ） -->
-          <circle cx="80" cy="80" r="32" fill="#FFFFFF" stroke="#CCCCCC" stroke-width="1"/>
-
-          <!-- 中央テキスト -->
-          <text x="80" y="76" text-anchor="middle" font-size="11" fill="#555" font-family="sans-serif">PDCA</text>
-          <text x="80" y="90" text-anchor="middle" font-size="9" fill="#888" font-family="sans-serif">サイクル</text>
-
-          <!-- 各象限のラベル -->
-          <text x="112" y="54" text-anchor="middle" font-size="10" fill="#FFF" font-family="sans-serif" font-weight="bold">Plan</text>
-          <text x="112" y="110" text-anchor="middle" font-size="10" fill="#FFF" font-family="sans-serif" font-weight="bold">Do</text>
-          <text x="48" y="110" text-anchor="middle" font-size="9" fill="#FFF" font-family="sans-serif" font-weight="bold">Check</text>
-          <text x="48" y="54" text-anchor="middle" font-size="9" fill="#FFF" font-family="sans-serif" font-weight="bold">Action</text>
-
-          <!-- 時計回り矢印（外周の矢印マーカー代わりに小三角形） -->
-          <!-- 右：→ -->
-          <polygon points="148,76 148,84 155,80" fill="#777" />
-          <!-- 下：↓ -->
-          <polygon points="76,148 84,148 80,155" fill="#777" />
-          <!-- 左：← -->
-          <polygon points="12,76 12,84 5,80" fill="#777" />
-          <!-- 上：↑ -->
-          <polygon points="76,12 84,12 80,5" fill="#777" />
-        </svg>
-      </div>
-
-      <!-- 左下：Check -->
-      <div class="phase-block check-block">
-        <div class="area-label">phase-block / bottom-left</div>
-        <div class="phase-title">Check（評価）</div>
-        <div class="phase-desc">
-          設定した目標やアクションプランに対する達成度や進捗を検証・評価します。結果だけでなく、その結果に至った原因を分析することが重要です。
-        </div>
-      </div>
-
-      <!-- 右下：Do -->
-      <div class="phase-block do-block">
-        <div class="area-label">phase-block / bottom-right</div>
-        <div class="phase-title">Do（実行）</div>
-        <div class="phase-desc">
-          Planで立てた計画を実行します。「やりっぱなし」にならないよう記録を残し、次のCheckフェーズで振り返れるようにします。
-        </div>
-      </div>
-
-    </div><!-- /diagram-row -->
-
-  </div><!-- /content-area -->
-
+  </div>
+</div>
 </body>
 </html>

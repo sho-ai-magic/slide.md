@@ -1,259 +1,159 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-pricing-comparison-table</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: sans-serif;
-      background: #E0E0E0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-    /* スライド本体：960×540px固定 */
-    .slide {
-      width: 960px;
-      height: 540px;
-      background: #FFFFFF;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999999;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 4px;
-    }
-    /* タイトルエリア */
-    .title-area {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      flex-shrink: 0;
-      background: #FAFAFA;
-    }
-    /* コンテンツエリア */
-    .content-area {
-      flex: 1;
-      padding: 14px 40px 14px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    /* リード文エリア */
-    .lead-area {
-      margin-bottom: 12px;
-      flex-shrink: 0;
-    }
-    .sub-heading {
-      font-size: 14px;
-      font-weight: bold;
-      color: #333333;
-      margin-bottom: 4px;
-    }
-    .lead-text {
-      font-size: 11px;
-      color: #555555;
-      line-height: 1.5;
-    }
-    /* テーブルラッパー */
-    .table-wrapper {
-      flex: 1;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    /* 比較テーブル本体 */
-    .compare-table {
-      width: 100%;
-      height: 100%;
-      border-collapse: collapse;
-      table-layout: fixed;
-    }
-    /* 推奨バッジ行（テーブルの上） */
-    .badge-row td {
-      padding: 0 4px 4px;
-      text-align: center;
-      vertical-align: bottom;
-    }
-    .recommended-badge {
-      display: inline-block;
-      background: #555555;
-      color: #FFFFFF;
-      font-size: 10px;
-      font-weight: bold;
-      padding: 2px 12px;
-      border-radius: 3px 3px 0 0;
-    }
-    /* プラン名ヘッダー行 */
-    .plan-header td {
-      padding: 8px 10px;
-      text-align: center;
-      font-size: 14px;
-      font-weight: bold;
-      color: #333333;
-      background: #EBEBEB;
-      border: 1px solid #CCCCCC;
-    }
-    .plan-header td.row-label-cell {
-      background: transparent;
-      border: none;
-    }
-    /* 料金行 */
-    .price-row td {
-      padding: 10px 10px;
-      text-align: center;
-      background: #F5F5F5;
-      border: 1px solid #CCCCCC;
-      border-top: none;
-    }
-    .price-row td.row-label-cell {
-      background: #E0E0E0;
-      border: 1px solid #CCCCCC;
-      border-top: none;
-    }
-    .price-large {
-      font-size: 28px;
-      font-weight: bold;
-      color: #222222;
-      line-height: 1;
-    }
-    .price-unit {
-      font-size: 12px;
-      color: #555555;
-    }
-    /* 比較項目行 */
-    .compare-row td {
-      padding: 7px 10px;
-      text-align: center;
-      font-size: 11px;
-      color: #444444;
-      border: 1px solid #CCCCCC;
-      border-top: none;
-      vertical-align: middle;
-      line-height: 1.4;
-    }
-    .compare-row:nth-child(odd) td {
-      background: #FAFAFA;
-    }
-    .compare-row:nth-child(even) td {
-      background: #F2F2F2;
-    }
-    /* 行ラベルセル */
-    .row-label-cell {
-      text-align: left !important;
-      font-weight: bold;
-      font-size: 11px;
-      color: #444444;
-      background: #E8E8E8 !important;
-      padding-left: 14px !important;
-      border: 1px solid #CCCCCC;
-    }
-    /* 推奨列ハイライト */
-    .highlight-col {
-      background: #E0E0E0 !important;
-      font-weight: bold;
-    }
-    /* エリアラベル */
-    .table-area-label {
-      font-size: 9px;
-      color: #BBBBBB;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-      flex-shrink: 0;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-pricing-comparison-table</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
+
+  /* コンテンツエリア */
+  .content-area { flex: 1; padding: 24px 60px; display: flex; flex-direction: column; overflow: hidden; box-sizing: border-box; }
+
+  /* リード文エリア */
+  .lead-area { margin-bottom: 20px; flex-shrink: 0; }
+  .sub-heading { font-size: 28px; font-weight: bold; color: #333333; margin-bottom: 8px; }
+  .lead-text { font-size: 22px; color: #555555; line-height: 1.5; }
+
+  /* テーブルラッパー */
+  .table-wrapper { flex: 1; overflow: hidden; display: flex; flex-direction: column; }
+
+  /* 比較テーブル本体 */
+  .compare-table { width: 100%; height: 100%; border-collapse: collapse; table-layout: fixed; }
+
+  /* 推奨バッジ行（テーブルの上） */
+  .badge-row td { padding: 0 8px 8px; text-align: center; vertical-align: bottom; }
+  .recommended-badge { display: inline-block; background: #555555; color: #FFFFFF; font-size: 20px; font-weight: bold; padding: 4px 24px; border-radius: 6px 6px 0 0; }
+
+  /* プラン名ヘッダー行 */
+  .plan-header td { padding: 16px 20px; text-align: center; font-size: 28px; font-weight: bold; color: #333333; background: #EBEBEB; border: 1px solid #CCCCCC; }
+  .plan-header td.row-label-cell { background: transparent; border: none; }
+
+  /* 料金行 */
+  .price-row td { padding: 20px 20px; text-align: center; background: #F5F5F5; border: 1px solid #CCCCCC; border-top: none; }
+  .price-row td.row-label-cell { background: #E0E0E0; border: 1px solid #CCCCCC; border-top: none; }
+  .price-large { font-size: 56px; font-weight: bold; color: #222222; line-height: 1; }
+  .price-unit { font-size: 24px; color: #555555; }
+
+  /* 比較項目行 */
+  .compare-row td { padding: 14px 20px; text-align: center; font-size: 22px; color: #444444; border: 1px solid #CCCCCC; border-top: none; vertical-align: middle; line-height: 1.4; }
+  .compare-row:nth-child(odd) td { background: #FAFAFA; }
+  .compare-row:nth-child(even) td { background: #F2F2F2; }
+
+  /* 行ラベルセル */
+  .row-label-cell { text-align: left !important; font-weight: bold; font-size: 22px; color: #444444; background: #E8E8E8 !important; padding-left: 28px !important; border: 1px solid #CCCCCC; }
+
+  /* 推奨列ハイライト */
+  .highlight-col { background: #E0E0E0 !important; font-weight: bold; }
+
+  /* エリアラベル */
+  .table-area-label { margin-bottom: 8px; flex-shrink: 0; }
+</style>
 </head>
 <body>
-  <div class="slide">
-    <!-- タイトルエリア（SLIDE.mdで定義） -->
-    <div class="title-area">
-      <div class="area-label">Title Area — SLIDE.md 参照</div>
-      <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-    </div>
+<p class="slide-label">[pricing-comparison-table]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-    <!-- コンテンツエリア -->
-    <div class="content-area">
-      <div class="area-label">Content Area</div>
-
-      <!-- リード文エリア -->
-      <div class="lead-area">
-        <div class="sub-heading">ニーズや規模に合わせて選べる3つのプラン</div>
-        <div class="lead-text">スモールスタートから全社展開まで柔軟に対応できる料金プランをご用意しています。</div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
 
-      <!-- 比較テーブル -->
-      <div class="table-wrapper">
-        <div class="table-area-label">Comparison Table Area</div>
-        <table class="compare-table">
-          <!-- 推奨バッジ行 -->
-          <tr class="badge-row">
-            <td class="row-label-cell" style="background:transparent;border:none;"></td>
-            <td></td>
-            <td><span class="recommended-badge">おすすめ</span></td>
-            <td></td>
-          </tr>
-          <!-- プラン名ヘッダー行 -->
-          <tr class="plan-header">
-            <td class="row-label-cell" style="font-size:9px;color:#BBBBBB;">比較項目</td>
-            <td>Starter</td>
-            <td class="highlight-col">Business</td>
-            <td>Enterprise</td>
-          </tr>
-          <!-- 料金行 -->
-          <tr class="price-row">
-            <td class="row-label-cell">月額料金</td>
-            <td>
-              <div class="price-large">5<span class="price-unit">万円</span></div>
-            </td>
-            <td class="highlight-col">
-              <div class="price-large">12<span class="price-unit">万円</span></div>
-            </td>
-            <td>
-              <div class="price-large">35<span class="price-unit">万円〜</span></div>
-            </td>
-          </tr>
-          <!-- 比較項目行 -->
-          <tr class="compare-row">
-            <td class="row-label-cell">こんな企業におすすめ</td>
-            <td>小規模チームで手軽に始めたい企業</td>
-            <td class="highlight-col">部署・チーム単位で本格活用したい企業</td>
-            <td>全社展開・高セキュリティが必要な企業</td>
-          </tr>
-          <tr class="compare-row">
-            <td class="row-label-cell">ユーザー数</td>
-            <td>〜5名</td>
-            <td class="highlight-col">〜20名</td>
-            <td>無制限</td>
-          </tr>
-          <tr class="compare-row">
-            <td class="row-label-cell">ストレージ</td>
-            <td>50GB</td>
-            <td class="highlight-col">200GB</td>
-            <td>無制限</td>
-          </tr>
-          <tr class="compare-row">
-            <td class="row-label-cell">AI機能利用</td>
-            <td>月間5,000回まで</td>
-            <td class="highlight-col">月間30,000回まで</td>
-            <td>無制限</td>
-          </tr>
-          <tr class="compare-row">
-            <td class="row-label-cell">サポート</td>
-            <td>メールサポート（平日10〜18時）</td>
-            <td class="highlight-col">メール・チャット（平日10〜18時）</td>
-            <td>専任担当（平日9〜18時）</td>
-          </tr>
-        </table>
+      <!-- コンテンツエリア -->
+      <div class="content-area">
+        <div class="area-label">Content Area</div>
+
+        <!-- リード文エリア -->
+        <div class="lead-area">
+          <div class="sub-heading">ニーズや規模に合わせて選べる3つのプラン</div>
+          <div class="lead-text">スモールスタートから全社展開まで柔軟に対応できる料金プランをご用意しています。</div>
+        </div>
+
+        <!-- 比較テーブル -->
+        <div class="table-wrapper">
+          <div class="area-label table-area-label">Comparison Table Area</div>
+          <table class="compare-table">
+            <!-- 推奨バッジ行 -->
+            <tr class="badge-row">
+              <td class="row-label-cell" style="background:transparent;border:none;"></td>
+              <td></td>
+              <td><span class="recommended-badge">おすすめ</span></td>
+              <td></td>
+            </tr>
+            <!-- プラン名ヘッダー行 -->
+            <tr class="plan-header">
+              <td class="row-label-cell" style="font-size:18px;color:#BBBBBB;">比較項目</td>
+              <td>Starter</td>
+              <td class="highlight-col">Business</td>
+              <td>Enterprise</td>
+            </tr>
+            <!-- 料金行 -->
+            <tr class="price-row">
+              <td class="row-label-cell">月額料金</td>
+              <td>
+                <div class="price-large">5<span class="price-unit">万円</span></div>
+              </td>
+              <td class="highlight-col">
+                <div class="price-large">12<span class="price-unit">万円</span></div>
+              </td>
+              <td>
+                <div class="price-large">35<span class="price-unit">万円〜</span></div>
+              </td>
+            </tr>
+            <!-- 比較項目行 -->
+            <tr class="compare-row">
+              <td class="row-label-cell">こんな企業におすすめ</td>
+              <td>小規模チームで手軽に始めたい企業</td>
+              <td class="highlight-col">部署・チーム単位で本格活用したい企業</td>
+              <td>全社展開・高セキュリティが必要な企業</td>
+            </tr>
+            <tr class="compare-row">
+              <td class="row-label-cell">ユーザー数</td>
+              <td>〜5名</td>
+              <td class="highlight-col">〜20名</td>
+              <td>無制限</td>
+            </tr>
+            <tr class="compare-row">
+              <td class="row-label-cell">ストレージ</td>
+              <td>50GB</td>
+              <td class="highlight-col">200GB</td>
+              <td>無制限</td>
+            </tr>
+            <tr class="compare-row">
+              <td class="row-label-cell">AI機能利用</td>
+              <td>月間5,000回まで</td>
+              <td class="highlight-col">月間30,000回まで</td>
+              <td>無制限</td>
+            </tr>
+            <tr class="compare-row">
+              <td class="row-label-cell">サポート</td>
+              <td>メールサポート（平日10〜18時）</td>
+              <td class="highlight-col">メール・チャット（平日10〜18時）</td>
+              <td>専任担当（平日9〜18時）</td>
+            </tr>
+          </table>
+        </div>
       </div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
     </div>
-    <!-- /.content-area -->
   </div>
-  <!-- /.slide -->
+</div>
 </body>
 </html>

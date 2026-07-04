@@ -4,69 +4,91 @@
 <meta charset="UTF-8">
 <title>SLIDE-PATTERN-four-quadrant-center-circle</title>
 <style>
-  body { background: #E8E8E8; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; font-family: sans-serif; }
-  .slide-label { font-size: 12px; color: #666; margin-bottom: 6px; }
-  .slide { width: 960px; height: 540px; background: #FFFFFF; border: 1px solid #CCCCCC; overflow: hidden; display: flex; flex-direction: column; }
-  .area-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.08em; }
-  /* タイトルエリア */
-  .title-area { padding: 14px 40px 12px; border-bottom: 1px dashed #CCCCCC; flex-shrink: 0; background: #FAFAFA; }
-  /* コンテンツエリア */
-  .content-area { position: relative; flex: 1; padding: 12px 48px; }
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
   /* 中央の円（絶対配置） */
-  .center-circle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; height: 120px; border-radius: 50%; border: 2px solid #CCCCCC; background: #F8F8F8; display: flex; align-items: center; justify-content: center; flex-direction: column; z-index: 2; }
-  .center-text { font-size: 11px; color: #888; text-align: center; line-height: 1.5; }
+  .center-circle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 240px; height: 240px; border-radius: 50%; border: 4px solid #CCCCCC; background: #F8F8F8; display: flex; align-items: center; justify-content: center; flex-direction: column; z-index: 2; }
+  .center-text { font-size: 22px; color: #888; text-align: center; line-height: 1.5; }
   /* 4象限グリッド */
-  .quadrant-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; width: 100%; height: 100%; gap: 8px; }
+  .quadrant-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; width: 100%; height: 100%; gap: 16px; }
   /* 各象限セル */
-  .quadrant { display: flex; flex-direction: column; padding: 12px; gap: 6px; border: 1px dashed #E8E8E8; }
+  .quadrant { display: flex; flex-direction: column; padding: 24px; gap: 12px; border: 1px dashed #E8E8E8; box-sizing: border-box; }
   /* アイコンプレースホルダー */
-  .icon-placeholder { width: 40px; height: 40px; background: #F0F0F0; border-radius: 50%; border: 1px dashed #CCCCCC; flex-shrink: 0; }
+  .icon-placeholder { width: 80px; height: 80px; background: #F0F0F0; border-radius: 50%; border: 1px dashed #CCCCCC; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
   /* 見出し */
-  .quadrant-heading { font-size: 13px; font-weight: bold; color: #333; line-height: 1.4; }
+  .quadrant-heading { font-size: 26px; font-weight: bold; color: #333; line-height: 1.4; }
   /* 説明テキスト */
-  .quadrant-desc { font-size: 11px; color: #666; line-height: 1.6; }
+  .quadrant-desc { font-size: 22px; color: #666; line-height: 1.6; }
 </style>
 </head>
 <body>
 <p class="slide-label">[four-quadrant-center-circle]</p>
-<div class="slide">
-  <!-- タイトルエリア -->
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-  </div>
-  <!-- コンテンツエリア -->
-  <div class="content-area">
-    <!-- 中央の円（絶対配置） -->
-    <div class="center-circle">
-      <div class="center-text">中心概念<br>キーワード</div>
-    </div>
-    <!-- 4象限グリッド -->
-    <div class="quadrant-grid">
-      <!-- 左上象限 -->
-      <div class="quadrant">
-        <div class="icon-placeholder"></div>
-        <div class="quadrant-heading">左上の見出しテキスト</div>
-        <div class="quadrant-desc">左上象限の説明テキストが入ります。2〜3行で内容を簡潔に説明します。要点を絞って記述してください。</div>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
-      <!-- 右上象限 -->
-      <div class="quadrant">
-        <div class="icon-placeholder"></div>
-        <div class="quadrant-heading">右上の見出しテキスト</div>
-        <div class="quadrant-desc">右上象限の説明テキストが入ります。2〜3行で内容を簡潔に説明します。要点を絞って記述してください。</div>
+
+      <!-- コンテンツエリア -->
+      <div style="position:relative; flex:1; overflow:hidden; padding:24px 96px;">
+        <!-- 中央の円（絶対配置） -->
+        <div class="center-circle">
+          <div class="center-text">中心概念<br>キーワード</div>
+        </div>
+        <!-- 4象限グリッド -->
+        <div class="quadrant-grid">
+          <!-- 左上象限 -->
+          <div class="quadrant">
+            <div class="icon-placeholder">
+              <div style="width:56px; height:56px; border-radius:50%; border:2px dashed #CCCCCC; background:#F0F0F0; display:flex; align-items:center; justify-content:center; color:#AAAAAA; font-size:12px; text-align:center;">アイコン<br>(SVG生成)</div>
+            </div>
+            <div class="quadrant-heading">左上の見出しテキスト</div>
+            <div class="quadrant-desc">左上象限の説明テキストが入ります。2〜3行で内容を簡潔に説明します。要点を絞って記述してください。</div>
+          </div>
+          <!-- 右上象限 -->
+          <div class="quadrant">
+            <div class="icon-placeholder">
+              <div style="width:56px; height:56px; border-radius:50%; border:2px dashed #CCCCCC; background:#F0F0F0; display:flex; align-items:center; justify-content:center; color:#AAAAAA; font-size:12px; text-align:center;">アイコン<br>(SVG生成)</div>
+            </div>
+            <div class="quadrant-heading">右上の見出しテキスト</div>
+            <div class="quadrant-desc">右上象限の説明テキストが入ります。2〜3行で内容を簡潔に説明します。要点を絞って記述してください。</div>
+          </div>
+          <!-- 左下象限 -->
+          <div class="quadrant">
+            <div class="icon-placeholder">
+              <div style="width:56px; height:56px; border-radius:50%; border:2px dashed #CCCCCC; background:#F0F0F0; display:flex; align-items:center; justify-content:center; color:#AAAAAA; font-size:12px; text-align:center;">アイコン<br>(SVG生成)</div>
+            </div>
+            <div class="quadrant-heading">左下の見出しテキスト</div>
+            <div class="quadrant-desc">左下象限の説明テキストが入ります。2〜3行で内容を簡潔に説明します。要点を絞って記述してください。</div>
+          </div>
+          <!-- 右下象限 -->
+          <div class="quadrant">
+            <div class="icon-placeholder">
+              <div style="width:56px; height:56px; border-radius:50%; border:2px dashed #CCCCCC; background:#F0F0F0; display:flex; align-items:center; justify-content:center; color:#AAAAAA; font-size:12px; text-align:center;">アイコン<br>(SVG生成)</div>
+            </div>
+            <div class="quadrant-heading">右下の見出しテキスト</div>
+            <div class="quadrant-desc">右下象限の説明テキストが入ります。2〜3行で内容を簡潔に説明します。要点を絞って記述してください。</div>
+          </div>
+        </div>
       </div>
-      <!-- 左下象限 -->
-      <div class="quadrant">
-        <div class="icon-placeholder"></div>
-        <div class="quadrant-heading">左下の見出しテキスト</div>
-        <div class="quadrant-desc">左下象限の説明テキストが入ります。2〜3行で内容を簡潔に説明します。要点を絞って記述してください。</div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
       </div>
-      <!-- 右下象限 -->
-      <div class="quadrant">
-        <div class="icon-placeholder"></div>
-        <div class="quadrant-heading">右下の見出しテキスト</div>
-        <div class="quadrant-desc">右下象限の説明テキストが入ります。2〜3行で内容を簡潔に説明します。要点を絞って記述してください。</div>
-      </div>
+
     </div>
   </div>
 </div>

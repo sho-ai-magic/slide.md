@@ -4,47 +4,59 @@
 <meta charset="UTF-8">
 <title>SLIDE-PATTERN-key-message-single</title>
 <style>
-  body { background: #E8E8E8; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; font-family: sans-serif; }
-  .slide-label { font-size: 12px; color: #666; margin-bottom: 6px; }
-  .slide { width: 960px; height: 540px; background: #FFFFFF; border: 1px solid #CCCCCC; overflow: hidden; display: flex; flex-direction: column; }
-  .area-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.08em; }
-  /* タイトルエリア */
-  .title-area { padding: 14px 40px 12px; border-bottom: 1px dashed #CCCCCC; flex-shrink: 0; background: #FAFAFA; }
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; }
   /* コンテンツエリア */
-  .content-area { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 32px 120px; }
+  .content-area { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; padding: 64px 240px; overflow: hidden; }
   /* 区切り線 */
-  .divider-line { width: 60px; height: 1px; background: #CCCCCC; flex-shrink: 0; }
+  .divider-line { width: 120px; height: 1px; background: #CCCCCC; flex-shrink: 0; }
   /* キーメッセージ */
-  .key-message { font-size: 22px; font-weight: bold; color: #333; text-align: center; line-height: 1.6; }
+  .key-message { font-size: 44px; font-weight: bold; color: #333; text-align: center; line-height: 1.6; }
   /* 補足テキスト */
-  .supplemental { font-size: 13px; color: #888; text-align: center; line-height: 1.6; }
+  .supplemental { font-size: 24px; color: #888; text-align: center; line-height: 1.6; }
 </style>
 </head>
 <body>
 <p class="slide-label">[key-message-single]</p>
-<div class="slide">
-  <!-- タイトルエリア -->
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-  </div>
-  <!-- コンテンツエリア -->
-  <div class="content-area">
-    <!-- 上部区切り線 -->
-    <div class="divider-line"></div>
-    <!-- キーメッセージ -->
-    <div>
-      <div class="area-label" style="text-align: center; margin-bottom: 10px;">Key Message</div>
-      <div class="key-message">
-        ここに最も伝えたいキーメッセージを<br>1〜2行で大きく表示します
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
-    </div>
-    <!-- 下部区切り線 -->
-    <div class="divider-line"></div>
-    <!-- 補足テキスト -->
-    <div>
-      <div class="area-label" style="text-align: center; margin-bottom: 6px;">Supplemental Text</div>
-      <div class="supplemental">補足説明・出典・根拠などを小さく表示します（省略可）</div>
+      <!-- コンテンツエリア -->
+      <div class="content-area">
+        <!-- 上部区切り線 -->
+        <div class="divider-line"></div>
+        <!-- キーメッセージ -->
+        <div>
+          <div class="area-label" style="text-align: center; margin-bottom: 20px;">Key Message</div>
+          <div class="key-message">
+            ここに最も伝えたいキーメッセージを<br>1〜2行で大きく表示します
+          </div>
+        </div>
+        <!-- 下部区切り線 -->
+        <div class="divider-line"></div>
+        <!-- 補足テキスト -->
+        <div>
+          <div class="area-label" style="text-align: center; margin-bottom: 12px;">Supplemental Text</div>
+          <div class="supplemental">補足説明・出典・根拠などを小さく表示します（省略可）</div>
+        </div>
+      </div>
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
     </div>
   </div>
 </div>

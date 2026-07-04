@@ -1,238 +1,144 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-headline-three-donut-charts</title>
-  <style>
-    /* ページ背景・中央寄せ */
-    body {
-      background: #E8E8E8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      font-family: sans-serif;
-      margin: 0;
-    }
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-headline-three-donut-charts</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
 
-    /* スライドラベル */
-    .slide-label {
-      font-size: 13px;
-      color: #888;
-      margin-bottom: 10px;
-      letter-spacing: 0.05em;
-    }
+  /* コンテンツエリア */
+  .content { display: flex; flex-direction: column; padding: 32px 80px; gap: 32px; flex: 1; }
 
-    /* スライド本体 960×540px */
-    .slide {
-      width: 960px;
-      height: 540px;
-      background: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
+  /* ── 上部見出しエリア ── */
+  .headline-area { flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; }
+  .headline-area h3 { font-size: 40px; font-weight: bold; color: #333; margin: 0; line-height: 1.5; }
+  .headline-divider { height: 1px; background: #E0E0E0; margin-top: 8px; }
 
-    /* タイトルエリア */
-    .slide-title {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      background: #FAFAFA;
-      flex-shrink: 0;
-    }
-    .slide-title h2 {
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-      margin: 0;
-    }
-    .slide-title p {
-      font-size: 12px;
-      color: #888;
-      margin: 4px 0 0;
-    }
+  /* ── 下部グラフエリア ── */
+  .chart-area { flex: 1; display: flex; gap: 48px; align-items: center; }
 
-    /* コンテンツエリア */
-    .content {
-      display: flex;
-      flex-direction: column;
-      padding: 16px 40px;
-      gap: 16px;
-      flex: 1;
-    }
-
-    .area-label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    /* ── 上部見出しエリア ── */
-    .headline-area {
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .headline-area h3 {
-      font-size: 20px;
-      font-weight: bold;
-      color: #333;
-      margin: 0;
-      line-height: 1.5;
-    }
-    .headline-divider {
-      height: 1px;
-      background: #E0E0E0;
-      margin-top: 4px;
-    }
-
-    /* ── 下部グラフエリア ── */
-    .chart-area {
-      flex: 1;
-      display: flex;
-      gap: 24px;
-      align-items: center;
-    }
-
-    /* 各グラフセル */
-    .chart-cell {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-    }
-    .chart-cell h4 {
-      font-size: 13px;
-      font-weight: bold;
-      color: #333;
-      margin: 0;
-      text-align: center;
-    }
-    .chart-cell p {
-      font-size: 11px;
-      color: #666;
-      margin: 0;
-      text-align: center;
-      line-height: 1.5;
-    }
-    .chart-legend {
-      display: flex;
-      gap: 8px;
-      font-size: 10px;
-      color: #999;
-      align-items: center;
-    }
-    .legend-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      display: inline-block;
-      margin-right: 3px;
-    }
-  </style>
+  /* 各グラフセル */
+  .chart-cell { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+  .chart-cell h4 { font-size: 26px; font-weight: bold; color: #333; margin: 0; text-align: center; }
+  .chart-cell p { font-size: 22px; color: #666; margin: 0; text-align: center; line-height: 1.5; }
+  .chart-legend { display: flex; gap: 16px; font-size: 20px; color: #999; align-items: center; }
+  .legend-dot { width: 16px; height: 16px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+</style>
 </head>
 <body>
 
-  <p class="slide-label">[headline-three-donut-charts]</p>
+<p class="slide-label">[headline-three-donut-charts]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-  <div class="slide">
-
-    <!-- タイトルエリア -->
-    <div class="slide-title">
-      <h2>2024年度 成果サマリー</h2>
-      <p>主要3指標における達成状況と数値根拠</p>
-    </div>
-
-    <!-- コンテンツエリア -->
-    <div class="content">
-
-      <!-- 上部：大見出しエリア -->
-      <div class="headline-area">
-        <span class="area-label">Key Message</span>
-        <h3>今期は目標を全項目で超過達成し、顧客満足度は過去最高を記録しました。</h3>
-        <h3>継続的な改善活動が数値として明確に現れ、次期への布石となっています。</h3>
-        <div class="headline-divider"></div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
 
-      <!-- 下部：3ドーナツグラフ -->
-      <div class="chart-area">
+      <!-- コンテンツエリア -->
+      <div class="content">
 
-        <!-- グラフ1 -->
-        <div class="chart-cell">
-          <svg width="110" height="110" viewBox="0 0 110 110">
-            <!-- ベース円 -->
-            <circle cx="55" cy="55" r="42" fill="none" stroke="#EEEEEE" stroke-width="18"/>
-            <!-- データ部分（70%） -->
-            <circle cx="55" cy="55" r="42" fill="none" stroke="#CCCCCC" stroke-width="18"
-              stroke-dasharray="188" stroke-dashoffset="47"/>
-            <!-- 中央白抜き -->
-            <circle cx="55" cy="55" r="33" fill="#FFFFFF"/>
-            <!-- 中央テキスト -->
-            <text x="55" y="51" text-anchor="middle" font-size="9" fill="#888">達成率</text>
-            <text x="55" y="64" text-anchor="middle" font-size="18" fill="#333" font-weight="bold">70%</text>
-          </svg>
-          <h4>新規顧客獲得</h4>
-          <p>年間目標比 70%超達成</p>
-          <div class="chart-legend">
-            <span><span class="legend-dot" style="background:#CCCCCC;"></span>達成</span>
-            <span><span class="legend-dot" style="background:#EEEEEE;"></span>残余</span>
-          </div>
+        <!-- 上部：大見出しエリア（コンテンツ本体のキーメッセージ） -->
+        <div class="headline-area">
+          <span class="area-label">Key Message</span>
+          <h3>今期は目標を全項目で超過達成し、顧客満足度は過去最高を記録しました。</h3>
+          <h3>継続的な改善活動が数値として明確に現れ、次期への布石となっています。</h3>
+          <div class="headline-divider"></div>
         </div>
 
-        <!-- グラフ2 -->
-        <div class="chart-cell">
-          <svg width="110" height="110" viewBox="0 0 110 110">
-            <!-- ベース円 -->
-            <circle cx="55" cy="55" r="42" fill="none" stroke="#EEEEEE" stroke-width="18"/>
-            <!-- データ部分（55%） -->
-            <circle cx="55" cy="55" r="42" fill="none" stroke="#CCCCCC" stroke-width="18"
-              stroke-dasharray="145.2" stroke-dashoffset="47"/>
-            <!-- 中央白抜き -->
-            <circle cx="55" cy="55" r="33" fill="#FFFFFF"/>
-            <!-- 中央テキスト -->
-            <text x="55" y="51" text-anchor="middle" font-size="9" fill="#888">進捗率</text>
-            <text x="55" y="64" text-anchor="middle" font-size="18" fill="#333" font-weight="bold">55%</text>
-          </svg>
-          <h4>プロジェクト完遂率</h4>
-          <p>期中完了プロジェクト比率</p>
-          <div class="chart-legend">
-            <span><span class="legend-dot" style="background:#CCCCCC;"></span>完了</span>
-            <span><span class="legend-dot" style="background:#EEEEEE;"></span>継続中</span>
+        <!-- 下部：3ドーナツグラフ -->
+        <div class="chart-area">
+
+          <!-- グラフ1 -->
+          <div class="chart-cell">
+            <svg width="220" height="220" viewBox="0 0 110 110">
+              <!-- ベース円 -->
+              <circle cx="55" cy="55" r="42" fill="none" stroke="#EEEEEE" stroke-width="18"/>
+              <!-- データ部分（70%） -->
+              <circle cx="55" cy="55" r="42" fill="none" stroke="#CCCCCC" stroke-width="18"
+                stroke-dasharray="188" stroke-dashoffset="47"/>
+              <!-- 中央白抜き -->
+              <circle cx="55" cy="55" r="33" fill="#FFFFFF"/>
+              <!-- 中央テキスト -->
+              <text x="55" y="51" text-anchor="middle" font-size="9" fill="#888">達成率</text>
+              <text x="55" y="64" text-anchor="middle" font-size="18" fill="#333" font-weight="bold">70%</text>
+            </svg>
+            <h4>新規顧客獲得</h4>
+            <p>年間目標比 70%超達成</p>
+            <div class="chart-legend">
+              <span><span class="legend-dot" style="background:#CCCCCC;"></span>達成</span>
+              <span><span class="legend-dot" style="background:#EEEEEE;"></span>残余</span>
+            </div>
           </div>
-        </div>
 
-        <!-- グラフ3 -->
-        <div class="chart-cell">
-          <svg width="110" height="110" viewBox="0 0 110 110">
-            <!-- ベース円 -->
-            <circle cx="55" cy="55" r="42" fill="none" stroke="#EEEEEE" stroke-width="18"/>
-            <!-- データ部分（82%） -->
-            <circle cx="55" cy="55" r="42" fill="none" stroke="#CCCCCC" stroke-width="18"
-              stroke-dasharray="216.5" stroke-dashoffset="47"/>
-            <!-- 中央白抜き -->
-            <circle cx="55" cy="55" r="33" fill="#FFFFFF"/>
-            <!-- 中央テキスト -->
-            <text x="55" y="51" text-anchor="middle" font-size="9" fill="#888">満足度</text>
-            <text x="55" y="64" text-anchor="middle" font-size="18" fill="#333" font-weight="bold">82%</text>
-          </svg>
-          <h4>顧客満足度スコア</h4>
-          <p>過去最高スコアを更新</p>
-          <div class="chart-legend">
-            <span><span class="legend-dot" style="background:#CCCCCC;"></span>満足</span>
-            <span><span class="legend-dot" style="background:#EEEEEE;"></span>その他</span>
+          <!-- グラフ2 -->
+          <div class="chart-cell">
+            <svg width="220" height="220" viewBox="0 0 110 110">
+              <!-- ベース円 -->
+              <circle cx="55" cy="55" r="42" fill="none" stroke="#EEEEEE" stroke-width="18"/>
+              <!-- データ部分（55%） -->
+              <circle cx="55" cy="55" r="42" fill="none" stroke="#CCCCCC" stroke-width="18"
+                stroke-dasharray="145.2" stroke-dashoffset="47"/>
+              <!-- 中央白抜き -->
+              <circle cx="55" cy="55" r="33" fill="#FFFFFF"/>
+              <!-- 中央テキスト -->
+              <text x="55" y="51" text-anchor="middle" font-size="9" fill="#888">進捗率</text>
+              <text x="55" y="64" text-anchor="middle" font-size="18" fill="#333" font-weight="bold">55%</text>
+            </svg>
+            <h4>プロジェクト完遂率</h4>
+            <p>期中完了プロジェクト比率</p>
+            <div class="chart-legend">
+              <span><span class="legend-dot" style="background:#CCCCCC;"></span>完了</span>
+              <span><span class="legend-dot" style="background:#EEEEEE;"></span>継続中</span>
+            </div>
           </div>
+
+          <!-- グラフ3 -->
+          <div class="chart-cell">
+            <svg width="220" height="220" viewBox="0 0 110 110">
+              <!-- ベース円 -->
+              <circle cx="55" cy="55" r="42" fill="none" stroke="#EEEEEE" stroke-width="18"/>
+              <!-- データ部分（82%） -->
+              <circle cx="55" cy="55" r="42" fill="none" stroke="#CCCCCC" stroke-width="18"
+                stroke-dasharray="216.5" stroke-dashoffset="47"/>
+              <!-- 中央白抜き -->
+              <circle cx="55" cy="55" r="33" fill="#FFFFFF"/>
+              <!-- 中央テキスト -->
+              <text x="55" y="51" text-anchor="middle" font-size="9" fill="#888">満足度</text>
+              <text x="55" y="64" text-anchor="middle" font-size="18" fill="#333" font-weight="bold">82%</text>
+            </svg>
+            <h4>顧客満足度スコア</h4>
+            <p>過去最高スコアを更新</p>
+            <div class="chart-legend">
+              <span><span class="legend-dot" style="background:#CCCCCC;"></span>満足</span>
+              <span><span class="legend-dot" style="background:#EEEEEE;"></span>その他</span>
+            </div>
+          </div>
+
+        </div><!-- /chart-area -->
+
+      </div><!-- /content -->
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
         </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
 
-      </div><!-- /chart-area -->
-
-    </div><!-- /content -->
-
-  </div><!-- /slide -->
+    </div><!-- /slide -->
+  </div>
+</div>
 
 </body>
 </html>

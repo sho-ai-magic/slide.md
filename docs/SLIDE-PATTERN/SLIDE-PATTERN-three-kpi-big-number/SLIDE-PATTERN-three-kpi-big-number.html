@@ -1,173 +1,99 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-three-kpi-big-number</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: #E8E8E8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-    }
-    .slide-label {
-      font-size: 12px;
-      color: #999;
-      margin-bottom: 10px;
-      letter-spacing: 0.05em;
-    }
-    .slide {
-      width: 960px;
-      height: 540px;
-      background: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    /* タイトルエリア */
-    .title-area {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      flex-shrink: 0;
-      background: #FAFAFA;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .title-placeholder {
-      font-size: 16px;
-      color: #CCCCCC;
-      margin-top: 4px;
-    }
-    /* コンテンツエリア */
-    .content-area {
-      display: flex;
-      padding: 20px 48px;
-      gap: 24px;
-      align-items: center;
-      flex: 1;
-    }
-    /* KPIカラムラッパー（区切り線付き） */
-    .kpi-wrapper {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 0;
-    }
-    /* KPIカラム */
-    .kpi-col {
-      flex: 1;
-      border: 1px solid #E0E0E0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 28px 16px;
-      gap: 8px;
-    }
-    .kpi-label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .kpi-number-row {
-      display: flex;
-      align-items: baseline;
-      gap: 4px;
-    }
-    .kpi-number {
-      font-size: 48px;
-      font-weight: bold;
-      color: #333;
-      line-height: 1;
-    }
-    .kpi-unit {
-      font-size: 20px;
-      color: #888;
-      font-weight: normal;
-    }
-    .kpi-description {
-      font-size: 13px;
-      color: #666;
-      text-align: center;
-      line-height: 1.4;
-    }
-    .kpi-supplement {
-      font-size: 11px;
-      color: #999;
-      text-align: center;
-    }
-    /* カラム間の縦区切り線 */
-    .col-divider {
-      width: 1px;
-      height: 60%;
-      background: #EEEEEE;
-      flex-shrink: 0;
-      align-self: center;
-      margin: 0 12px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-three-kpi-big-number</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+
+  /* KPIカラムラッパー（区切り線付き） */
+  .kpi-wrapper { flex: 1; display: flex; align-items: center; gap: 0; }
+  /* KPIカラム */
+  .kpi-col { flex: 1; border: 1px solid #E0E0E0; display: flex; flex-direction: column; align-items: center; padding: 56px 32px; gap: 16px; }
+  .kpi-label { font-size: 22px; color: #999; text-transform: uppercase; letter-spacing: 0.08em; }
+  .kpi-number-row { display: flex; align-items: baseline; gap: 8px; }
+  .kpi-number { font-size: 96px; font-weight: bold; color: #333; line-height: 1; }
+  .kpi-unit { font-size: 40px; color: #888; font-weight: normal; }
+  .kpi-description { font-size: 26px; color: #666; text-align: center; line-height: 1.4; }
+  .kpi-supplement { font-size: 22px; color: #999; text-align: center; }
+  /* カラム間の縦区切り線 */
+  .col-divider { width: 1px; height: 60%; background: #EEEEEE; flex-shrink: 0; align-self: center; margin: 0 24px; }
+</style>
 </head>
 <body>
-  <p class="slide-label">[three-kpi-big-number]</p>
-  <div class="slide">
-    <!-- タイトルエリア -->
-    <div class="title-area">
-      <div class="area-label">Title Area — SLIDE.md 参照</div>
-      <div class="title-placeholder">スライドタイトルが入ります</div>
-    </div>
+<p class="slide-label">[three-kpi-big-number]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-    <!-- コンテンツエリア -->
-    <div class="content-area">
-
-      <!-- KPI 1 -->
-      <div class="kpi-col">
-        <div class="kpi-label">月間売上高</div>
-        <div class="kpi-number-row">
-          <span class="kpi-number">4.8</span>
-          <span class="kpi-unit">億円</span>
-        </div>
-        <div class="kpi-description">前年同期比で過去最高を更新</div>
-        <div class="kpi-supplement">前回比 +23%</div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
 
-      <!-- 区切り線 -->
-      <div class="col-divider"></div>
+      <!-- コンテンツエリア -->
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:40px 96px; justify-content:center;">
+        <div class="kpi-wrapper">
 
-      <!-- KPI 2 -->
-      <div class="kpi-col">
-        <div class="kpi-label">新規顧客数</div>
-        <div class="kpi-number-row">
-          <span class="kpi-number">312</span>
-          <span class="kpi-unit">社</span>
+          <!-- KPI 1 -->
+          <div class="kpi-col">
+            <div class="kpi-label">月間売上高</div>
+            <div class="kpi-number-row">
+              <span class="kpi-number">4.8</span>
+              <span class="kpi-unit">億円</span>
+            </div>
+            <div class="kpi-description">前年同期比で過去最高を更新</div>
+            <div class="kpi-supplement">前回比 +23%</div>
+          </div>
+
+          <!-- 区切り線 -->
+          <div class="col-divider"></div>
+
+          <!-- KPI 2 -->
+          <div class="kpi-col">
+            <div class="kpi-label">新規顧客数</div>
+            <div class="kpi-number-row">
+              <span class="kpi-number">312</span>
+              <span class="kpi-unit">社</span>
+            </div>
+            <div class="kpi-description">3ヶ月連続で月次目標を達成</div>
+            <div class="kpi-supplement">目標達成率 104%</div>
+          </div>
+
+          <!-- 区切り線 -->
+          <div class="col-divider"></div>
+
+          <!-- KPI 3 -->
+          <div class="kpi-col">
+            <div class="kpi-label">顧客継続率</div>
+            <div class="kpi-number-row">
+              <span class="kpi-number">96.2</span>
+              <span class="kpi-unit">%</span>
+            </div>
+            <div class="kpi-description">業界平均を10ポイント上回る</div>
+            <div class="kpi-supplement">前回比 +1.8pt</div>
+          </div>
+
         </div>
-        <div class="kpi-description">3ヶ月連続で月次目標を達成</div>
-        <div class="kpi-supplement">目標達成率 104%</div>
       </div>
 
-      <!-- 区切り線 -->
-      <div class="col-divider"></div>
-
-      <!-- KPI 3 -->
-      <div class="kpi-col">
-        <div class="kpi-label">顧客継続率</div>
-        <div class="kpi-number-row">
-          <span class="kpi-number">96.2</span>
-          <span class="kpi-unit">%</span>
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
         </div>
-        <div class="kpi-description">業界平均を10ポイント上回る</div>
-        <div class="kpi-supplement">前回比 +1.8pt</div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
       </div>
 
     </div>
   </div>
+</div>
 </body>
 </html>

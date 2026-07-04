@@ -1,188 +1,169 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-action-items-list</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: #E8E8E8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-    }
-    .slide-label {
-      font-size: 12px;
-      color: #999;
-      margin-bottom: 10px;
-      letter-spacing: 0.05em;
-    }
-    .slide {
-      width: 960px;
-      height: 540px;
-      background: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    /* タイトルエリア */
-    .title-area {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      flex-shrink: 0;
-      background: #FAFAFA;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .title-placeholder {
-      font-size: 16px;
-      color: #CCCCCC;
-      margin-top: 4px;
-    }
-    /* コンテンツエリア */
-    .content-area {
-      display: flex;
-      flex-direction: column;
-      padding: 16px 48px;
-      gap: 0;
-      flex: 1;
-    }
-    .action-label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
-    }
-    /* グリッドレイアウト共通 */
-    .grid-row {
-      display: grid;
-      grid-template-columns: 32px 1fr 120px 90px;
-      gap: 16px;
-      align-items: center;
-    }
-    /* ヘッダー行 */
-    .header-row {
-      padding: 8px 0;
-      border-bottom: 2px solid #CCCCCC;
-      font-size: 11px;
-      color: #999;
-      letter-spacing: 0.04em;
-    }
-    /* アクション行 */
-    .action-row {
-      padding: 10px 0;
-      border-bottom: 1px solid #F0F0F0;
-    }
-    /* 番号バッジ */
-    .number-badge {
-      width: 28px;
-      height: 28px;
-      background: #F0F0F0;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: bold;
-      color: #555;
-      justify-self: center;
-    }
-    /* アクション内容 */
-    .action-text {
-      font-size: 14px;
-      color: #333;
-      line-height: 1.4;
-    }
-    /* 担当者 */
-    .assignee {
-      font-size: 12px;
-      color: #555;
-      background: #F5F5F5;
-      padding: 2px 8px;
-      border-radius: 4px;
-      display: inline-block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    /* 期限 */
-    .deadline {
-      font-size: 13px;
-      color: #666;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-action-items-list</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
+  /* コンテンツエリア */
+  .content-area {
+    display: flex;
+    flex-direction: column;
+    padding: 32px 96px;
+    gap: 0;
+    flex: 1;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  .action-label {
+    font-size: 22px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+  }
+  /* グリッドレイアウト共通 */
+  .grid-row {
+    display: grid;
+    grid-template-columns: 64px 1fr 200px 200px;
+    gap: 32px;
+    align-items: center;
+  }
+  /* ヘッダー行 */
+  .header-row {
+    padding: 16px 0;
+    border-bottom: 2px solid #CCCCCC;
+    font-size: 22px;
+    color: #999;
+    letter-spacing: 0.04em;
+  }
+  /* アクション行 */
+  .action-row {
+    padding: 20px 0;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  /* 番号バッジ */
+  .number-badge {
+    width: 64px;
+    height: 64px;
+    background: #F0F0F0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #555;
+    justify-self: center;
+  }
+  /* アクション内容 */
+  .action-text {
+    font-size: 28px;
+    color: #333;
+    line-height: 1.4;
+  }
+  /* 担当者 */
+  .assignee {
+    font-size: 26px;
+    color: #555;
+    background: #F5F5F5;
+    padding: 4px 16px;
+    border-radius: 8px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  /* 期限 */
+  .deadline {
+    font-size: 26px;
+    color: #666;
+  }
+</style>
 </head>
 <body>
-  <p class="slide-label">[action-items-list]</p>
-  <div class="slide">
-    <!-- タイトルエリア -->
-    <div class="title-area">
-      <div class="area-label">Title Area — SLIDE.md 参照</div>
-      <div class="title-placeholder">スライドタイトルが入ります</div>
-    </div>
+<p class="slide-label">[action-items-list]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-    <!-- コンテンツエリア -->
-    <div class="content-area">
-      <div class="action-label">Action Items</div>
-
-      <!-- ヘッダー行 -->
-      <div class="grid-row header-row">
-        <div>No</div>
-        <div>アクション</div>
-        <div>担当</div>
-        <div>期限</div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
 
-      <!-- アクション行 1 -->
-      <div class="grid-row action-row">
-        <div class="number-badge">1</div>
-        <div class="action-text">要件定義書の最終レビューと承認</div>
-        <div><span class="assignee">田中（PM）</span></div>
-        <div class="deadline">6/10</div>
+      <!-- コンテンツエリア -->
+      <div class="content-area">
+        <div class="action-label">Action Items</div>
+
+        <!-- ヘッダー行 -->
+        <div class="grid-row header-row">
+          <div>No</div>
+          <div>アクション</div>
+          <div>担当</div>
+          <div>期限</div>
+        </div>
+
+        <!-- アクション行 1 -->
+        <div class="grid-row action-row">
+          <div class="number-badge">1</div>
+          <div class="action-text">要件定義書の最終レビューと承認</div>
+          <div><span class="assignee">サンプル担当A</span></div>
+          <div class="deadline">6/10</div>
+        </div>
+
+        <!-- アクション行 2 -->
+        <div class="grid-row action-row">
+          <div class="number-badge">2</div>
+          <div class="action-text">デザインモックアップの作成（3画面分）</div>
+          <div><span class="assignee">サンプル担当B</span></div>
+          <div class="deadline">6/12</div>
+        </div>
+
+        <!-- アクション行 3 -->
+        <div class="grid-row action-row">
+          <div class="number-badge">3</div>
+          <div class="action-text">APIエンドポイント仕様書の作成</div>
+          <div><span class="assignee">サンプル担当C</span></div>
+          <div class="deadline">6/12</div>
+        </div>
+
+        <!-- アクション行 4 -->
+        <div class="grid-row action-row">
+          <div class="number-badge">4</div>
+          <div class="action-text">ステークホルダーへの進捗報告メール送付</div>
+          <div><span class="assignee">サンプル担当A</span></div>
+          <div class="deadline">6/14</div>
+        </div>
+
+        <!-- アクション行 5 -->
+        <div class="grid-row action-row">
+          <div class="number-badge">5</div>
+          <div class="action-text">テスト環境のセットアップ確認</div>
+          <div><span class="assignee">開発チーム全員</span></div>
+          <div class="deadline">6/15</div>
+        </div>
+
       </div>
 
-      <!-- アクション行 2 -->
-      <div class="grid-row action-row">
-        <div class="number-badge">2</div>
-        <div class="action-text">デザインモックアップの作成（3画面分）</div>
-        <div><span class="assignee">山田（デザイン）</span></div>
-        <div class="deadline">6/12</div>
-      </div>
-
-      <!-- アクション行 3 -->
-      <div class="grid-row action-row">
-        <div class="number-badge">3</div>
-        <div class="action-text">APIエンドポイント仕様書の作成</div>
-        <div><span class="assignee">鈴木（開発）</span></div>
-        <div class="deadline">6/12</div>
-      </div>
-
-      <!-- アクション行 4 -->
-      <div class="grid-row action-row">
-        <div class="number-badge">4</div>
-        <div class="action-text">ステークホルダーへの進捗報告メール送付</div>
-        <div><span class="assignee">田中（PM）</span></div>
-        <div class="deadline">6/14</div>
-      </div>
-
-      <!-- アクション行 5 -->
-      <div class="grid-row action-row">
-        <div class="number-badge">5</div>
-        <div class="action-text">テスト環境のセットアップ確認</div>
-        <div><span class="assignee">開発チーム全員</span></div>
-        <div class="deadline">6/15</div>
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
       </div>
 
     </div>
   </div>
+</div>
 </body>
 </html>

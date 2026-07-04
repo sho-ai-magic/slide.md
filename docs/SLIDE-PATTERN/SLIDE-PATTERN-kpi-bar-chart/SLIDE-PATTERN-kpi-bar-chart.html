@@ -4,75 +4,88 @@
 <meta charset="UTF-8">
 <title>SLIDE-PATTERN-kpi-bar-chart</title>
 <style>
-  body { background: #E8E8E8; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; font-family: sans-serif; }
-  .slide-label { font-size: 12px; color: #666; margin-bottom: 6px; }
-  .slide { width: 960px; height: 540px; background: #FFFFFF; border: 1px solid #CCCCCC; overflow: hidden; display: flex; flex-direction: column; }
-  .area-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
-  .title-area { padding: 14px 40px 12px; border-bottom: 1px dashed #CCCCCC; flex-shrink: 0; background: #FAFAFA; }
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
   .content-area { flex: 1; display: flex; overflow: hidden; }
-  .left-panel { width: 35%; padding: 24px 20px 24px 32px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid #EEEEEE; }
-  .right-panel { flex: 1; padding: 20px 24px 20px 24px; display: flex; flex-direction: column; }
-  .kpi-name { font-size: 13px; color: #888; margin-bottom: 4px; }
-  .kpi-value { font-size: 42px; font-weight: bold; color: #333; line-height: 1.1; }
-  .kpi-unit { font-size: 18px; font-weight: bold; color: #333; }
-  .kpi-sub-name { font-size: 12px; color: #888; margin-top: 12px; margin-bottom: 4px; }
-  .kpi-sub-value { font-size: 30px; font-weight: bold; color: #555; }
-  .kpi-note { font-size: 10px; color: #999; margin-top: 8px; }
+  .left-panel { width: 35%; padding: 48px 40px 48px 64px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid #EEEEEE; }
+  .right-panel { flex: 1; padding: 40px 48px 40px 48px; display: flex; flex-direction: column; }
+  .kpi-name { font-size: 26px; color: #888; margin-bottom: 8px; }
+  .kpi-value { font-size: 84px; font-weight: bold; color: #333; line-height: 1.1; }
+  .kpi-unit { font-size: 36px; font-weight: bold; color: #333; }
+  .kpi-sub-name { font-size: 24px; color: #888; margin-top: 24px; margin-bottom: 8px; }
+  .kpi-sub-value { font-size: 60px; font-weight: bold; color: #555; }
+  .kpi-note { font-size: 20px; color: #999; margin-top: 16px; }
   .chart-wrapper { flex: 1; display: flex; flex-direction: column; }
-  .bars-area { flex: 1; display: flex; align-items: flex-end; gap: 10px; padding: 0 0 28px 20px; border-bottom: 2px solid #CCCCCC; border-left: 1px solid #CCCCCC; position: relative; }
-  .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .bars-area { flex: 1; display: flex; align-items: flex-end; gap: 20px; padding: 0 0 56px 40px; border-bottom: 4px solid #CCCCCC; border-left: 1px solid #CCCCCC; position: relative; }
+  .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
   .bar { width: 100%; background: #E0E0E0; }
   .bar.highlight { background: #C0C0C0; }
-  .bar-num { font-size: 9px; color: #888; text-align: center; }
-  .xaxis { display: flex; gap: 10px; padding: 4px 0 0 20px; }
-  .xaxis-item { flex: 1; text-align: center; font-size: 10px; color: #999; }
-  .summary-table { margin-top: 10px; border-top: 1px solid #EEE; font-size: 10px; display: flex; }
-  .summary-cell { flex: 1; padding: 4px 8px; border-right: 1px solid #EEE; }
+  .bar-num { font-size: 18px; color: #888; text-align: center; }
+  .xaxis { display: flex; gap: 20px; padding: 8px 0 0 40px; }
+  .xaxis-item { flex: 1; text-align: center; font-size: 20px; color: #999; }
+  .summary-table { margin-top: 20px; border-top: 1px solid #EEE; font-size: 18px; display: flex; }
+  .summary-cell { flex: 1; padding: 8px 16px; border-right: 1px solid #EEE; }
   .summary-cell:last-child { border-right: none; }
   .summary-label { color: #999; }
-  .summary-value { font-weight: bold; color: #555; }
+  .summary-value { font-weight: bold; color: #555; font-size: 20px; }
 </style>
 </head>
 <body>
 <p class="slide-label">[kpi-bar-chart]</p>
-<div class="slide">
-  <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-  </div>
-  <!-- コンテンツエリア -->
-  <div class="content-area">
-    <div class="left-panel">
-      <div class="area-label">KPI値エリア</div>
-      <div class="kpi-name">主要指標名</div>
-      <div class="kpi-value">51.4<span class="kpi-unit">億円</span></div>
-      <div class="kpi-sub-name">サブ指標名</div>
-      <div class="kpi-sub-value">+41.9%</div>
-      <div class="kpi-note">（2025年→2026年）</div>
-    </div>
-    <div class="right-panel">
-      <div class="area-label">グラフエリア</div>
-      <div class="chart-wrapper">
-        <div class="bars-area">
-          <div class="bar-col"><div class="bar-num">9.6</div><div class="bar" style="height:18%;"></div></div>
-          <div class="bar-col"><div class="bar-num">16.6</div><div class="bar" style="height:31%;"></div></div>
-          <div class="bar-col"><div class="bar-num">25.1</div><div class="bar" style="height:48%;"></div></div>
-          <div class="bar-col"><div class="bar-num">36.2</div><div class="bar" style="height:69%;"></div></div>
-          <div class="bar-col"><div class="bar-num">51.4</div><div class="bar highlight" style="height:100%;"></div></div>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+      <!-- コンテンツエリア -->
+      <div class="content-area">
+        <div class="left-panel">
+          <div class="area-label">KPI値エリア</div>
+          <div class="kpi-name">主要指標名</div>
+          <div class="kpi-value">51.4<span class="kpi-unit">億円</span></div>
+          <div class="kpi-sub-name">サブ指標名</div>
+          <div class="kpi-sub-value">+41.9%</div>
+          <div class="kpi-note">（2025年→2026年）</div>
         </div>
-        <div class="xaxis">
-          <div class="xaxis-item">2022年</div>
-          <div class="xaxis-item">2023年</div>
-          <div class="xaxis-item">2024年</div>
-          <div class="xaxis-item">2025年</div>
-          <div class="xaxis-item">2026年</div>
+        <div class="right-panel">
+          <div class="area-label">グラフエリア</div>
+          <div class="chart-wrapper">
+            <div class="bars-area">
+              <div class="bar-col"><div class="bar-num">9.6</div><div class="bar" style="height:18%;"></div></div>
+              <div class="bar-col"><div class="bar-num">16.6</div><div class="bar" style="height:31%;"></div></div>
+              <div class="bar-col"><div class="bar-num">25.1</div><div class="bar" style="height:48%;"></div></div>
+              <div class="bar-col"><div class="bar-num">36.2</div><div class="bar" style="height:69%;"></div></div>
+              <div class="bar-col"><div class="bar-num">51.4</div><div class="bar highlight" style="height:100%;"></div></div>
+            </div>
+            <div class="xaxis">
+              <div class="xaxis-item">2022年</div>
+              <div class="xaxis-item">2023年</div>
+              <div class="xaxis-item">2024年</div>
+              <div class="xaxis-item">2025年</div>
+              <div class="xaxis-item">2026年</div>
+            </div>
+            <div class="summary-table">
+              <div class="summary-cell"><div class="summary-label">YoY成長率</div><div class="summary-value">+75.0%</div></div>
+              <div class="summary-cell"><div class="summary-label">YoY成長率</div><div class="summary-value">+49.4%</div></div>
+              <div class="summary-cell"><div class="summary-label">YoY成長率</div><div class="summary-value">+44.2%</div></div>
+            </div>
+          </div>
         </div>
-        <div class="summary-table">
-          <div class="summary-cell"><div class="summary-label">YoY成長率</div><div class="summary-value">+75.0%</div></div>
-          <div class="summary-cell"><div class="summary-label">YoY成長率</div><div class="summary-value">+49.4%</div></div>
-          <div class="summary-cell"><div class="summary-label">YoY成長率</div><div class="summary-value">+44.2%</div></div>
+      </div>
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
         </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
       </div>
     </div>
   </div>

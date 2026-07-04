@@ -1,225 +1,121 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-three-stage-circle-flow</title>
-  <style>
-    /* ページ背景・中央寄せ */
-    body {
-      background: #E8E8E8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      font-family: sans-serif;
-      margin: 0;
-    }
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-three-stage-circle-flow</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
 
-    /* スライドラベル */
-    .slide-label {
-      font-size: 13px;
-      color: #888;
-      margin-bottom: 10px;
-      letter-spacing: 0.05em;
-    }
+  /* コンテンツエリア */
+  .content { display: flex; padding: 0 64px; align-items: center; gap: 0; flex: 1; overflow: hidden; }
 
-    /* スライド本体 960×540px */
-    .slide {
-      width: 960px;
-      height: 540px;
-      background: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
+  /* ── ステージブロック ── */
+  .stage { display: flex; flex-direction: column; align-items: center; gap: 24px; flex: 1; }
 
-    /* タイトルエリア */
-    .slide-title {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      background: #FAFAFA;
-      flex-shrink: 0;
-    }
-    .slide-title h2 {
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-      margin: 0;
-    }
-    .slide-title p {
-      font-size: 12px;
-      color: #888;
-      margin: 4px 0 0;
-    }
+  /* 円形アイコン */
+  .stage-circle { width: 220px; height: 220px; border-radius: 50%; border: 2px dashed #CCCCCC; background: #F0F0F0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; flex-shrink: 0; color: #AAAAAA; }
+  .stage-icon { font-size: 14px; color: #AAAAAA; line-height: 1.3; text-align: center; }
+  .stage-name { font-size: 24px; font-weight: bold; color: #666; text-align: center; line-height: 1.3; }
 
-    /* コンテンツエリア */
-    .content {
-      display: flex;
-      padding: 16px 32px;
-      align-items: center;
-      gap: 0;
-      flex: 1;
-    }
+  /* テキスト部分 */
+  .stage h3 { font-size: 30px; font-weight: bold; color: #333; margin: 0; text-align: center; }
+  .stage h4 { font-size: 24px; font-weight: bold; color: #555; margin: 0; text-align: center; }
+  .stage-divider { width: 80px; height: 1px; background: #CCCCCC; }
+  .stage ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+  .stage ul li { font-size: 22px; color: #666; text-align: center; line-height: 1.5; }
+  .stage ul li::before { content: "・"; color: #AAAAAA; }
 
-    /* ── ステージブロック ── */
-    .stage {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      flex: 1;
-    }
-
-    /* 円形アイコン */
-    .stage-circle {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      border: 2px solid #CCCCCC;
-      background: #F0F0F0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 4px;
-      flex-shrink: 0;
-    }
-    .stage-icon {
-      font-size: 32px;
-      color: #AAAAAA;
-      line-height: 1;
-    }
-    .stage-name {
-      font-size: 12px;
-      font-weight: bold;
-      color: #666;
-      text-align: center;
-      line-height: 1.3;
-    }
-
-    /* テキスト部分 */
-    .stage h3 {
-      font-size: 15px;
-      font-weight: bold;
-      color: #333;
-      margin: 0;
-      text-align: center;
-    }
-    .stage h4 {
-      font-size: 12px;
-      font-weight: bold;
-      color: #555;
-      margin: 0;
-      text-align: center;
-    }
-    .stage-divider {
-      width: 40px;
-      height: 1px;
-      background: #CCCCCC;
-    }
-    .stage ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .stage ul li {
-      font-size: 11px;
-      color: #666;
-      text-align: center;
-      line-height: 1.5;
-    }
-    .stage ul li::before {
-      content: "・";
-      color: #AAAAAA;
-    }
-
-    /* ── 矢印 ── */
-    .arrow {
-      align-self: flex-start;
-      margin-top: 48px;
-      font-size: 24px;
-      color: #CCCCCC;
-      flex-shrink: 0;
-    }
-  </style>
+  /* ── 矢印 ── */
+  .arrow { align-self: flex-start; margin-top: 96px; font-size: 48px; color: #CCCCCC; flex-shrink: 0; }
+</style>
 </head>
 <body>
+<p class="slide-label">[three-stage-circle-flow]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-  <p class="slide-label">[three-stage-circle-flow]</p>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
 
-  <div class="slide">
+      <!-- コンテンツエリア -->
+      <div class="content">
 
-    <!-- タイトルエリア -->
-    <div class="slide-title">
-      <h2>サービス導入プロセス</h2>
-      <p>3ステージで完了するシームレスな導入フロー</p>
+        <!-- ステージ1 -->
+        <div class="stage">
+          <div class="stage-circle">
+            <span class="stage-icon">アイコン<br>(SVG生成)</span>
+            <span class="stage-name">STEP 1<br>現状把握</span>
+          </div>
+          <h3>ヒアリング・診断</h3>
+          <h4>課題の可視化と優先度整理</h4>
+          <div class="stage-divider"></div>
+          <ul>
+            <li>現状業務フローの棚卸し</li>
+            <li>課題・ボトルネックの特定</li>
+            <li>優先度マトリクスの作成</li>
+          </ul>
+        </div>
+
+        <!-- 矢印1 -->
+        <div class="arrow">→</div>
+
+        <!-- ステージ2 -->
+        <div class="stage">
+          <div class="stage-circle">
+            <span class="stage-icon">アイコン<br>(SVG生成)</span>
+            <span class="stage-name">STEP 2<br>設計・構築</span>
+          </div>
+          <h3>要件定義・開発</h3>
+          <h4>最適解の設計と実装</h4>
+          <div class="stage-divider"></div>
+          <ul>
+            <li>システム要件の定義と確認</li>
+            <li>プロトタイプの設計・構築</li>
+            <li>ステークホルダーレビュー</li>
+          </ul>
+        </div>
+
+        <!-- 矢印2 -->
+        <div class="arrow">→</div>
+
+        <!-- ステージ3 -->
+        <div class="stage">
+          <div class="stage-circle">
+            <span class="stage-icon">アイコン<br>(SVG生成)</span>
+            <span class="stage-name">STEP 3<br>運用・改善</span>
+          </div>
+          <h3>展開・定着支援</h3>
+          <h4>継続的な改善サイクル確立</h4>
+          <div class="stage-divider"></div>
+          <ul>
+            <li>本番リリースと研修実施</li>
+            <li>KPIモニタリングの開始</li>
+            <li>定期レビューと改善提案</li>
+          </ul>
+        </div>
+
+      </div><!-- /content -->
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
     </div>
-
-    <!-- コンテンツエリア -->
-    <div class="content">
-
-      <!-- ステージ1 -->
-      <div class="stage">
-        <div class="stage-circle">
-          <span class="stage-icon">◎</span>
-          <span class="stage-name">STEP 1<br>現状把握</span>
-        </div>
-        <h3>ヒアリング・診断</h3>
-        <h4>課題の可視化と優先度整理</h4>
-        <div class="stage-divider"></div>
-        <ul>
-          <li>現状業務フローの棚卸し</li>
-          <li>課題・ボトルネックの特定</li>
-          <li>優先度マトリクスの作成</li>
-        </ul>
-      </div>
-
-      <!-- 矢印1 -->
-      <div class="arrow">→</div>
-
-      <!-- ステージ2 -->
-      <div class="stage">
-        <div class="stage-circle">
-          <span class="stage-icon">▲</span>
-          <span class="stage-name">STEP 2<br>設計・構築</span>
-        </div>
-        <h3>要件定義・開発</h3>
-        <h4>最適解の設計と実装</h4>
-        <div class="stage-divider"></div>
-        <ul>
-          <li>システム要件の定義と確認</li>
-          <li>プロトタイプの設計・構築</li>
-          <li>ステークホルダーレビュー</li>
-        </ul>
-      </div>
-
-      <!-- 矢印2 -->
-      <div class="arrow">→</div>
-
-      <!-- ステージ3 -->
-      <div class="stage">
-        <div class="stage-circle">
-          <span class="stage-icon">★</span>
-          <span class="stage-name">STEP 3<br>運用・改善</span>
-        </div>
-        <h3>展開・定着支援</h3>
-        <h4>継続的な改善サイクル確立</h4>
-        <div class="stage-divider"></div>
-        <ul>
-          <li>本番リリースと研修実施</li>
-          <li>KPIモニタリングの開始</li>
-          <li>定期レビューと改善提案</li>
-        </ul>
-      </div>
-
-    </div><!-- /content -->
-
-  </div><!-- /slide -->
-
+  </div>
+</div>
 </body>
 </html>

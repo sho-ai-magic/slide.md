@@ -1,160 +1,118 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>SLIDE-PATTERN-comparison-table-with-highlight</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      width: 960px;
-      height: 540px;
-      font-family: sans-serif;
-      background: #FFFFFF;
-      color: #333333;
-      overflow: hidden;
-    }
-    .slide {
-      width: 960px;
-      height: 540px;
-      display: flex;
-      flex-direction: column;
-    }
-    /* タイトルエリア */
-    .title-area {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      flex-shrink: 0;
-      background: #FAFAFA;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999999;
-      text-transform: uppercase;
-    }
-    .title-placeholder {
-      font-size: 16px;
-      color: #CCCCCC;
-      margin-top: 4px;
-    }
-    /* コンテンツエリア */
-    .content-area {
-      flex: 1;
-      padding: 28px 40px 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-    }
-    .content-label {
-      font-size: 11px;
-      color: #999999;
-      text-transform: uppercase;
-      position: absolute;
-      top: 10px;
-      left: 40px;
-    }
-    /* 比較テーブル */
-    .comparison-table {
-      width: 100%;
-      border-collapse: collapse;
-      border: 1px solid #CCCCCC;
-    }
-    .comparison-table th {
-      background: #555555;
-      color: #FFFFFF;
-      font-size: 13px;
-      font-weight: bold;
-      padding: 12px 16px;
-      text-align: center;
-      border: 1px solid #CCCCCC;
-    }
-    .comparison-table td {
-      font-size: 13px;
-      padding: 14px 16px;
-      text-align: center;
-      border: 1px solid #CCCCCC;
-      vertical-align: middle;
-    }
-    /* 行ラベル（第1列） */
-    .comparison-table td:first-child {
-      background: #F0F0F0;
-      font-weight: bold;
-    }
-    /* 通常データ行：背景交互 */
-    .row-even td { background: #FFFFFF; }
-    .row-odd td { background: #F8F8F8; }
-    .row-even td:first-child,
-    .row-odd td:first-child { background: #F0F0F0; }
-    /* ハイライトセル（価格等の強調値） */
-    .highlight-value {
-      font-size: 18px;
-      font-weight: bold;
-      color: #555555;
-    }
-    /* ハイライトラベル */
-    .highlight-label {
-      font-size: 11px;
-      color: #999999;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-comparison-table-with-highlight</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+
+  /* 比較テーブル */
+  .comparison-table { width: 100%; border-collapse: collapse; border: 1px solid #CCCCCC; }
+  .comparison-table th {
+    background: #555555;
+    color: #FFFFFF;
+    font-size: 26px;
+    font-weight: bold;
+    padding: 24px 32px;
+    text-align: center;
+    border: 1px solid #CCCCCC;
+  }
+  .comparison-table td {
+    font-size: 26px;
+    padding: 28px 32px;
+    text-align: center;
+    border: 1px solid #CCCCCC;
+    vertical-align: middle;
+  }
+  /* 行ラベル（第1列） */
+  .comparison-table td:first-child { background: #F0F0F0; font-weight: bold; }
+  /* 通常データ行：背景交互 */
+  .row-even td { background: #FFFFFF; }
+  .row-odd td { background: #F8F8F8; }
+  .row-even td:first-child,
+  .row-odd td:first-child { background: #F0F0F0; }
+  /* ハイライトセル（価格等の強調値） */
+  .highlight-value { font-size: 36px; font-weight: bold; color: #555555; }
+  /* ハイライトラベル */
+  .highlight-label { font-size: 18px; color: #999999; text-transform: uppercase; margin-bottom: 8px; }
+</style>
 </head>
 <body>
-  <div class="slide">
-    <!-- タイトルエリア（SLIDE.md参照） -->
-    <div class="title-area">
-      <div class="area-label">Title Area — SLIDE.md 参照</div>
-      <div class="title-placeholder">スライドタイトルが入ります</div>
-    </div>
+<p class="slide-label">[comparison-table-with-highlight]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-    <!-- コンテンツエリア -->
-    <div class="content-area">
-      <div class="content-label">Content Area — comparison-table-with-highlight</div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
 
-      <!-- 比較テーブル本体 -->
-      <table class="comparison-table">
-        <thead>
-          <tr>
-            <!-- ヘッダー行：アクセントカラー背景 -->
-            <th>プラン名</th>
-            <th>
-              <div class="highlight-label">highlight col</div>
-              価格（月額）
-            </th>
-            <th>対応範囲</th>
-            <th>納期目安</th>
-            <th>おすすめの方</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- データ行1 -->
-          <tr class="row-even">
-            <td>ライトプラン</td>
-            <td><span class="highlight-value">¥3,000</span></td>
-            <td>デザインのみ</td>
-            <td>2〜5日</td>
-            <td>既存資料があり<br>デザインのみ変えたい方</td>
-          </tr>
-          <!-- データ行2 -->
-          <tr class="row-odd">
-            <td>スタンダードプラン</td>
-            <td><span class="highlight-value">¥5,000</span></td>
-            <td>ページ調整・<br>リデザイン</td>
-            <td>3〜7日</td>
-            <td>既存資料があるが<br>構成から変えたい方</td>
-          </tr>
-          <!-- データ行3 -->
-          <tr class="row-even">
-            <td>ハイエンドプラン</td>
-            <td><span class="highlight-value">¥8,000〜</span></td>
-            <td>ヒアリング・<br>ストーリー設計</td>
-            <td>5〜10日</td>
-            <td>既存資料の有無に関わらず<br>構成から提案が欲しい方</td>
-          </tr>
-        </tbody>
-      </table>
+      <!-- コンテンツエリア -->
+      <div style="flex:1; overflow:hidden; padding:56px 80px; display:flex; flex-direction:column; justify-content:center; position:relative;">
+        <div class="area-label" style="position:absolute; top:20px; left:80px;">Comparison Table</div>
+
+        <!-- 比較テーブル本体 -->
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <!-- ヘッダー行：アクセントカラー背景 -->
+              <th>プラン名</th>
+              <th>
+                <div class="highlight-label">highlight col</div>
+                価格（月額）
+              </th>
+              <th>対応範囲</th>
+              <th>納期目安</th>
+              <th>おすすめの方</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- データ行1 -->
+            <tr class="row-even">
+              <td>ライトプラン</td>
+              <td><span class="highlight-value">50,000円</span></td>
+              <td>基本対応のみ</td>
+              <td>2〜5日</td>
+              <td>まずは小さく<br>試したい方</td>
+            </tr>
+            <!-- データ行2 -->
+            <tr class="row-odd">
+              <td>スタンダードプラン</td>
+              <td><span class="highlight-value">80,000円</span></td>
+              <td>標準対応・<br>追加調整あり</td>
+              <td>3〜7日</td>
+              <td>内容を一部<br>作り込みたい方</td>
+            </tr>
+            <!-- データ行3 -->
+            <tr class="row-even">
+              <td>プレミアムプラン</td>
+              <td><span class="highlight-value">120,000円〜</span></td>
+              <td>個別ヒアリング・<br>設計から対応</td>
+              <td>5〜10日</td>
+              <td>内容の有無に関わらず<br>提案から任せたい方</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
     </div>
   </div>
+</div>
 </body>
 </html>

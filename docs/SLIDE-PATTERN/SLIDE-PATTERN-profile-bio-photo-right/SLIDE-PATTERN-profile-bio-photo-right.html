@@ -1,211 +1,125 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>SLIDE-PATTERN-profile-bio-photo-right</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      width: 960px;
-      height: 540px;
-      overflow: hidden;
-      font-family: sans-serif;
-      background: #FFFFFF;
-      display: flex;
-      flex-direction: column;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    /* タイトルエリア */
-    .title-area {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      flex-shrink: 0;
-      background: #FAFAFA;
-    }
-    .title-placeholder {
-      font-size: 16px;
-      color: #CCCCCC;
-      margin-top: 4px;
-    }
-    /* コンテンツエリア */
-    .content-area {
-      flex: 1;
-      display: flex;
-      overflow: hidden;
-    }
-    /* 左プロフィールリスト */
-    .profile-list {
-      width: 60%;
-      flex-shrink: 0;
-      padding: 20px 28px 16px 36px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      border-right: 1px solid #EEEEEE;
-      position: relative;
-    }
-    .profile-list > .area-label {
-      position: absolute;
-      top: 8px;
-      left: 12px;
-    }
-    .profile-divider {
-      border: none;
-      border-top: 1px solid #CCCCCC;
-      margin-bottom: 14px;
-    }
-    /* 各プロフィール行 */
-    .profile-row {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 10px;
-      font-size: 13px;
-      color: #333333;
-      line-height: 1.5;
-    }
-    .profile-label {
-      width: 52px;
-      flex-shrink: 0;
-      color: #555555;
-      font-size: 12px;
-    }
-    .profile-value {
-      flex: 1;
-    }
-    /* 経歴サブ行 */
-    .career-sub {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 4px;
-      font-size: 12px;
-      color: #333333;
-      line-height: 1.5;
-    }
-    .career-year {
-      width: 60px;
-      flex-shrink: 0;
-      color: #666;
-    }
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-profile-bio-photo-right</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
 
-    /* 右フォトエリア */
-    .photo-area {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px 24px;
-      position: relative;
-    }
-    .photo-area > .area-label {
-      position: absolute;
-      top: 8px;
-      left: 12px;
-    }
-    /* 円形写真プレースホルダー */
-    .photo-circle {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      background: #E0E0E0;
-      border: 2px solid #CCCCCC;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #AAAAAA;
-      font-size: 11px;
-      margin-bottom: 14px;
-    }
-    .person-name {
-      font-size: 18px;
-      font-weight: bold;
-      color: #333333;
-      margin-bottom: 6px;
-    }
-    .person-title {
-      font-size: 12px;
-      color: #555555;
-      text-align: center;
-      line-height: 1.6;
-    }
-  </style>
+  /* コンテンツエリア */
+  .content-area { flex: 1; display: flex; overflow: hidden; }
+
+  /* 左プロフィールリスト */
+  .profile-list { width: 60%; flex-shrink: 0; padding: 40px 56px 32px 72px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid #EEEEEE; position: relative; }
+  .profile-list > .area-label { position: absolute; top: 16px; left: 24px; }
+  .profile-divider { border: none; border-top: 1px solid #CCCCCC; margin-bottom: 28px; }
+  .profile-row { display: flex; align-items: flex-start; margin-bottom: 20px; font-size: 24px; color: #333333; line-height: 1.5; }
+  .profile-label { width: 104px; flex-shrink: 0; color: #555555; font-size: 22px; }
+  .profile-value { flex: 1; }
+  .career-sub { display: flex; gap: 16px; margin-bottom: 8px; font-size: 22px; color: #333333; line-height: 1.5; }
+  .career-year { width: 120px; flex-shrink: 0; color: #666; }
+
+  /* 右フォトエリア */
+  .photo-area { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 48px; position: relative; }
+  .photo-area > .area-label { position: absolute; top: 16px; left: 24px; }
+  .photo-circle { width: 280px; height: 280px; border-radius: 50%; background: #E0E0E0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 20px; margin-bottom: 28px; }
+  .person-name { font-size: 36px; font-weight: bold; color: #333333; margin-bottom: 12px; }
+  .person-title { font-size: 24px; color: #555555; text-align: center; line-height: 1.6; }
+</style>
 </head>
 <body>
+<p class="slide-label">[profile-bio-photo-right]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-  <!-- タイトルエリア -->
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div class="title-placeholder">スライドタイトルが入ります</div>
-  </div>
-
-  <!-- コンテンツエリア -->
-  <div class="content-area">
-
-    <!-- 左：プロフィールリスト -->
-    <div class="profile-list">
-      <div class="area-label">Profile List — label-value rows（左：ラベル固定幅 / 右：値）</div>
-      <hr class="profile-divider">
-
-      <div class="profile-row">
-        <div class="profile-label">氏名</div>
-        <div class="profile-value">山田 太郎（やまだ たろう）</div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
 
-      <div class="profile-row">
-        <div class="profile-label">役職</div>
-        <div class="profile-value">株式会社○○商事　代表取締役社長</div>
-      </div>
+      <!-- コンテンツエリア -->
+      <div class="content-area">
 
-      <div class="profile-row">
-        <div class="profile-label">出身地</div>
-        <div class="profile-value">東京都世田谷区</div>
-      </div>
+        <!-- 左：プロフィールリスト -->
+        <div class="profile-list">
+          <div class="area-label">Profile List — label-value rows（左：ラベル固定幅 / 右：値）</div>
+          <hr class="profile-divider">
 
-      <div class="profile-row">
-        <div class="profile-label">学歴</div>
-        <div class="profile-value">○○大学 政治経済学部 卒業</div>
-      </div>
-
-      <div class="profile-row">
-        <div class="profile-label">経歴</div>
-        <div class="profile-value">
-          <div class="career-sub">
-            <span class="career-year">2012年：</span>
-            <span>大手メーカーにて法人営業・事業企画を経験</span>
+          <div class="profile-row">
+            <div class="profile-label">氏名</div>
+            <div class="profile-value">山田 太郎（やまだ たろう）</div>
           </div>
-          <div class="career-sub">
-            <span class="career-year">2016年：</span>
-            <span>コンサルティングファームにて業務改善・DX推進事業に従事</span>
+
+          <div class="profile-row">
+            <div class="profile-label">役職</div>
+            <div class="profile-value">サンプル株式会社　代表取締役社長</div>
           </div>
-          <div class="career-sub">
-            <span class="career-year">2020年：</span>
-            <span>株式会社○○商事を設立</span>
+
+          <div class="profile-row">
+            <div class="profile-label">出身地</div>
+            <div class="profile-value">東京都世田谷区</div>
+          </div>
+
+          <div class="profile-row">
+            <div class="profile-label">学歴</div>
+            <div class="profile-value">サンプル大学 政治経済学部 卒業</div>
+          </div>
+
+          <div class="profile-row">
+            <div class="profile-label">経歴</div>
+            <div class="profile-value">
+              <div class="career-sub">
+                <span class="career-year">2012年：</span>
+                <span>大手メーカーにて法人営業・事業企画を経験</span>
+              </div>
+              <div class="career-sub">
+                <span class="career-year">2016年：</span>
+                <span>コンサルティングファームにて業務改善・DX推進事業に従事</span>
+              </div>
+              <div class="career-sub">
+                <span class="career-year">2020年：</span>
+                <span>サンプル株式会社を設立</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 右：フォト＋氏名 -->
+        <div class="photo-area">
+          <div class="area-label">Photo Area — 円形写真 ＋ 氏名・役職</div>
+
+          <!-- 円形写真プレースホルダー -->
+          <div class="photo-circle">写真添付エリア<br>（後から差し替え）</div>
+
+          <div class="person-name">山田 太郎</div>
+          <div class="person-title">
+            サンプル株式会社<br>
+            代表取締役社長
           </div>
         </div>
+
+      </div><!-- /content-area -->
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
       </div>
 
     </div>
-
-    <!-- 右：フォト＋氏名 -->
-    <div class="photo-area">
-      <div class="area-label">Photo Area — 円形写真 ＋ 氏名・役職</div>
-
-      <!-- 円形写真プレースホルダー -->
-      <div class="photo-circle">写真</div>
-
-      <div class="person-name">山田 太郎</div>
-      <div class="person-title">
-        株式会社○○商事<br>
-        代表取締役社長
-      </div>
-    </div>
-
-  </div><!-- /content-area -->
-
+  </div>
+</div>
 </body>
 </html>

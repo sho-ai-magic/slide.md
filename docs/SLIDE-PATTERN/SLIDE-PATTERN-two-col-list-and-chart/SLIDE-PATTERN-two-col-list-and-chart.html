@@ -1,342 +1,220 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>SLIDE-PATTERN-two-col-list-and-chart</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      width: 960px;
-      height: 540px;
-      overflow: hidden;
-      font-family: sans-serif;
-      background: #FFFFFF;
-      display: flex;
-      flex-direction: column;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    /* タイトルエリア */
-    .title-area {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      flex-shrink: 0;
-      background: #FAFAFA;
-    }
-    .title-placeholder {
-      font-size: 16px;
-      color: #CCCCCC;
-      margin-top: 4px;
-    }
-    /* コンテンツエリア */
-    .content-area {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      padding: 10px 28px 8px;
-      overflow: hidden;
-    }
-    /* リード文エリア */
-    .lead-area {
-      flex-shrink: 0;
-      margin-bottom: 8px;
-      position: relative;
-    }
-    .lead-area .area-label { margin-bottom: 3px; }
-    .lead-text {
-      font-size: 11.5px;
-      color: #333333;
-      line-height: 1.6;
-    }
-    /* メイン2カラム行 */
-    .two-col-row {
-      flex: 1;
-      display: flex;
-      gap: 12px;
-      overflow: hidden;
-    }
-    /* 左カラム：アイコンリスト */
-    .left-col {
-      width: 44%;
-      flex-shrink: 0;
-      background: #F0F0F0;
-      border: 1px solid #CCCCCC;
-      border-radius: 4px;
-      padding: 10px 14px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      position: relative;
-    }
-    .col-title {
-      font-size: 12px;
-      font-weight: bold;
-      color: #444444;
-      margin-bottom: 4px;
-      flex-shrink: 0;
-      text-align: center;
-      background: #DDDDDD;
-      padding: 3px 6px;
-      border-radius: 2px;
-    }
-    .list-subtitle {
-      font-size: 11px;
-      color: #666;
-      text-align: center;
-      margin-bottom: 8px;
-      flex-shrink: 0;
-    }
-    /* アイコン付きリスト項目 */
-    .icon-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      margin-bottom: 8px;
-      flex-shrink: 0;
-    }
-    .icon-box {
-      width: 28px;
-      height: 28px;
-      flex-shrink: 0;
-      background: #BBBBBB;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      color: #FFFFFF;
-    }
-    .item-texts {
-      flex: 1;
-    }
-    .item-title {
-      font-size: 12px;
-      font-weight: bold;
-      color: #333333;
-      line-height: 1.4;
-    }
-    .item-sub {
-      font-size: 10.5px;
-      color: #666666;
-      line-height: 1.4;
-    }
-    /* 右カラム：チャートエリア */
-    .right-col {
-      flex: 1;
-      background: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      border-radius: 4px;
-      padding: 10px 14px 6px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      position: relative;
-    }
-    /* キー指標＋チャート行 */
-    .chart-row {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      overflow: hidden;
-    }
-    .key-metric-area {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-width: 110px;
-    }
-    .metric-label {
-      font-size: 11px;
-      color: #666;
-      margin-bottom: 2px;
-    }
-    .metric-number {
-      font-size: 24px;
-      font-weight: bold;
-      color: #333333;
-      line-height: 1.2;
-    }
-    .metric-unit {
-      font-size: 11px;
-      color: #666;
-    }
-    /* 凡例リスト */
-    .legend-area {
-      margin-top: 4px;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      color: #444;
-      margin-bottom: 4px;
-    }
-    .legend-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 2px;
-      flex-shrink: 0;
-    }
-    /* 注釈 */
-    .footnote {
-      font-size: 10px;
-      color: #AAAAAA;
-      margin-top: 4px;
-      flex-shrink: 0;
-      border-top: 1px solid #EEEEEE;
-      padding-top: 3px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-two-col-list-and-chart</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
+
+  /* コンテンツエリア */
+  .content-area { flex: 1; display: flex; flex-direction: column; padding: 20px 56px 16px; overflow: hidden; }
+
+  /* リード文エリア */
+  .lead-area { flex-shrink: 0; margin-bottom: 16px; position: relative; }
+  .lead-area .area-label { margin-bottom: 6px; }
+  .lead-text { font-size: 23px; color: #333333; line-height: 1.6; }
+
+  /* メイン2カラム行 */
+  .two-col-row { flex: 1; display: flex; gap: 24px; overflow: hidden; }
+
+  /* 左カラム：アイコンリスト */
+  .left-col { width: 44%; flex-shrink: 0; background: #F0F0F0; border: 1px solid #CCCCCC; border-radius: 8px; padding: 20px 28px; display: flex; flex-direction: column; overflow: hidden; position: relative; }
+  .col-title { font-size: 24px; font-weight: bold; color: #444444; margin-bottom: 8px; flex-shrink: 0; text-align: center; background: #DDDDDD; padding: 6px 12px; border-radius: 4px; }
+  .list-subtitle { font-size: 22px; color: #666; text-align: center; margin-bottom: 16px; flex-shrink: 0; }
+
+  /* アイコン付きリスト項目 */
+  .icon-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px; flex-shrink: 0; }
+  .icon-box { width: 56px; height: 56px; flex-shrink: 0; background: #BBBBBB; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; color: #FFFFFF; }
+  .item-texts { flex: 1; }
+  .item-title { font-size: 24px; font-weight: bold; color: #333333; line-height: 1.4; }
+  .item-sub { font-size: 21px; color: #666666; line-height: 1.4; }
+
+  /* 右カラム：チャートエリア */
+  .right-col { flex: 1; background: #FFFFFF; border: 1px solid #CCCCCC; border-radius: 8px; padding: 20px 28px 12px; display: flex; flex-direction: column; overflow: hidden; position: relative; }
+
+  /* キー指標＋チャート行 */
+  .chart-row { flex: 1; display: flex; align-items: center; gap: 20px; overflow: hidden; }
+  .key-metric-area { display: flex; flex-direction: column; justify-content: center; min-width: 220px; }
+  .metric-label { font-size: 22px; color: #666; margin-bottom: 4px; }
+  .metric-number { font-size: 48px; font-weight: bold; color: #333333; line-height: 1.2; }
+  .metric-unit { font-size: 22px; color: #666; }
+
+  /* 凡例リスト */
+  .legend-area { margin-top: 8px; }
+  .legend-item { display: flex; align-items: center; gap: 12px; font-size: 22px; color: #444; margin-bottom: 8px; }
+  .legend-dot { width: 20px; height: 20px; border-radius: 4px; flex-shrink: 0; }
+
+  /* 注釈 */
+  .footnote { font-size: 20px; color: #AAAAAA; margin-top: 8px; flex-shrink: 0; border-top: 1px solid #EEEEEE; padding-top: 6px; }
+</style>
 </head>
 <body>
 
-  <!-- タイトルエリア -->
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div class="title-placeholder">スライドタイトルが入ります</div>
-  </div>
+<p class="slide-label">[two-col-list-and-chart]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-  <!-- コンテンツエリア -->
-  <div class="content-area">
-
-    <!-- リード文 -->
-    <div class="lead-area">
-      <div class="area-label">Lead Text — 全幅・概要テキスト（1〜2文）</div>
-      <div class="lead-text">
-        対象市場は、需要の拡大を背景に成長を続けています。当社は独自ポジションにより、中堅企業を中心に導入を拡大しています。
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
+
+      <!-- コンテンツエリア -->
+      <div class="content-area">
+
+        <!-- リード文 -->
+        <div class="lead-area">
+          <div class="area-label">Lead Text — 全幅・概要テキスト（1〜2文）</div>
+          <div class="lead-text">
+            対象市場は、需要の拡大を背景に成長を続けています。サンプル株式会社は独自ポジションにより、中堅企業を中心に導入を拡大しています。
+          </div>
+        </div>
+
+        <!-- 2カラム行 -->
+        <div class="two-col-row">
+
+          <!-- 左：アイコン付きリスト -->
+          <div class="left-col">
+            <div class="area-label" style="position:absolute;top:12px;right:16px;">left-col / icon-list</div>
+            <div class="col-title">市場背景</div>
+            <div class="list-subtitle">市場成長に関連した4つの背景</div>
+
+            <div class="icon-item">
+              <div class="icon-box">▲</div>
+              <div class="item-texts">
+                <div class="item-title">需要の拡大</div>
+                <div class="item-sub">デジタル化による業務変革が加速</div>
+              </div>
+            </div>
+
+            <div class="icon-item">
+              <div class="icon-box">◆</div>
+              <div class="item-texts">
+                <div class="item-title">新技術活用ニーズの増加</div>
+                <div class="item-sub">技術の進化により業務効率が向上</div>
+              </div>
+            </div>
+
+            <div class="icon-item">
+              <div class="icon-box">■</div>
+              <div class="item-texts">
+                <div class="item-title">作成工数の増大</div>
+                <div class="item-sub">高品質な資料の作成負荷が増加</div>
+              </div>
+            </div>
+
+            <div class="icon-item">
+              <div class="icon-box">●</div>
+              <div class="item-texts">
+                <div class="item-title">スピード競争の激化</div>
+                <div class="item-sub">迅速な提案が受注の鍵に</div>
+              </div>
+            </div>
+
+          </div><!-- /left-col -->
+
+          <!-- 右：チャートエリア -->
+          <div class="right-col">
+            <div class="area-label" style="position:absolute;top:12px;right:16px;">right-col / chart-area</div>
+            <div class="col-title">市場シェア（国内）</div>
+
+            <div class="chart-row">
+
+              <!-- 指標＋凡例 -->
+              <div class="key-metric-area">
+                <div class="metric-label">国内市場規模</div>
+                <div class="metric-number">約50万社</div>
+                <div class="metric-unit">※推計値</div>
+
+                <div style="margin-top:20px;">
+                  <div class="area-label" style="margin-bottom:8px;">シェア拡大の要因</div>
+                  <div style="font-size:22px; color:#444; line-height:1.6;">
+                    1. 新機能の提供<br>
+                    　主力サービスを強化し、生産性向上<br>
+                    2. 短期導入<br>
+                    　最短数日で運用開始、高い定着率
+                  </div>
+                </div>
+
+                <div class="legend-area">
+                  <div class="area-label" style="margin-bottom:8px;">legend</div>
+                  <div class="legend-item">
+                    <div class="legend-dot" style="background:#555555;"></div>
+                    <span>サンプル株式会社　13%</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-dot" style="background:#CCCCCC;"></div>
+                    <span>その他　87%</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ドーナツチャート（SVG） -->
+              <div style="display:flex; align-items:center; justify-content:center; flex:1;">
+                <div class="area-label" style="position:absolute; bottom:60px; right:40px;">donut-chart</div>
+                <svg width="300" height="300" viewBox="0 0 150 150">
+                  <!--
+                    ドーナツチャート：自社 13%（約47°）、その他 87%（約313°）
+                    stroke-dasharray で描画。円周 = 2π×45 ≈ 282.7
+                    13% → 282.7 × 0.13 ≈ 36.8
+                    87% → 282.7 × 0.87 ≈ 245.9
+                  -->
+                  <!-- ベース円（その他） -->
+                  <circle
+                    cx="75" cy="75" r="45"
+                    fill="none"
+                    stroke="#DDDDDD"
+                    stroke-width="28"
+                  />
+                  <!-- 自社シェア（13%）：濃いグレー、12時位置スタート -->
+                  <circle
+                    cx="75" cy="75" r="45"
+                    fill="none"
+                    stroke="#555555"
+                    stroke-width="28"
+                    stroke-dasharray="36.8 245.9"
+                    stroke-dashoffset="70.7"
+                    /* stroke-dashoffset = 円周の25% = 70.7（12時位置スタート） */
+                  />
+                  <!-- 中央ラベル -->
+                  <text x="75" y="70" text-anchor="middle" font-size="18" font-weight="bold" fill="#333" font-family="sans-serif">13%</text>
+                  <text x="75" y="86" text-anchor="middle" font-size="10" fill="#888" font-family="sans-serif">当社シェア</text>
+                </svg>
+              </div>
+
+            </div><!-- /chart-row -->
+
+            <!-- 注釈 -->
+            <div class="footnote">
+              ※1：対象領域における法人企業（従業員50名以上）のみを対象　※2：サンプル株式会社推計
+            </div>
+
+          </div><!-- /right-col -->
+
+        </div><!-- /two-col-row -->
+
+      </div><!-- /content-area -->
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
     </div>
-
-    <!-- 2カラム行 -->
-    <div class="two-col-row">
-
-      <!-- 左：アイコン付きリスト -->
-      <div class="left-col">
-        <div class="area-label" style="position:absolute;top:6px;right:8px;">left-col / icon-list</div>
-        <div class="col-title">市場背景</div>
-        <div class="list-subtitle">市場成長に関連した4つの背景</div>
-
-        <div class="icon-item">
-          <div class="icon-box">▲</div>
-          <div class="item-texts">
-            <div class="item-title">需要の拡大</div>
-            <div class="item-sub">デジタル化による業務変革が加速</div>
-          </div>
-        </div>
-
-        <div class="icon-item">
-          <div class="icon-box">◆</div>
-          <div class="item-texts">
-            <div class="item-title">AI活用ニーズの増加</div>
-            <div class="item-sub">生成AIの進化により業務効率が向上</div>
-          </div>
-        </div>
-
-        <div class="icon-item">
-          <div class="icon-box">■</div>
-          <div class="item-texts">
-            <div class="item-title">作成工数の増大</div>
-            <div class="item-sub">高品質な資料の作成負荷が増加</div>
-          </div>
-        </div>
-
-        <div class="icon-item">
-          <div class="icon-box">●</div>
-          <div class="item-texts">
-            <div class="item-title">スピード競争の激化</div>
-            <div class="item-sub">迅速な提案が受注の鍵に</div>
-          </div>
-        </div>
-
-      </div><!-- /left-col -->
-
-      <!-- 右：チャートエリア -->
-      <div class="right-col">
-        <div class="area-label" style="position:absolute;top:6px;right:8px;">right-col / chart-area</div>
-        <div class="col-title">市場シェア（国内）</div>
-
-        <div class="chart-row">
-
-          <!-- 指標＋凡例 -->
-          <div class="key-metric-area">
-            <div class="metric-label">国内市場規模</div>
-            <div class="metric-number">約42万社</div>
-            <div class="metric-unit">※推計値</div>
-
-            <div style="margin-top:10px;">
-              <div class="area-label" style="margin-bottom:4px;">シェア拡大の要因</div>
-              <div style="font-size:11px; color:#444; line-height:1.6;">
-                1. AI提案書生成<br>
-                　提案資料を自動化し、生産性向上<br>
-                2. 短期導入<br>
-                　最短7日で運用開始、定着率94%
-              </div>
-            </div>
-
-            <div style="margin-top:10px;">
-              <div class="area-label" style="margin-bottom:4px;">legend</div>
-              <div class="legend-item">
-                <div class="legend-dot" style="background:#555555;"></div>
-                <span>当社　12.8%</span>
-              </div>
-              <div class="legend-item">
-                <div class="legend-dot" style="background:#CCCCCC;"></div>
-                <span>その他　86.2%</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- ドーナツチャート（SVG） -->
-          <div style="display:flex; align-items:center; justify-content:center; flex:1;">
-            <div class="area-label" style="position:absolute; bottom:30px; right:20px;">donut-chart</div>
-            <svg width="150" height="150" viewBox="0 0 150 150">
-              <!--
-                ドーナツチャート：自社 12.8%（約46°）、その他 87.2%（約314°）
-                stroke-dasharray で描画。円周 = 2π×45 ≈ 282.7
-                12.8% → 282.7 × 0.128 ≈ 36.2
-                87.2% → 282.7 × 0.872 ≈ 246.5
-              -->
-              <!-- ベース円（その他） -->
-              <circle
-                cx="75" cy="75" r="45"
-                fill="none"
-                stroke="#DDDDDD"
-                stroke-width="28"
-              />
-              <!-- 自社シェア（12.8%）：濃いグレー、12時位置スタート -->
-              <circle
-                cx="75" cy="75" r="45"
-                fill="none"
-                stroke="#555555"
-                stroke-width="28"
-                stroke-dasharray="36.2 246.5"
-                stroke-dashoffset="70.7"
-                /* stroke-dashoffset = 円周の25% = 70.7（12時位置スタート） */
-              />
-              <!-- 中央ラベル -->
-              <text x="75" y="70" text-anchor="middle" font-size="18" font-weight="bold" fill="#333" font-family="sans-serif">12.8%</text>
-              <text x="75" y="86" text-anchor="middle" font-size="10" fill="#888" font-family="sans-serif">当社シェア</text>
-            </svg>
-          </div>
-
-        </div><!-- /chart-row -->
-
-        <!-- 注釈 -->
-        <div class="footnote">
-          ※1：対象領域における法人企業（従業員50名以上）のみを対象　※2：2025年3月末時点の当社推計
-        </div>
-
-      </div><!-- /right-col -->
-
-    </div><!-- /two-col-row -->
-
-  </div><!-- /content-area -->
+  </div>
+</div>
 
 </body>
 </html>

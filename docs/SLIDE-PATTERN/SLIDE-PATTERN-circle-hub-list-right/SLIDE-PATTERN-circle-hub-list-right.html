@@ -2,250 +2,129 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SLIDE-PATTERN-circle-hub-list-right</title>
 <style>
-  /* スライド全体のリセットと基本設定 */
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #E0E0E0; display: flex; justify-content: center; align-items: center; min-height: 100vh; font-family: sans-serif; }
-
-  /* スライド本体：960×540px固定 */
-  .slide {
-    width: 960px;
-    height: 540px;
-    background: #FFFFFF;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    position: relative;
-  }
-
-  /* エリアラベル共通スタイル */
-  .area-label {
-    font-size: 11px;
-    color: #999999;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 2px;
-  }
-
-  /* タイトルエリア */
-  .title-area {
-    padding: 14px 40px 12px;
-    border-bottom: 1px dashed #CCCCCC;
-    flex-shrink: 0;
-    background: #FAFAFA;
-  }
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
 
   /* コンテンツエリア */
-  .content-area {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    overflow: hidden;
-    position: relative;
-  }
-
-  /* コンテンツラベル */
-  .content-area-label-overlay {
-    position: absolute;
-    top: 6px;
-    left: 12px;
-    font-size: 11px;
-    color: #BBBBBB;
-    text-transform: uppercase;
-    z-index: 10;
-  }
+  .content-area { flex: 1; display: flex; flex-direction: row; overflow: hidden; position: relative; padding: 24px 60px; }
 
   /* 左列：大円ハブエリア */
-  .left-column {
-    width: 300px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-
-  .left-column-label {
-    position: absolute;
-    top: 8px;
-    left: 12px;
-    font-size: 9px;
-    color: #AAAAAA;
-    text-transform: uppercase;
-  }
+  .left-column { width: 600px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; position: relative; }
 
   /* 大円ハブ */
-  .circle-hub {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    background: #F0F0F0;
-    border: 2px solid #CCCCCC;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-  }
-
-  .circle-hub-badge-label {
-    font-size: 9px;
-    color: #AAAAAA;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-
-  .circle-hub-text {
-    font-size: 14px;
-    font-weight: bold;
-    color: #333333;
-    text-align: center;
-    line-height: 1.4;
-  }
+  .circle-hub { width: 320px; height: 320px; border-radius: 50%; background: #F0F0F0; border: 4px solid #CCCCCC; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; z-index: 2; }
+  .circle-hub-badge-label { font-size: 18px; color: #AAAAAA; text-transform: uppercase; margin-bottom: 8px; }
+  .circle-hub-text { font-size: 28px; font-weight: bold; color: #333333; text-align: center; line-height: 1.4; }
 
   /* SVG連結線 */
-  .connector-svg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-  }
+  .connector-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
 
   /* 右列：番号付きリストエリア */
-  .right-column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 24px 36px 16px 16px;
-    gap: 8px;
-    position: relative;
-  }
-
-  .right-column-label {
-    position: absolute;
-    top: 8px;
-    left: 16px;
-    font-size: 9px;
-    color: #AAAAAA;
-    text-transform: uppercase;
-  }
+  .right-column { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 48px 72px 32px 32px; gap: 16px; position: relative; }
 
   /* 各リスト行 */
-  .list-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
+  .list-row { display: flex; align-items: center; gap: 24px; }
 
   /* 小円バッジ */
-  .small-badge {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: #F0F0F0;
-    border: 1px solid #CCCCCC;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    font-weight: bold;
-    color: #555555;
-  }
+  .small-badge { width: 72px; height: 72px; border-radius: 50%; background: #F0F0F0; border: 2px solid #CCCCCC; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; color: #555555; }
 
   /* 区切り線 */
-  .row-divider {
-    width: 16px;
-    height: 1px;
-    background: #CCCCCC;
-    flex-shrink: 0;
-  }
+  .row-divider { width: 32px; height: 1px; background: #CCCCCC; flex-shrink: 0; }
 
   /* 説明テキスト */
-  .list-row-text {
-    font-size: 12px;
-    color: #333333;
-    line-height: 1.4;
-  }
+  .list-row-text { font-size: 24px; color: #333333; line-height: 1.4; }
 </style>
 </head>
 <body>
-<div class="slide">
+<p class="slide-label">[circle-hub-list-right]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-  <!-- タイトルエリア（SLIDE.mdで定義） -->
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-  </div>
-
-  <!-- コンテンツエリア：circle-hub-list-right pattern -->
-  <div class="content-area">
-    <div class="content-area-label-overlay">Content Area — circle-hub-list-right pattern</div>
-
-    <!-- 左列：大円ハブ -->
-    <div class="left-column">
-      <div class="left-column-label">circle hub</div>
-
-      <!-- SVG連結線：大円から右側リスト行へ -->
-      <svg class="connector-svg" viewBox="0 0 300 430" preserveAspectRatio="none">
-        <!-- ハブ中心 (150, 215) から右側の各行へ連結線 -->
-        <line x1="230" y1="155" x2="300" y2="80"  stroke="#DDDDDD" stroke-width="1" stroke-dasharray="3,2"/>
-        <line x1="235" y1="185" x2="300" y2="148" stroke="#DDDDDD" stroke-width="1" stroke-dasharray="3,2"/>
-        <line x1="235" y1="215" x2="300" y2="215" stroke="#DDDDDD" stroke-width="1" stroke-dasharray="3,2"/>
-        <line x1="235" y1="245" x2="300" y2="282" stroke="#DDDDDD" stroke-width="1" stroke-dasharray="3,2"/>
-        <line x1="230" y1="270" x2="300" y2="348" stroke="#DDDDDD" stroke-width="1" stroke-dasharray="3,2"/>
-        <line x1="220" y1="290" x2="300" y2="414" stroke="#DDDDDD" stroke-width="1" stroke-dasharray="3,2"/>
-      </svg>
-
-      <div class="circle-hub">
-        <span class="circle-hub-badge-label">hub</span>
-        <span class="circle-hub-text">テーマ名<br>コンセプト</span>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
+
+      <!-- コンテンツエリア：circle-hub-list-right pattern -->
+      <div class="content-area">
+
+        <!-- 左列：大円ハブ -->
+        <div class="left-column">
+          <div class="area-label" style="position:absolute; top:0; left:0;">Circle Hub</div>
+
+          <!-- SVG連結線：大円から右側リスト行へ -->
+          <svg class="connector-svg" viewBox="0 0 300 430" preserveAspectRatio="none">
+            <!-- ハブ中心 (150, 215) から右側の各行へ連結線 -->
+            <line x1="230" y1="155" x2="300" y2="80"  stroke="#DDDDDD" stroke-width="1" stroke-dasharray="3,2"/>
+            <line x1="235" y1="185" x2="300" y2="148" stroke="#DDDDDD" stroke-width="1" stroke-dasharray="3,2"/>
+            <line x1="235" y1="215" x2="300" y2="215" stroke="#DDDDDD" stroke-width="1" stroke-dasharray="3,2"/>
+            <line x1="235" y1="245" x2="300" y2="282" stroke="#DDDDDD" stroke-width="1" stroke-dasharray="3,2"/>
+            <line x1="230" y1="270" x2="300" y2="348" stroke="#DDDDDD" stroke-width="1" stroke-dasharray="3,2"/>
+            <line x1="220" y1="290" x2="300" y2="414" stroke="#DDDDDD" stroke-width="1" stroke-dasharray="3,2"/>
+          </svg>
+
+          <div class="circle-hub">
+            <span class="circle-hub-badge-label">hub</span>
+            <span class="circle-hub-text">テーマ名<br>コンセプト</span>
+          </div>
+        </div>
+
+        <!-- 右列：番号付きリスト -->
+        <div class="right-column">
+          <div class="area-label" style="position:absolute; top:0; left:32px;">Numbered List（badge + description）</div>
+
+          <div class="list-row">
+            <div class="small-badge">01</div>
+            <div class="row-divider"></div>
+            <div class="list-row-text">項目の説明テキストが1行程度入ります</div>
+          </div>
+          <div class="list-row">
+            <div class="small-badge">02</div>
+            <div class="row-divider"></div>
+            <div class="list-row-text">項目の説明テキストが1行程度入ります</div>
+          </div>
+          <div class="list-row">
+            <div class="small-badge">03</div>
+            <div class="row-divider"></div>
+            <div class="list-row-text">項目の説明テキストが1行程度入ります</div>
+          </div>
+          <div class="list-row">
+            <div class="small-badge">04</div>
+            <div class="row-divider"></div>
+            <div class="list-row-text">項目の説明テキストが1行程度入ります</div>
+          </div>
+          <div class="list-row">
+            <div class="small-badge">05</div>
+            <div class="row-divider"></div>
+            <div class="list-row-text">項目の説明テキストが1行程度入ります</div>
+          </div>
+          <div class="list-row">
+            <div class="small-badge">06</div>
+            <div class="row-divider"></div>
+            <div class="list-row-text">項目の説明テキストが1行程度入ります</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
     </div>
-
-    <!-- 右列：番号付きリスト -->
-    <div class="right-column">
-      <div class="right-column-label">numbered list (badge + description)</div>
-
-      <div class="list-row">
-        <div class="small-badge">01</div>
-        <div class="row-divider"></div>
-        <div class="list-row-text">項目の説明テキストが1行程度入ります</div>
-      </div>
-      <div class="list-row">
-        <div class="small-badge">02</div>
-        <div class="row-divider"></div>
-        <div class="list-row-text">項目の説明テキストが1行程度入ります</div>
-      </div>
-      <div class="list-row">
-        <div class="small-badge">03</div>
-        <div class="row-divider"></div>
-        <div class="list-row-text">項目の説明テキストが1行程度入ります</div>
-      </div>
-      <div class="list-row">
-        <div class="small-badge">04</div>
-        <div class="row-divider"></div>
-        <div class="list-row-text">項目の説明テキストが1行程度入ります</div>
-      </div>
-      <div class="list-row">
-        <div class="small-badge">05</div>
-        <div class="row-divider"></div>
-        <div class="list-row-text">項目の説明テキストが1行程度入ります</div>
-      </div>
-      <div class="list-row">
-        <div class="small-badge">06</div>
-        <div class="row-divider"></div>
-        <div class="list-row-text">項目の説明テキストが1行程度入ります</div>
-      </div>
-    </div>
-
   </div>
 </div>
 </body>

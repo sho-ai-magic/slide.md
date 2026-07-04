@@ -4,40 +4,52 @@
 <meta charset="UTF-8">
 <title>SLIDE-PATTERN-cover-with-image-left</title>
 <style>
-  body { background: #E8E8E8; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; font-family: sans-serif; }
-  .slide-label { font-size: 12px; color: #666; margin-bottom: 6px; }
-  .slide { width: 960px; height: 540px; background: #FFFFFF; border: 1px solid #CCCCCC; overflow: hidden; display: flex; }
-  .area-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.08em; }
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
+  /* コンテンツエリア（frame: none のためタイトルエリア・フッターは配置しない） */
+  .content-area { flex: 1; display: flex; overflow: hidden; }
   /* 左カラム：画像エリア */
-  .left-col { width: 43%; flex-shrink: 0; background: #F0F0F0; border-right: 1px dashed #CCCCCC; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+  .left-col { width: 43%; flex-shrink: 0; background: #F0F0F0; border-right: 1px dashed #CCCCCC; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; box-sizing: border-box; }
   /* 右カラム：テキストエリア */
-  .right-col { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 48px 48px; }
-  .category-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 14px; }
-  .main-title { font-size: 30px; font-weight: bold; color: #222; line-height: 1.3; margin-bottom: 16px; }
-  .description { font-size: 13px; color: #555; line-height: 1.7; margin-bottom: 20px; }
-  .divider { width: 100%; height: 1px; background: #EEEEEE; margin-bottom: 16px; }
-  .meta-info { font-size: 12px; color: #888; line-height: 1.8; }
+  .right-col { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 96px; box-sizing: border-box; }
+  .category-label { font-size: 22px; color: #999999; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 28px; }
+  .main-title { font-size: 60px; font-weight: bold; color: #222222; line-height: 1.3; margin-bottom: 32px; }
+  .description { font-size: 26px; color: #555555; line-height: 1.7; margin-bottom: 40px; }
+  .divider { width: 100%; height: 2px; background: #EEEEEE; margin-bottom: 32px; }
+  .meta-info { font-size: 24px; color: #888888; line-height: 1.8; }
 </style>
 </head>
 <body>
 <p class="slide-label">[cover-with-image-left]</p>
-<div class="slide">
-  <!-- 左カラム：画像プレースホルダー -->
-  <div class="left-col">
-    <div class="area-label">Image Area</div>
-    <div style="font-size: 12px; color: #BBBBBB; text-align: center; padding: 0 24px;">画像・写真が入ります<br>（高さ100%で配置）</div>
-  </div>
-  <!-- 右カラム：テキストエリア -->
-  <div class="right-col">
-    <div class="category-label">提案書 / カテゴリラベル</div>
-    <div class="main-title">メインタイトルが<br>ここに入ります</div>
-    <div class="description">
-      プレゼンテーションの内容を簡潔に説明する1〜2行の概要テキストが入ります。
-    </div>
-    <div class="divider"></div>
-    <div class="meta-info">
-      2026年6月5日　／　株式会社〇〇<br>
-      担当：氏名
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+      <!-- コンテンツエリア（スライド全面。frame: none のためタイトルエリア・フッターは配置しない） -->
+      <div class="content-area">
+        <!-- 左カラム：画像プレースホルダー -->
+        <div class="left-col">
+          <div class="area-label">Image Area</div>
+          <div style="font-size: 24px; color: #BBBBBB; text-align: center; padding: 0 48px;">画像・写真が入ります<br>（高さ100%で配置・写真添付エリア）</div>
+        </div>
+        <!-- 右カラム：テキストエリア -->
+        <div class="right-col">
+          <div class="category-label">提案書 / カテゴリラベル</div>
+          <div class="main-title">メインタイトルが<br>ここに入ります</div>
+          <div class="description">
+            プレゼンテーションの内容を簡潔に説明する1〜2行の概要テキストが入ります。
+          </div>
+          <div class="divider"></div>
+          <div class="meta-info">
+            2026年X月X日　／　サンプル株式会社<br>
+            担当：氏名
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

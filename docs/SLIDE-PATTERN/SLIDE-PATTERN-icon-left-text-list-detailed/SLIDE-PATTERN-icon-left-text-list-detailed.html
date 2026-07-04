@@ -1,172 +1,107 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-icon-left-text-list-detailed</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      width: 960px;
-      height: 540px;
-      overflow: hidden;
-      font-family: sans-serif;
-      background: #FFFFFF;
-      display: flex;
-      flex-direction: column;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    /* タイトルエリア */
-    .title-area {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      flex-shrink: 0;
-      background: #FAFAFA;
-    }
-    .title-area .title-dummy {
-      font-size: 16px;
-      color: #CCCCCC;
-      margin-top: 4px;
-    }
-    /* コンテンツエリア */
-    .content-area {
-      flex: 1;
-      padding: 16px 48px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .content-area > .area-label {
-      flex-shrink: 0;
-    }
-    /* 各行（縦リスト） */
-    .list-row {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      background: #F0F0F0;
-      border-radius: 4px;
-      border: 1px solid #CCCCCC;
-      padding: 12px 20px;
-      gap: 20px;
-    }
-    /* アイコンエリア（左側・大きめ） */
-    .row-icon {
-      flex-shrink: 0;
-      width: 72px;
-      height: 72px;
-      background: #E0E0E0;
-      border: 1px dashed #CCCCCC;
-      border-radius: 6px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .row-icon .area-label {
-      text-align: center;
-      line-height: 1.4;
-    }
-    /* 右側テキストエリア */
-    .row-text {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    /* 見出し */
-    .row-heading {
-      flex-shrink: 0;
-    }
-    .row-heading .area-label {
-      margin-bottom: 2px;
-    }
-    .heading-text {
-      font-size: 15px;
-      font-weight: bold;
-      color: #888;
-    }
-    /* 説明テキスト */
-    .row-description {
-      flex-shrink: 0;
-    }
-    .row-description .area-label {
-      margin-bottom: 2px;
-    }
-    .description-text {
-      font-size: 11px;
-      color: #666;
-      line-height: 1.7;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-icon-left-text-list-detailed</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  /* コンテンツエリア */
+  .content-area { flex: 1; padding: 32px 96px; display: flex; flex-direction: column; gap: 20px; overflow: hidden; }
+  .content-area > .area-label { flex-shrink: 0; }
+  /* 各行（縦リスト） */
+  .list-row { flex: 1; display: flex; align-items: center; background: #F0F0F0; border-radius: 8px; border: 1px solid #CCCCCC; padding: 24px 40px; gap: 40px; }
+  /* アイコンエリア（左側・大きめ） */
+  .row-icon { flex-shrink: 0; width: 144px; height: 144px; background: #E0E0E0; border: 2px dashed #CCCCCC; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .row-icon .area-label { text-align: center; line-height: 1.4; margin-bottom: 0; }
+  /* 右側テキストエリア */
+  .row-text { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+  .row-heading .area-label { margin-bottom: 4px; }
+  .heading-text { font-size: 30px; font-weight: bold; color: #888; }
+  .row-description .area-label { margin-bottom: 4px; }
+  .description-text { font-size: 22px; color: #666; line-height: 1.7; }
+</style>
 </head>
 <body>
-  <!-- タイトルエリア -->
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div class="title-dummy">スライドタイトルが入ります</div>
+<p class="slide-label">[icon-left-text-list-detailed]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+      <!-- コンテンツエリア（縦3行リスト） -->
+      <div class="content-area">
+        <div class="area-label">Content Area — Vertical List (3 Rows)</div>
+
+        <!-- 行1 -->
+        <div class="list-row">
+          <div class="row-icon">
+            <div class="area-label">Icon<br>(Large)</div>
+          </div>
+          <div class="row-text">
+            <div class="row-heading">
+              <div class="area-label">Heading (Accent Color)</div>
+              <div class="heading-text">項目1の見出しテキスト</div>
+            </div>
+            <div class="row-description">
+              <div class="area-label">Description (Multi-line)</div>
+              <div class="description-text">各項目の詳細説明が入ります。2〜4行程度のテキストで、項目の内容・価値・具体的な説明を記述します。<br>必要に応じて複数行にわたって説明を展開できます。</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 行2 -->
+        <div class="list-row">
+          <div class="row-icon">
+            <div class="area-label">Icon<br>(Large)</div>
+          </div>
+          <div class="row-text">
+            <div class="row-heading">
+              <div class="area-label">Heading (Accent Color)</div>
+              <div class="heading-text">項目2の見出しテキスト</div>
+            </div>
+            <div class="row-description">
+              <div class="area-label">Description (Multi-line)</div>
+              <div class="description-text">各項目の詳細説明が入ります。2〜4行程度のテキストで、項目の内容・価値・具体的な説明を記述します。<br>必要に応じて複数行にわたって説明を展開できます。</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 行3 -->
+        <div class="list-row">
+          <div class="row-icon">
+            <div class="area-label">Icon<br>(Large)</div>
+          </div>
+          <div class="row-text">
+            <div class="row-heading">
+              <div class="area-label">Heading (Accent Color)</div>
+              <div class="heading-text">項目3の見出しテキスト</div>
+            </div>
+            <div class="row-description">
+              <div class="area-label">Description (Multi-line)</div>
+              <div class="description-text">各項目の詳細説明が入ります。2〜4行程度のテキストで、項目の内容・価値・具体的な説明を記述します。<br>必要に応じて複数行にわたって説明を展開できます。</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /content-area -->
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+    </div>
   </div>
-
-  <!-- コンテンツエリア（縦3行リスト） -->
-  <div class="content-area">
-    <div class="area-label">Content Area — Vertical List (3 Rows)</div>
-
-    <!-- 行1 -->
-    <div class="list-row">
-      <div class="row-icon">
-        <div class="area-label">Icon<br>(Large)</div>
-      </div>
-      <div class="row-text">
-        <div class="row-heading">
-          <div class="area-label">Heading (Accent Color)</div>
-          <div class="heading-text">項目1の見出しテキスト</div>
-        </div>
-        <div class="row-description">
-          <div class="area-label">Description (Multi-line)</div>
-          <div class="description-text">各項目の詳細説明が入ります。2〜4行程度のテキストで、項目の内容・価値・具体的な説明を記述します。<br>必要に応じて複数行にわたって説明を展開できます。</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 行2 -->
-    <div class="list-row">
-      <div class="row-icon">
-        <div class="area-label">Icon<br>(Large)</div>
-      </div>
-      <div class="row-text">
-        <div class="row-heading">
-          <div class="area-label">Heading (Accent Color)</div>
-          <div class="heading-text">項目2の見出しテキスト</div>
-        </div>
-        <div class="row-description">
-          <div class="area-label">Description (Multi-line)</div>
-          <div class="description-text">各項目の詳細説明が入ります。2〜4行程度のテキストで、項目の内容・価値・具体的な説明を記述します。<br>必要に応じて複数行にわたって説明を展開できます。</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 行3 -->
-    <div class="list-row">
-      <div class="row-icon">
-        <div class="area-label">Icon<br>(Large)</div>
-      </div>
-      <div class="row-text">
-        <div class="row-heading">
-          <div class="area-label">Heading (Accent Color)</div>
-          <div class="heading-text">項目3の見出しテキスト</div>
-        </div>
-        <div class="row-description">
-          <div class="area-label">Description (Multi-line)</div>
-          <div class="description-text">各項目の詳細説明が入ります。2〜4行程度のテキストで、項目の内容・価値・具体的な説明を記述します。<br>必要に応じて複数行にわたって説明を展開できます。</div>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /content-area -->
+</div>
 </body>
 </html>

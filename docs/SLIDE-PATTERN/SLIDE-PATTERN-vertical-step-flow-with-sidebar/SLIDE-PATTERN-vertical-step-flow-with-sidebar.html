@@ -1,206 +1,118 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>SLIDE-PATTERN-vertical-step-flow-with-sidebar</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      width: 960px;
-      height: 540px;
-      overflow: hidden;
-      font-family: sans-serif;
-      background: #FFFFFF;
-      display: flex;
-      flex-direction: column;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    /* タイトルエリア */
-    .title-area {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      flex-shrink: 0;
-      background: #FAFAFA;
-    }
-    .title-placeholder {
-      font-size: 16px;
-      color: #CCCCCC;
-      margin-top: 4px;
-    }
-    /* コンテンツエリア全体 */
-    .content-area {
-      flex: 1;
-      display: flex;
-      overflow: hidden;
-    }
-    /* 左サイドバー */
-    .sidebar {
-      width: 18%;
-      flex-shrink: 0;
-      background: #F0F0F0;
-      border-right: 1px solid #CCCCCC;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 12px;
-      position: relative;
-    }
-    .sidebar .area-label {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-    }
-    .sidebar-label {
-      font-size: 17px;
-      color: #333333;
-      font-weight: bold;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      letter-spacing: 0.15em;
-    }
-    /* 右メインエリア */
-    .main-area {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 14px 28px;
-      gap: 0;
-      position: relative;
-    }
-    .main-area > .area-label {
-      position: absolute;
-      top: 8px;
-      left: 12px;
-    }
-    /* 各ステップ行 */
-    .step-row {
-      display: flex;
-      align-items: stretch;
-      gap: 6px;
-    }
-    .step-badge {
-      width: 80px;
-      flex-shrink: 0;
-      background: #CCCCCC;
-      color: #555555;
-      font-size: 12px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 8px 4px;
-      border-radius: 2px;
-    }
-    .step-content {
-      flex: 1;
-      border: 1px solid #CCCCCC;
-      padding: 8px 12px;
-      font-size: 13px;
-      color: #333333;
-      display: flex;
-      align-items: center;
-      background: #FFFFFF;
-      border-radius: 2px;
-    }
-    /* 最終ステップは強調 */
-    .step-row.accent .step-badge {
-      background: #888888;
-      color: #FFFFFF;
-    }
-    .step-row.accent .step-content {
-      background: #E0E0E0;
-      border-color: #999999;
-      font-weight: bold;
-    }
-    /* 矢印コネクター */
-    .arrow-connector {
-      display: flex;
-      align-items: center;
-      padding-left: 34px; /* step-badge幅/2 + gap/2 に合わせて中央揃え */
-      height: 14px;
-    }
-    .arrow-down {
-      width: 0;
-      height: 0;
-      border-left: 7px solid transparent;
-      border-right: 7px solid transparent;
-      border-top: 10px solid #BBBBBB;
-      margin: 0 auto;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-vertical-step-flow-with-sidebar</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
+  /* コンテンツエリア全体 */
+  .content-area { flex: 1; display: flex; overflow: hidden; }
+  /* 左サイドバー */
+  .sidebar { width: 18%; flex-shrink: 0; background: #F0F0F0; border-right: 1px solid #CCCCCC; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; position: relative; }
+  .sidebar .area-label { position: absolute; top: 16px; left: 16px; margin-bottom: 0; }
+  .sidebar-label { font-size: 34px; color: #333333; font-weight: bold; writing-mode: vertical-rl; text-orientation: mixed; letter-spacing: 0.15em; }
+  /* 右メインエリア */
+  .main-area { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 28px 56px; gap: 0; position: relative; }
+  .main-area > .area-label { position: absolute; top: 16px; left: 24px; margin-bottom: 0; }
+  /* 各ステップ行 */
+  .step-row { display: flex; align-items: stretch; gap: 12px; }
+  .step-badge { width: 160px; flex-shrink: 0; background: #CCCCCC; color: #555555; font-size: 22px; font-weight: bold; display: flex; align-items: center; justify-content: center; padding: 16px 8px; border-radius: 4px; }
+  .step-content { flex: 1; border: 1px solid #CCCCCC; padding: 16px 24px; font-size: 24px; color: #333333; display: flex; align-items: center; background: #FFFFFF; border-radius: 4px; }
+  /* 最終ステップは強調 */
+  .step-row.accent .step-badge { background: #888888; color: #FFFFFF; }
+  .step-row.accent .step-content { background: #E0E0E0; border-color: #999999; font-weight: bold; }
+  /* 矢印コネクター */
+  .arrow-connector { display: flex; align-items: center; padding-left: 68px; /* step-badge幅/2 + gap/2 に合わせて中央揃え */ height: 28px; }
+  .arrow-down { width: 0; height: 0; border-left: 14px solid transparent; border-right: 14px solid transparent; border-top: 20px solid #BBBBBB; margin: 0 auto; }
+</style>
 </head>
 <body>
+<p class="slide-label">[vertical-step-flow-with-sidebar]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-  <!-- タイトルエリア -->
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div class="title-placeholder">スライドタイトルが入ります</div>
-  </div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
 
-  <!-- コンテンツエリア -->
-  <div class="content-area">
+      <!-- コンテンツエリア -->
+      <div class="content-area">
 
-    <!-- 左サイドバー -->
-    <div class="sidebar">
-      <div class="area-label">sidebar label</div>
-      <div class="sidebar-label">選考フロー</div>
+        <!-- 左サイドバー -->
+        <div class="sidebar">
+          <div class="area-label">Sidebar Label</div>
+          <div class="sidebar-label">選考フロー</div>
+        </div>
+
+        <!-- 右メインエリア：縦並びフロー -->
+        <div class="main-area">
+          <div class="area-label">Step Flow — 各ステップ行（step-badge ＋ content-box）を縦に並べる</div>
+
+          <!-- STEP 1 -->
+          <div class="step-row">
+            <div class="step-badge">STEP 1</div>
+            <div class="step-content">会社説明会</div>
+          </div>
+
+          <!-- 矢印 -->
+          <div class="arrow-connector"><div class="arrow-down"></div></div>
+
+          <!-- STEP 2 -->
+          <div class="step-row">
+            <div class="step-badge">STEP 2</div>
+            <div class="step-content">1次面接（オンライン個別）</div>
+          </div>
+
+          <!-- 矢印 -->
+          <div class="arrow-connector"><div class="arrow-down"></div></div>
+
+          <!-- STEP 3 -->
+          <div class="step-row">
+            <div class="step-badge">STEP 3</div>
+            <div class="step-content">2次面接（集団対面）</div>
+          </div>
+
+          <!-- 矢印 -->
+          <div class="arrow-connector"><div class="arrow-down"></div></div>
+
+          <!-- STEP 4 -->
+          <div class="step-row">
+            <div class="step-badge">STEP 4</div>
+            <div class="step-content">最終面接（個別対面）</div>
+          </div>
+
+          <!-- 矢印 -->
+          <div class="arrow-connector"><div class="arrow-down"></div></div>
+
+          <!-- STEP 5（最終・強調） -->
+          <div class="step-row accent">
+            <div class="step-badge">STEP 5</div>
+            <div class="step-content">内定・オファー面談</div>
+          </div>
+
+        </div><!-- /main-area -->
+      </div><!-- /content-area -->
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
     </div>
-
-    <!-- 右メインエリア：縦並びフロー -->
-    <div class="main-area">
-      <div class="area-label">Step Flow — 各ステップ行（step-badge ＋ content-box）を縦に並べる</div>
-
-      <!-- STEP 1 -->
-      <div class="step-row">
-        <div class="step-badge">STEP 1</div>
-        <div class="step-content">会社説明会</div>
-      </div>
-
-      <!-- 矢印 -->
-      <div class="arrow-connector"><div class="arrow-down"></div></div>
-
-      <!-- STEP 2 -->
-      <div class="step-row">
-        <div class="step-badge">STEP 2</div>
-        <div class="step-content">1次面接（オンライン個別）</div>
-      </div>
-
-      <!-- 矢印 -->
-      <div class="arrow-connector"><div class="arrow-down"></div></div>
-
-      <!-- STEP 3 -->
-      <div class="step-row">
-        <div class="step-badge">STEP 3</div>
-        <div class="step-content">2次面接（集団対面）</div>
-      </div>
-
-      <!-- 矢印 -->
-      <div class="arrow-connector"><div class="arrow-down"></div></div>
-
-      <!-- STEP 4 -->
-      <div class="step-row">
-        <div class="step-badge">STEP 4</div>
-        <div class="step-content">最終面接（個別対面）</div>
-      </div>
-
-      <!-- 矢印 -->
-      <div class="arrow-connector"><div class="arrow-down"></div></div>
-
-      <!-- STEP 5（最終・強調） -->
-      <div class="step-row accent">
-        <div class="step-badge">STEP 5</div>
-        <div class="step-content">内定・オファー面談</div>
-      </div>
-
-    </div><!-- /main-area -->
-  </div><!-- /content-area -->
-
+  </div>
+</div>
 </body>
 </html>

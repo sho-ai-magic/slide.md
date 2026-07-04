@@ -4,35 +4,46 @@
 <meta charset="UTF-8">
 <title>SLIDE-PATTERN-cover-title-center</title>
 <style>
-  body { background: #E8E8E8; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; font-family: sans-serif; }
-  .slide-label { font-size: 12px; color: #666; margin-bottom: 6px; }
-  .slide { width: 960px; height: 540px; background: #FFFFFF; border: 1px solid #CCCCCC; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; }
-  .area-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
+  /* コンテンツエリア（frame: none のためタイトルエリア・フッターは配置しない） */
+  .content-area { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
   /* 装飾背景 */
-  .deco-top-right { position: absolute; top: -60px; right: -60px; width: 300px; height: 300px; border-radius: 50%; background: #EEEEEE; }
-  .deco-bottom-left { position: absolute; bottom: -80px; left: -80px; width: 360px; height: 360px; border-radius: 50%; background: #F0F0F0; }
-  .deco-small { position: absolute; top: 40px; left: 60px; width: 80px; height: 80px; border-radius: 50%; background: #E8E8E8; }
+  .deco-top-right { position: absolute; top: -120px; right: -120px; width: 600px; height: 600px; border-radius: 50%; background: #EEEEEE; }
+  .deco-bottom-left { position: absolute; bottom: -160px; left: -160px; width: 720px; height: 720px; border-radius: 50%; background: #F0F0F0; }
+  .deco-small { position: absolute; top: 80px; left: 120px; width: 160px; height: 160px; border-radius: 50%; background: #E8E8E8; }
   /* 中央コンテンツ */
-  .center-content { position: relative; z-index: 1; text-align: center; padding: 40px 80px; }
-  .main-title { font-size: 40px; font-weight: bold; color: #333; margin-bottom: 16px; line-height: 1.2; }
-  .sub-title { font-size: 18px; color: #777; line-height: 1.5; }
-  .area-label-overlay { position: absolute; top: 16px; left: 16px; font-size: 11px; color: #AAAAAA; text-transform: uppercase; }
+  .center-content { position: relative; z-index: 1; text-align: center; padding: 80px 160px; }
+  .main-title { font-size: 80px; font-weight: bold; color: #333333; margin-bottom: 32px; line-height: 1.2; }
+  .sub-title { font-size: 36px; color: #777777; line-height: 1.5; }
+  .divider-line { width: 120px; height: 4px; background: #CCCCCC; margin: 0 auto 32px; }
 </style>
 </head>
 <body>
 <p class="slide-label">[cover-title-center]</p>
-<div class="slide">
-  <div class="deco-top-right"></div>
-  <div class="deco-bottom-left"></div>
-  <div class="deco-small"></div>
-  <div class="area-label-overlay">Cover Slide — タイトルエリアなし（または専用デザイン）</div>
-  <!-- 中央コンテンツ -->
-  <div class="center-content">
-    <div class="area-label" style="color:#CCCCCC;">メインタイトル</div>
-    <div class="main-title">メインタイトルが入ります</div>
-    <div style="width: 60px; height: 2px; background: #CCCCCC; margin: 0 auto 16px;"></div>
-    <div class="area-label" style="color:#CCCCCC;">サブタイトル</div>
-    <div class="sub-title">—サブタイトルまたはキャッチコピーが入ります—</div>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+      <!-- コンテンツエリア（スライド全面。frame: none のためタイトルエリア・フッターは配置しない） -->
+      <div class="content-area">
+        <div class="deco-top-right"></div>
+        <div class="deco-bottom-left"></div>
+        <div class="deco-small"></div>
+        <!-- 中央コンテンツ -->
+        <div class="center-content">
+          <div class="area-label" style="text-align:center;">メインタイトル</div>
+          <div class="main-title">メインタイトルが入ります</div>
+          <div class="divider-line"></div>
+          <div class="area-label" style="text-align:center;">サブタイトル</div>
+          <div class="sub-title">—サブタイトルまたはキャッチコピーが入ります—</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 </body>

@@ -4,87 +4,108 @@
 <meta charset="UTF-8">
 <title>SLIDE-PATTERN-vertical-step-three-col</title>
 <style>
-  body { background: #E8E8E8; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; font-family: sans-serif; }
-  .slide-label { font-size: 12px; color: #666; margin-bottom: 6px; }
-  .slide { width: 960px; height: 540px; background: #FFFFFF; border: 1px solid #CCCCCC; overflow: hidden; display: flex; flex-direction: column; }
-  .area-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
-  .title-area { padding: 14px 40px 12px; border-bottom: 1px dashed #CCCCCC; flex-shrink: 0; background: #FAFAFA; }
-  .content-area { flex: 1; display: flex; flex-direction: column; padding: 14px 52px 14px; }
-  .lead { font-size: 13px; color: #555; margin-bottom: 12px; }
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
+  /* コンテンツエリア */
+  .content-area { flex: 1; display: flex; flex-direction: column; padding: 28px 104px 28px; overflow: hidden; }
+  .lead { font-size: 26px; color: #555; margin-bottom: 24px; }
   .step-table { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
   .step-row { display: flex; align-items: center; gap: 0; position: relative; }
-  .badge-col { width: 110px; display: flex; flex-direction: column; align-items: center; flex-shrink: 0; position: relative; }
-  .step-badge { padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: bold; color: #FFFFFF; background: #888; text-align: center; white-space: nowrap; }
-  .step-dot-line { width: 2px; height: 24px; border-left: 2px dotted #CCCCCC; margin: 0 auto; }
-  .name-col { width: 200px; padding: 0 16px; flex-shrink: 0; }
-  .step-name { font-size: 16px; font-weight: bold; color: #333; }
-  .detail-col { flex: 1; padding: 0 0 0 16px; border-left: 1px solid #EEEEEE; }
-  .detail-item { font-size: 12px; color: #555; line-height: 1.6; }
+  .badge-col { width: 220px; display: flex; flex-direction: column; align-items: center; flex-shrink: 0; position: relative; }
+  .step-badge { padding: 10px 28px; border-radius: 40px; font-size: 24px; font-weight: bold; color: #FFFFFF; background: #888; text-align: center; white-space: nowrap; }
+  .step-dot-line { width: 4px; height: 48px; border-left: 4px dotted #CCCCCC; margin: 0 auto; }
+  .name-col { width: 400px; padding: 0 32px; flex-shrink: 0; }
+  .step-name { font-size: 32px; font-weight: bold; color: #333; }
+  .detail-col { flex: 1; padding: 0 0 0 32px; border-left: 1px solid #EEEEEE; }
+  .detail-item { font-size: 24px; color: #555; line-height: 1.6; }
   .detail-item::before { content: "・"; }
 </style>
 </head>
 <body>
 <p class="slide-label">[vertical-step-three-col]</p>
-<div class="slide">
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-  </div>
-  <div class="content-area">
-    <div class="area-label">Lead Text</div>
-    <div class="lead">フロー全体の説明が入ります。このプロセスについて1〜2行で概説します。</div>
-    <div class="step-table">
-      <div class="step-row">
-        <div class="badge-col">
-          <div class="step-badge">STEP 1</div>
-        </div>
-        <div class="name-col"><div class="step-name">ステップ名1</div></div>
-        <div class="detail-col">
-          <div class="detail-item">詳細説明テキストが入ります。具体的な内容を記述します。</div>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+
+      <!-- コンテンツエリア -->
+      <div class="content-area">
+        <div class="area-label">Lead Text</div>
+        <div class="lead">フロー全体の説明が入ります。このプロセスについて1〜2行で概説します。</div>
+        <div class="step-table">
+          <div class="step-row">
+            <div class="badge-col">
+              <div class="step-badge">STEP 1</div>
+            </div>
+            <div class="name-col"><div class="step-name">ステップ名1</div></div>
+            <div class="detail-col">
+              <div class="detail-item">詳細説明テキストが入ります。具体的な内容を記述します。</div>
+            </div>
+          </div>
+          <div class="step-row">
+            <div class="badge-col">
+              <div class="step-dot-line"></div>
+              <div class="step-badge" style="background:#777;">STEP 2</div>
+            </div>
+            <div class="name-col"><div class="step-name">ステップ名2</div></div>
+            <div class="detail-col">
+              <div class="detail-item">詳細説明テキストその1が入ります。</div>
+              <div class="detail-item">詳細説明テキストその2が入ります。複数項目も可能です。</div>
+            </div>
+          </div>
+          <div class="step-row">
+            <div class="badge-col">
+              <div class="step-dot-line"></div>
+              <div class="step-badge" style="background:#666;">STEP 3</div>
+            </div>
+            <div class="name-col"><div class="step-name">ステップ名3</div></div>
+            <div class="detail-col">
+              <div class="detail-item">詳細説明テキストその1が入ります。</div>
+              <div class="detail-item">詳細説明テキストその2が入ります。</div>
+            </div>
+          </div>
+          <div class="step-row">
+            <div class="badge-col">
+              <div class="step-dot-line"></div>
+              <div class="step-badge" style="background:#555;">STEP 4</div>
+            </div>
+            <div class="name-col"><div class="step-name">ステップ名4</div></div>
+            <div class="detail-col">
+              <div class="detail-item">詳細説明テキストが入ります。</div>
+            </div>
+          </div>
+          <div class="step-row">
+            <div class="badge-col">
+              <div class="step-dot-line"></div>
+              <div class="step-badge" style="background:#444;">STEP 5</div>
+            </div>
+            <div class="name-col"><div class="step-name">ステップ名5</div></div>
+            <div class="detail-col">
+              <div class="detail-item">最終ステップの詳細説明テキストが入ります。</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="step-row">
-        <div class="badge-col">
-          <div class="step-dot-line"></div>
-          <div class="step-badge" style="background:#777;">STEP 2</div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
         </div>
-        <div class="name-col"><div class="step-name">ステップ名2</div></div>
-        <div class="detail-col">
-          <div class="detail-item">詳細説明テキストその1が入ります。</div>
-          <div class="detail-item">詳細説明テキストその2が入ります。複数項目も可能です。</div>
-        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
       </div>
-      <div class="step-row">
-        <div class="badge-col">
-          <div class="step-dot-line"></div>
-          <div class="step-badge" style="background:#666;">STEP 3</div>
-        </div>
-        <div class="name-col"><div class="step-name">ステップ名3</div></div>
-        <div class="detail-col">
-          <div class="detail-item">詳細説明テキストその1が入ります。</div>
-          <div class="detail-item">詳細説明テキストその2が入ります。</div>
-        </div>
-      </div>
-      <div class="step-row">
-        <div class="badge-col">
-          <div class="step-dot-line"></div>
-          <div class="step-badge" style="background:#555;">STEP 4</div>
-        </div>
-        <div class="name-col"><div class="step-name">ステップ名4</div></div>
-        <div class="detail-col">
-          <div class="detail-item">詳細説明テキストが入ります。</div>
-        </div>
-      </div>
-      <div class="step-row">
-        <div class="badge-col">
-          <div class="step-dot-line"></div>
-          <div class="step-badge" style="background:#444;">STEP 5</div>
-        </div>
-        <div class="name-col"><div class="step-name">ステップ名5</div></div>
-        <div class="detail-col">
-          <div class="detail-item">最終ステップの詳細説明テキストが入ります。</div>
-        </div>
-      </div>
+
     </div>
   </div>
 </div>

@@ -1,208 +1,163 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-eight-card-2x4-grid</title>
-  <style>
-    /* ページ背景・中央寄せ */
-    body {
-      background: #E8E8E8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      font-family: sans-serif;
-      margin: 0;
-    }
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-eight-card-2x4-grid</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; flex-shrink: 0; }
 
-    /* スライドラベル */
-    .slide-label {
-      font-size: 13px;
-      color: #888;
-      margin-bottom: 10px;
-      letter-spacing: 0.05em;
-    }
+  /* コンテンツエリア */
+  .content { display: flex; flex-direction: column; padding: 24px 64px; gap: 16px; flex: 1; }
 
-    /* スライド本体 960×540px */
-    .slide {
-      width: 960px;
-      height: 540px;
-      background: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
+  /* ── 8カードグリッド ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+    flex: 1;
+  }
 
-    /* タイトルエリア */
-    .slide-title {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      background: #FAFAFA;
-      flex-shrink: 0;
-    }
-    .slide-title h2 {
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-      margin: 0;
-    }
-    .slide-title p {
-      font-size: 12px;
-      color: #888;
-      margin: 4px 0 0;
-    }
+  /* 各カード */
+  .card {
+    border: 1px solid #E0E0E0;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 
-    /* コンテンツエリア */
-    .content {
-      display: flex;
-      flex-direction: column;
-      padding: 12px 32px;
-      gap: 8px;
-      flex: 1;
-    }
+  /* 番号バッジ */
+  .card-badge {
+    width: 48px;
+    height: 48px;
+    background: #F0F0F0;
+    border-radius: 50%;
+    font-size: 22px;
+    font-weight: bold;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
 
-    .area-label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      flex-shrink: 0;
-    }
+  /* カード見出し */
+  .card h4 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    line-height: 1.3;
+  }
 
-    /* ── 8カードグリッド ── */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: repeat(2, 1fr);
-      gap: 10px;
-      flex: 1;
-    }
-
-    /* 各カード */
-    .card {
-      border: 1px solid #E0E0E0;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    /* 番号バッジ */
-    .card-badge {
-      width: 24px;
-      height: 24px;
-      background: #F0F0F0;
-      border-radius: 50%;
-      font-size: 11px;
-      font-weight: bold;
-      color: #666;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    /* カード見出し */
-    .card h4 {
-      font-size: 13px;
-      font-weight: bold;
-      color: #333;
-      margin: 0;
-      line-height: 1.3;
-    }
-
-    /* カード説明テキスト */
-    .card p {
-      font-size: 11px;
-      color: #666;
-      margin: 0;
-      line-height: 1.5;
-    }
-  </style>
+  /* カード説明テキスト */
+  .card p {
+    font-size: 22px;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+  }
+</style>
 </head>
 <body>
 
-  <p class="slide-label">[eight-card-2x4-grid]</p>
+<p class="slide-label">[eight-card-2x4-grid]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-  <div class="slide">
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
 
-    <!-- タイトルエリア -->
-    <div class="slide-title">
-      <h2>2024年度 重点施策一覧</h2>
-      <p>全8項目の取り組みと期待効果の概要</p>
+      <!-- コンテンツエリア -->
+      <div class="content">
+
+        <span class="area-label">8 Items Grid</span>
+
+        <!-- 8カードグリッド -->
+        <div class="card-grid">
+
+          <!-- カード1 -->
+          <div class="card">
+            <div class="card-badge">1</div>
+            <h4>顧客体験の向上</h4>
+            <p>タッチポイントを見直し満足度向上を目指す。年間スコア15pt改善を目標とする。</p>
+          </div>
+
+          <!-- カード2 -->
+          <div class="card">
+            <div class="card-badge">2</div>
+            <h4>業務プロセス自動化</h4>
+            <p>ツールを活用して定型業務を自動化し、工数を30%以上削減する。</p>
+          </div>
+
+          <!-- カード3 -->
+          <div class="card">
+            <div class="card-badge">3</div>
+            <h4>デジタル人材育成</h4>
+            <p>全社員を対象にリテラシー研修を実施し、デジタル活用率を高める。</p>
+          </div>
+
+          <!-- カード4 -->
+          <div class="card">
+            <div class="card-badge">4</div>
+            <h4>新規市場開拓</h4>
+            <p>複数の新市場での事業展開を開始し、売上比率20%を目指す。</p>
+          </div>
+
+          <!-- カード5 -->
+          <div class="card">
+            <div class="card-badge">5</div>
+            <h4>サプライチェーン強化</h4>
+            <p>調達先の多様化とリードタイム短縮で安定供給体制を確立する。</p>
+          </div>
+
+          <!-- カード6 -->
+          <div class="card">
+            <div class="card-badge">6</div>
+            <h4>サステナビリティ推進</h4>
+            <p>排出量を前年比40%削減し、環境目標の達成に向けた取り組みを加速する。</p>
+          </div>
+
+          <!-- カード7 -->
+          <div class="card">
+            <div class="card-badge">7</div>
+            <h4>パートナー連携強化</h4>
+            <p>戦略パートナー数社との協業を深化させ、共同プロジェクトを推進する。</p>
+          </div>
+
+          <!-- カード8 -->
+          <div class="card">
+            <div class="card-badge">8</div>
+            <h4>データ活用基盤整備</h4>
+            <p>データ基盤を構築してリアルタイム分析を可能にし、意思決定を迅速化する。</p>
+          </div>
+
+        </div><!-- /card-grid -->
+
+      </div><!-- /content -->
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
     </div>
-
-    <!-- コンテンツエリア -->
-    <div class="content">
-
-      <span class="area-label">8 Items Grid</span>
-
-      <!-- 8カードグリッド -->
-      <div class="card-grid">
-
-        <!-- カード1 -->
-        <div class="card">
-          <div class="card-badge">1</div>
-          <h4>顧客体験の向上</h4>
-          <p>タッチポイントを見直しNPS向上を目指す。年間スコア15pt改善を目標とする。</p>
-        </div>
-
-        <!-- カード2 -->
-        <div class="card">
-          <div class="card-badge">2</div>
-          <h4>業務プロセス自動化</h4>
-          <p>RPAとAIを活用して定型業務を自動化し、工数を30%以上削減する。</p>
-        </div>
-
-        <!-- カード3 -->
-        <div class="card">
-          <div class="card-badge">3</div>
-          <h4>デジタル人材育成</h4>
-          <p>全社員を対象にDXリテラシー研修を実施し、デジタル活用率を高める。</p>
-        </div>
-
-        <!-- カード4 -->
-        <div class="card">
-          <div class="card-badge">4</div>
-          <h4>新規市場開拓</h4>
-          <p>海外3カ国での事業展開を開始し、グローバル売上比率20%を目指す。</p>
-        </div>
-
-        <!-- カード5 -->
-        <div class="card">
-          <div class="card-badge">5</div>
-          <h4>サプライチェーン強化</h4>
-          <p>調達先の多様化とリードタイム短縮で安定供給体制を確立する。</p>
-        </div>
-
-        <!-- カード6 -->
-        <div class="card">
-          <div class="card-badge">6</div>
-          <h4>サステナビリティ推進</h4>
-          <p>CO2排出量を2023年比40%削減し、環境目標の達成に向けた取り組みを加速する。</p>
-        </div>
-
-        <!-- カード7 -->
-        <div class="card">
-          <div class="card-badge">7</div>
-          <h4>パートナー連携強化</h4>
-          <p>戦略パートナー10社との協業を深化させ、共同プロジェクトを推進する。</p>
-        </div>
-
-        <!-- カード8 -->
-        <div class="card">
-          <div class="card-badge">8</div>
-          <h4>データ活用基盤整備</h4>
-          <p>データレイクを構築してリアルタイム分析を可能にし、意思決定を迅速化する。</p>
-        </div>
-
-      </div><!-- /card-grid -->
-
-    </div><!-- /content -->
-
-  </div><!-- /slide -->
+  </div>
+</div>
 
 </body>
 </html>

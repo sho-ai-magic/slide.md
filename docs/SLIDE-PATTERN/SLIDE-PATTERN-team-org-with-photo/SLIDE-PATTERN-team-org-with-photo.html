@@ -4,96 +4,115 @@
 <meta charset="UTF-8">
 <title>SLIDE-PATTERN-team-org-with-photo</title>
 <style>
-  body { background: #E8E8E8; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; font-family: sans-serif; }
-  .slide-label { font-size: 12px; color: #666; margin-bottom: 6px; }
-  .slide { width: 960px; height: 540px; background: #FFFFFF; border: 1px solid #CCCCCC; overflow: hidden; display: flex; flex-direction: column; }
-  .area-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
-  .title-area { padding: 14px 40px 12px; border-bottom: 1px dashed #CCCCCC; flex-shrink: 0; background: #FAFAFA; }
-  .content-area { flex: 1; display: flex; padding: 20px 28px; gap: 0; align-items: center; }
-  .leader-col { width: 180px; display: flex; flex-direction: column; align-items: center; gap: 8px; flex-shrink: 0; }
-  .photo-circle { width: 90px; height: 90px; border-radius: 50%; background: #F0F0F0; border: 1px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #AAAAAA; }
-  .connector-h { height: 2px; flex: 1; background: #CCCCCC; }
-  .tree-col { flex: 1; display: flex; flex-direction: column; gap: 20px; justify-content: center; }
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
+  /* ここからパターン固有のCSS */
+  .content-area { flex: 1; display: flex; padding: 40px 56px; gap: 0; align-items: center; overflow: hidden; }
+  .leader-col { width: 360px; display: flex; flex-direction: column; align-items: center; gap: 16px; flex-shrink: 0; }
+  .photo-circle { width: 180px; height: 180px; border-radius: 50%; background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #AAAAAA; text-align: center; }
+  .tree-col { flex: 1; display: flex; flex-direction: column; gap: 40px; justify-content: center; }
   .unit-row { display: flex; align-items: center; gap: 0; }
-  .unit-node { padding: 5px 14px; background: #BBBBBB; border-radius: 16px; font-size: 12px; font-weight: bold; color: #FFFFFF; white-space: nowrap; flex-shrink: 0; }
-  .unit-count { font-size: 20px; font-weight: bold; color: #444; margin-left: 8px; white-space: nowrap; }
-  .unit-count-label { font-size: 11px; color: #888; }
-  .sub-row { display: flex; align-items: center; gap: 8px; margin-left: 16px; }
-  .sub-node { padding: 4px 10px; background: #F0F0F0; border-radius: 12px; font-size: 11px; color: #555; flex-shrink: 0; }
-  .member-icons { display: flex; gap: 4px; align-items: center; }
-  .member-icon { width: 28px; height: 28px; border-radius: 50%; background: #E0E0E0; border: 1px solid #CCCCCC; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #888; }
-  .more-dots { font-size: 14px; color: #AAAAAA; font-weight: bold; }
+  .unit-node { padding: 10px 28px; background: #BBBBBB; border-radius: 32px; font-size: 24px; font-weight: bold; color: #FFFFFF; white-space: nowrap; flex-shrink: 0; }
+  .unit-count { font-size: 40px; font-weight: bold; color: #444; margin-left: 16px; white-space: nowrap; }
+  .unit-count-label { font-size: 20px; color: #888; }
+  .sub-row { display: flex; align-items: center; gap: 16px; margin-left: 32px; }
+  .sub-node { padding: 8px 20px; background: #F0F0F0; border-radius: 24px; font-size: 22px; color: #555; flex-shrink: 0; }
+  .member-icons { display: flex; gap: 8px; align-items: center; }
+  .member-icon { width: 56px; height: 56px; border-radius: 50%; border: 2px dashed #CCCCCC; background: #F0F0F0; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 12px; text-align: center; }
+  .more-dots { font-size: 28px; color: #AAAAAA; font-weight: bold; }
 </style>
 </head>
 <body>
 <p class="slide-label">[team-org-with-photo]</p>
-<div class="slide">
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-  </div>
-  <div class="content-area">
-    <!-- 左：リーダー写真 -->
-    <div class="leader-col">
-      <div class="area-label" style="text-align:center;">Leader Photo</div>
-      <div class="photo-circle">顔写真</div>
-      <div style="font-size:14px; font-weight:bold; color:#444; text-align:center;">氏名　太郎</div>
-      <div style="font-size:10px; color:#888; text-transform:uppercase; text-align:center;">GROUP MANAGER</div>
-    </div>
-    <!-- 接続線 -->
-    <div style="display:flex; align-items:center; height:2px; width:24px; background:#CCCCCC; flex-shrink:0;"></div>
-    <!-- 右：ツリー -->
-    <div class="tree-col">
-      <!-- ユニット1 -->
-      <div style="position:relative;">
-        <div class="unit-row">
-          <div class="unit-node">ユニットA</div>
-          <div class="unit-count">13 <span class="unit-count-label">member</span></div>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+
+      <div class="content-area">
+        <!-- 左：リーダー写真 -->
+        <div class="leader-col">
+          <div class="area-label" style="text-align:center;">Leader Photo</div>
+          <div class="photo-circle">写真添付エリア<br>(後から差し替え)</div>
+          <div style="font-size:28px; font-weight:bold; color:#444; text-align:center;">山田　太郎</div>
+          <div style="font-size:20px; color:#888; text-transform:uppercase; text-align:center;">GROUP MANAGER</div>
         </div>
-        <div class="sub-row" style="margin-top:8px;">
-          <div style="width:2px; height:36px; background:#CCCCCC; flex-shrink:0;"></div>
-          <div style="display:flex; flex-direction:column; gap:6px;">
-            <div style="display:flex; align-items:center; gap:8px;">
-              <div class="sub-node">ユニットマネージャー</div>
-              <div style="width:2px; height:2px; background:#CCC;"></div>
-              <div class="member-icons">
-                <div class="member-icon">👤</div>
-                <div class="member-icon">👤</div>
-                <div class="member-icon">👤</div>
-                <div class="member-icon">👤</div>
-                <div class="more-dots">…</div>
+        <!-- 接続線 -->
+        <div style="display:flex; align-items:center; height:2px; width:48px; background:#CCCCCC; flex-shrink:0;"></div>
+        <!-- 右：ツリー -->
+        <div class="tree-col">
+          <!-- ユニット1 -->
+          <div style="position:relative;">
+            <div class="unit-row">
+              <div class="unit-node">ユニットA</div>
+              <div class="unit-count">13 <span class="unit-count-label">member</span></div>
+            </div>
+            <div class="sub-row" style="margin-top:16px;">
+              <div style="width:2px; height:72px; background:#CCCCCC; flex-shrink:0;"></div>
+              <div style="display:flex; flex-direction:column; gap:12px;">
+                <div style="display:flex; align-items:center; gap:16px;">
+                  <div class="sub-node">ユニットマネージャー</div>
+                  <div style="width:2px; height:2px; background:#CCC;"></div>
+                  <div class="member-icons">
+                    <div class="member-icon">人<br>(SVG)</div>
+                    <div class="member-icon">人<br>(SVG)</div>
+                    <div class="member-icon">人<br>(SVG)</div>
+                    <div class="member-icon">人<br>(SVG)</div>
+                    <div class="more-dots">…</div>
+                  </div>
+                  <div style="font-size:22px; color:#888;">メンバー</div>
+                </div>
               </div>
-              <div style="font-size:11px; color:#888;">メンバー</div>
+            </div>
+          </div>
+          <!-- ユニット2 -->
+          <div>
+            <div class="unit-row">
+              <div class="unit-node" style="background:#999;">ユニットB</div>
+              <div class="unit-count">14 <span class="unit-count-label">member</span></div>
+            </div>
+            <div class="sub-row" style="margin-top:16px;">
+              <div style="width:2px; height:104px; background:#CCCCCC; flex-shrink:0;"></div>
+              <div style="display:flex; flex-direction:column; gap:12px;">
+                <div style="display:flex; align-items:center; gap:16px;">
+                  <div class="sub-node">ユニットマネージャー</div>
+                  <div class="member-icons">
+                    <div class="member-icon">人<br>(SVG)</div>
+                    <div class="member-icon">人<br>(SVG)</div>
+                    <div class="member-icon">人<br>(SVG)</div>
+                    <div class="more-dots">…</div>
+                  </div>
+                  <div style="font-size:22px; color:#888;">メンバー</div>
+                </div>
+                <div style="display:flex; align-items:center; gap:16px; margin-left:16px;">
+                  <div class="sub-node" style="font-size:20px;">オフショア</div>
+                  <div class="member-icon">拠点<br>(SVG)</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- ユニット2 -->
-      <div>
-        <div class="unit-row">
-          <div class="unit-node" style="background:#999;">ユニットB</div>
-          <div class="unit-count">14 <span class="unit-count-label">member</span></div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
         </div>
-        <div class="sub-row" style="margin-top:8px;">
-          <div style="width:2px; height:52px; background:#CCCCCC; flex-shrink:0;"></div>
-          <div style="display:flex; flex-direction:column; gap:6px;">
-            <div style="display:flex; align-items:center; gap:8px;">
-              <div class="sub-node">ユニットマネージャー</div>
-              <div class="member-icons">
-                <div class="member-icon">👤</div>
-                <div class="member-icon">👤</div>
-                <div class="member-icon">👤</div>
-                <div class="more-dots">…</div>
-              </div>
-              <div style="font-size:11px; color:#888;">メンバー</div>
-            </div>
-            <div style="display:flex; align-items:center; gap:8px; margin-left:8px;">
-              <div class="sub-node" style="font-size:10px;">オフショア</div>
-              <div class="member-icon">🏢</div>
-            </div>
-          </div>
-        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
       </div>
+
     </div>
   </div>
 </div>

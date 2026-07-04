@@ -1,61 +1,45 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN: cover-logo-mark-centered</title>
-  <style>
-    body {
-      background: #E8E8E8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      margin: 0;
-      font-family: sans-serif;
-    }
-    .slide {
-      width: 960px;
-      height: 540px;
-      background: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    .title-area {
-      flex-shrink: 0;
-      background: #FAFAFA;
-      padding: 10px 40px;
-      border-bottom: 1px dashed #CCCCCC;
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .pattern-label {
-      margin-top: 16px;
-      font-size: 12px;
-      color: #888;
-      letter-spacing: 0.05em;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-cover-logo-mark-centered</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
+  /* コンテンツエリア（frame: none のためタイトルエリア・フッターは配置しない） */
+  .content-area { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px; padding: 60px 120px; box-sizing: border-box; }
+  .logo-mark { width: 144px; height: 144px; border-radius: 50%; font-size: 22px; }
+  .main-title { font-size: 60px; font-weight: bold; color: #333333; text-align: center; }
+  .divider-line { width: 80px; height: 4px; background: #CCCCCC; }
+  .company-name { font-size: 32px; font-weight: 600; color: #555555; text-align: center; }
+  .date-line { font-size: 26px; color: #777777; }
+  .additional-info { font-size: 24px; color: #999999; }
+</style>
 </head>
 <body>
-  <div class="slide">
-    <div class="title-area">Title Area — SLIDE.md 参照</div>
-    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:30px 60px;">
-      <div style="font-size:10px; color:#999; text-transform:uppercase; letter-spacing:0.08em;">Logo Mark</div>
-      <div style="width:72px; height:72px; background:#F0F0F0; border:1px dashed #CCCCCC; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; color:#AAAAAA;">MARK</div>
-      <div style="font-size:10px; color:#999; text-transform:uppercase; letter-spacing:0.08em; margin-top:4px;">Main Title</div>
-      <div style="font-size:30px; font-weight:bold; color:#333; text-align:center;">資料タイトルが入ります</div>
-      <div style="width:40px; height:2px; background:#CCCCCC;"></div>
-      <div style="font-size:10px; color:#999; text-transform:uppercase; letter-spacing:0.08em;">Company / Date / Info</div>
-      <div style="font-size:16px; font-weight:600; color:#555; text-align:center;">株式会社〇〇〇〇</div>
-      <div style="font-size:13px; color:#777;">2025年X月</div>
-      <div style="font-size:12px; color:#999;">東証XX市場（証券コード：XXXX）</div>
+<p class="slide-label">[cover-logo-mark-centered]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+      <!-- コンテンツエリア（スライド全面。frame: none のためタイトルエリア・フッターは配置しない） -->
+      <div class="content-area">
+        <div class="area-label">Logo Mark</div>
+        <div class="placeholder-box logo-mark">MARK（写真添付エリア）</div>
+        <div class="area-label" style="margin-top:8px;">Main Title</div>
+        <div class="main-title">資料タイトルが入ります</div>
+        <div class="divider-line"></div>
+        <div class="area-label">Company / Date / Info</div>
+        <div class="company-name">サンプル株式会社</div>
+        <div class="date-line">2026年X月</div>
+        <div class="additional-info">東証プライム市場（証券コード：0000）</div>
+      </div>
     </div>
   </div>
-  <div class="pattern-label">SLIDE-PATTERN: cover-logo-mark-centered</div>
+</div>
 </body>
 </html>

@@ -87,10 +87,12 @@
     background: #FAFAFA;
   }
   .slide-preview iframe {
-    width: 960px;
-    height: 540px;
+    width: var(--geom-w, 960px);
+    height: var(--geom-h, 540px);
+    left: var(--geom-left, 0px);
+    top: var(--geom-top, 0px);
     border: none;
-    transform: scale(0.3333);
+    transform: scale(var(--geom-scale, 0.3333));
     transform-origin: top left;
     pointer-events: none;
   }
@@ -281,10 +283,12 @@
     background: #FAFAFA;
   }
   .ds-preview iframe {
-    width: 960px;
-    height: 540px;
+    width: var(--geom-w, 960px);
+    height: var(--geom-h, 540px);
+    left: var(--geom-left, 0px);
+    top: var(--geom-top, 0px);
     border: none;
-    transform: scale(0.3333);
+    transform: scale(var(--geom-scale, 0.3333));
     transform-origin: top left;
     pointer-events: none;
   }
@@ -444,16 +448,20 @@
     .ds-grid { grid-template-columns: 1fr; gap: 16px; }
     .slide-preview { width: 100%; aspect-ratio: 16/9; height: auto; }
     .slide-preview iframe {
-      width: 960px;
-      height: 540px;
-      transform: scale(calc((100vw - 24px) / 960));
+      width: var(--geom-w, 960px);
+      height: var(--geom-h, 540px);
+      left: calc(var(--geom-left, 0px) * ((100vw - 24px) / 320));
+      top: calc(var(--geom-top, 0px) * ((100vw - 24px) / 320));
+      transform: scale(calc(var(--geom-scale, 0.3333) * ((100vw - 24px) / 320)));
       transform-origin: top left;
     }
     .ds-preview { width: 100%; aspect-ratio: 16/9; height: auto; }
     .ds-preview iframe {
-      width: 960px;
-      height: 540px;
-      transform: scale(calc((100vw - 24px) / 960));
+      width: var(--geom-w, 960px);
+      height: var(--geom-h, 540px);
+      left: calc(var(--geom-left, 0px) * ((100vw - 24px) / 320));
+      top: calc(var(--geom-top, 0px) * ((100vw - 24px) / 320));
+      transform: scale(calc(var(--geom-scale, 0.3333) * ((100vw - 24px) / 320)));
       transform-origin: top left;
     }
 
@@ -828,8 +836,101 @@ const DESIGN_SYSTEMS = [
 // 以下はHTML生成ロジック（通常は変更不要）
 // =============================================================
 
+// -----------------------------------------------------------
+// サムネイル／オーバーレイ用ジオメトリ定義
+// iframeの実寸・縮小率・chrome（ラベルやbody paddingの分の
+// はみ出し）を打ち消すためのposition offsetをまとめて管理する。
+//   - newPattern : 新形式(1920系)パターン。.slide-label 等の
+//                  chromeが 左20px・上68〜87px 程度ある
+//   - newDS      : 新形式(1920系) DS sample.html。.slide-label
+//                  が無く chrome は 左20px・上40px のみ
+//   - legacy     : 旧960系（パターン・DS共通）。chrome 左20px・上≒78px
+// サムネイル(320x180)用は thumb.scale、オーバーレイ用は overlay.scale
+// をそれぞれ使う。offsetはサムネイル基準（320x180）の値。
+// -----------------------------------------------------------
+const GEOMETRY = {
+  newPattern: {
+    iframeW: 1480, iframeH: 950,
+    thumbScale: 0.22222,          // = 320 / 1440
+    offsetLeft: -4.4, offsetTop: -16,
+  },
+  newDS: {
+    iframeW: 1480, iframeH: 950,
+    thumbScale: 0.22222,          // = 320 / 1440
+    offsetLeft: -4.4, offsetTop: -8.9,
+  },
+  legacy: {
+    iframeW: 1000, iframeH: 640,
+    thumbScale: 0.33333,          // = 320 / 960
+    offsetLeft: -6.7, offsetTop: -26,
+  },
+};
+
+// gemini-color-system のように .slide-wrapper 構造を持たない
+// 特殊なDSサンプル（SVGバンドラーページ等）はchrome補正をせず
+// そのまま100%フィット表示する。該当IDをここに列挙する。
+const DS_RAW_FIT_IDS = new Set(["gemini-color-system"]);
+
+// 2026-07-05 に docs/SLIDE-PATTERN/ の全127パターンが新形式(1920系)に
+// 統一されたため、初期表示は常に newPattern ジオメトリを使う。
+// 万一旧形式(960系)が混入した場合は iframe onload の自己判定で
+// legacy ジオメトリに自動的に付け替わる。
+const NEW_PATTERNS = { has: () => true };
+
+// カードのiframeに対して、指定ジオメトリ種別(kind: 'newPattern'|'newDS'|'legacy')の
+// サムネイル用スタイルを適用する。
+// width/height/left/top/transform は CSS変数(--geom-*)経由でCSS側
+// （.slide-preview iframe / .ds-preview iframe とそのモバイル用
+// メディアクエリ）に渡す。こうすることでモバイル時のcalc()による
+// 相対スケールが、デスクトップ用の固定値で上書きされずに機能する。
+function applyThumbGeometry(iframe, kind) {
+  const g = GEOMETRY[kind];
+  iframe.style.setProperty('--geom-w', g.iframeW + 'px');
+  iframe.style.setProperty('--geom-h', g.iframeH + 'px');
+  iframe.style.setProperty('--geom-left', g.offsetLeft + 'px');
+  iframe.style.setProperty('--geom-top', g.offsetTop + 'px');
+  iframe.style.setProperty('--geom-scale', g.thumbScale);
+  iframe.style.position = 'absolute';
+  iframe.style.border = 'none';
+  iframe.style.pointerEvents = 'none';
+  iframe.dataset.geomKind = kind;
+}
+
+// DS用: gemini-color-system 等の特殊構造は、chrome補正をせず
+// そのまま100%フィット表示（等方スケールでcontain）する。
+function applyDSRawFitGeometry(iframe) {
+  iframe.style.setProperty('--geom-w', '320px');
+  iframe.style.setProperty('--geom-h', '180px');
+  iframe.style.setProperty('--geom-left', '0px');
+  iframe.style.setProperty('--geom-top', '0px');
+  iframe.style.setProperty('--geom-scale', '1');
+  iframe.style.position = 'absolute';
+  iframe.style.border = 'none';
+  iframe.style.pointerEvents = 'none';
+  iframe.dataset.geomKind = 'rawFit';
+}
+
+// iframe読み込み後に .slide-wrapper の有無を自己判定し、
+// 初期判定(expectedKind)と異なればジオメトリを付け替える。
+// file:// では contentDocument アクセスが例外になるため、
+// その場合は握りつぶして初期値のまま据え置く。
+function attachSelfHealingGeometry(iframe, expectedKind, isDS) {
+  iframe.addEventListener('load', () => {
+    try {
+      const hasWrapper = !!iframe.contentDocument.querySelector('.slide-wrapper');
+      const actualKind = isDS
+        ? (hasWrapper ? 'newDS' : (iframe.dataset.geomKind === 'rawFit' ? 'rawFit' : 'legacy'))
+        : (hasWrapper ? 'newPattern' : 'legacy');
+      if (actualKind !== iframe.dataset.geomKind && actualKind !== 'rawFit') {
+        applyThumbGeometry(iframe, actualKind);
+      }
+    } catch (err) {
+      // file:// 等でcontentDocumentにアクセスできない場合は初期値のまま
+    }
+  });
+}
+
 let currentMdContent = '';
-let currentDSCanvas = "960x540";
 
 // ===== 選択機能 =====
 let selectedItems = [];
@@ -928,17 +1029,14 @@ function buildDesignSystems() {
   `;
   const grid = section.querySelector('.ds-grid');
   DESIGN_SYSTEMS.forEach(ds => {
+    const isRawFit = DS_RAW_FIT_IDS.has(ds.id);
     const isNew = ds.canvas === "1920x1080";
-    const iframeW = isNew ? 1440 : 960;
-    const iframeH = isNew ? 810 : 540;
-    const scale = (180 / iframeH).toFixed(4);
+    const initialKind = isRawFit ? 'rawFit' : (isNew ? 'newDS' : 'legacy');
     const card = document.createElement('div');
     card.className = 'ds-card';
-    card.onclick = () => openDSOverlay(ds.name, ds.label, ds.canvas);
+    card.onclick = () => openDSOverlay(ds.name, ds.label, ds.canvas, isRawFit);
     card.innerHTML = `
       <div class="ds-preview">
-        <iframe src="SLIDE-md/${ds.name}/sample.html" loading="lazy"
-          style="width:${iframeW}px;height:${iframeH}px;border:none;transform:scale(${scale});transform-origin:top left;pointer-events:none;"></iframe>
         <div class="select-badge"></div>
       </div>
       <div class="ds-card-footer">
@@ -946,6 +1044,17 @@ function buildDesignSystems() {
         <button class="select-btn">選択</button>
       </div>
     `;
+    const preview = card.querySelector('.ds-preview');
+    const iframe = document.createElement('iframe');
+    iframe.loading = 'lazy';
+    iframe.src = `SLIDE-md/${ds.name}/sample.html`;
+    if (isRawFit) {
+      applyDSRawFitGeometry(iframe);
+    } else {
+      applyThumbGeometry(iframe, initialKind);
+      attachSelfHealingGeometry(iframe, initialKind, true);
+    }
+    preview.insertBefore(iframe, preview.firstChild);
     card.querySelector('.select-btn').addEventListener('click', e => {
       toggleSelect(e, 'ds', ds.name, `SLIDE-md/${ds.name}/SLIDE.md`, ds.label || ds.name, card);
     });
@@ -997,12 +1106,12 @@ function buildGallery() {
 
     cat.patterns.forEach(name => {
       const fullName = `SLIDE-PATTERN-${name}`;
+      const initialKind = NEW_PATTERNS.has(name) ? 'newPattern' : 'legacy';
       const card = document.createElement('div');
       card.className = 'pattern-card';
-      card.onclick = () => openOverlay(fullName);
+      card.onclick = () => openOverlay(fullName, card.dataset.geomKind || initialKind);
       card.innerHTML = `
         <div class="slide-preview">
-          <iframe src="SLIDE-PATTERN/${fullName}/${fullName}.html" loading="lazy"></iframe>
           <div class="select-badge"></div>
         </div>
         <div class="card-footer">
@@ -1010,6 +1119,21 @@ function buildGallery() {
           <button class="select-btn">選択</button>
         </div>
       `;
+      const preview = card.querySelector('.slide-preview');
+      const iframe = document.createElement('iframe');
+      iframe.loading = 'lazy';
+      iframe.src = `SLIDE-PATTERN/${fullName}/${fullName}.html`;
+      applyThumbGeometry(iframe, initialKind);
+      attachSelfHealingGeometry(iframe, initialKind, false);
+      // 自己修復でジオメトリが変わった場合、カード自体のdatasetにも
+      // 反映してオーバーレイ表示時に正しい種別を渡せるようにする
+      card.dataset.geomKind = initialKind;
+      iframe.addEventListener('load', () => {
+        // attachSelfHealingGeometry の判定後にdatasetへ反映されるよう
+        // 次のマイクロタスクで読み直す
+        setTimeout(() => { card.dataset.geomKind = iframe.dataset.geomKind; }, 0);
+      });
+      preview.insertBefore(iframe, preview.firstChild);
       card.querySelector('.select-btn').addEventListener('click', e => {
         toggleSelect(e, 'pattern', fullName, `SLIDE-PATTERN/${fullName}/${fullName}.md`, name, card);
       });
@@ -1020,14 +1144,24 @@ function buildGallery() {
   });
 }
 
+// オーバーレイでの実寸（chromeを含めた全体をそのままcontainする）
+// newPattern/newDS: 1480x950, legacy: 1000x640, rawFit: 960x540のまま
+const OVERLAY_BASE = {
+  newPattern: { w: 1480, h: 950 },
+  newDS:      { w: 1480, h: 950 },
+  legacy:     { w: 1000, h: 640 },
+  rawFit:     { w: 960,  h: 540 },
+};
+
+let currentOverlayKind = 'legacy';
+
 function fitPreview() {
   const wrap = document.getElementById('overlay-preview-wrap');
   if (!wrap) return;
   const iframe = document.getElementById('overlay-iframe');
-  const isDS = wrap.className === 'ds-iframe-wrap';
-  const isNew = isDS && currentDSCanvas === "1920x1080";
-  const baseW = isNew ? 1440 : 960;
-  const baseH = isNew ? 810 : (isDS ? 540 : 540);
+  const base = OVERLAY_BASE[currentOverlayKind] || OVERLAY_BASE.legacy;
+  const baseW = base.w;
+  const baseH = base.h;
   const scale = wrap.clientWidth / baseW;
   if (scale >= 1) {
     iframe.style.transform = '';
@@ -1041,7 +1175,7 @@ function fitPreview() {
 
 window.addEventListener('resize', fitPreview);
 
-function openOverlayCore({ title, htmlSrc, mdSrc, mdLabel, isDS, canvas }) {
+function openOverlayCore({ title, htmlSrc, mdSrc, mdLabel, isDS, geomKind }) {
   const overlay = document.getElementById('overlay');
   const wrap = document.getElementById('overlay-preview-wrap');
 
@@ -1050,21 +1184,12 @@ function openOverlayCore({ title, htmlSrc, mdSrc, mdLabel, isDS, canvas }) {
   document.getElementById('md-toolbar-label').textContent = mdLabel;
 
   // プレビューラッパーをモードに応じて切り替え
-  if (isDS) {
-    const isNew = canvas === "1920x1080";
-    const iframeW = isNew ? 1440 : 960;
-    const iframeH = isNew ? 810 : 540;
-    currentDSCanvas = canvas || "960x540";
-    wrap.className = 'ds-iframe-wrap';
-    const iframe = document.getElementById('overlay-iframe');
-    iframe.style.width = iframeW + 'px';
-    iframe.style.height = iframeH + 'px';
-  } else {
-    currentDSCanvas = "960x540";
-    wrap.className = 'overlay-iframe-wrap';
-    document.getElementById('overlay-iframe').style.width = '960px';
-    document.getElementById('overlay-iframe').style.height = '540px';
-  }
+  currentOverlayKind = geomKind || 'legacy';
+  const base = OVERLAY_BASE[currentOverlayKind] || OVERLAY_BASE.legacy;
+  wrap.className = isDS ? 'ds-iframe-wrap' : 'overlay-iframe-wrap';
+  const iframe = document.getElementById('overlay-iframe');
+  iframe.style.width = base.w + 'px';
+  iframe.style.height = base.h + 'px';
   document.getElementById('overlay-iframe').src = htmlSrc;
 
   // マークダウン読み込みリセット
@@ -1096,24 +1221,26 @@ function openOverlayCore({ title, htmlSrc, mdSrc, mdLabel, isDS, canvas }) {
     });
 }
 
-function openOverlay(name) {
+function openOverlay(name, geomKind) {
   openOverlayCore({
     title: name,
     htmlSrc: `SLIDE-PATTERN/${name}/${name}.html`,
     mdSrc:  `SLIDE-PATTERN/${name}/${name}.md`,
     mdLabel: `${name}.md`,
     isDS: false,
+    geomKind: geomKind || 'legacy',
   });
 }
 
-function openDSOverlay(name, label, canvas) {
+function openDSOverlay(name, label, canvas, isRawFit) {
+  const geomKind = isRawFit ? 'rawFit' : (canvas === "1920x1080" ? 'newDS' : 'legacy');
   openOverlayCore({
     title: label,
     htmlSrc: `SLIDE-md/${name}/sample.html`,
     mdSrc:  `SLIDE-md/${name}/SLIDE.md`,
     mdLabel: 'SLIDE.md',
     isDS: true,
-    canvas: canvas || "960x540",
+    geomKind,
   });
 }
 

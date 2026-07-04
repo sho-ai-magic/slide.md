@@ -2,57 +2,32 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SLIDE-PATTERN-numbered-row-full-width</title>
 <style>
-  /* スライド全体のリセットと基本設定 */
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #E0E0E0; display: flex; justify-content: center; align-items: center; min-height: 100vh; font-family: sans-serif; }
-
-  /* スライド本体：960×540px固定 */
-  .slide {
-    width: 960px;
-    height: 540px;
-    background: #FFFFFF;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    position: relative;
-  }
-
-  /* エリアラベル共通スタイル */
-  .area-label {
-    font-size: 11px;
-    color: #999999;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 2px;
-  }
-
-  /* タイトルエリア */
-  .title-area {
-    padding: 14px 40px 12px;
-    border-bottom: 1px dashed #CCCCCC;
-    flex-shrink: 0;
-    background: #FAFAFA;
-  }
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
 
   /* コンテンツエリア */
   .content-area {
     flex: 1;
-    padding: 16px 40px 14px;
+    padding: 32px 80px 28px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 16px;
     overflow: hidden;
   }
 
   .content-area-label {
-    font-size: 11px;
+    font-size: 20px;
     color: #999999;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     flex-shrink: 0;
   }
 
@@ -61,17 +36,17 @@
     flex: 1;
     background: #F0F0F0;
     border: 1px solid #CCCCCC;
-    border-radius: 3px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
-    padding: 0 16px 0 0;
+    padding: 0 32px 0 0;
     gap: 0;
     overflow: hidden;
   }
 
   /* 左ゾーン：番号バッジ */
   .row-badge-zone {
-    width: 72px;
+    width: 144px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -82,26 +57,26 @@
   }
 
   .row-badge-label {
-    font-size: 9px;
+    font-size: 18px;
     color: #888888;
     text-transform: uppercase;
     position: absolute;
-    top: 4px;
+    top: 8px;
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
   }
 
   .row-badge-number {
-    font-size: 22px;
+    font-size: 44px;
     font-weight: bold;
     color: #555555;
-    margin-top: 10px;
+    margin-top: 20px;
   }
 
   /* シェブロンゾーン */
   .row-chevron-zone {
-    width: 36px;
+    width: 72px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
@@ -110,16 +85,13 @@
     background: #E8E8E8;
   }
 
-  .chevron {
-    font-size: 16px;
-    color: #AAAAAA;
-  }
+  .chevron { display: flex; align-items: center; justify-content: center; font-size: 36px; color: #AAAAAA; line-height: 1; }
 
   /* 中央ゾーン：見出し */
   .row-heading-zone {
-    width: 180px;
+    width: 360px;
     flex-shrink: 0;
-    padding: 8px 16px;
+    padding: 16px 32px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -127,25 +99,25 @@
   }
 
   .row-heading-zone-label {
-    font-size: 9px;
+    font-size: 18px;
     color: #AAAAAA;
     text-transform: uppercase;
     position: absolute;
-    top: 4px;
-    left: 16px;
+    top: 8px;
+    left: 32px;
   }
 
   .row-heading-text {
-    font-size: 14px;
+    font-size: 28px;
     font-weight: bold;
     color: #333333;
-    margin-top: 10px;
+    margin-top: 20px;
   }
 
   /* 右ゾーン：説明テキスト */
   .row-desc-zone {
     flex: 1;
-    padding: 8px 0 8px 16px;
+    padding: 16px 0 16px 32px;
     border-left: 1px dashed #CCCCCC;
     display: flex;
     flex-direction: column;
@@ -154,111 +126,126 @@
   }
 
   .row-desc-zone-label {
-    font-size: 9px;
+    font-size: 18px;
     color: #AAAAAA;
     text-transform: uppercase;
     position: absolute;
-    top: 4px;
-    left: 16px;
+    top: 8px;
+    left: 32px;
   }
 
   .row-desc-text {
-    font-size: 11px;
+    font-size: 22px;
     color: #555555;
     line-height: 1.5;
-    margin-top: 10px;
+    margin-top: 20px;
   }
 </style>
 </head>
 <body>
-<div class="slide">
+<p class="slide-label">[numbered-row-full-width]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-  <!-- タイトルエリア（SLIDE.mdで定義） -->
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-  </div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
 
-  <!-- コンテンツエリア：番号付き横長バナー行 -->
-  <div class="content-area">
-    <div class="content-area-label">Content Area — numbered-row-full-width pattern</div>
+      <!-- コンテンツエリア：番号付き横長バナー行 -->
+      <div class="content-area">
+        <div class="content-area-label">Content Area — numbered-row-full-width pattern</div>
 
-    <!-- 行1 -->
-    <div class="row-item">
-      <div class="row-badge-zone">
-        <span class="row-badge-label">badge</span>
-        <span class="row-badge-number">1</span>
+        <!-- 行1 -->
+        <div class="row-item">
+          <div class="row-badge-zone">
+            <span class="row-badge-label">badge</span>
+            <span class="row-badge-number">1</span>
+          </div>
+          <div class="row-chevron-zone">
+            <span class="chevron">›</span>
+          </div>
+          <div class="row-heading-zone">
+            <span class="row-heading-zone-label">heading</span>
+            <span class="row-heading-text">項目見出し 01</span>
+          </div>
+          <div class="row-desc-zone">
+            <span class="row-desc-zone-label">description</span>
+            <p class="row-desc-text">この項目の説明文が入ります。サービスや事業の内容を<br>簡潔に2〜3行で記述します。</p>
+          </div>
+        </div>
+
+        <!-- 行2 -->
+        <div class="row-item">
+          <div class="row-badge-zone">
+            <span class="row-badge-label">badge</span>
+            <span class="row-badge-number">2</span>
+          </div>
+          <div class="row-chevron-zone">
+            <span class="chevron">›</span>
+          </div>
+          <div class="row-heading-zone">
+            <span class="row-heading-zone-label">heading</span>
+            <span class="row-heading-text">項目見出し 02</span>
+          </div>
+          <div class="row-desc-zone">
+            <span class="row-desc-zone-label">description</span>
+            <p class="row-desc-text">この項目の説明文が入ります。サービスや事業の内容を<br>簡潔に2〜3行で記述します。</p>
+          </div>
+        </div>
+
+        <!-- 行3 -->
+        <div class="row-item">
+          <div class="row-badge-zone">
+            <span class="row-badge-label">badge</span>
+            <span class="row-badge-number">3</span>
+          </div>
+          <div class="row-chevron-zone">
+            <span class="chevron">›</span>
+          </div>
+          <div class="row-heading-zone">
+            <span class="row-heading-zone-label">heading</span>
+            <span class="row-heading-text">項目見出し 03</span>
+          </div>
+          <div class="row-desc-zone">
+            <span class="row-desc-zone-label">description</span>
+            <p class="row-desc-text">この項目の説明文が入ります。サービスや事業の内容を<br>簡潔に2〜3行で記述します。</p>
+          </div>
+        </div>
+
+        <!-- 行4 -->
+        <div class="row-item">
+          <div class="row-badge-zone">
+            <span class="row-badge-label">badge</span>
+            <span class="row-badge-number">4</span>
+          </div>
+          <div class="row-chevron-zone">
+            <span class="chevron">›</span>
+          </div>
+          <div class="row-heading-zone">
+            <span class="row-heading-zone-label">heading</span>
+            <span class="row-heading-text">項目見出し 04</span>
+          </div>
+          <div class="row-desc-zone">
+            <span class="row-desc-zone-label">description</span>
+            <p class="row-desc-text">この項目の説明文が入ります。サービスや事業の内容を<br>簡潔に2〜3行で記述します。</p>
+          </div>
+        </div>
+
       </div>
-      <div class="row-chevron-zone">
-        <span class="chevron">›</span>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
       </div>
-      <div class="row-heading-zone">
-        <span class="row-heading-zone-label">heading</span>
-        <span class="row-heading-text">項目見出し 01</span>
-      </div>
-      <div class="row-desc-zone">
-        <span class="row-desc-zone-label">description</span>
-        <p class="row-desc-text">この項目の説明文が入ります。サービスや事業の内容を<br>簡潔に2〜3行で記述します。</p>
-      </div>
+
     </div>
-
-    <!-- 行2 -->
-    <div class="row-item">
-      <div class="row-badge-zone">
-        <span class="row-badge-label">badge</span>
-        <span class="row-badge-number">2</span>
-      </div>
-      <div class="row-chevron-zone">
-        <span class="chevron">›</span>
-      </div>
-      <div class="row-heading-zone">
-        <span class="row-heading-zone-label">heading</span>
-        <span class="row-heading-text">項目見出し 02</span>
-      </div>
-      <div class="row-desc-zone">
-        <span class="row-desc-zone-label">description</span>
-        <p class="row-desc-text">この項目の説明文が入ります。サービスや事業の内容を<br>簡潔に2〜3行で記述します。</p>
-      </div>
-    </div>
-
-    <!-- 行3 -->
-    <div class="row-item">
-      <div class="row-badge-zone">
-        <span class="row-badge-label">badge</span>
-        <span class="row-badge-number">3</span>
-      </div>
-      <div class="row-chevron-zone">
-        <span class="chevron">›</span>
-      </div>
-      <div class="row-heading-zone">
-        <span class="row-heading-zone-label">heading</span>
-        <span class="row-heading-text">項目見出し 03</span>
-      </div>
-      <div class="row-desc-zone">
-        <span class="row-desc-zone-label">description</span>
-        <p class="row-desc-text">この項目の説明文が入ります。サービスや事業の内容を<br>簡潔に2〜3行で記述します。</p>
-      </div>
-    </div>
-
-    <!-- 行4 -->
-    <div class="row-item">
-      <div class="row-badge-zone">
-        <span class="row-badge-label">badge</span>
-        <span class="row-badge-number">4</span>
-      </div>
-      <div class="row-chevron-zone">
-        <span class="chevron">›</span>
-      </div>
-      <div class="row-heading-zone">
-        <span class="row-heading-zone-label">heading</span>
-        <span class="row-heading-text">項目見出し 04</span>
-      </div>
-      <div class="row-desc-zone">
-        <span class="row-desc-zone-label">description</span>
-        <p class="row-desc-text">この項目の説明文が入ります。サービスや事業の内容を<br>簡潔に2〜3行で記述します。</p>
-      </div>
-    </div>
-
   </div>
 </div>
 </body>

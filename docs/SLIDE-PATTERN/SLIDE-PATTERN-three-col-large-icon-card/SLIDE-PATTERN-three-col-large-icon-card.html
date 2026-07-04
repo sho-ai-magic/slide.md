@@ -2,88 +2,19 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SLIDE-PATTERN-three-col-large-icon-card</title>
 <style>
-  /* スライド全体のリセットと基本設定 */
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #E0E0E0; display: flex; justify-content: center; align-items: center; min-height: 100vh; font-family: sans-serif; }
-
-  /* スライド本体：960×540px固定 */
-  .slide {
-    width: 960px;
-    height: 540px;
-    background: #FFFFFF;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    position: relative;
-  }
-
-  /* エリアラベル共通スタイル */
-  .area-label {
-    font-size: 11px;
-    color: #999999;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 2px;
-  }
-
-  /* タイトルエリア */
-  .title-area {
-    padding: 14px 40px 12px;
-    border-bottom: 1px dashed #CCCCCC;
-    flex-shrink: 0;
-    background: #FAFAFA;
-  }
-
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
   /* サブタイトル行（任意：リード文） */
-  .subtitle-area {
-    padding: 8px 40px 6px;
-    border-bottom: 1px dashed #EEEEEE;
-    flex-shrink: 0;
-    background: #FFFFFF;
-  }
-
-  .subtitle-label {
-    font-size: 9px;
-    color: #BBBBBB;
-    text-transform: uppercase;
-    margin-bottom: 1px;
-  }
-
-  .subtitle-text {
-    font-size: 11px;
-    color: #CCCCCC;
-    line-height: 1.4;
-  }
-
-  /* コンテンツエリア */
-  .content-area {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-
-  .content-area-label {
-    font-size: 11px;
-    color: #BBBBBB;
-    text-transform: uppercase;
-    padding: 6px 12px 2px;
-    flex-shrink: 0;
-  }
-
+  .subtitle-area { margin-bottom: 20px; flex-shrink: 0; }
+  .subtitle-text { font-size: 22px; color: #CCCCCC; line-height: 1.4; }
   /* 3列グリッド */
-  .card-grid {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-    padding: 6px 20px 16px;
-    overflow: hidden;
-  }
-
+  .card-grid { flex: 1; display: flex; flex-direction: row; gap: 24px; overflow: hidden; }
   /* カード */
   .card {
     flex: 1;
@@ -91,203 +22,149 @@
     flex-direction: column;
     background: #F8F8F8;
     border: 1px solid #DDDDDD;
-    border-radius: 4px;
+    border-radius: 8px;
     overflow: hidden;
   }
-
   /* カードヘッダー */
   .card-header {
     background: #E8E8E8;
     border-bottom: 1px solid #CCCCCC;
-    padding: 10px 14px 10px;
+    padding: 20px 28px 20px;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 10px;
+    gap: 20px;
     position: relative;
     flex-shrink: 0;
   }
-
-  .card-header-label {
-    position: absolute;
-    top: 4px;
-    right: 8px;
-    font-size: 9px;
-    color: #BBBBBB;
-    text-transform: uppercase;
-  }
-
+  .card-header-label { position: absolute; top: 8px; right: 16px; font-size: 16px; color: #BBBBBB; text-transform: uppercase; }
   /* アイコン（ドッグイヤー風のプレースホルダー） */
   .icon-box {
-    width: 40px;
-    height: 40px;
+    width: 80px;
+    height: 80px;
     background: #CCCCCC;
-    border-radius: 4px;
+    border-radius: 8px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
   }
-
-  .icon-box-label {
-    font-size: 8px;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    text-align: center;
-    line-height: 1.2;
-  }
-
+  .icon-box-label { font-size: 16px; color: #FFFFFF; text-transform: uppercase; text-align: center; line-height: 1.2; }
   /* カード見出し */
-  .card-heading {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 4px;
-  }
-
-  .card-heading-sublabel {
-    font-size: 9px;
-    color: #AAAAAA;
-    text-transform: uppercase;
-    margin-bottom: 2px;
-  }
-
-  .card-heading-text {
-    font-size: 13px;
-    font-weight: bold;
-    color: #333333;
-    line-height: 1.3;
-  }
-
+  .card-heading { display: flex; flex-direction: column; justify-content: center; padding-top: 8px; }
+  .card-heading-sublabel { font-size: 18px; color: #AAAAAA; text-transform: uppercase; margin-bottom: 4px; }
+  .card-heading-text { font-size: 26px; font-weight: bold; color: #333333; line-height: 1.3; }
   /* カードボディ */
-  .card-body {
-    flex: 1;
-    padding: 12px 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .card-body-label {
-    font-size: 9px;
-    color: #BBBBBB;
-    text-transform: uppercase;
-    margin-bottom: 2px;
-  }
-
+  .card-body { flex: 1; padding: 24px 28px; display: flex; flex-direction: column; gap: 12px; }
+  .card-body-label { font-size: 18px; color: #BBBBBB; text-transform: uppercase; margin-bottom: 4px; }
   /* 箇条書きリスト */
-  .bullet-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .bullet-list li {
-    font-size: 10px;
-    color: #555555;
-    line-height: 1.5;
-    padding-left: 10px;
-    position: relative;
-  }
-
-  .bullet-list li::before {
-    content: "●";
-    font-size: 7px;
-    color: #AAAAAA;
-    position: absolute;
-    left: 0;
-    top: 2px;
-  }
+  .bullet-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin: 0; padding: 0; }
+  .bullet-list li { font-size: 20px; color: #555555; line-height: 1.5; padding-left: 20px; position: relative; }
+  .bullet-list li::before { content: "●"; font-size: 14px; color: #AAAAAA; position: absolute; left: 0; top: 4px; }
 </style>
 </head>
 <body>
-<div class="slide">
+<p class="slide-label">[three-col-large-icon-card]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-  <!-- タイトルエリア（SLIDE.mdで定義） -->
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-  </div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
 
-  <!-- サブタイトル行（任意：リード文） -->
-  <div class="subtitle-area">
-    <div class="subtitle-label">subtitle / lead text (optional)</div>
-    <div class="subtitle-text">リード文・補足説明が1〜2行で入ります。各カードの内容を補足するテキスト。</div>
-  </div>
+      <!-- コンテンツエリア -->
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:24px 60px;">
+        <div class="area-label">Content Area — three-col-large-icon-card pattern</div>
 
-  <!-- コンテンツエリア：three-col-large-icon-card pattern -->
-  <div class="content-area">
-    <div class="content-area-label">Content Area — three-col-large-icon-card pattern</div>
-
-    <!-- 3列カードグリッド -->
-    <div class="card-grid">
-
-      <!-- カード 1 -->
-      <div class="card">
-        <div class="card-header">
-          <span class="card-header-label">card header</span>
-          <div class="icon-box">
-            <span class="icon-box-label">icon</span>
-          </div>
-          <div class="card-heading">
-            <span class="card-heading-sublabel">heading</span>
-            <span class="card-heading-text">カード見出し 01<br>サブテキスト</span>
-          </div>
+        <!-- サブタイトル行（任意：リード文） -->
+        <div class="subtitle-area">
+          <div class="area-label">Subtitle / Lead Text (optional)</div>
+          <div class="subtitle-text">リード文・補足説明が1〜2行で入ります。各カードの内容を補足するテキスト。</div>
         </div>
-        <div class="card-body">
-          <span class="card-body-label">bullet list</span>
-          <ul class="bullet-list">
-            <li>箇条書き項目の説明テキストが入ります</li>
-            <li>箇条書き項目の説明テキストが入ります</li>
-            <li>箇条書き項目の説明テキストが入ります</li>
-          </ul>
+
+        <!-- 3列カードグリッド -->
+        <div class="card-grid">
+
+          <!-- カード 1 -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-header-label">card header</span>
+              <div class="icon-box">
+                <span class="icon-box-label">icon</span>
+              </div>
+              <div class="card-heading">
+                <span class="card-heading-sublabel">heading</span>
+                <span class="card-heading-text">カード見出し 01<br>サブテキスト</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <span class="card-body-label">bullet list</span>
+              <ul class="bullet-list">
+                <li>箇条書き項目の説明テキストが入ります</li>
+                <li>箇条書き項目の説明テキストが入ります</li>
+                <li>箇条書き項目の説明テキストが入ります</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- カード 2 -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-header-label">card header</span>
+              <div class="icon-box">
+                <span class="icon-box-label">icon</span>
+              </div>
+              <div class="card-heading">
+                <span class="card-heading-sublabel">heading</span>
+                <span class="card-heading-text">カード見出し 02<br>サブテキスト</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <span class="card-body-label">bullet list</span>
+              <ul class="bullet-list">
+                <li>箇条書き項目の説明テキストが入ります</li>
+                <li>箇条書き項目の説明テキストが入ります</li>
+                <li>箇条書き項目の説明テキストが入ります</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- カード 3 -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-header-label">card header</span>
+              <div class="icon-box">
+                <span class="icon-box-label">icon</span>
+              </div>
+              <div class="card-heading">
+                <span class="card-heading-sublabel">heading</span>
+                <span class="card-heading-text">カード見出し 03<br>サブテキスト</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <span class="card-body-label">bullet list</span>
+              <ul class="bullet-list">
+                <li>箇条書き項目の説明テキストが入ります</li>
+                <li>箇条書き項目の説明テキストが入ります</li>
+                <li>箇条書き項目の説明テキストが入ります</li>
+              </ul>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <!-- カード 2 -->
-      <div class="card">
-        <div class="card-header">
-          <span class="card-header-label">card header</span>
-          <div class="icon-box">
-            <span class="icon-box-label">icon</span>
-          </div>
-          <div class="card-heading">
-            <span class="card-heading-sublabel">heading</span>
-            <span class="card-heading-text">カード見出し 02<br>サブテキスト</span>
-          </div>
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
         </div>
-        <div class="card-body">
-          <span class="card-body-label">bullet list</span>
-          <ul class="bullet-list">
-            <li>箇条書き項目の説明テキストが入ります</li>
-            <li>箇条書き項目の説明テキストが入ります</li>
-            <li>箇条書き項目の説明テキストが入ります</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- カード 3 -->
-      <div class="card">
-        <div class="card-header">
-          <span class="card-header-label">card header</span>
-          <div class="icon-box">
-            <span class="icon-box-label">icon</span>
-          </div>
-          <div class="card-heading">
-            <span class="card-heading-sublabel">heading</span>
-            <span class="card-heading-text">カード見出し 03<br>サブテキスト</span>
-          </div>
-        </div>
-        <div class="card-body">
-          <span class="card-body-label">bullet list</span>
-          <ul class="bullet-list">
-            <li>箇条書き項目の説明テキストが入ります</li>
-            <li>箇条書き項目の説明テキストが入ります</li>
-            <li>箇条書き項目の説明テキストが入ります</li>
-          </ul>
-        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
       </div>
 
     </div>

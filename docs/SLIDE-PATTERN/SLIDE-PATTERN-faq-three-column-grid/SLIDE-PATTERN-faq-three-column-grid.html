@@ -1,159 +1,103 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>SLIDE-PATTERN-faq-three-column-grid</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      width: 960px;
-      height: 540px;
-      overflow: hidden;
-      font-family: sans-serif;
-      background: #FFFFFF;
-      display: flex;
-      flex-direction: column;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    /* タイトルエリア */
-    .title-area {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      flex-shrink: 0;
-      background: #FAFAFA;
-    }
-    .title-placeholder {
-      font-size: 16px;
-      color: #CCCCCC;
-      margin-top: 4px;
-    }
-    /* コンテンツエリア */
-    .content-area {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      padding: 14px 28px 14px;
-      overflow: hidden;
-      position: relative;
-    }
-    .content-area > .area-label {
-      margin-bottom: 8px;
-    }
-    /* FAQ グリッド */
-    .faq-grid {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 12px;
-    }
-    /* 各FAQセル（カード） */
-    .faq-card {
-      border: 1px solid #CCCCCC;
-      border-radius: 4px;
-      padding: 10px 14px 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background: #FFFFFF;
-      overflow: hidden;
-    }
-    /* Qバッジ */
-    .q-badge {
-      background: #AAAAAA;
-      color: #FFFFFF;
-      font-size: 12px;
-      font-weight: bold;
-      padding: 3px 12px;
-      border-radius: 2px;
-      margin-bottom: 8px;
-      flex-shrink: 0;
-    }
-    /* 質問テキスト */
-    .q-text {
-      font-size: 12px;
-      font-weight: bold;
-      color: #333333;
-      text-align: center;
-      line-height: 1.5;
-      margin-bottom: 7px;
-      flex-shrink: 0;
-    }
-    /* 回答テキスト */
-    .a-text {
-      font-size: 11px;
-      color: #555555;
-      line-height: 1.55;
-      text-align: left;
-      width: 100%;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-faq-three-column-grid</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  /* FAQ グリッド */
+  .faq-grid { flex: 1; display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 24px; }
+  /* 各FAQセル（カード） */
+  .faq-card { border: 1px solid #CCCCCC; border-radius: 8px; padding: 20px 28px 20px; display: flex; flex-direction: column; align-items: center; background: #FFFFFF; overflow: hidden; box-sizing: border-box; }
+  /* Qバッジ */
+  .q-badge { background: #AAAAAA; color: #FFFFFF; font-size: 24px; font-weight: bold; padding: 6px 24px; border-radius: 4px; margin-bottom: 16px; flex-shrink: 0; }
+  /* 質問テキスト */
+  .q-text { font-size: 24px; font-weight: bold; color: #333333; text-align: center; line-height: 1.5; margin-bottom: 14px; flex-shrink: 0; }
+  /* 回答テキスト */
+  .a-text { font-size: 22px; color: #555555; line-height: 1.55; text-align: left; width: 100%; }
+</style>
 </head>
 <body>
+<p class="slide-label">[faq-three-column-grid]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-  <!-- タイトルエリア -->
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div class="title-placeholder">スライドタイトルが入ります</div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+
+      <!-- コンテンツエリア -->
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:24px 60px;">
+        <div class="area-label">FAQ Grid — 3列×2行のカードグリッド（Q-badge / question / answer）</div>
+
+        <!-- 3列×2行のFAQグリッド -->
+        <div class="faq-grid">
+
+          <!-- Q1 -->
+          <div class="faq-card">
+            <div class="q-badge">Q1</div>
+            <div class="q-text">現場の業務フローに大きな変更は発生しますか？</div>
+            <div class="a-text">基本的には既存の業務フローを活かしながら改善を行うため、大幅な変更は想定していません。</div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="faq-card">
+            <div class="q-badge">Q2</div>
+            <div class="q-text">本施策を導入することで期待できる主な効果は何ですか？</div>
+            <div class="a-text">作業工程の見直しとツール活用により、主に業務効率の向上とコスト削減が期待できます。</div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="faq-card">
+            <div class="q-badge">Q3</div>
+            <div class="q-text">導入までにどの程度の期間が必要になりますか？</div>
+            <div class="a-text">一般的には要件整理から運用開始まで約1〜2ヶ月を想定しています。</div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="faq-card">
+            <div class="q-badge">Q4</div>
+            <div class="q-text">コストに対してどの程度の費用対効果が見込めますか？</div>
+            <div class="a-text">作業時間の削減や人的コストの最適化により、中長期的に費用対効果が見込め、継続的なコスト改善につながります。</div>
+          </div>
+
+          <!-- Q5 -->
+          <div class="faq-card">
+            <div class="q-badge">Q5</div>
+            <div class="q-text">小規模なチームでも導入するメリットはありますか？</div>
+            <div class="a-text">小規模なチームほど一人あたりの業務負担が大きくなりやすいため、効率化の効果を実感しやすい傾向があります。</div>
+          </div>
+
+          <!-- Q6 -->
+          <div class="faq-card">
+            <div class="q-badge">Q6</div>
+            <div class="q-text">導入後のサポート体制はどのようになっていますか？</div>
+            <div class="a-text">導入後も一定期間は運用サポート、マニュアルの整備や追加改善提案も行い、課題があれば随時対応します。</div>
+          </div>
+
+        </div><!-- /faq-grid -->
+
+      </div><!-- /コンテンツエリア -->
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
+    </div>
   </div>
-
-  <!-- コンテンツエリア -->
-  <div class="content-area">
-    <div class="area-label">FAQ Grid — 3列×2行のカードグリッド（Q-badge / question / answer）</div>
-
-    <!-- 3列×2行のFAQグリッド -->
-    <div class="faq-grid">
-
-      <!-- Q1 -->
-      <div class="faq-card">
-        <div class="q-badge">Q1</div>
-        <div class="q-text">現場の業務フローに大きな変更は発生しますか？</div>
-        <div class="a-text">基本的には既存の業務フローを活かしながら改善を行うため、大幅な変更は想定していません。</div>
-      </div>
-
-      <!-- Q2 -->
-      <div class="faq-card">
-        <div class="q-badge">Q2</div>
-        <div class="q-text">本施策を導入することで期待できる主な効果は何ですか？</div>
-        <div class="a-text">作業工程の見直しとツール活用により、主に業務効率の向上とコスト削減が期待できます。</div>
-      </div>
-
-      <!-- Q3 -->
-      <div class="faq-card">
-        <div class="q-badge">Q3</div>
-        <div class="q-text">導入までにどの程度の期間が必要になりますか？</div>
-        <div class="a-text">一般的には要件整理から運用開始まで約1〜2ヶ月を想定しています。</div>
-      </div>
-
-      <!-- Q4 -->
-      <div class="faq-card">
-        <div class="q-badge">Q4</div>
-        <div class="q-text">コストに対してどの程度の費用対効果が見込めますか？</div>
-        <div class="a-text">作業時間の削減や人的コストの最適化により、中長期的に費用対効果が見込め、継続的なコスト改善につながります。</div>
-      </div>
-
-      <!-- Q5 -->
-      <div class="faq-card">
-        <div class="q-badge">Q5</div>
-        <div class="q-text">小規模なチームでも導入するメリットはありますか？</div>
-        <div class="a-text">小規模なチームほど一人あたりの業務負担が大きくなりやすいため、効率化の効果を実感しやすい傾向があります。</div>
-      </div>
-
-      <!-- Q6 -->
-      <div class="faq-card">
-        <div class="q-badge">Q6</div>
-        <div class="q-text">導入後のサポート体制はどのようになっていますか？</div>
-        <div class="a-text">導入後も一定期間は運用サポート、マニュアルの整備や追加改善提案も行い、課題があれば随時対応します。</div>
-      </div>
-
-    </div><!-- /faq-grid -->
-
-  </div><!-- /content-area -->
-
+</div>
 </body>
 </html>

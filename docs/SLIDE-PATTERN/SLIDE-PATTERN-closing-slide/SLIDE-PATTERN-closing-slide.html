@@ -1,101 +1,62 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-closing-slide</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: #E8E8E8;
-      font-family: 'Hiragino Sans', 'Meiryo', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-    }
-    .slide-label {
-      font-size: 12px;
-      color: #999;
-      margin-bottom: 12px;
-      letter-spacing: 0.05em;
-    }
-    /* フルサイズ・タイトルエリアなし */
-    .slide {
-      display: flex;
-      width: 960px;
-      height: 540px;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      overflow: hidden;
-      gap: 20px;
-    }
-    .accent-line {
-      width: 48px;
-      height: 2px;
-      background: #CCCCCC;
-    }
-    .main-message {
-      font-size: 28px;
-      font-weight: bold;
-      color: #333;
-      text-align: center;
-    }
-    .sub-message {
-      font-size: 14px;
-      color: #999;
-      text-align: center;
-      margin-top: -8px;
-    }
-    .divider {
-      width: 320px;
-      height: 1px;
-      background: #EEEEEE;
-    }
-    .presenter-info {
-      font-size: 14px;
-      color: #555;
-      text-align: center;
-      line-height: 1.8;
-    }
-    .contact-info {
-      font-size: 12px;
-      color: #888;
-      text-align: center;
-      margin-top: -8px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-closing-slide</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  /* コンテンツエリア（スライド全面。frame: none のためタイトルエリア・フッターは配置しない） */
+  .content-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+  }
+  .accent-line { width: 96px; height: 4px; background: #CCCCCC; }
+  .main-message { font-size: 56px; font-weight: bold; color: #333; text-align: center; }
+  .sub-message { font-size: 28px; color: #999; text-align: center; margin-top: -16px; }
+  .divider { width: 640px; height: 2px; background: #EEEEEE; }
+  .presenter-info { font-size: 28px; color: #555; text-align: center; line-height: 1.8; }
+  .contact-info { font-size: 24px; color: #888; text-align: center; margin-top: -16px; }
+</style>
 </head>
 <body>
-  <p class="slide-label">[closing-slide]</p>
+<p class="slide-label">[closing-slide]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+      <!-- コンテンツエリア（スライド全面。frame: none のためタイトルエリア・フッターは配置しない） -->
+      <div class="content-area">
+        <div class="area-label">Accent Line</div>
+        <div class="accent-line"></div>
 
-  <!-- タイトルエリアなし・フルサイズ -->
-  <div class="slide">
+        <div class="area-label">Main Message</div>
+        <p class="main-message">ご清聴ありがとうございました</p>
 
-    <!-- アクセント線 -->
-    <div class="accent-line"></div>
+        <div class="area-label">Sub Message</div>
+        <p class="sub-message">Thank you for your attention</p>
 
-    <!-- メインメッセージ -->
-    <p class="main-message">ご清聴ありがとうございました</p>
+        <div class="area-label">Divider</div>
+        <div class="divider"></div>
 
-    <!-- サブメッセージ（英語） -->
-    <p class="sub-message">Thank you for your attention</p>
+        <div class="area-label">Presenter Info</div>
+        <div class="presenter-info">
+          サンプル株式会社　営業企画部<br>
+          山田 太郎
+        </div>
 
-    <!-- 区切り線 -->
-    <div class="divider"></div>
-
-    <!-- 発表者情報 -->
-    <div class="presenter-info">
-      株式会社サンプル　営業企画部<br>
-      山田 太郎
+        <div class="area-label">Contact Info</div>
+        <p class="contact-info">yamada@sample.co.jp</p>
+      </div>
     </div>
-
-    <!-- 連絡先 -->
-    <p class="contact-info">yamada@sample.co.jp</p>
-
   </div>
+</div>
 </body>
 </html>

@@ -1,299 +1,278 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-milestone-timeline</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: #E8E8E8;
-      font-family: 'Hiragino Sans', 'Meiryo', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-    }
-    .slide-label {
-      font-size: 12px;
-      color: #999;
-      margin-bottom: 12px;
-      letter-spacing: 0.05em;
-    }
-    .slide {
-      width: 960px;
-      height: 540px;
-      background: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    /* タイトルエリア */
-    .title-area {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      flex-shrink: 0;
-      background: #FAFAFA;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .title-placeholder {
-      font-size: 16px;
-      color: #CCCCCC;
-      margin-top: 4px;
-    }
-    /* コンテンツエリア */
-    .content-area {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      padding: 24px 48px;
-      justify-content: center;
-      gap: 0;
-    }
-    /* フェーズラベル行 */
-    .phase-row {
-      display: flex;
-      border: 1px solid #E0E0E0;
-      border-bottom: none;
-      background: #FAFAFA;
-    }
-    .phase-cell {
-      flex: 1;
-      padding: 4px 8px;
-      font-size: 11px;
-      color: #999;
-      border-right: 1px solid #E0E0E0;
-      text-align: center;
-    }
-    .phase-cell:last-child {
-      border-right: none;
-    }
-    /* タイムラインコンテナ */
-    .timeline-container {
-      position: relative;
-      height: 140px;
-      border: 1px solid #E0E0E0;
-      border-top: none;
-      border-bottom: none;
-    }
-    /* 横線 */
-    .timeline-line {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: #CCCCCC;
-      transform: translateY(-50%);
-    }
-    /* マーカーを均等配置するラッパー */
-    .markers-row {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 24px;
-    }
-    .milestone {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-      position: relative;
-    }
-    /* マーカーの上: 日付 */
-    .marker-date {
-      font-size: 11px;
-      color: #888;
-      margin-bottom: 6px;
-      white-space: nowrap;
-    }
-    /* マーカー本体 */
-    .marker {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      border: 2px solid #888;
-      background: #FFFFFF;
-      flex-shrink: 0;
-      position: relative;
-      z-index: 1;
-    }
-    .marker.completed {
-      background: #CCCCCC;
-    }
-    /* マーカーの下: ラベル・説明 */
-    .marker-info {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 6px;
-    }
-    .marker-label {
-      font-size: 12px;
-      color: #333;
-      font-weight: bold;
-      white-space: nowrap;
-    }
-    .marker-desc {
-      font-size: 11px;
-      color: #666;
-      white-space: nowrap;
-    }
-    /* 凡例エリア */
-    .legend-row {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 16px;
-      padding-top: 8px;
-      border: 1px solid #E0E0E0;
-      border-top: none;
-      padding: 6px 16px;
-    }
-    .legend-label {
-      font-size: 11px;
-      color: #888;
-      margin-right: 4px;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 11px;
-      color: #888;
-    }
-    .legend-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      border: 2px solid #888;
-      flex-shrink: 0;
-    }
-    .legend-dot.completed {
-      background: #CCCCCC;
-    }
-    .legend-dot.planned {
-      background: #FFFFFF;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-milestone-timeline</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
+
+  /* コンテンツエリア */
+  .content-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 48px 96px;
+    justify-content: center;
+    gap: 0;
+  }
+  /* フェーズラベル行 */
+  .phase-row {
+    display: flex;
+    border: 1px solid #E0E0E0;
+    border-bottom: none;
+    background: #FAFAFA;
+  }
+  .phase-cell {
+    flex: 1;
+    padding: 8px 16px;
+    font-size: 18px;
+    color: #999999;
+    border-right: 1px solid #E0E0E0;
+    text-align: center;
+  }
+  .phase-cell:last-child {
+    border-right: none;
+  }
+  /* タイムラインコンテナ */
+  .timeline-container {
+    position: relative;
+    height: 280px;
+    border: 1px solid #E0E0E0;
+    border-top: none;
+    border-bottom: none;
+  }
+  /* 横線 */
+  .timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #CCCCCC;
+    transform: translateY(-50%);
+  }
+  /* マーカーを均等配置するラッパー */
+  .markers-row {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 48px;
+  }
+  .milestone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    position: relative;
+  }
+  /* マーカーの上: 日付 */
+  .marker-date {
+    font-size: 18px;
+    color: #888888;
+    margin-bottom: 12px;
+    white-space: nowrap;
+  }
+  /* マーカー本体 */
+  .marker {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 4px solid #888888;
+    background: #FFFFFF;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .marker.completed {
+    background: #CCCCCC;
+  }
+  /* マーカーの下: ラベル・説明 */
+  .marker-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 12px;
+  }
+  .marker-label {
+    font-size: 20px;
+    color: #333333;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  .marker-desc {
+    font-size: 18px;
+    color: #666666;
+    white-space: nowrap;
+  }
+  /* 凡例エリア */
+  .legend-row {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 32px;
+    border: 1px solid #E0E0E0;
+    border-top: none;
+    padding: 12px 32px;
+  }
+  .legend-label {
+    font-size: 18px;
+    color: #888888;
+    margin-right: 8px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    color: #888888;
+  }
+  .legend-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 4px solid #888888;
+    flex-shrink: 0;
+  }
+  .legend-dot.completed {
+    background: #CCCCCC;
+  }
+  .legend-dot.planned {
+    background: #FFFFFF;
+  }
+</style>
 </head>
 <body>
-  <p class="slide-label">[milestone-timeline]</p>
-  <div class="slide">
+<p class="slide-label">[milestone-timeline]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-    <!-- タイトルエリア -->
-    <div class="title-area">
-      <div class="area-label">Title Area — SLIDE.md 参照</div>
-      <div class="title-placeholder">スライドタイトルが入ります</div>
-    </div>
-
-    <!-- コンテンツエリア -->
-    <div class="content-area">
-
-      <!-- フェーズラベル行 -->
-      <div class="phase-row">
-        <div class="phase-cell">Q1（1〜3月）</div>
-        <div class="phase-cell">Q2（4〜6月）</div>
-        <div class="phase-cell">Q3（7〜9月）</div>
-        <div class="phase-cell">Q4（10〜12月）</div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
 
-      <!-- タイムラインコンテナ -->
-      <div class="timeline-container">
-        <!-- 横線 -->
-        <div class="timeline-line"></div>
+      <!-- コンテンツエリア -->
+      <div class="content-area">
 
-        <!-- マーカー群 -->
-        <div class="markers-row">
-
-          <!-- M1: キックオフ（完了） -->
-          <div class="milestone">
-            <div class="marker-date">1/10</div>
-            <div class="marker completed"></div>
-            <div class="marker-info">
-              <div class="marker-label">キックオフ</div>
-              <div class="marker-desc">プロジェクト開始</div>
-            </div>
-          </div>
-
-          <!-- M2: 要件確定（完了） -->
-          <div class="milestone">
-            <div class="marker-date">3/31</div>
-            <div class="marker completed"></div>
-            <div class="marker-info">
-              <div class="marker-label">要件確定</div>
-              <div class="marker-desc">要件定義完了</div>
-            </div>
-          </div>
-
-          <!-- M3: 設計完了（完了） -->
-          <div class="milestone">
-            <div class="marker-date">6/30</div>
-            <div class="marker completed"></div>
-            <div class="marker-info">
-              <div class="marker-label">設計完了</div>
-              <div class="marker-desc">基本設計レビュー</div>
-            </div>
-          </div>
-
-          <!-- M4: 開発完了（予定） -->
-          <div class="milestone">
-            <div class="marker-date">9/15</div>
-            <div class="marker"></div>
-            <div class="marker-info">
-              <div class="marker-label">開発完了</div>
-              <div class="marker-desc">内部テスト開始</div>
-            </div>
-          </div>
-
-          <!-- M5: UAT完了（予定） -->
-          <div class="milestone">
-            <div class="marker-date">11/1</div>
-            <div class="marker"></div>
-            <div class="marker-info">
-              <div class="marker-label">UAT完了</div>
-              <div class="marker-desc">受入テスト終了</div>
-            </div>
-          </div>
-
-          <!-- M6: 本番リリース（予定） -->
-          <div class="milestone">
-            <div class="marker-date">12/15</div>
-            <div class="marker"></div>
-            <div class="marker-info">
-              <div class="marker-label">本番リリース</div>
-              <div class="marker-desc">サービス開始</div>
-            </div>
-          </div>
-
+        <!-- フェーズラベル行 -->
+        <div class="phase-row">
+          <div class="phase-cell">Q1（1〜3月）</div>
+          <div class="phase-cell">Q2（4〜6月）</div>
+          <div class="phase-cell">Q3（7〜9月）</div>
+          <div class="phase-cell">Q4（10〜12月）</div>
         </div>
+
+        <!-- タイムラインコンテナ -->
+        <div class="timeline-container">
+          <div class="area-label" style="position:absolute; top:-32px; left:0;">Timeline Container</div>
+          <!-- 横線 -->
+          <div class="timeline-line"></div>
+
+          <!-- マーカー群 -->
+          <div class="markers-row">
+
+            <!-- M1: キックオフ（完了） -->
+            <div class="milestone">
+              <div class="marker-date">1/10</div>
+              <div class="marker completed"></div>
+              <div class="marker-info">
+                <div class="marker-label">キックオフ</div>
+                <div class="marker-desc">プロジェクト開始</div>
+              </div>
+            </div>
+
+            <!-- M2: 要件確定（完了） -->
+            <div class="milestone">
+              <div class="marker-date">3/31</div>
+              <div class="marker completed"></div>
+              <div class="marker-info">
+                <div class="marker-label">要件確定</div>
+                <div class="marker-desc">要件定義完了</div>
+              </div>
+            </div>
+
+            <!-- M3: 設計完了（完了） -->
+            <div class="milestone">
+              <div class="marker-date">6/30</div>
+              <div class="marker completed"></div>
+              <div class="marker-info">
+                <div class="marker-label">設計完了</div>
+                <div class="marker-desc">基本設計レビュー</div>
+              </div>
+            </div>
+
+            <!-- M4: 開発完了（予定） -->
+            <div class="milestone">
+              <div class="marker-date">9/15</div>
+              <div class="marker"></div>
+              <div class="marker-info">
+                <div class="marker-label">開発完了</div>
+                <div class="marker-desc">内部テスト開始</div>
+              </div>
+            </div>
+
+            <!-- M5: UAT完了（予定） -->
+            <div class="milestone">
+              <div class="marker-date">11/1</div>
+              <div class="marker"></div>
+              <div class="marker-info">
+                <div class="marker-label">UAT完了</div>
+                <div class="marker-desc">受入テスト終了</div>
+              </div>
+            </div>
+
+            <!-- M6: 本番リリース（予定） -->
+            <div class="milestone">
+              <div class="marker-date">12/15</div>
+              <div class="marker"></div>
+              <div class="marker-info">
+                <div class="marker-label">本番リリース</div>
+                <div class="marker-desc">サービス開始</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 凡例 -->
+        <div class="legend-row">
+          <span class="legend-label">凡例：</span>
+          <div class="legend-item">
+            <div class="legend-dot completed"></div>
+            <span>完了</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot planned"></div>
+            <span>予定</span>
+          </div>
+        </div>
+
       </div>
 
-      <!-- 凡例 -->
-      <div class="legend-row">
-        <span class="legend-label">凡例：</span>
-        <div class="legend-item">
-          <div class="legend-dot completed"></div>
-          <span>完了</span>
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
         </div>
-        <div class="legend-item">
-          <div class="legend-dot planned"></div>
-          <span>予定</span>
-        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
       </div>
 
     </div>
   </div>
+</div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 # SLIDE-PATTERN-three-kpi-big-number
 
-このファイルはスライドのコンテンツエリア（タイトル行より下の領域）のレイアウトパターン定義書です。SLIDE.mdと組み合わせてAIツールに渡すことで、このパターンのスライドを生成できます。タイトルエリア・ページ番号・装飾はSLIDE.mdの `Slide Frame` セクションで定義されるため、このファイルには含みません。
+このファイルはスライドのコンテンツエリア（タイトル行より下の領域）のレイアウトパターン定義書です。SLIDE.mdと組み合わせてAIツールに渡すことで、このパターンのスライドを生成できます。タイトルエリア・フッター（ブランドフッター・ページ番号）・装飾はSLIDE.mdの `Slide Frame` セクションで定義されるため、このファイルには含みません。文言はすべてサンプル（ダミーテキスト）です。
 
 ## Overview
 **パターン名：** three-kpi-big-number
@@ -10,11 +10,12 @@
 ## Structure（構造）
 
 ```yaml
+frame: standard
 layout: three-kpi-big-number
 content_area:
   display: flex
-  padding: "20px 48px"
-  gap: 24px
+  padding: "40px 96px"（高さの約4%・幅の約5%）
+  gap: 48px
   align-items: center
 
 kpi_columns:
@@ -25,25 +26,25 @@ kpi_columns:
     display: flex
     flex-direction: column
     align-items: center
-    padding: "28px 16px"
-    gap: 8px
+    padding: "56px 32px"
+    gap: 16px
 
 each_kpi_structure:
   - area_label: "KPI ラベル（指標名）"
   - big_number:
-      font_size: 48px
+      font_size: 96px
       font_weight: bold
       color: "#333"
       unit:
-        font_size: 20px
+        font_size: 40px
         color: "#888"
         layout: "数字と横並び"
   - description:
-      font_size: 13px
+      font_size: 26px
       color: "#666"
       text_align: center
   - supplement:
-      font_size: 11px
+      font_size: 22px
       color: "#999"
       content: "前回比 +XX% など"
 
@@ -56,13 +57,17 @@ divider:
 
 ## Elements（各要素の役割）
 
+※ タイトル（H1）・フッターはSLIDE.mdの Slide Frame で定義されるため、この表には含めない。コンテンツエリアの要素のみを記述する。
+※ 写真は「写真添付エリア（後から実際の写真に差し替え）」、アイコンは「内容に沿ったSVGアイコンを生成して配置」として役割を記述する。
+※ 文字要素には、元スライドの見た目から見積もった1920px基準のフォントサイズの目安を役割欄に添える。
+
 | 要素 | 役割 | 推奨文字数・値 |
 |------|------|--------------|
-| エリアラベル（KPIラベル） | どの指標を示しているかの名称 | 6〜12文字（例：「月間売上高」「新規顧客数」） |
-| 大きな数字 | 最も訴求したい数値・実績 | 数値のみ（単位は別要素） |
-| 単位 | 数値の単位（円・件・%など） | 1〜4文字 |
-| 説明テキスト | 数値が何を示すかの補足説明 | 20〜40文字 |
-| 補足テキスト | 前回比・目標達成率などの追加情報 | 10〜20文字 |
+| エリアラベル（KPIラベル） | どの指標を示しているかの名称（22px相当） | 6〜12文字（例：「月間売上高」「新規顧客数」） |
+| 大きな数字 | 最も訴求したい数値・実績（96px相当） | 数値のみ（単位は別要素） |
+| 単位 | 数値の単位（円・件・%など）（40px相当） | 1〜4文字 |
+| 説明テキスト | 数値が何を示すかの補足説明（26px相当） | 20〜40文字 |
+| 補足テキスト | 前回比・目標達成率などの追加情報（22px相当） | 10〜20文字 |
 
 ## Usage Guide（AIへの使い方）
 
@@ -71,8 +76,6 @@ divider:
 ```
 SLIDE.mdのデザインシステムと、以下のSLIDE-PATTERN-three-kpi-big-numberパターンを使って
 スライドを1枚生成してください。
-
-【スライドタイトル】第3四半期 実績サマリー
 
 【KPI 1】
 - ラベル: 月間売上高

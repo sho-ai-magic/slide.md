@@ -4,91 +4,109 @@
 <meta charset="UTF-8">
 <title>SLIDE-PATTERN-three-tier-segment-list</title>
 <style>
-  body { background: #E8E8E8; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; font-family: sans-serif; }
-  .slide-label { font-size: 12px; color: #666; margin-bottom: 6px; }
-  .slide { width: 960px; height: 540px; background: #FFFFFF; border: 1px solid #CCCCCC; overflow: hidden; display: flex; flex-direction: column; }
-  .area-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.08em; }
-  /* タイトルエリア */
-  .title-area { padding: 14px 40px 12px; border-bottom: 1px dashed #CCCCCC; flex-shrink: 0; background: #FAFAFA; }
-  /* コンテンツエリア */
-  .content-area { display: flex; flex: 1; padding: 16px 0 16px 32px; gap: 0; }
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+
   /* 左エリア（22%） */
-  .left-area { width: 22%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-right: 16px; border-right: 1px dashed #CCCCCC; gap: 8px; }
-  .bracket-heading { font-size: 13px; font-weight: bold; color: #555; text-align: center; line-height: 1.7; }
+  .left-area { width: 22%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-right: 32px; border-right: 1px dashed #CCCCCC; gap: 16px; }
+  .bracket-heading { font-size: 26px; font-weight: bold; color: #555; text-align: center; line-height: 1.7; }
   /* 右エリア（78%） */
-  .right-area { width: 78%; display: flex; flex-direction: column; padding: 8px 32px; gap: 0; justify-content: space-around; }
+  .right-area { width: 78%; display: flex; flex-direction: column; padding: 16px 64px; gap: 0; justify-content: space-around; }
   /* セグメント各行 */
-  .segment-row { display: flex; align-items: flex-start; gap: 16px; padding: 12px 0; border-bottom: 1px solid #F0F0F0; }
+  .segment-row { display: flex; align-items: flex-start; gap: 32px; padding: 24px 0; border-bottom: 1px solid #F0F0F0; }
   .segment-row:last-child { border-bottom: none; }
   /* アイコン円 */
-  .icon-circle { width: 40px; height: 40px; border-radius: 50%; background: #F0F0F0; border: 1px solid #CCCCCC; flex-shrink: 0; }
+  .icon-circle { width: 80px; height: 80px; border-radius: 50%; background: #F0F0F0; border: 2px dashed #CCCCCC; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 13px; text-align: center; }
   /* セグメントテキストエリア */
-  .segment-text { display: flex; flex-direction: column; gap: 3px; flex: 1; }
-  .segment-label { font-size: 11px; color: #999; }
-  .segment-heading { font-size: 14px; font-weight: bold; color: #333; line-height: 1.4; }
-  .segment-subtitle { font-size: 12px; color: #555; line-height: 1.5; }
+  .segment-text { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .segment-label { font-size: 22px; color: #999; }
+  .segment-heading { font-size: 28px; font-weight: bold; color: #333; line-height: 1.4; }
+  .segment-subtitle { font-size: 24px; color: #555; line-height: 1.5; }
   /* 箇条書き */
-  .segment-bullets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1px; }
-  .segment-bullets li { font-size: 11px; color: #666; line-height: 1.6; padding-left: 10px; position: relative; }
+  .segment-bullets { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
+  .segment-bullets li { font-size: 22px; color: #666; line-height: 1.6; padding-left: 20px; position: relative; }
   .segment-bullets li::before { content: "・"; position: absolute; left: 0; }
 </style>
 </head>
 <body>
 <p class="slide-label">[three-tier-segment-list]</p>
-<div class="slide">
-  <!-- タイトルエリア -->
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-  </div>
-  <!-- コンテンツエリア -->
-  <div class="content-area">
-    <!-- 左エリア：括り見出し -->
-    <div class="left-area">
-      <div class="area-label">Category</div>
-      <div class="bracket-heading">括り見出し<br>テキスト</div>
-    </div>
-    <!-- 右エリア：3セグメント -->
-    <div class="right-area">
-      <!-- セグメント1 -->
-      <div class="segment-row">
-        <div class="icon-circle"></div>
-        <div class="segment-text">
-          <div class="segment-label">タイプ A</div>
-          <div class="segment-heading">セグメント1の見出しテキスト</div>
-          <div class="segment-subtitle">セグメント1のサブタイトル・補足情報が1行で入ります</div>
-          <ul class="segment-bullets">
-            <li>箇条書き1項目目のテキストが入ります</li>
-            <li>箇条書き2項目目のテキストが入ります</li>
-          </ul>
-        </div>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
-      <!-- セグメント2 -->
-      <div class="segment-row">
-        <div class="icon-circle"></div>
-        <div class="segment-text">
-          <div class="segment-label">タイプ B</div>
-          <div class="segment-heading">セグメント2の見出しテキスト</div>
-          <div class="segment-subtitle">セグメント2のサブタイトル・補足情報が1行で入ります</div>
-          <ul class="segment-bullets">
-            <li>箇条書き1項目目のテキストが入ります</li>
-            <li>箇条書き2項目目のテキストが入ります</li>
-          </ul>
+
+      <!-- コンテンツエリア -->
+      <div style="display:flex; flex:1; overflow:hidden; padding:32px 0 32px 64px; gap:0;">
+
+        <!-- 左エリア：括り見出し -->
+        <div class="left-area">
+          <div class="area-label">Category</div>
+          <div class="bracket-heading">括り見出し<br>テキスト</div>
         </div>
-      </div>
-      <!-- セグメント3 -->
-      <div class="segment-row">
-        <div class="icon-circle"></div>
-        <div class="segment-text">
-          <div class="segment-label">タイプ C</div>
-          <div class="segment-heading">セグメント3の見出しテキスト</div>
-          <div class="segment-subtitle">セグメント3のサブタイトル・補足情報が1行で入ります</div>
-          <ul class="segment-bullets">
-            <li>箇条書き1項目目のテキストが入ります</li>
-            <li>箇条書き2項目目のテキストが入ります</li>
-          </ul>
+
+        <!-- 右エリア：3セグメント -->
+        <div class="right-area">
+          <!-- セグメント1 -->
+          <div class="segment-row">
+            <div class="icon-circle">アイコン<br>(SVG生成)</div>
+            <div class="segment-text">
+              <div class="segment-label">タイプ A</div>
+              <div class="segment-heading">セグメント1の見出しテキスト</div>
+              <div class="segment-subtitle">セグメント1のサブタイトル・補足情報が1行で入ります</div>
+              <ul class="segment-bullets">
+                <li>箇条書き1項目目のテキストが入ります</li>
+                <li>箇条書き2項目目のテキストが入ります</li>
+              </ul>
+            </div>
+          </div>
+          <!-- セグメント2 -->
+          <div class="segment-row">
+            <div class="icon-circle">アイコン<br>(SVG生成)</div>
+            <div class="segment-text">
+              <div class="segment-label">タイプ B</div>
+              <div class="segment-heading">セグメント2の見出しテキスト</div>
+              <div class="segment-subtitle">セグメント2のサブタイトル・補足情報が1行で入ります</div>
+              <ul class="segment-bullets">
+                <li>箇条書き1項目目のテキストが入ります</li>
+                <li>箇条書き2項目目のテキストが入ります</li>
+              </ul>
+            </div>
+          </div>
+          <!-- セグメント3 -->
+          <div class="segment-row">
+            <div class="icon-circle">アイコン<br>(SVG生成)</div>
+            <div class="segment-text">
+              <div class="segment-label">タイプ C</div>
+              <div class="segment-heading">セグメント3の見出しテキスト</div>
+              <div class="segment-subtitle">セグメント3のサブタイトル・補足情報が1行で入ります</div>
+              <ul class="segment-bullets">
+                <li>箇条書き1項目目のテキストが入ります</li>
+                <li>箇条書き2項目目のテキストが入ります</li>
+              </ul>
+            </div>
+          </div>
         </div>
+
       </div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
     </div>
   </div>
 </div>

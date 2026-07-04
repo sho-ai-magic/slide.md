@@ -1,6 +1,6 @@
 # SLIDE-PATTERN-three-tier-segment-list
 
-このファイルはスライドのコンテンツエリア（タイトル行より下の領域）のレイアウトパターン定義書です。SLIDE.mdと組み合わせてAIツールに渡すことで、このパターンのスライドを生成できます。タイトルエリア・ページ番号・装飾はSLIDE.mdの `Slide Frame` セクションで定義されるため、このファイルには含みません。
+このファイルはスライドのコンテンツエリア（タイトル行より下の領域）のレイアウトパターン定義書です。SLIDE.mdと組み合わせてAIツールに渡すことで、このパターンのスライドを生成できます。タイトルエリア・フッター（ブランドフッター・ページ番号）・装飾はSLIDE.mdの `Slide Frame` セクションで定義されるため、このファイルには含みません。文言はすべてサンプル（ダミーテキスト）です。
 
 ## Overview
 
@@ -13,46 +13,51 @@
 コンテンツエリアを左右に分割し、左の括り見出しと右の3セグメントリストで構成する。左右は破線で区切られる。
 
     structure:
+      frame: standard
       layout: content-area-left-label-right-segment-list
-      padding: 16px 0 16px 32px
+      padding: 32px 0 32px 64px
       gap: 0
       left-area:
         width: 22%
         align: center (vertical flex)
         border-right: 1px dashed #CCCCCC
-        padding-right: 16px
+        padding-right: 32px
         elements:
-          - area-label (font-size: 11px, #999, uppercase)
-          - bracket-heading (font-size: 13px, bold, #555, text-align: center, 2行)
+          - area-label (font-size: 20px, #999, uppercase)
+          - bracket-heading (font-size: 26px, bold, #555, text-align: center, 2行)
       right-area:
         width: 78%
-        padding: 8px 32px
+        padding: 16px 64px
         justify-content: space-around
         elements:
           - segment-rows (3行)
           - each-row:
               border-bottom: 1px solid #F0F0F0
-              padding: 12px 0
-              gap: 16px
-              - icon-circle (40px × 40px, #F0F0F0, border-radius: 50%, border: 1px solid #CCCCCC)
+              padding: 24px 0
+              gap: 32px
+              - icon-circle (80px × 80px, #F0F0F0, border-radius: 50%, border: 2px solid #CCCCCC)
               - text-area:
-                  - segment-label (font-size: 11px, #999)
-                  - heading (font-size: 14px, bold, #333)
-                  - subtitle (font-size: 12px, #555)
-                  - bullet-list (2項目, font-size: 11px, #666)
+                  - segment-label (font-size: 22px, #999)
+                  - heading (font-size: 28px, bold, #333)
+                  - subtitle (font-size: 24px, #555)
+                  - bullet-list (2項目, font-size: 22px, #666)
 
 ## Elements（各要素の役割）
 
+※ タイトル（H1）・フッターはSLIDE.mdの Slide Frame で定義されるため、この表には含めない。コンテンツエリアの要素のみを記述する。
+※ 写真は「写真添付エリア（後から実際の写真に差し替え）」、アイコンは「内容に沿ったSVGアイコンを生成して配置」として役割を記述する。
+※ 文字要素には、元スライドの見た目から見積もった1920px基準のフォントサイズの目安を役割欄に添える。
+
 | 要素 | 配置 | 役割 |
 |---|---|---|
-| エリアラベル | 左エリア上部 | 左エリアの種別を示す小さなラベル（例：CATEGORY） |
-| 括り見出し | 左エリア中央 | 右側3セグメント全体に共通する分類名・括り概念を2行で表示 |
+| エリアラベル | 左エリア上部 | 左エリアの種別を示す小さなラベル（例：CATEGORY）（20px相当） |
+| 括り見出し | 左エリア中央 | 右側3セグメント全体に共通する分類名・括り概念を2行で表示（26px相当） |
 | 縦区切り破線 | 左右エリアの境界 | 左の括り見出しと右のセグメントリストを視覚的に分離 |
-| アイコン円 | 各セグメント行左端 | 各セグメントのカテゴリ・種別を表すアイコンプレースホルダー |
-| セグメントラベル | アイコン右、最上段 | 「タイプ A」などの識別ラベルを小さく表示 |
-| セグメント見出し | ラベルの下 | 各セグメントの名称・主題を太字で表示 |
-| サブタイトル | 見出しの下 | 各セグメントの補足情報・特徴を1行で記述 |
-| 箇条書き | サブタイトルの下 | 各セグメントの特徴・要件を2項目で箇条書き表示 |
+| アイコン円 | 各セグメント行左端 | 内容に沿ったSVGアイコンを生成して配置 |
+| セグメントラベル | アイコン右、最上段 | 「タイプ A」などの識別ラベルを小さく表示（22px相当） |
+| セグメント見出し | ラベルの下 | 各セグメントの名称・主題を太字で表示（28px相当） |
+| サブタイトル | 見出しの下 | 各セグメントの補足情報・特徴を1行で記述（24px相当） |
+| 箇条書き | サブタイトルの下 | 各セグメントの特徴・要件を2項目で箇条書き表示（22px相当） |
 | 行区切り線 | 各セグメント行の下 | セグメント間を薄い横線で区切る |
 
 ## Usage Guide（AIへの使い方）
@@ -66,3 +71,4 @@
 - 各セグメントの箇条書きは2項目に統一すること。3項目以上になる場合は1行の文字数を減らして調整する
 - セグメントラベルには「タイプ A / B / C」「フェーズ 1 / 2 / 3」「レベル 初級 / 中級 / 上級」など分類の性質に合ったラベルを使用する
 - 3つのセグメント行の情報量（テキスト量）を揃えると縦のバランスが取れる
+- アイコンは元スライドの見た目を再現せず、スライドの内容に沿ったSVGアイコンを生成して配置する

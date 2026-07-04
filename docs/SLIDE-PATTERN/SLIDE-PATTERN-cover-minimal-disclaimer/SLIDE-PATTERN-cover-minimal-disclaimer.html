@@ -1,76 +1,67 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN: cover-minimal-disclaimer</title>
-  <style>
-    body {
-      background: #E8E8E8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      margin: 0;
-      font-family: sans-serif;
-    }
-    .slide {
-      width: 960px;
-      height: 540px;
-      background: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    .title-area {
-      flex-shrink: 0;
-      background: #FAFAFA;
-      padding: 10px 40px;
-      border-bottom: 1px dashed #CCCCCC;
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .pattern-label {
-      margin-top: 16px;
-      font-size: 12px;
-      color: #888;
-      letter-spacing: 0.05em;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-cover-minimal-disclaimer</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
+  /* コンテンツエリア（frame: none のためタイトルエリア・フッターは配置しない） */
+  .content-area { flex: 1; display: flex; flex-direction: column; padding: 0 104px; box-sizing: border-box; }
+  /* ヘッダー：ロゴ+会社名 */
+  .header-row { padding-top: 40px; display: flex; align-items: center; gap: 24px; flex-shrink: 0; }
+  .logo-box { width: 88px; height: 88px; border-radius: 8px; font-size: 20px; }
+  .company-name { font-size: 26px; font-weight: bold; color: #333333; margin-bottom: 4px; }
+  .service-name { font-size: 22px; color: #999999; }
+  /* ボディ：タイトル+発表者 */
+  .body-area { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .main-title { font-size: 60px; font-weight: bold; color: #333333; margin-bottom: 32px; line-height: 1.3; }
+  .presenter-name { font-size: 28px; font-weight: 600; color: #555555; margin-bottom: 12px; }
+  .date-event { font-size: 26px; color: #777777; margin-bottom: 8px; }
+  /* フッター：免責事項 */
+  .disclaimer-area { flex-shrink: 0; border-top: 1px solid #EEEEEE; padding: 20px 0 32px; }
+  .disclaimer-text { font-size: 20px; color: #999999; line-height: 1.7; }
+</style>
 </head>
 <body>
-  <div class="slide">
-    <div class="title-area">Title Area — SLIDE.md 参照</div>
-    <div style="flex:1; display:flex; flex-direction:column; padding:0 52px;">
-      <!-- ヘッダー：ロゴ+会社名 -->
-      <div style="padding-top:20px; display:flex; align-items:center; gap:12px; flex-shrink:0;">
-        <div style="width:44px; height:44px; background:#F0F0F0; border:1px dashed #CCCCCC; display:flex; align-items:center; justify-content:center; font-size:10px; color:#AAAAAA; border-radius:4px;">LOGO</div>
-        <div>
-          <div style="font-size:11px; color:#999; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:2px;">Header — Logo / Company</div>
-          <div style="font-size:13px; font-weight:bold; color:#333;">会社名</div>
-          <div style="font-size:11px; color:#999;">サービス名</div>
+<p class="slide-label">[cover-minimal-disclaimer]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+      <!-- コンテンツエリア（スライド全面。frame: none のためタイトルエリア・フッターは配置しない） -->
+      <div class="content-area">
+        <!-- ヘッダー：ロゴ+会社名 -->
+        <div class="header-row">
+          <div class="placeholder-box logo-box">LOGO</div>
+          <div>
+            <div class="area-label" style="margin-bottom:4px;">Header — Logo / Company</div>
+            <div class="company-name">会社名</div>
+            <div class="service-name">サービス名</div>
+          </div>
         </div>
-      </div>
-      <!-- ボディ：タイトル+発表者 -->
-      <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
-        <div style="font-size:10px; color:#999; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px;">Main Title / Presenter / Date</div>
-        <div style="font-size:30px; font-weight:bold; color:#333; margin-bottom:16px; line-height:1.3;">メインタイトルが<br>ここに入ります</div>
-        <div style="font-size:14px; font-weight:600; color:#555; margin-bottom:6px;">発表者氏名</div>
-        <div style="font-size:13px; color:#777; margin-bottom:4px;">2025年X月X日 イベント名</div>
-      </div>
-      <!-- フッター：免責事項 -->
-      <div style="flex-shrink:0; border-top:1px solid #EEEEEE; padding:10px 0 16px;">
-        <div style="font-size:10px; color:#999; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px;">Footer — Disclaimer</div>
-        <div style="font-size:10px; color:#999; line-height:1.7;">
-          <span style="font-weight:600; color:#777;">商号等</span>　〇〇〇〇株式会社　〇〇商品取引業者　〇〇財務局長（〇〇）第XXXX号<br>
-          <span style="font-weight:600; color:#777;">加入協会</span>　日本〇〇業協会、一般社団法人 日本〇〇投資顧問業協会、一般社団法人 第〇種〇〇商品取引業協会
+        <!-- ボディ：タイトル+発表者 -->
+        <div class="body-area">
+          <div class="area-label">Main Title / Presenter / Date</div>
+          <div class="main-title">メインタイトルが<br>ここに入ります</div>
+          <div class="presenter-name">発表者氏名</div>
+          <div class="date-event">2026年X月X日 イベント名</div>
+        </div>
+        <!-- フッター：免責事項 -->
+        <div class="disclaimer-area">
+          <div class="area-label" style="margin-bottom:8px;">Footer — Disclaimer</div>
+          <div class="disclaimer-text">
+            <span style="font-weight:600; color:#777777;">商号等</span>　〇〇〇〇株式会社　〇〇商品取引業者　〇〇財務局長（〇〇）第XXXX号<br>
+            <span style="font-weight:600; color:#777777;">加入協会</span>　日本〇〇業協会、一般社団法人 日本〇〇投資顧問業協会、一般社団法人 第〇種〇〇商品取引業協会
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="pattern-label">SLIDE-PATTERN: cover-minimal-disclaimer</div>
+</div>
 </body>
 </html>

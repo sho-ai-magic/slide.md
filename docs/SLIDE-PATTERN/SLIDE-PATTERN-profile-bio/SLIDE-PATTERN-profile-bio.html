@@ -4,58 +4,78 @@
 <meta charset="UTF-8">
 <title>SLIDE-PATTERN-profile-bio</title>
 <style>
-  body { background: #E8E8E8; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; font-family: sans-serif; }
-  .slide-label { font-size: 12px; color: #666; margin-bottom: 6px; }
-  .slide { width: 960px; height: 540px; background: #FFFFFF; border: 1px solid #CCCCCC; overflow: hidden; display: flex; flex-direction: column; }
-  .area-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
-  .title-area { padding: 14px 40px 12px; border-bottom: 1px dashed #CCCCCC; flex-shrink: 0; background: #FAFAFA; }
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
+
+  /* コンテンツエリア */
   .content-area { flex: 1; display: flex; overflow: hidden; }
-  .left-panel { width: 32%; padding: 24px 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 1px solid #EEEEEE; }
-  .photo-placeholder { width: 160px; height: 190px; background: #F0F0F0; border: 1px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 12px; text-align: center; margin-bottom: 10px; }
-  .photo-caption { font-size: 12px; color: #666; text-align: center; }
-  .right-panel { flex: 1; padding: 24px 32px; display: flex; flex-direction: column; justify-content: center; }
-  .profile-name { font-size: 32px; font-weight: bold; color: #333; margin-bottom: 4px; }
-  .profile-position { font-size: 13px; color: #666; margin-bottom: 16px; }
+  .left-panel { width: 32%; padding: 48px 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-right: 1px solid #EEEEEE; box-sizing: border-box; }
+  .photo-placeholder { width: 320px; height: 380px; background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; text-align: center; margin-bottom: 20px; }
+  .photo-caption { font-size: 24px; color: #666; text-align: center; }
+  .right-panel { flex: 1; padding: 48px 64px; display: flex; flex-direction: column; justify-content: center; box-sizing: border-box; }
+  .profile-name { font-size: 64px; font-weight: bold; color: #333; margin-bottom: 8px; }
+  .profile-position { font-size: 26px; color: #666; margin-bottom: 32px; }
   .profile-table { width: 100%; border-collapse: collapse; }
   .profile-table tr { border-bottom: 1px solid #EEEEEE; }
-  .profile-table td { padding: 7px 8px; font-size: 13px; vertical-align: top; }
-  .profile-table .label { color: #888; width: 80px; font-size: 12px; background: #F8F8F8; }
+  .profile-table td { padding: 14px 16px; font-size: 26px; vertical-align: top; }
+  .profile-table .label { color: #888; width: 160px; font-size: 24px; background: #F8F8F8; }
   .profile-table .value { color: #333; }
 </style>
 </head>
 <body>
 <p class="slide-label">[profile-bio]</p>
-<div class="slide">
-  <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-  </div>
-  <!-- コンテンツエリア -->
-  <div class="content-area">
-    <div class="left-panel">
-      <div class="area-label">写真エリア</div>
-      <div class="photo-placeholder">[PHOTO]<br>顔写真</div>
-      <div class="photo-caption">氏名（よみがな）</div>
-    </div>
-    <div class="right-panel">
-      <div class="area-label">プロフィール情報</div>
-      <div class="profile-name">氏名　太郎</div>
-      <div class="profile-position">株式会社○○　代表取締役社長</div>
-      <table class="profile-table">
-        <tr>
-          <td class="label">出身地</td>
-          <td class="value">○○県○○市</td>
-        </tr>
-        <tr>
-          <td class="label">学歴</td>
-          <td class="value">○○大学　○○学部　卒業</td>
-        </tr>
-        <tr>
-          <td class="label">経歴</td>
-          <td class="value">2012年：大手企業にて○○業務を経験<br>2016年：コンサルティングファームにて○○に従事<br>2020年：株式会社○○を設立</td>
-        </tr>
-      </table>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+
+      <!-- コンテンツエリア -->
+      <div class="content-area">
+        <div class="left-panel">
+          <div class="area-label">写真エリア</div>
+          <div class="photo-placeholder">写真添付エリア<br>（後から差し替え）</div>
+          <div class="photo-caption">氏名（よみがな）</div>
+        </div>
+        <div class="right-panel">
+          <div class="area-label">プロフィール情報</div>
+          <div class="profile-name">氏名　太郎</div>
+          <div class="profile-position">株式会社○○　代表取締役社長</div>
+          <table class="profile-table">
+            <tr>
+              <td class="label">出身地</td>
+              <td class="value">○○県○○市</td>
+            </tr>
+            <tr>
+              <td class="label">学歴</td>
+              <td class="value">○○大学　○○学部　卒業</td>
+            </tr>
+            <tr>
+              <td class="label">経歴</td>
+              <td class="value">2012年：大手企業にて○○業務を経験<br>2016年：コンサルティングファームにて○○に従事<br>2020年：株式会社○○を設立</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
     </div>
   </div>
 </div>

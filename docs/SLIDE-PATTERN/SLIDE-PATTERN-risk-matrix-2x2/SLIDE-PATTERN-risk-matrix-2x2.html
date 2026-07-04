@@ -1,312 +1,180 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-risk-matrix-2x2</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: #E8E8E8;
-      font-family: 'Hiragino Sans', 'Meiryo', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-    }
-    .slide-label {
-      font-size: 12px;
-      color: #999;
-      margin-bottom: 12px;
-      letter-spacing: 0.05em;
-    }
-    .slide {
-      width: 960px;
-      height: 540px;
-      background: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    /* タイトルエリア */
-    .title-area {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      flex-shrink: 0;
-      background: #FAFAFA;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .title-placeholder {
-      font-size: 16px;
-      color: #CCCCCC;
-      margin-top: 4px;
-    }
-    /* コンテンツエリア */
-    .content-area {
-      flex: 1;
-      display: flex;
-      padding: 16px 48px;
-      gap: 24px;
-      overflow: hidden;
-    }
-    /* 左側: マトリクス本体 */
-    .matrix-body {
-      flex: 3;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .matrix-with-yaxis {
-      flex: 1;
-      display: flex;
-      gap: 8px;
-      overflow: hidden;
-    }
-    /* Y軸ラベル */
-    .y-axis-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 20px;
-      flex-shrink: 0;
-    }
-    .y-axis-label {
-      font-size: 12px;
-      color: #666;
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      white-space: nowrap;
-      letter-spacing: 0.05em;
-    }
-    .y-axis-arrows {
-      font-size: 10px;
-      color: #999;
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-      margin-top: 4px;
-    }
-    /* 2×2グリッド */
-    .matrix-grid {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      gap: 0;
-      border: 1px solid #CCCCCC;
-    }
-    .matrix-cell {
-      border: 1px solid #CCCCCC;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .cell-top-left  { background: #F5F5F5; }
-    .cell-top-right { background: #EEEEEE; }
-    .cell-bot-left  { background: #FFFFFF; }
-    .cell-bot-right { background: #F0F0F0; }
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-risk-matrix-2x2</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
 
-    .cell-label {
-      font-size: 12px;
-      font-weight: bold;
-      color: #333;
-    }
-    .cell-description {
-      font-size: 10px;
-      color: #999;
-      margin-bottom: 4px;
-    }
-    .cell-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px;
-    }
-    .badge {
-      background: #E8E8E8;
-      padding: 2px 8px;
-      font-size: 11px;
-      color: #555;
-      border-radius: 2px;
-      border: 1px solid #D8D8D8;
-    }
-    /* X軸ラベル */
-    .x-axis-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding-left: 28px;
-    }
-    .x-axis-label {
-      font-size: 12px;
-      color: #666;
-      letter-spacing: 0.05em;
-    }
-    .x-axis-arrows {
-      font-size: 10px;
-      color: #999;
-    }
-    /* 軸の端ラベル */
-    .axis-ends {
-      display: flex;
-      justify-content: space-between;
-      padding-left: 28px;
-      margin-top: 2px;
-    }
-    .axis-end-label {
-      font-size: 10px;
-      color: #AAAAAA;
-    }
-    /* 右側: 凡例エリア */
-    .legend-area {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 10px;
-      padding: 8px 0;
-    }
-    .legend-title {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 4px;
-    }
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .legend-swatch {
-      width: 20px;
-      height: 14px;
-      border: 1px solid #CCCCCC;
-      flex-shrink: 0;
-    }
-    .legend-text {
-      font-size: 12px;
-      color: #555;
-    }
-    .legend-sub {
-      font-size: 10px;
-      color: #999;
-    }
-  </style>
+  /* コンテンツエリア */
+  .content-area { flex: 1; display: flex; padding: 32px 96px; gap: 48px; overflow: hidden; }
+
+  /* 左側: マトリクス本体 */
+  .matrix-body { flex: 3; display: flex; flex-direction: column; gap: 8px; }
+  .matrix-with-yaxis { flex: 1; display: flex; gap: 16px; overflow: hidden; }
+
+  /* Y軸ラベル */
+  .y-axis-wrapper { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 40px; flex-shrink: 0; }
+  .y-axis-label { font-size: 24px; color: #666; writing-mode: vertical-rl; transform: rotate(180deg); white-space: nowrap; letter-spacing: 0.05em; }
+  .y-axis-arrows { font-size: 20px; color: #999; writing-mode: vertical-rl; transform: rotate(180deg); margin-top: 8px; }
+
+  /* 2×2グリッド */
+  .matrix-grid { flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 0; border: 1px solid #CCCCCC; }
+  .matrix-cell { border: 1px solid #CCCCCC; padding: 24px; display: flex; flex-direction: column; gap: 8px; }
+  .cell-top-left  { background: #F5F5F5; }
+  .cell-top-right { background: #EEEEEE; }
+  .cell-bot-left  { background: #FFFFFF; }
+  .cell-bot-right { background: #F0F0F0; }
+
+  .cell-label { font-size: 24px; font-weight: bold; color: #333; }
+  .cell-description { font-size: 20px; color: #999; margin-bottom: 8px; }
+  .cell-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+  .badge { background: #E8E8E8; padding: 4px 16px; font-size: 22px; color: #555; border-radius: 4px; border: 1px solid #D8D8D8; }
+
+  /* X軸ラベル */
+  .x-axis-wrapper { display: flex; align-items: center; justify-content: center; gap: 12px; padding-left: 56px; }
+  .x-axis-label { font-size: 24px; color: #666; letter-spacing: 0.05em; }
+  .x-axis-arrows { font-size: 20px; color: #999; }
+
+  /* 軸の端ラベル */
+  .axis-ends { display: flex; justify-content: space-between; padding-left: 56px; margin-top: 4px; }
+  .axis-end-label { font-size: 20px; color: #AAAAAA; }
+
+  /* 右側: 凡例エリア */
+  .legend-area { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 20px; padding: 16px 0; }
+  .legend-title { font-size: 20px; color: #999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .legend-item { display: flex; align-items: center; gap: 16px; }
+  .legend-swatch { width: 40px; height: 28px; border: 1px solid #CCCCCC; flex-shrink: 0; }
+  .legend-text { font-size: 24px; color: #555; }
+  .legend-sub { font-size: 20px; color: #999; }
+</style>
 </head>
 <body>
-  <p class="slide-label">[risk-matrix-2x2]</p>
-  <div class="slide">
+<p class="slide-label">[risk-matrix-2x2]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-    <!-- タイトルエリア -->
-    <div class="title-area">
-      <div class="area-label">Title Area — SLIDE.md 参照</div>
-      <div class="title-placeholder">スライドタイトルが入ります</div>
-    </div>
-
-    <!-- コンテンツエリア -->
-    <div class="content-area">
-
-      <!-- 左側: マトリクス本体 -->
-      <div class="matrix-body">
-        <div class="matrix-with-yaxis">
-          <!-- Y軸ラベル -->
-          <div class="y-axis-wrapper">
-            <span class="y-axis-label">影響度</span>
-            <span class="y-axis-arrows">↑ 高</span>
-          </div>
-
-          <!-- 2×2グリッド -->
-          <div class="matrix-grid">
-            <!-- 左上: 高影響・低確率 -->
-            <div class="matrix-cell cell-top-left">
-              <div class="cell-label">重点管理</div>
-              <div class="cell-description">高影響・低確率</div>
-              <div class="cell-badges">
-                <span class="badge">コンプライアンス違反</span>
-                <span class="badge">システム障害</span>
-              </div>
-            </div>
-            <!-- 右上: 高影響・高確率 -->
-            <div class="matrix-cell cell-top-right">
-              <div class="cell-label">最優先対応</div>
-              <div class="cell-description">高影響・高確率</div>
-              <div class="cell-badges">
-                <span class="badge">人材不足</span>
-                <span class="badge">コスト超過</span>
-              </div>
-            </div>
-            <!-- 左下: 低影響・低確率 -->
-            <div class="matrix-cell cell-bot-left">
-              <div class="cell-label">経過観察</div>
-              <div class="cell-description">低影響・低確率</div>
-              <div class="cell-badges">
-                <span class="badge">軽微な仕様変更</span>
-              </div>
-            </div>
-            <!-- 右下: 低影響・高確率 -->
-            <div class="matrix-cell cell-bot-right">
-              <div class="cell-label">対応計画</div>
-              <div class="cell-description">低影響・高確率</div>
-              <div class="cell-badges">
-                <span class="badge">スケジュール遅延</span>
-                <span class="badge">認識齟齬</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- X軸ラベル -->
-        <div class="axis-ends">
-          <span class="axis-end-label">低 ←</span>
-          <span class="axis-end-label">→ 高</span>
-        </div>
-        <div class="x-axis-wrapper">
-          <span class="x-axis-label">発生確率</span>
-        </div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
 
-      <!-- 右側: 凡例エリア -->
-      <div class="legend-area">
-        <div class="legend-title">凡例</div>
-        <div class="legend-item">
-          <div class="legend-swatch" style="background: #EEEEEE;"></div>
-          <div>
-            <div class="legend-text">最優先対応</div>
-            <div class="legend-sub">高影響・高確率</div>
+      <!-- コンテンツエリア -->
+      <div class="content-area">
+
+        <!-- 左側: マトリクス本体 -->
+        <div class="matrix-body">
+          <div class="matrix-with-yaxis">
+            <!-- Y軸ラベル -->
+            <div class="y-axis-wrapper">
+              <span class="y-axis-label">影響度</span>
+              <span class="y-axis-arrows">↑ 高</span>
+            </div>
+
+            <!-- 2×2グリッド -->
+            <div class="matrix-grid">
+              <!-- 左上: 高影響・低確率 -->
+              <div class="matrix-cell cell-top-left">
+                <div class="cell-label">重点管理</div>
+                <div class="cell-description">高影響・低確率</div>
+                <div class="cell-badges">
+                  <span class="badge">コンプライアンス違反</span>
+                  <span class="badge">システム障害</span>
+                </div>
+              </div>
+              <!-- 右上: 高影響・高確率 -->
+              <div class="matrix-cell cell-top-right">
+                <div class="cell-label">最優先対応</div>
+                <div class="cell-description">高影響・高確率</div>
+                <div class="cell-badges">
+                  <span class="badge">人材不足</span>
+                  <span class="badge">コスト超過</span>
+                </div>
+              </div>
+              <!-- 左下: 低影響・低確率 -->
+              <div class="matrix-cell cell-bot-left">
+                <div class="cell-label">経過観察</div>
+                <div class="cell-description">低影響・低確率</div>
+                <div class="cell-badges">
+                  <span class="badge">軽微な仕様変更</span>
+                </div>
+              </div>
+              <!-- 右下: 低影響・高確率 -->
+              <div class="matrix-cell cell-bot-right">
+                <div class="cell-label">対応計画</div>
+                <div class="cell-description">低影響・高確率</div>
+                <div class="cell-badges">
+                  <span class="badge">スケジュール遅延</span>
+                  <span class="badge">認識齟齬</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- X軸ラベル -->
+          <div class="axis-ends">
+            <span class="axis-end-label">低 ←</span>
+            <span class="axis-end-label">→ 高</span>
+          </div>
+          <div class="x-axis-wrapper">
+            <span class="x-axis-label">発生確率</span>
           </div>
         </div>
-        <div class="legend-item">
-          <div class="legend-swatch" style="background: #F5F5F5;"></div>
-          <div>
-            <div class="legend-text">重点管理</div>
-            <div class="legend-sub">高影響・低確率</div>
+
+        <!-- 右側: 凡例エリア -->
+        <div class="legend-area">
+          <div class="legend-title">凡例</div>
+          <div class="legend-item">
+            <div class="legend-swatch" style="background: #EEEEEE;"></div>
+            <div>
+              <div class="legend-text">最優先対応</div>
+              <div class="legend-sub">高影響・高確率</div>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-swatch" style="background: #F5F5F5;"></div>
+            <div>
+              <div class="legend-text">重点管理</div>
+              <div class="legend-sub">高影響・低確率</div>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-swatch" style="background: #F0F0F0;"></div>
+            <div>
+              <div class="legend-text">対応計画</div>
+              <div class="legend-sub">低影響・高確率</div>
+            </div>
+          </div>
+          <div class="legend-item">
+            <div class="legend-swatch" style="background: #FFFFFF;"></div>
+            <div>
+              <div class="legend-text">経過観察</div>
+              <div class="legend-sub">低影響・低確率</div>
+            </div>
           </div>
         </div>
-        <div class="legend-item">
-          <div class="legend-swatch" style="background: #F0F0F0;"></div>
-          <div>
-            <div class="legend-text">対応計画</div>
-            <div class="legend-sub">低影響・高確率</div>
-          </div>
+
+      </div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
         </div>
-        <div class="legend-item">
-          <div class="legend-swatch" style="background: #FFFFFF;"></div>
-          <div>
-            <div class="legend-text">経過観察</div>
-            <div class="legend-sub">低影響・低確率</div>
-          </div>
-        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
       </div>
 
     </div>
   </div>
+</div>
 </body>
 </html>

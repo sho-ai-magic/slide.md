@@ -1,285 +1,166 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>SLIDE-PATTERN-pie-chart-left-list-right</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      width: 960px;
-      height: 540px;
-      font-family: sans-serif;
-      background: #FFFFFF;
-      color: #333333;
-      overflow: hidden;
-    }
-    .slide {
-      width: 960px;
-      height: 540px;
-      display: flex;
-      flex-direction: column;
-    }
-    /* タイトルエリア */
-    .title-area {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      flex-shrink: 0;
-      background: #FAFAFA;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999999;
-      text-transform: uppercase;
-    }
-    .title-placeholder {
-      font-size: 16px;
-      color: #CCCCCC;
-      margin-top: 4px;
-    }
-    /* コンテンツエリア */
-    .content-area {
-      flex: 1;
-      padding: 20px 40px 24px;
-      display: flex;
-      flex-direction: column;
-    }
-    .content-label {
-      font-size: 11px;
-      color: #999999;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-    /* 2カラム本体 */
-    .two-col-wrap {
-      flex: 1;
-      display: flex;
-      gap: 32px;
-      align-items: center;
-    }
-    /* 左カラム：円グラフ */
-    .chart-col {
-      width: 45%;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .chart-col-label {
-      font-size: 10px;
-      color: #BBBBBB;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    /* ドーナツグラフのSVGコンテナ */
-    .donut-wrap {
-      position: relative;
-      width: 220px;
-      height: 220px;
-    }
-    .donut-wrap svg {
-      width: 220px;
-      height: 220px;
-    }
-    /* 中央ラベル */
-    .donut-center-label {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-    }
-    .donut-center-value {
-      font-size: 28px;
-      font-weight: bold;
-      color: #444444;
-      line-height: 1;
-    }
-    .donut-center-sub {
-      font-size: 11px;
-      color: #999999;
-      margin-top: 4px;
-    }
-    .center-label-badge {
-      font-size: 10px;
-      color: #BBBBBB;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    /* 右カラム：凡例リスト */
-    .legend-col {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 12px;
-    }
-    .legend-col-label {
-      font-size: 10px;
-      color: #BBBBBB;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-    /* 各凡例アイテム */
-    .legend-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-    /* カラードット */
-    .color-dot {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      margin-top: 3px;
-    }
-    .dot-1 { background: #444444; }
-    .dot-2 { background: #777777; }
-    .dot-3 { background: #999999; }
-    .dot-4 { background: #BBBBBB; }
-    /* 凡例テキスト */
-    .legend-text { flex: 1; }
-    .legend-name {
-      font-size: 13px;
-      font-weight: bold;
-      color: #333333;
-    }
-    .legend-value {
-      font-size: 16px;
-      font-weight: bold;
-      color: #555555;
-      margin-left: 8px;
-    }
-    .legend-desc {
-      font-size: 11px;
-      color: #777777;
-      margin-top: 2px;
-    }
-    .value-label {
-      font-size: 10px;
-      color: #BBBBBB;
-      text-transform: uppercase;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-pie-chart-left-list-right</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .two-col-wrap { flex: 1; display: flex; gap: 64px; align-items: center; }
+  .chart-col { width: 45%; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .donut-wrap { position: relative; width: 440px; height: 440px; }
+  .donut-wrap svg { width: 440px; height: 440px; }
+  .donut-center-label { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+  .donut-center-value { font-size: 56px; font-weight: bold; color: #444444; line-height: 1; }
+  .donut-center-sub { font-size: 22px; color: #999999; margin-top: 8px; }
+  .legend-col { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 24px; }
+  .legend-item { display: flex; align-items: flex-start; gap: 24px; }
+  .color-dot { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+  .dot-1 { background: #444444; }
+  .dot-2 { background: #777777; }
+  .dot-3 { background: #999999; }
+  .dot-4 { background: #BBBBBB; }
+  .legend-text { flex: 1; }
+  .legend-name { font-size: 26px; font-weight: bold; color: #333333; }
+  .legend-value { font-size: 32px; font-weight: bold; color: #555555; margin-left: 16px; }
+  .legend-desc { font-size: 22px; color: #777777; margin-top: 4px; }
+</style>
 </head>
 <body>
-  <div class="slide">
-    <!-- タイトルエリア（SLIDE.md参照） -->
-    <div class="title-area">
-      <div class="area-label">Title Area — SLIDE.md 参照</div>
-      <div class="title-placeholder">スライドタイトルが入ります</div>
-    </div>
+<p class="slide-label">[pie-chart-left-list-right]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-    <!-- コンテンツエリア -->
-    <div class="content-area">
-      <div class="content-label">Content Area — pie-chart-left-list-right</div>
-
-      <div class="two-col-wrap">
-
-        <!-- 左カラム：ドーナツグラフ -->
-        <div class="chart-col">
-          <div class="chart-col-label">Pie / Donut Chart Col</div>
-          <div class="donut-wrap">
-            <!-- ドーナツグラフ（SVGで表現） -->
-            <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-              <!-- 背景の円 -->
-              <circle cx="110" cy="110" r="80" fill="none" stroke="#EEEEEE" stroke-width="32"/>
-              <!--
-                各区分をstroke-dasharrayで描画
-                円周 = 2πr = 2 × 3.14159 × 80 ≈ 502.65
-                区分1（40%）: 502.65 × 0.40 ≈ 201
-                区分2（30%）: 502.65 × 0.30 ≈ 151
-                区分3（20%）: 502.65 × 0.20 ≈ 101
-                区分4（10%）: 502.65 × 0.10 ≈  50
-              -->
-              <!-- 区分1（暗いグレー・40%） 開始: -90度（上から） -->
-              <circle cx="110" cy="110" r="80"
-                fill="none" stroke="#444444" stroke-width="32"
-                stroke-dasharray="201 502"
-                stroke-dashoffset="126"
-                transform="rotate(-90 110 110)"/>
-              <!-- 区分2（中グレー・30%）: 区分1の後 -->
-              <circle cx="110" cy="110" r="80"
-                fill="none" stroke="#777777" stroke-width="32"
-                stroke-dasharray="151 502"
-                stroke-dashoffset="-75"
-                transform="rotate(-90 110 110)"/>
-              <!-- 区分3（薄グレー・20%）: 区分1+2の後 -->
-              <circle cx="110" cy="110" r="80"
-                fill="none" stroke="#999999" stroke-width="32"
-                stroke-dasharray="101 502"
-                stroke-dashoffset="-226"
-                transform="rotate(-90 110 110)"/>
-              <!-- 区分4（最薄グレー・10%）: 区分1+2+3の後 -->
-              <circle cx="110" cy="110" r="80"
-                fill="none" stroke="#BBBBBB" stroke-width="32"
-                stroke-dasharray="50 502"
-                stroke-dashoffset="-327"
-                transform="rotate(-90 110 110)"/>
-            </svg>
-            <!-- 中央ラベル -->
-            <div class="donut-center-label">
-              <div class="center-label-badge">Center Label</div>
-              <div class="donut-center-value">1,200</div>
-              <div class="donut-center-sub">件（合計）</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 右カラム：凡例リスト -->
-        <div class="legend-col">
-          <div class="legend-col-label">Legend List Col</div>
-
-          <div class="legend-item">
-            <div class="color-dot dot-1"></div>
-            <div class="legend-text">
-              <div>
-                <span class="legend-name">カテゴリA</span>
-                <span class="legend-value">40%</span>
-                <span class="value-label"> ← value</span>
-              </div>
-              <div class="legend-desc">各カテゴリの補足説明が1行で入ります</div>
-            </div>
-          </div>
-
-          <div class="legend-item">
-            <div class="color-dot dot-2"></div>
-            <div class="legend-text">
-              <div>
-                <span class="legend-name">カテゴリB</span>
-                <span class="legend-value">30%</span>
-              </div>
-              <div class="legend-desc">各カテゴリの補足説明が1行で入ります</div>
-            </div>
-          </div>
-
-          <div class="legend-item">
-            <div class="color-dot dot-3"></div>
-            <div class="legend-text">
-              <div>
-                <span class="legend-name">カテゴリC</span>
-                <span class="legend-value">20%</span>
-              </div>
-              <div class="legend-desc">各カテゴリの補足説明が1行で入ります</div>
-            </div>
-          </div>
-
-          <div class="legend-item">
-            <div class="color-dot dot-4"></div>
-            <div class="legend-text">
-              <div>
-                <span class="legend-name">その他</span>
-                <span class="legend-value">10%</span>
-              </div>
-              <div class="legend-desc">各カテゴリの補足説明が1行で入ります</div>
-            </div>
-          </div>
-        </div>
-
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
+
+      <!-- コンテンツエリア -->
+      <div style="flex:1; display:flex; flex-direction:column; padding:40px 80px 48px; overflow:hidden;">
+        <div class="area-label" style="margin-bottom:28px;">Content Area — pie-chart-left-list-right</div>
+
+        <div class="two-col-wrap">
+
+          <!-- 左カラム：ドーナツグラフ -->
+          <div class="chart-col">
+            <div class="area-label" style="margin-bottom:24px;">Pie / Donut Chart Col</div>
+            <div class="donut-wrap">
+              <!-- ドーナツグラフ（SVGで表現。viewBox座標・stroke-widthは元のまま、width/heightのみ2倍） -->
+              <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                <!-- 背景の円 -->
+                <circle cx="110" cy="110" r="80" fill="none" stroke="#EEEEEE" stroke-width="32"/>
+                <!--
+                  各区分をstroke-dasharrayで描画
+                  円周 = 2πr = 2 × 3.14159 × 80 ≈ 502.65
+                  区分1（40%）: 502.65 × 0.40 ≈ 201
+                  区分2（30%）: 502.65 × 0.30 ≈ 151
+                  区分3（20%）: 502.65 × 0.20 ≈ 101
+                  区分4（10%）: 502.65 × 0.10 ≈  50
+                -->
+                <!-- 区分1（暗いグレー・40%） 開始: -90度（上から） -->
+                <circle cx="110" cy="110" r="80"
+                  fill="none" stroke="#444444" stroke-width="32"
+                  stroke-dasharray="201 502"
+                  stroke-dashoffset="126"
+                  transform="rotate(-90 110 110)"/>
+                <!-- 区分2（中グレー・30%）: 区分1の後 -->
+                <circle cx="110" cy="110" r="80"
+                  fill="none" stroke="#777777" stroke-width="32"
+                  stroke-dasharray="151 502"
+                  stroke-dashoffset="-75"
+                  transform="rotate(-90 110 110)"/>
+                <!-- 区分3（薄グレー・20%）: 区分1+2の後 -->
+                <circle cx="110" cy="110" r="80"
+                  fill="none" stroke="#999999" stroke-width="32"
+                  stroke-dasharray="101 502"
+                  stroke-dashoffset="-226"
+                  transform="rotate(-90 110 110)"/>
+                <!-- 区分4（最薄グレー・10%）: 区分1+2+3の後 -->
+                <circle cx="110" cy="110" r="80"
+                  fill="none" stroke="#BBBBBB" stroke-width="32"
+                  stroke-dasharray="50 502"
+                  stroke-dashoffset="-327"
+                  transform="rotate(-90 110 110)"/>
+              </svg>
+              <!-- 中央ラベル -->
+              <div class="donut-center-label">
+                <div class="area-label" style="margin-bottom:8px;">Center Label</div>
+                <div class="donut-center-value">1,234</div>
+                <div class="donut-center-sub">件（合計）</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 右カラム：凡例リスト -->
+          <div class="legend-col">
+            <div class="area-label" style="margin-bottom:8px;">Legend List Col</div>
+
+            <div class="legend-item">
+              <div class="color-dot dot-1"></div>
+              <div class="legend-text">
+                <div>
+                  <span class="legend-name">カテゴリA</span>
+                  <span class="legend-value">40%</span>
+                </div>
+                <div class="legend-desc">各カテゴリの補足説明が1行で入ります</div>
+              </div>
+            </div>
+
+            <div class="legend-item">
+              <div class="color-dot dot-2"></div>
+              <div class="legend-text">
+                <div>
+                  <span class="legend-name">カテゴリB</span>
+                  <span class="legend-value">30%</span>
+                </div>
+                <div class="legend-desc">各カテゴリの補足説明が1行で入ります</div>
+              </div>
+            </div>
+
+            <div class="legend-item">
+              <div class="color-dot dot-3"></div>
+              <div class="legend-text">
+                <div>
+                  <span class="legend-name">カテゴリC</span>
+                  <span class="legend-value">20%</span>
+                </div>
+                <div class="legend-desc">各カテゴリの補足説明が1行で入ります</div>
+              </div>
+            </div>
+
+            <div class="legend-item">
+              <div class="color-dot dot-4"></div>
+              <div class="legend-text">
+                <div>
+                  <span class="legend-name">その他</span>
+                  <span class="legend-value">10%</span>
+                </div>
+                <div class="legend-desc">各カテゴリの補足説明が1行で入ります</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
     </div>
   </div>
+</div>
 </body>
 </html>

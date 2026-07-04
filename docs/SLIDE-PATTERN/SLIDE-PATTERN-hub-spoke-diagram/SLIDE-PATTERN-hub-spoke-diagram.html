@@ -4,63 +4,76 @@
 <meta charset="UTF-8">
 <title>SLIDE-PATTERN-hub-spoke-diagram</title>
 <style>
-  body { background: #E8E8E8; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; font-family: sans-serif; }
-  .slide-label { font-size: 12px; color: #666; margin-bottom: 6px; }
-  .slide { width: 960px; height: 540px; background: #FFFFFF; border: 1px solid #CCCCCC; overflow: hidden; display: flex; flex-direction: column; }
-  .area-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
-  .title-area { padding: 14px 40px 12px; border-bottom: 1px dashed #CCCCCC; flex-shrink: 0; background: #FAFAFA; }
-  .content-area { flex: 1; display: grid; grid-template-columns: 1fr 200px 1fr; grid-template-rows: 1fr 1fr; padding: 12px 24px; gap: 10px; }
-  .spoke-box { background: #F8F8F8; border: 1px dashed #CCCCCC; padding: 10px 14px; display: flex; flex-direction: column; justify-content: center; }
-  .spoke-heading { font-size: 13px; font-weight: bold; color: #333; margin-bottom: 5px; }
-  .spoke-body { font-size: 11px; color: #666; line-height: 1.6; }
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .content-area { flex: 1; display: grid; grid-template-columns: 1fr 400px 1fr; grid-template-rows: 1fr 1fr; padding: 24px 48px; gap: 20px; }
+  .spoke-box { background: #F8F8F8; border: 1px dashed #CCCCCC; padding: 20px 28px; display: flex; flex-direction: column; justify-content: center; }
+  .spoke-heading { font-size: 26px; font-weight: bold; color: #333; margin-bottom: 10px; }
+  .spoke-body { font-size: 22px; color: #666; line-height: 1.6; }
   .hub-center { grid-column: 2; grid-row: 1 / 3; display: flex; align-items: center; justify-content: center; }
-  .hub-shape { width: 160px; height: 160px; border-radius: 50%; background: #E0E0E0; border: 2px solid #CCCCCC; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
-  .hub-label-small { font-size: 10px; color: #999; margin-bottom: 4px; }
-  .hub-core { font-size: 14px; font-weight: bold; color: #555; }
+  .hub-shape { width: 320px; height: 320px; border-radius: 50%; background: #E0E0E0; border: 4px solid #CCCCCC; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
+  .hub-label-small { font-size: 20px; color: #999; margin-bottom: 8px; }
+  .hub-core { font-size: 28px; font-weight: bold; color: #555; }
 </style>
 </head>
 <body>
 <p class="slide-label">[hub-spoke-diagram]</p>
-<div class="slide">
-  <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-  </div>
-  <!-- コンテンツエリア -->
-  <div class="content-area">
-    <!-- 左上 -->
-    <div class="spoke-box">
-      <div class="area-label">スポーク（左上）</div>
-      <div class="spoke-heading">要素1の見出し</div>
-      <div class="spoke-body">この要素の説明が入ります。2〜3行程度のテキスト。</div>
-    </div>
-    <!-- ハブ（中央） -->
-    <div class="hub-center">
-      <div class="hub-shape">
-        <div>
-          <div class="hub-label-small">HUB</div>
-          <div class="hub-core">コア<br>コンセプト</div>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+      <!-- コンテンツエリア -->
+      <div class="content-area">
+        <!-- 左上 -->
+        <div class="spoke-box">
+          <div class="area-label">スポーク（左上）</div>
+          <div class="spoke-heading">要素1の見出し</div>
+          <div class="spoke-body">この要素の説明が入ります。2〜3行程度のテキスト。</div>
+        </div>
+        <!-- ハブ（中央） -->
+        <div class="hub-center">
+          <div class="hub-shape">
+            <div>
+              <div class="hub-label-small">HUB</div>
+              <div class="hub-core">コア<br>コンセプト</div>
+            </div>
+          </div>
+        </div>
+        <!-- 右上 -->
+        <div class="spoke-box">
+          <div class="area-label">スポーク（右上）</div>
+          <div class="spoke-heading">要素2の見出し</div>
+          <div class="spoke-body">この要素の説明が入ります。2〜3行程度のテキスト。</div>
+        </div>
+        <!-- 左下 -->
+        <div class="spoke-box">
+          <div class="area-label">スポーク（左下）</div>
+          <div class="spoke-heading">要素4の見出し</div>
+          <div class="spoke-body">この要素の説明が入ります。2〜3行程度のテキスト。</div>
+        </div>
+        <!-- 右下 -->
+        <div class="spoke-box">
+          <div class="area-label">スポーク（右下）</div>
+          <div class="spoke-heading">要素3の見出し</div>
+          <div class="spoke-body">この要素の説明が入ります。2〜3行程度のテキスト。</div>
         </div>
       </div>
-    </div>
-    <!-- 右上 -->
-    <div class="spoke-box">
-      <div class="area-label">スポーク（右上）</div>
-      <div class="spoke-heading">要素2の見出し</div>
-      <div class="spoke-body">この要素の説明が入ります。2〜3行程度のテキスト。</div>
-    </div>
-    <!-- 左下 -->
-    <div class="spoke-box">
-      <div class="area-label">スポーク（左下）</div>
-      <div class="spoke-heading">要素4の見出し</div>
-      <div class="spoke-body">この要素の説明が入ります。2〜3行程度のテキスト。</div>
-    </div>
-    <!-- 右下 -->
-    <div class="spoke-box">
-      <div class="area-label">スポーク（右下）</div>
-      <div class="spoke-heading">要素3の見出し</div>
-      <div class="spoke-body">この要素の説明が入ります。2〜3行程度のテキスト。</div>
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
     </div>
   </div>
 </div>

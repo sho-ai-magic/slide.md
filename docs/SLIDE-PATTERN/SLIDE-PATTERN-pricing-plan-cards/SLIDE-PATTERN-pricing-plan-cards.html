@@ -4,69 +4,89 @@
 <meta charset="UTF-8">
 <title>SLIDE-PATTERN-pricing-plan-cards</title>
 <style>
-  body { background: #E8E8E8; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; font-family: sans-serif; }
-  .slide-label { font-size: 12px; color: #666; margin-bottom: 6px; }
-  .slide { width: 960px; height: 540px; background: #FFFFFF; border: 1px solid #CCCCCC; overflow: hidden; display: flex; flex-direction: column; }
-  .area-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
-  .title-area { padding: 14px 40px 12px; border-bottom: 1px dashed #CCCCCC; flex-shrink: 0; background: #FAFAFA; }
-  .content-area { flex: 1; padding: 16px 40px 20px; display: flex; align-items: stretch; gap: 16px; }
-  .row-labels { width: 100px; display: flex; flex-direction: column; justify-content: flex-end; gap: 0; padding-bottom: 0; }
-  .row-label { font-size: 11px; font-weight: bold; color: #666; padding: 8px 0; border-bottom: 1px solid #EEE; display: flex; align-items: center; flex: 1; }
-  .plans { flex: 1; display: flex; gap: 12px; align-items: flex-end; }
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
+
+  /* コンテンツエリア */
+  .content-area { flex: 1; padding: 32px 60px 40px; display: flex; align-items: stretch; gap: 32px; box-sizing: border-box; }
+  .row-labels { width: 200px; display: flex; flex-direction: column; justify-content: flex-end; gap: 0; padding-bottom: 0; flex-shrink: 0; }
+  .row-label { font-size: 22px; font-weight: bold; color: #666; padding: 16px 0; border-bottom: 1px solid #EEE; display: flex; align-items: center; flex: 1; }
+  .plans { flex: 1; display: flex; gap: 24px; align-items: flex-end; }
   .plan-card { flex: 1; display: flex; flex-direction: column; border: 1px solid #E0E0E0; overflow: hidden; }
-  .plan-card.recommended { border-color: #AAAAAA; margin-top: -16px; }
-  .plan-header { background: #E0E0E0; padding: 8px 12px; text-align: center; font-size: 13px; font-weight: bold; color: #444; }
+  .plan-card.recommended { border-color: #AAAAAA; margin-top: -32px; }
+  .plan-header { background: #E0E0E0; padding: 16px 24px; text-align: center; font-size: 26px; font-weight: bold; color: #444; }
   .plan-header.recommended { background: #C8C8C8; }
-  .recommended-badge { font-size: 10px; background: #888; color: #FFF; padding: 2px 8px; border-radius: 10px; margin-bottom: 4px; display: inline-block; }
-  .plan-price { font-size: 26px; font-weight: bold; color: #333; text-align: center; padding: 12px 8px 8px; }
-  .plan-price span { font-size: 12px; font-weight: normal; color: #888; }
-  .feature-row { padding: 7px 12px; border-top: 1px dashed #EEEEEE; font-size: 11px; color: #555; text-align: center; flex: 1; display: flex; align-items: center; justify-content: center; }
+  .recommended-badge { font-size: 20px; background: #888; color: #FFF; padding: 4px 16px; border-radius: 20px; margin-bottom: 8px; display: inline-block; }
+  .plan-price { font-size: 52px; font-weight: bold; color: #333; text-align: center; padding: 24px 16px 16px; }
+  .plan-price span { font-size: 24px; font-weight: normal; color: #888; }
+  .feature-row { padding: 14px 24px; border-top: 1px dashed #EEEEEE; font-size: 22px; color: #555; text-align: center; flex: 1; display: flex; align-items: center; justify-content: center; }
 </style>
 </head>
 <body>
 <p class="slide-label">[pricing-plan-cards]</p>
-<div class="slide">
-  <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-  </div>
-  <!-- コンテンツエリア -->
-  <div class="content-area">
-    <div class="row-labels">
-      <div class="area-label">行ラベル</div>
-      <div class="row-label">月額料金</div>
-      <div class="row-label">特徴1</div>
-      <div class="row-label">特徴2</div>
-      <div class="row-label">特徴3</div>
-      <div class="row-label">サポート</div>
-    </div>
-    <div class="plans">
-      <div class="plan-card">
-        <div class="plan-header">プランA</div>
-        <div class="plan-price">¥5万<span>/月</span></div>
-        <div class="feature-row">機能の説明が入ります</div>
-        <div class="feature-row">機能の説明が入ります</div>
-        <div class="feature-row">機能の説明が入ります</div>
-        <div class="feature-row">メールサポート</div>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
-      <div class="plan-card recommended">
-        <div style="text-align:center; padding: 4px 0 0;"><span class="recommended-badge">おすすめ</span></div>
-        <div class="plan-header recommended">プランB</div>
-        <div class="plan-price">¥12万<span>/月</span></div>
-        <div class="feature-row">機能の説明が入ります</div>
-        <div class="feature-row">機能の説明が入ります</div>
-        <div class="feature-row">機能の説明が入ります</div>
-        <div class="feature-row">チャット・メールサポート</div>
+
+      <!-- コンテンツエリア -->
+      <div class="content-area">
+        <div class="row-labels">
+          <div class="area-label">行ラベル</div>
+          <div class="row-label">月額料金</div>
+          <div class="row-label">特徴1</div>
+          <div class="row-label">特徴2</div>
+          <div class="row-label">特徴3</div>
+          <div class="row-label">サポート</div>
+        </div>
+        <div class="plans">
+          <div class="plan-card">
+            <div class="plan-header">プランA</div>
+            <div class="plan-price">¥5万<span>/月</span></div>
+            <div class="feature-row">機能の説明が入ります</div>
+            <div class="feature-row">機能の説明が入ります</div>
+            <div class="feature-row">機能の説明が入ります</div>
+            <div class="feature-row">メールサポート</div>
+          </div>
+          <div class="plan-card recommended">
+            <div style="text-align:center; padding: 8px 0 0;"><span class="recommended-badge">おすすめ</span></div>
+            <div class="plan-header recommended">プランB</div>
+            <div class="plan-price">¥12万<span>/月</span></div>
+            <div class="feature-row">機能の説明が入ります</div>
+            <div class="feature-row">機能の説明が入ります</div>
+            <div class="feature-row">機能の説明が入ります</div>
+            <div class="feature-row">チャット・メールサポート</div>
+          </div>
+          <div class="plan-card">
+            <div class="plan-header">プランC</div>
+            <div class="plan-price">¥35万〜<span>/月</span></div>
+            <div class="feature-row">機能の説明が入ります</div>
+            <div class="feature-row">機能の説明が入ります</div>
+            <div class="feature-row">機能の説明が入ります</div>
+            <div class="feature-row">専任担当サポート</div>
+          </div>
+        </div>
       </div>
-      <div class="plan-card">
-        <div class="plan-header">プランC</div>
-        <div class="plan-price">¥35万〜<span>/月</span></div>
-        <div class="feature-row">機能の説明が入ります</div>
-        <div class="feature-row">機能の説明が入ります</div>
-        <div class="feature-row">機能の説明が入ります</div>
-        <div class="feature-row">専任担当サポート</div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
       </div>
+
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
 # SLIDE-PATTERN-two-feature-with-result
 
-このファイルはスライドのコンテンツエリア（タイトル行より下の領域）のレイアウトパターン定義書です。SLIDE.mdと組み合わせてAIツールに渡すことで、このパターンのスライドを生成できます。タイトルエリア・ページ番号・装飾はSLIDE.mdの `Slide Frame` セクションで定義されるため、このファイルには含みません。
+このファイルはスライドのコンテンツエリア（タイトル行より下の領域）のレイアウトパターン定義書です。SLIDE.mdと組み合わせてAIツールに渡すことで、このパターンのスライドを生成できます。タイトルエリア・フッター（ブランドフッター・ページ番号）・装飾はSLIDE.mdの `Slide Frame` セクションで定義されるため、このファイルには含みません。文言はすべてサンプル（ダミーテキスト）です。
 
 ## Overview
 
@@ -13,54 +13,59 @@
 コンテンツエリアを縦方向に上部説明・中段カード群・矢印・下部結果ボックスの4層で構成する。
 
     structure:
+      frame: standard
       layout: content-area-two-feature-with-result
-      padding: 12px 48px
-      gap: 12px
+      padding: 24px 96px（高さの約2%）
+      gap: 24px（高さの約2%）
       upper-description:
-        font-size: 12px
+        font-size: 24px
         color: #555
         line-height: 1.7
         lines: 1〜2行
       middle-cards:
         display: flex
-        gap: 16px
+        gap: 32px
         card:
           flex: 1
           border: 1px solid #CCCCCC
           background: #F8F8F8
-          padding: 16px
+          padding: 32px
           elements:
-            - area-label (「機能 01」形式, font-size: 11px, #999)
-            - heading (font-size: 14px, bold, #333)
-            - description (font-size: 12px, #666, 2行)
+            - area-label (「機能 01」形式, font-size: 20px, #999)
+            - heading (font-size: 28px, bold, #333)
+            - description (font-size: 24px, #666, 2行)
       arrow-area:
         text-align: center
-        font-size: 20px
+        font-size: 40px
         color: #CCCCCC
         content: ▼
       result-box:
         border: 1px solid #CCCCCC
         background: #F0F0F0
-        padding: 14px 24px
+        padding: 28px 48px
         display: flex
         align-items: center
-        gap: 16px
+        gap: 32px
         elements:
-          - result-label (「実績・効果」, font-size: 11px, #999)
-          - result-text (font-size: 14px, bold, #333)
+          - result-label (「実績・効果」, font-size: 20px, #999)
+          - result-text (font-size: 28px, bold, #333)
 
 ## Elements（各要素の役割）
 
+※ タイトル（H1）・フッターはSLIDE.mdの Slide Frame で定義されるため、この表には含めない。コンテンツエリアの要素のみを記述する。
+※ 写真は「写真添付エリア（後から実際の写真に差し替え）」、アイコンは「内容に沿ったSVGアイコンを生成して配置」として役割を記述する。
+※ 文字要素には、元スライドの見た目から見積もった1920px基準のフォントサイズの目安を役割欄に添える。
+
 | 要素 | 配置 | 役割 |
 |---|---|---|
-| 上部説明テキスト | コンテンツエリア最上部 | 2つの機能カードの背景・前提を1〜2行で説明 |
+| 上部説明テキスト | コンテンツエリア最上部 | 2つの機能カードの背景・前提を1〜2行で説明（24px相当） |
 | 機能カード（左・右） | 中段・横並び | 2つの機能・施策・強みを個別のカードで説明 |
-| カードエリアラベル | 各カード上部 | 「機能 01」「機能 02」などの識別ラベル |
-| カード見出し | ラベル下 | 各機能・施策の名称を太字で表示 |
-| カード説明テキスト | 見出し下 | 各機能・施策の詳細を2行で説明 |
-| 矢印 | 中段と下部の間 | 機能から結果への因果関係を視覚的に示す |
-| 結果ラベル | 結果ボックス左端 | 「実績・効果」などの区分ラベルを小さく表示 |
-| 結果テキスト | 結果ラベルの右 | 2つの機能がもたらす成果・実績を太字で表示 |
+| カードエリアラベル | 各カード上部 | 「機能 01」「機能 02」などの識別ラベル（20px相当） |
+| カード見出し | ラベル下 | 各機能・施策の名称を太字で表示（28px相当） |
+| カード説明テキスト | 見出し下 | 各機能・施策の詳細を2行で説明（24px相当） |
+| 矢印 | 中段と下部の間 | 機能から結果への因果関係を視覚的に示す（40px相当） |
+| 結果ラベル | 結果ボックス左端 | 「実績・効果」などの区分ラベルを小さく表示（20px相当） |
+| 結果テキスト | 結果ラベルの右 | 2つの機能がもたらす成果・実績を太字で表示（28px相当） |
 
 ## Usage Guide（AIへの使い方）
 

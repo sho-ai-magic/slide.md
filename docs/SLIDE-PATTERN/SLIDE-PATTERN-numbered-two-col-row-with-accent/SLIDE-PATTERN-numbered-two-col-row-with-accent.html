@@ -4,99 +4,111 @@
 <meta charset="UTF-8">
 <title>SLIDE-PATTERN-numbered-two-col-row-with-accent</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { width: 960px; height: 540px; overflow: hidden; font-family: sans-serif; background: #FFFFFF; display: flex; flex-direction: column; }
-  .area-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.05em; }
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .list-row { flex: 1; display: flex; align-items: stretch; gap: 0; min-height: 0; background: #FFFFFF; }
+  .number-block { width: 220px; flex-shrink: 0; position: relative; display: flex; align-items: center; justify-content: center; background: #DDDDDD; border-radius: 8px 0 0 8px; overflow: hidden; }
+  .number-block-label { font-size: 18px; color: #BBBBBB; position: absolute; top: 10px; left: 12px; text-transform: uppercase; }
+  .number-value { font-size: 64px; font-weight: bold; color: #555; letter-spacing: -1px; }
+  .diagonal-cut { position: absolute; right: -1px; top: 0; width: 0; height: 0; border-top: 120px solid #FFFFFF; border-left: 40px solid transparent; }
+  .text-area { flex: 1; background: #F8F8F8; border-top: 1px solid #E0E0E0; border-bottom: 1px solid #E0E0E0; padding: 20px 32px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .text-area-label { font-size: 18px; color: #BBBBBB; text-transform: uppercase; }
+  .row-heading { font-size: 26px; color: #666; font-weight: bold; text-decoration: underline; text-underline-offset: 6px; }
+  .bullet-list { display: flex; flex-direction: column; gap: 6px; }
+  .bullet-item { font-size: 22px; color: #777; display: flex; gap: 12px; }
+  .accent-bar { width: 16px; flex-shrink: 0; background: #CCCCCC; border-radius: 0 8px 8px 0; }
 </style>
 </head>
 <body>
+<p class="slide-label">[numbered-two-col-row-with-accent]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-<!-- タイトルエリア -->
-<div style="padding:14px 40px 12px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
-  <div class="area-label">Title Area — SLIDE.md 参照</div>
-  <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
+
+      <!-- コンテンツエリア -->
+      <div style="flex:1; display:flex; flex-direction:column; padding:32px 60px; gap:20px; overflow:hidden;">
+
+        <div class="area-label" style="margin-bottom:2px;">Numbered List Area</div>
+
+        <!-- リスト行1 -->
+        <div class="list-row">
+          <div class="number-block">
+            <div class="number-block-label">Number</div>
+            <div class="number-value">01</div>
+            <div class="diagonal-cut"></div>
+          </div>
+          <div class="text-area">
+            <div class="text-area-label">Heading + Bullets</div>
+            <div class="row-heading">ステップ1の見出しテキスト</div>
+            <div class="bullet-list">
+              <div class="bullet-item"><span>•</span><span>箇条書き詳細1：関連する詳細情報のテキストが入ります。</span></div>
+              <div class="bullet-item"><span>•</span><span>箇条書き詳細2：追加の詳細情報テキストが入ります。</span></div>
+            </div>
+          </div>
+          <div class="accent-bar"></div>
+        </div>
+
+        <!-- リスト行2 -->
+        <div class="list-row">
+          <div class="number-block">
+            <div class="number-block-label">Number</div>
+            <div class="number-value">02</div>
+            <div class="diagonal-cut"></div>
+          </div>
+          <div class="text-area">
+            <div class="text-area-label">Heading + Bullets</div>
+            <div class="row-heading">ステップ2の見出しテキスト</div>
+            <div class="bullet-list">
+              <div class="bullet-item"><span>•</span><span>箇条書き詳細1：関連する詳細情報のテキストが入ります。</span></div>
+              <div class="bullet-item"><span>•</span><span>箇条書き詳細2：追加の詳細情報テキストが入ります。</span></div>
+              <div class="bullet-item"><span>•</span><span>箇条書き詳細3：さらなる詳細情報テキストが入ります。</span></div>
+            </div>
+          </div>
+          <div class="accent-bar"></div>
+        </div>
+
+        <!-- リスト行3 -->
+        <div class="list-row">
+          <div class="number-block">
+            <div class="number-block-label">Number</div>
+            <div class="number-value">03</div>
+            <div class="diagonal-cut"></div>
+          </div>
+          <div class="text-area">
+            <div class="text-area-label">Heading + Bullets</div>
+            <div class="row-heading">ステップ3の見出しテキスト</div>
+            <div class="bullet-list">
+              <div class="bullet-item"><span>•</span><span>箇条書き詳細1：関連する詳細情報のテキストが入ります。</span></div>
+              <div class="bullet-item"><span>•</span><span>箇条書き詳細2：追加の詳細情報テキストが入ります。</span></div>
+              <div class="bullet-item"><span>•</span><span>箇条書き詳細3：さらなる詳細情報テキストが入ります。</span></div>
+            </div>
+          </div>
+          <div class="accent-bar"></div>
+        </div>
+
+      </div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
+    </div>
+  </div>
 </div>
-
-<!-- コンテンツエリア -->
-<div style="flex:1; display:flex; flex-direction:column; padding:18px 40px 16px; gap:10px; overflow:hidden;">
-
-  <div class="area-label" style="margin-bottom:2px;">Numbered List Area</div>
-
-  <!-- リスト行1 -->
-  <div style="flex:1; display:flex; align-items:stretch; gap:0; min-height:0; background:#FFFFFF;">
-
-    <!-- 左：番号ブロック（斜めカット装飾付き） -->
-    <div style="width:110px; flex-shrink:0; position:relative; display:flex; align-items:center; justify-content:center; background:#DDDDDD; border-radius:4px 0 0 4px; overflow:hidden;">
-      <div style="font-size:9px; color:#BBBBBB; position:absolute; top:5px; left:6px; text-transform:uppercase;">Number</div>
-      <div style="font-size:32px; font-weight:bold; color:#555; letter-spacing:-1px;">01</div>
-      <!-- 斜めカット（三角形装飾） -->
-      <div style="position:absolute; right:-1px; top:0; width:0; height:0; border-top:60px solid #FFFFFF; border-left:20px solid transparent;"></div>
-    </div>
-
-    <!-- 中央：テキストエリア -->
-    <div style="flex:1; background:#F8F8F8; border-top:1px solid #E0E0E0; border-bottom:1px solid #E0E0E0; padding:10px 16px; display:flex; flex-direction:column; gap:5px; min-width:0;">
-      <div style="font-size:9px; color:#BBBBBB; text-transform:uppercase;">Heading + Bullets</div>
-      <div style="font-size:13px; color:#666; font-weight:bold; text-decoration:underline; text-underline-offset:3px;">ステップ1の見出しテキスト</div>
-      <div style="display:flex; flex-direction:column; gap:3px;">
-        <div style="font-size:11px; color:#777; display:flex; gap:6px;"><span>•</span><span>箇条書き詳細1：関連する詳細情報のテキストが入ります。</span></div>
-        <div style="font-size:11px; color:#777; display:flex; gap:6px;"><span>•</span><span>箇条書き詳細2：追加の詳細情報テキストが入ります。</span></div>
-      </div>
-    </div>
-
-    <!-- 右：縦アクセントバー -->
-    <div style="width:8px; flex-shrink:0; background:#CCCCCC; border-radius:0 4px 4px 0;">
-      <div style="font-size:0; color:transparent;">accent bar</div>
-    </div>
-
-  </div>
-
-  <!-- リスト行2 -->
-  <div style="flex:1; display:flex; align-items:stretch; gap:0; min-height:0; background:#FFFFFF;">
-
-    <div style="width:110px; flex-shrink:0; position:relative; display:flex; align-items:center; justify-content:center; background:#DDDDDD; border-radius:4px 0 0 4px; overflow:hidden;">
-      <div style="font-size:9px; color:#BBBBBB; position:absolute; top:5px; left:6px; text-transform:uppercase;">Number</div>
-      <div style="font-size:32px; font-weight:bold; color:#555; letter-spacing:-1px;">02</div>
-      <div style="position:absolute; right:-1px; top:0; width:0; height:0; border-top:60px solid #FFFFFF; border-left:20px solid transparent;"></div>
-    </div>
-
-    <div style="flex:1; background:#F8F8F8; border-top:1px solid #E0E0E0; border-bottom:1px solid #E0E0E0; padding:10px 16px; display:flex; flex-direction:column; gap:5px; min-width:0;">
-      <div style="font-size:9px; color:#BBBBBB; text-transform:uppercase;">Heading + Bullets</div>
-      <div style="font-size:13px; color:#666; font-weight:bold; text-decoration:underline; text-underline-offset:3px;">ステップ2の見出しテキスト</div>
-      <div style="display:flex; flex-direction:column; gap:3px;">
-        <div style="font-size:11px; color:#777; display:flex; gap:6px;"><span>•</span><span>箇条書き詳細1：関連する詳細情報のテキストが入ります。</span></div>
-        <div style="font-size:11px; color:#777; display:flex; gap:6px;"><span>•</span><span>箇条書き詳細2：追加の詳細情報テキストが入ります。</span></div>
-        <div style="font-size:11px; color:#777; display:flex; gap:6px;"><span>•</span><span>箇条書き詳細3：さらなる詳細情報テキストが入ります。</span></div>
-      </div>
-    </div>
-
-    <div style="width:8px; flex-shrink:0; background:#CCCCCC; border-radius:0 4px 4px 0;"></div>
-
-  </div>
-
-  <!-- リスト行3 -->
-  <div style="flex:1; display:flex; align-items:stretch; gap:0; min-height:0; background:#FFFFFF;">
-
-    <div style="width:110px; flex-shrink:0; position:relative; display:flex; align-items:center; justify-content:center; background:#DDDDDD; border-radius:4px 0 0 4px; overflow:hidden;">
-      <div style="font-size:9px; color:#BBBBBB; position:absolute; top:5px; left:6px; text-transform:uppercase;">Number</div>
-      <div style="font-size:32px; font-weight:bold; color:#555; letter-spacing:-1px;">03</div>
-      <div style="position:absolute; right:-1px; top:0; width:0; height:0; border-top:60px solid #FFFFFF; border-left:20px solid transparent;"></div>
-    </div>
-
-    <div style="flex:1; background:#F8F8F8; border-top:1px solid #E0E0E0; border-bottom:1px solid #E0E0E0; padding:10px 16px; display:flex; flex-direction:column; gap:5px; min-width:0;">
-      <div style="font-size:9px; color:#BBBBBB; text-transform:uppercase;">Heading + Bullets</div>
-      <div style="font-size:13px; color:#666; font-weight:bold; text-decoration:underline; text-underline-offset:3px;">ステップ3の見出しテキスト</div>
-      <div style="display:flex; flex-direction:column; gap:3px;">
-        <div style="font-size:11px; color:#777; display:flex; gap:6px;"><span>•</span><span>箇条書き詳細1：関連する詳細情報のテキストが入ります。</span></div>
-        <div style="font-size:11px; color:#777; display:flex; gap:6px;"><span>•</span><span>箇条書き詳細2：追加の詳細情報テキストが入ります。</span></div>
-        <div style="font-size:11px; color:#777; display:flex; gap:6px;"><span>•</span><span>箇条書き詳細3：さらなる詳細情報テキストが入ります。</span></div>
-      </div>
-    </div>
-
-    <div style="width:8px; flex-shrink:0; background:#CCCCCC; border-radius:0 4px 4px 0;"></div>
-
-  </div>
-
-</div>
-
 </body>
 </html>

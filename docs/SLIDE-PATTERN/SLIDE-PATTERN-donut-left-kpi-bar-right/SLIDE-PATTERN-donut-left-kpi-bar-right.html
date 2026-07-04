@@ -1,319 +1,276 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-donut-left-kpi-bar-right</title>
-  <style>
-    /* ページ背景・中央寄せ */
-    body {
-      background: #E8E8E8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      font-family: sans-serif;
-      margin: 0;
-    }
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-donut-left-kpi-bar-right</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; }
 
-    /* スライドラベル */
-    .slide-label {
-      font-size: 13px;
-      color: #888;
-      margin-bottom: 10px;
-      letter-spacing: 0.05em;
-    }
+  /* コンテンツエリア */
+  .content { display: flex; flex: 1; padding: 32px; }
 
-    /* スライド本体 960×540px */
-    .slide {
-      width: 960px;
-      height: 540px;
-      background: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
+  /* ── 左エリア（ドーナツグラフ） ── */
+  .left-area {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 0 32px;
+    border-right: 1px solid #E0E0E0;
+  }
 
-    /* タイトルエリア */
-    .slide-title {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      background: #FAFAFA;
-      flex-shrink: 0;
-    }
-    .slide-title h2 {
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-      margin: 0;
-    }
-    .slide-title p {
-      font-size: 12px;
-      color: #888;
-      margin: 4px 0 0;
-    }
+  /* 凡例行 */
+  .legend-row {
+    display: flex;
+    gap: 32px;
+    font-size: 22px;
+    color: #888;
+    align-items: center;
+  }
+  .legend-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+  }
 
-    /* コンテンツエリア */
-    .content {
-      display: flex;
-      flex: 1;
-      padding: 16px;
-    }
+  /* ── 右エリア（KPI＋棒グラフ） ── */
+  .right-area {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 32px;
+    gap: 24px;
+  }
 
-    /* ── 左エリア（ドーナツグラフ） ── */
-    .left-area {
-      width: 40%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 0 16px;
-      border-right: 1px solid #E0E0E0;
-    }
+  /* 右上 KPIバンド */
+  .kpi-band {
+    display: flex;
+    gap: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #E8E8E8;
+  }
+  .kpi-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+  }
+  .kpi-icon {
+    width: 64px;
+    height: 64px;
+    background: #F0F0F0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: #AAAAAA;
+  }
+  .kpi-value {
+    font-size: 40px;
+    font-weight: bold;
+    color: #333;
+    line-height: 1;
+  }
+  .kpi-unit {
+    font-size: 24px;
+    color: #888;
+  }
+  .kpi-label {
+    font-size: 22px;
+    color: #888;
+  }
 
-    .area-label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    /* 凡例行 */
-    .legend-row {
-      display: flex;
-      gap: 16px;
-      font-size: 11px;
-      color: #888;
-      align-items: center;
-    }
-    .legend-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      display: inline-block;
-      margin-right: 4px;
-    }
-
-    /* ── 右エリア（KPI＋棒グラフ） ── */
-    .right-area {
-      width: 60%;
-      display: flex;
-      flex-direction: column;
-      padding: 0 16px;
-      gap: 12px;
-    }
-
-    /* 右上 KPIバンド */
-    .kpi-band {
-      display: flex;
-      gap: 12px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #E8E8E8;
-    }
-    .kpi-cell {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      flex: 1;
-    }
-    .kpi-icon {
-      width: 32px;
-      height: 32px;
-      background: #F0F0F0;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: #AAAAAA;
-    }
-    .kpi-value {
-      font-size: 20px;
-      font-weight: bold;
-      color: #333;
-      line-height: 1;
-    }
-    .kpi-unit {
-      font-size: 12px;
-      color: #888;
-    }
-    .kpi-label {
-      font-size: 11px;
-      color: #888;
-    }
-
-    /* 右下 横棒グラフ */
-    .bar-area {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .bar-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 6px;
-    }
-    .bar-label {
-      width: 80px;
-      font-size: 11px;
-      color: #555;
-      flex-shrink: 0;
-      text-align: right;
-    }
-    .bar-track {
-      flex: 1;
-      height: 16px;
-      background: #F0F0F0;
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .bar-fill {
-      height: 100%;
-      background: #CCCCCC;
-      border-radius: 2px;
-    }
-    .bar-value {
-      font-size: 11px;
-      color: #555;
-      width: 36px;
-      flex-shrink: 0;
-    }
-  </style>
+  /* 右下 横棒グラフ */
+  .bar-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .bar-label {
+    width: 160px;
+    font-size: 22px;
+    color: #555;
+    flex-shrink: 0;
+    text-align: right;
+  }
+  .bar-track {
+    flex: 1;
+    height: 32px;
+    background: #F0F0F0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    background: #CCCCCC;
+    border-radius: 4px;
+  }
+  .bar-value {
+    font-size: 22px;
+    color: #555;
+    width: 72px;
+    flex-shrink: 0;
+  }
+</style>
 </head>
 <body>
 
-  <p class="slide-label">[donut-left-kpi-bar-right]</p>
+<p class="slide-label">[donut-left-kpi-bar-right]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-  <div class="slide">
-
-    <!-- タイトルエリア -->
-    <div class="slide-title">
-      <h2>2024年度 業績ダッシュボード</h2>
-      <p>目標達成率・主要KPI・フェーズ別進捗の統合ビュー</p>
-    </div>
-
-    <!-- コンテンツエリア -->
-    <div class="content">
-
-      <!-- 左：ドーナツグラフ -->
-      <div class="left-area">
-        <span class="area-label">ドーナツグラフ</span>
-
-        <!-- ドーナツSVG（2分割：90% / 10%） -->
-        <svg width="140" height="140" viewBox="0 0 140 140">
-          <!-- ベース円（残り分） -->
-          <circle cx="70" cy="70" r="54" fill="none" stroke="#E0E0E0" stroke-width="24"/>
-          <!-- データ部分（90%） -->
-          <circle cx="70" cy="70" r="54" fill="none" stroke="#CCCCCC" stroke-width="24"
-            stroke-dasharray="305.4 339.29" stroke-dashoffset="84.82"/>
-          <!-- 中央白抜き円 -->
-          <circle cx="70" cy="70" r="42" fill="#FFFFFF"/>
-          <!-- 中央テキスト -->
-          <text x="70" y="65" text-anchor="middle" font-size="10" fill="#999">メイン指標</text>
-          <text x="70" y="80" text-anchor="middle" font-size="24" fill="#333" font-weight="bold">90%</text>
-        </svg>
-
-        <!-- 凡例 -->
-        <div class="legend-row">
-          <span>
-            <span class="legend-dot" style="background:#CCCCCC;"></span>達成済
-          </span>
-          <span>
-            <span class="legend-dot" style="background:#E0E0E0;"></span>未達成
-          </span>
-        </div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
 
-      <!-- 右：KPI＋横棒グラフ -->
-      <div class="right-area">
+      <!-- コンテンツエリア -->
+      <div class="content">
 
-        <!-- 右上：KPIバンド -->
-        <div class="kpi-band">
-          <!-- KPI 1 -->
-          <div class="kpi-cell">
-            <div class="kpi-icon">◎</div>
-            <div>
-              <span class="kpi-value">1,248</span>
-              <span class="kpi-unit">件</span>
-            </div>
-            <div class="kpi-label">新規受注数</div>
-          </div>
-          <!-- KPI 2 -->
-          <div class="kpi-cell">
-            <div class="kpi-icon">▲</div>
-            <div>
-              <span class="kpi-value">98.4</span>
-              <span class="kpi-unit">%</span>
-            </div>
-            <div class="kpi-label">顧客満足度</div>
-          </div>
-          <!-- KPI 3 -->
-          <div class="kpi-cell">
-            <div class="kpi-icon">◇</div>
-            <div>
-              <span class="kpi-value">3.6</span>
-              <span class="kpi-unit">億円</span>
-            </div>
-            <div class="kpi-label">売上合計</div>
+        <!-- 左：ドーナツグラフ -->
+        <div class="left-area">
+          <span class="area-label">ドーナツグラフ</span>
+
+          <!-- ドーナツSVG（2分割：90% / 10%） -->
+          <svg width="280" height="280" viewBox="0 0 280 280">
+            <!-- ベース円（残り分） -->
+            <circle cx="140" cy="140" r="108" fill="none" stroke="#E0E0E0" stroke-width="48"/>
+            <!-- データ部分（90%） -->
+            <circle cx="140" cy="140" r="108" fill="none" stroke="#CCCCCC" stroke-width="48"
+              stroke-dasharray="610.7 678.58" stroke-dashoffset="169.64"/>
+            <!-- 中央白抜き円 -->
+            <circle cx="140" cy="140" r="84" fill="#FFFFFF"/>
+            <!-- 中央テキスト -->
+            <text x="140" y="130" text-anchor="middle" font-size="20" fill="#999">メイン指標</text>
+            <text x="140" y="160" text-anchor="middle" font-size="48" fill="#333" font-weight="bold">90%</text>
+          </svg>
+
+          <!-- 凡例 -->
+          <div class="legend-row">
+            <span>
+              <span class="legend-dot" style="background:#CCCCCC;"></span>達成済
+            </span>
+            <span>
+              <span class="legend-dot" style="background:#E0E0E0;"></span>未達成
+            </span>
           </div>
         </div>
 
-        <!-- 右下：横棒グラフ -->
-        <div class="bar-area">
-          <span class="area-label">棒グラフ（フェーズ別）</span>
+        <!-- 右：KPI＋横棒グラフ -->
+        <div class="right-area">
 
-          <!-- 棒1 -->
-          <div class="bar-row">
-            <div class="bar-label">企画フェーズ</div>
-            <div class="bar-track">
-              <div class="bar-fill" style="width:84%;"></div>
+          <!-- 右上：KPIバンド -->
+          <div class="kpi-band">
+            <!-- KPI 1 -->
+            <div class="kpi-cell">
+              <div class="kpi-icon">◎</div>
+              <div>
+                <span class="kpi-value">1,248</span>
+                <span class="kpi-unit">件</span>
+              </div>
+              <div class="kpi-label">新規受注数</div>
             </div>
-            <div class="bar-value">84%</div>
-          </div>
-          <!-- 棒2 -->
-          <div class="bar-row">
-            <div class="bar-label">開発フェーズ</div>
-            <div class="bar-track">
-              <div class="bar-fill" style="width:72%;"></div>
+            <!-- KPI 2 -->
+            <div class="kpi-cell">
+              <div class="kpi-icon">▲</div>
+              <div>
+                <span class="kpi-value">98.4</span>
+                <span class="kpi-unit">%</span>
+              </div>
+              <div class="kpi-label">顧客満足度</div>
             </div>
-            <div class="bar-value">72%</div>
-          </div>
-          <!-- 棒3 -->
-          <div class="bar-row">
-            <div class="bar-label">テストフェーズ</div>
-            <div class="bar-track">
-              <div class="bar-fill" style="width:60%;"></div>
+            <!-- KPI 3 -->
+            <div class="kpi-cell">
+              <div class="kpi-icon">◇</div>
+              <div>
+                <span class="kpi-value">3.6</span>
+                <span class="kpi-unit">億円</span>
+              </div>
+              <div class="kpi-label">売上合計</div>
             </div>
-            <div class="bar-value">60%</div>
           </div>
-          <!-- 棒4 -->
-          <div class="bar-row">
-            <div class="bar-label">リリース準備</div>
-            <div class="bar-track">
-              <div class="bar-fill" style="width:55%;"></div>
+
+          <!-- 右下：横棒グラフ -->
+          <div class="bar-area">
+            <span class="area-label">棒グラフ（フェーズ別）</span>
+
+            <!-- 棒1 -->
+            <div class="bar-row">
+              <div class="bar-label">企画フェーズ</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:84%;"></div>
+              </div>
+              <div class="bar-value">84%</div>
             </div>
-            <div class="bar-value">55%</div>
-          </div>
-          <!-- 棒5 -->
-          <div class="bar-row">
-            <div class="bar-label">運用フェーズ</div>
-            <div class="bar-track">
-              <div class="bar-fill" style="width:91%;"></div>
+            <!-- 棒2 -->
+            <div class="bar-row">
+              <div class="bar-label">開発フェーズ</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:72%;"></div>
+              </div>
+              <div class="bar-value">72%</div>
             </div>
-            <div class="bar-value">91%</div>
+            <!-- 棒3 -->
+            <div class="bar-row">
+              <div class="bar-label">テストフェーズ</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:60%;"></div>
+              </div>
+              <div class="bar-value">60%</div>
+            </div>
+            <!-- 棒4 -->
+            <div class="bar-row">
+              <div class="bar-label">リリース準備</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:55%;"></div>
+              </div>
+              <div class="bar-value">55%</div>
+            </div>
+            <!-- 棒5 -->
+            <div class="bar-row">
+              <div class="bar-label">運用フェーズ</div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width:91%;"></div>
+              </div>
+              <div class="bar-value">91%</div>
+            </div>
           </div>
+
+        </div><!-- /right-area -->
+
+      </div><!-- /content -->
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
         </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
 
-      </div><!-- /right-area -->
-
-    </div><!-- /content -->
-
-  </div><!-- /slide -->
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

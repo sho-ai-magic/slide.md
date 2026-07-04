@@ -1,243 +1,199 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-four-step-flow</title>
-  <style>
-    body {
-      background: #E8E8E8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      font-family: sans-serif;
-      margin: 0;
-    }
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-four-step-flow</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
 
-    .slide-label {
-      font-size: 12px;
-      color: #888888;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 8px;
-      align-self: flex-start;
-      margin-left: calc(50% - 480px);
-    }
+  /* カードエリア */
+  .cards-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+  }
 
-    .slide {
-      width: 960px;
-      height: 540px;
-      background: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      position: relative;
-      overflow: hidden;
-      box-sizing: border-box;
-      padding: 40px 48px 48px;
-      display: flex;
-      flex-direction: column;
-    }
+  /* 矢印 */
+  .arrow {
+    flex-shrink: 0;
+    width: 56px;
+    text-align: center;
+    font-size: 40px;
+    color: #AAAAAA;
+  }
 
-    .area-label {
-      font-size: 11px;
-      color: #999999;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 6px;
-    }
+  /* カードラッパー（バッジのはみ出し対応） */
+  .card-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-top: 36px;
+  }
 
-    /* タイトルエリア */
-    .title-area {
-      text-align: center;
-      margin-bottom: 32px;
-    }
+  /* 番号バッジ */
+  .badge {
+    width: 72px;
+    height: 72px;
+    background: #E0E0E0;
+    border: 4px solid #CCCCCC;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+    color: #666666;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+  }
 
-    .title-area .area-label {
-      text-align: left;
-    }
+  /* カード本体 */
+  .card {
+    width: 100%;
+    background: #FAFAFA;
+    border: 1px solid #CCCCCC;
+    border-radius: 16px;
+    padding: 72px 32px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    min-height: 560px;
+  }
 
-    .title-text {
-      font-size: 26px;
-      font-weight: bold;
-      color: #333333;
-    }
+  .card .step-label-area {
+    width: 100%;
+    margin-bottom: 24px;
+  }
 
-    /* カードエリア */
-    .cards-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex: 1;
-    }
+  .card .step-text {
+    font-size: 30px;
+    font-weight: bold;
+    color: #333333;
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 32px;
+  }
 
-    /* 矢印 */
-    .arrow {
-      flex-shrink: 0;
-      width: 28px;
-      text-align: center;
-      font-size: 20px;
-      color: #AAAAAA;
-    }
-
-    /* カードラッパー（バッジのはみ出し対応） */
-    .card-wrapper {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-      padding-top: 18px;
-    }
-
-    /* 番号バッジ */
-    .badge {
-      width: 36px;
-      height: 36px;
-      background: #E0E0E0;
-      border: 2px solid #CCCCCC;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      font-weight: bold;
-      color: #666666;
-      position: absolute;
-      top: 0;
-      z-index: 1;
-    }
-
-    /* カード本体 */
-    .card {
-      width: 100%;
-      background: #FAFAFA;
-      border: 1px solid #CCCCCC;
-      border-radius: 8px;
-      padding: 36px 16px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      box-sizing: border-box;
-      min-height: 280px;
-    }
-
-    .card .step-label-area {
-      width: 100%;
-      margin-bottom: 12px;
-    }
-
-    .card .step-text {
-      font-size: 15px;
-      font-weight: bold;
-      color: #333333;
-      text-align: center;
-      line-height: 1.5;
-      margin-bottom: 16px;
-    }
-
-    .card .illust-area {
-      width: 100%;
-    }
-
-    .placeholder-box {
-      background: #F0F0F0;
-      border: 1px dashed #CCCCCC;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #AAAAAA;
-      font-size: 12px;
-      border-radius: 4px;
-    }
-  </style>
+  .card .illust-area {
+    width: 100%;
+  }
+</style>
 </head>
 <body>
 
-  <p class="slide-label">[four-step-flow]</p>
+<p class="slide-label">[four-step-flow]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-  <div class="slide">
-
-    <!-- タイトルエリア -->
-    <div class="title-area">
-      <div class="area-label">Title (H1)</div>
-      <div class="title-text">スライドのタイトルが入ります</div>
-    </div>
-
-    <!-- カード行 -->
-    <div class="cards-row">
-
-      <!-- カード 1 -->
-      <div class="card-wrapper">
-        <div class="badge">1</div>
-        <div class="card">
-          <div class="step-label-area">
-            <div class="area-label">Step Label</div>
-          </div>
-          <div class="step-text">ステップ1の<br>説明テキスト</div>
-          <div class="illust-area">
-            <div class="area-label">Illustration</div>
-            <div class="placeholder-box" style="height: 90px;">[IMAGE]</div>
-          </div>
-        </div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
 
-      <!-- 矢印 -->
-      <div class="arrow">▶</div>
+      <!-- コンテンツエリア -->
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:56px 96px;">
 
-      <!-- カード 2 -->
-      <div class="card-wrapper">
-        <div class="badge">2</div>
-        <div class="card">
-          <div class="step-label-area">
-            <div class="area-label">Step Label</div>
+        <!-- カード行 -->
+        <div class="cards-row">
+
+          <!-- カード 1 -->
+          <div class="card-wrapper">
+            <div class="badge">1</div>
+            <div class="card">
+              <div class="step-label-area">
+                <div class="area-label">Step Label</div>
+              </div>
+              <div class="step-text">ステップ1の<br>説明テキスト</div>
+              <div class="illust-area">
+                <div class="area-label">Illustration</div>
+                <div class="placeholder-box" style="height: 180px;">[ICON]</div>
+              </div>
+            </div>
           </div>
-          <div class="step-text">ステップ2の<br>説明テキスト</div>
-          <div class="illust-area">
-            <div class="area-label">Illustration</div>
-            <div class="placeholder-box" style="height: 90px;">[IMAGE]</div>
+
+          <!-- 矢印 -->
+          <div class="arrow">▶</div>
+
+          <!-- カード 2 -->
+          <div class="card-wrapper">
+            <div class="badge">2</div>
+            <div class="card">
+              <div class="step-label-area">
+                <div class="area-label">Step Label</div>
+              </div>
+              <div class="step-text">ステップ2の<br>説明テキスト</div>
+              <div class="illust-area">
+                <div class="area-label">Illustration</div>
+                <div class="placeholder-box" style="height: 180px;">[ICON]</div>
+              </div>
+            </div>
           </div>
-        </div>
+
+          <!-- 矢印 -->
+          <div class="arrow">▶</div>
+
+          <!-- カード 3 -->
+          <div class="card-wrapper">
+            <div class="badge">3</div>
+            <div class="card">
+              <div class="step-label-area">
+                <div class="area-label">Step Label</div>
+              </div>
+              <div class="step-text">ステップ3の<br>説明テキスト</div>
+              <div class="illust-area">
+                <div class="area-label">Illustration</div>
+                <div class="placeholder-box" style="height: 180px;">[ICON]</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 矢印 -->
+          <div class="arrow">▶</div>
+
+          <!-- カード 4 -->
+          <div class="card-wrapper">
+            <div class="badge">4</div>
+            <div class="card">
+              <div class="step-label-area">
+                <div class="area-label">Step Label</div>
+              </div>
+              <div class="step-text">ステップ4の<br>説明テキスト</div>
+              <div class="illust-area">
+                <div class="area-label">Illustration</div>
+                <div class="placeholder-box" style="height: 180px;">[ICON]</div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /cards-row -->
+
       </div>
 
-      <!-- 矢印 -->
-      <div class="arrow">▶</div>
-
-      <!-- カード 3 -->
-      <div class="card-wrapper">
-        <div class="badge">3</div>
-        <div class="card">
-          <div class="step-label-area">
-            <div class="area-label">Step Label</div>
-          </div>
-          <div class="step-text">ステップ3の<br>説明テキスト</div>
-          <div class="illust-area">
-            <div class="area-label">Illustration</div>
-            <div class="placeholder-box" style="height: 90px;">[IMAGE]</div>
-          </div>
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
         </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
       </div>
 
-      <!-- 矢印 -->
-      <div class="arrow">▶</div>
-
-      <!-- カード 4 -->
-      <div class="card-wrapper">
-        <div class="badge">4</div>
-        <div class="card">
-          <div class="step-label-area">
-            <div class="area-label">Step Label</div>
-          </div>
-          <div class="step-text">ステップ4の<br>説明テキスト</div>
-          <div class="illust-area">
-            <div class="area-label">Illustration</div>
-            <div class="placeholder-box" style="height: 90px;">[IMAGE]</div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /cards-row -->
-
-  </div><!-- /slide -->
+    </div><!-- /slide -->
+  </div>
+</div>
 
 </body>
 </html>

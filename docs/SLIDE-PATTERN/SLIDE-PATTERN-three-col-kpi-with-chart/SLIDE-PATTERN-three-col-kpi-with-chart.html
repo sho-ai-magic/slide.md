@@ -1,331 +1,235 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-three-col-kpi-with-chart</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: sans-serif;
-      background: #E0E0E0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-    /* スライド本体：960×540px固定 */
-    .slide {
-      width: 960px;
-      height: 540px;
-      background: #FFFFFF;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999999;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 4px;
-    }
-    /* タイトルエリア */
-    .title-area {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      flex-shrink: 0;
-      background: #FAFAFA;
-    }
-    /* コンテンツエリア */
-    .content-area {
-      flex: 1;
-      padding: 14px 32px 14px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    /* リード文 */
-    .lead-area {
-      margin-bottom: 10px;
-      flex-shrink: 0;
-    }
-    .lead-text {
-      font-size: 11px;
-      color: #555555;
-      line-height: 1.6;
-    }
-    /* 3カード横並び */
-    .cards-row {
-      display: flex;
-      gap: 14px;
-      flex: 1;
-      overflow: hidden;
-    }
-    /* 各カード */
-    .card {
-      flex: 1;
-      background: #F0F0F0;
-      border: 1px solid #CCCCCC;
-      border-radius: 6px;
-      display: flex;
-      flex-direction: column;
-      padding: 14px 14px 10px;
-      overflow: hidden;
-    }
-    /* カード上部：KPIラベルと数値 */
-    .card-top {
-      text-align: center;
-      flex-shrink: 0;
-      margin-bottom: 8px;
-    }
-    .kpi-label {
-      font-size: 12px;
-      font-weight: bold;
-      color: #444444;
-      margin-bottom: 4px;
-    }
-    .kpi-value {
-      font-size: 36px;
-      font-weight: bold;
-      color: #222222;
-      line-height: 1.1;
-    }
-    .kpi-unit {
-      font-size: 14px;
-      color: #555555;
-    }
-    /* 補足説明 */
-    .card-description {
-      font-size: 10px;
-      color: #666666;
-      line-height: 1.5;
-      text-align: center;
-      border-bottom: 1px dashed #CCCCCC;
-      padding-bottom: 8px;
-      margin-bottom: 8px;
-      flex-shrink: 0;
-    }
-    /* グラフエリア */
-    .chart-area {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    .chart-label {
-      font-size: 10px;
-      font-weight: bold;
-      color: #555555;
-      margin-bottom: 6px;
-      flex-shrink: 0;
-    }
-    .chart-placeholder {
-      flex: 1;
-      background: #E4E4E4;
-      border: 1px solid #CCCCCC;
-      border-radius: 3px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    /* 棒グラフのダミー */
-    .bar-chart {
-      display: flex;
-      align-items: flex-end;
-      gap: 6px;
-      width: 100%;
-      height: 100%;
-      padding: 8px 10px 4px;
-    }
-    .bar {
-      flex: 1;
-      background: #AAAAAA;
-      border-radius: 2px 2px 0 0;
-      position: relative;
-    }
-    .bar.highlight {
-      background: #666666;
-    }
-    .bar-label {
-      position: absolute;
-      bottom: -14px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 8px;
-      color: #888888;
-      white-space: nowrap;
-    }
-    /* 折れ線グラフのダミー（SVG） */
-    .line-chart svg {
-      width: 100%;
-      height: 100%;
-    }
-    /* ドーナツグラフのダミー（SVG） */
-    .donut-area {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      width: 100%;
-      height: 100%;
-      padding: 6px;
-    }
-    .donut-placeholder {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      border: 10px solid #AAAAAA;
-      border-top-color: #666666;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .donut-legend {
-      font-size: 9px;
-      color: #666666;
-      line-height: 1.6;
-    }
-    .legend-item { display: flex; align-items: center; gap: 4px; }
-    .legend-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: #AAAAAA; flex-shrink: 0;
-    }
-    .legend-dot.dark { background: #666666; }
-    /* カードのエリアラベル */
-    .card-area-label {
-      font-size: 9px;
-      color: #BBBBBB;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-      text-align: right;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-three-col-kpi-with-chart</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  /* リード文 */
+  .lead-area { margin-bottom: 20px; flex-shrink: 0; }
+  .lead-text { font-size: 22px; color: #555555; line-height: 1.6; }
+  /* 3カード横並び */
+  .cards-row { display: flex; gap: 28px; flex: 1; overflow: hidden; }
+  /* 各カード */
+  .card {
+    flex: 1;
+    background: #F0F0F0;
+    border: 1px solid #CCCCCC;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 28px 20px;
+    overflow: hidden;
+  }
+  /* カード上部：KPIラベルと数値 */
+  .card-top { text-align: center; flex-shrink: 0; margin-bottom: 16px; }
+  .kpi-label { font-size: 24px; font-weight: bold; color: #444444; margin-bottom: 8px; }
+  .kpi-value { font-size: 72px; font-weight: bold; color: #222222; line-height: 1.1; }
+  .kpi-unit { font-size: 28px; color: #555555; }
+  /* 補足説明 */
+  .card-description {
+    font-size: 20px;
+    color: #666666;
+    line-height: 1.5;
+    text-align: center;
+    border-bottom: 1px dashed #CCCCCC;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+    flex-shrink: 0;
+  }
+  /* グラフエリア */
+  .chart-area { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+  .chart-label { font-size: 20px; font-weight: bold; color: #555555; margin-bottom: 12px; flex-shrink: 0; }
+  .chart-placeholder {
+    flex: 1;
+    background: #E4E4E4;
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  /* 棒グラフのダミー */
+  .bar-chart { display: flex; align-items: flex-end; gap: 12px; width: 100%; height: 100%; padding: 16px 20px 8px; }
+  .bar { flex: 1; background: #AAAAAA; border-radius: 4px 4px 0 0; position: relative; }
+  .bar.highlight { background: #666666; }
+  .bar-label {
+    position: absolute;
+    bottom: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    color: #888888;
+    white-space: nowrap;
+  }
+  /* 折れ線グラフのダミー（SVG） */
+  .line-chart svg { width: 100%; height: 100%; }
+  /* ドーナツグラフのダミー（SVG） */
+  .donut-area { display: flex; align-items: center; justify-content: space-around; width: 100%; height: 100%; padding: 12px; }
+  .donut-placeholder {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 20px solid #AAAAAA;
+    border-top-color: #666666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .donut-legend { font-size: 18px; color: #666666; line-height: 1.6; }
+  .legend-item { display: flex; align-items: center; gap: 8px; }
+  .legend-dot { width: 16px; height: 16px; border-radius: 50%; background: #AAAAAA; flex-shrink: 0; }
+  .legend-dot.dark { background: #666666; }
+  /* カードのエリアラベル */
+  .card-area-label { font-size: 18px; color: #BBBBBB; text-transform: uppercase; margin-bottom: 12px; text-align: right; }
+</style>
 </head>
 <body>
-  <div class="slide">
-    <!-- タイトルエリア（SLIDE.mdで定義） -->
-    <div class="title-area">
-      <div class="area-label">Title Area — SLIDE.md 参照</div>
-      <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-    </div>
+<p class="slide-label">[three-col-kpi-with-chart]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-    <!-- コンテンツエリア -->
-    <div class="content-area">
-      <div class="area-label">Content Area</div>
-
-      <!-- リード文 -->
-      <div class="lead-area">
-        <div class="lead-text">
-          リード文が入ります。3つの主要KPIを通じてデータの全体像を説明します。各指標の詳細はカード内のグラフをご参照ください。
-        </div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
 
-      <!-- 3カード -->
-      <div class="cards-row">
+      <!-- コンテンツエリア -->
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:24px 60px;">
+        <div class="area-label">Content Area</div>
 
-        <!-- カード1：ドーナツグラフ -->
-        <div class="card">
-          <div class="card-area-label">KPI Card 01</div>
-          <div class="card-top">
-            <div class="kpi-label">国内対象企業数</div>
-            <div class="kpi-value">約42<span class="kpi-unit">万社</span></div>
+        <!-- リード文 -->
+        <div class="lead-area">
+          <div class="lead-text">
+            リード文が入ります。3つの主要KPIを通じてデータの全体像を説明します。各指標の詳細はカード内のグラフをご参照ください。
           </div>
-          <div class="card-description">
-            国内の中堅・大企業を中心に対象市場は広く、さらなる拡大が見込まれます。
-          </div>
-          <div class="chart-area">
-            <div class="chart-label">企業規模別の内訳</div>
-            <div class="chart-placeholder">
-              <div class="donut-area">
-                <div class="donut-placeholder"></div>
-                <div class="donut-legend">
-                  <div class="legend-item"><div class="legend-dot dark"></div>1,000名以上　17%</div>
-                  <div class="legend-item"><div class="legend-dot"></div>300〜900名　32%</div>
-                  <div class="legend-item"><div class="legend-dot"></div>100〜299名　23%</div>
-                  <div class="legend-item"><div class="legend-dot"></div>50〜99名　27%</div>
+        </div>
+
+        <!-- 3カード -->
+        <div class="cards-row">
+
+          <!-- カード1：ドーナツグラフ -->
+          <div class="card">
+            <div class="card-area-label">KPI Card 01</div>
+            <div class="card-top">
+              <div class="kpi-label">国内対象企業数</div>
+              <div class="kpi-value">約42<span class="kpi-unit">万社</span></div>
+            </div>
+            <div class="card-description">
+              国内の中堅・大企業を中心に対象市場は広く、さらなる拡大が見込まれます。
+            </div>
+            <div class="chart-area">
+              <div class="chart-label">企業規模別の内訳</div>
+              <div class="chart-placeholder">
+                <div class="donut-area">
+                  <div class="donut-placeholder"></div>
+                  <div class="donut-legend">
+                    <div class="legend-item"><div class="legend-dot dark"></div>1,000名以上　17%</div>
+                    <div class="legend-item"><div class="legend-dot"></div>300〜900名　32%</div>
+                    <div class="legend-item"><div class="legend-dot"></div>100〜299名　23%</div>
+                    <div class="legend-item"><div class="legend-dot"></div>50〜99名　27%</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- カード2：棒グラフ -->
-        <div class="card">
-          <div class="card-area-label">KPI Card 02</div>
-          <div class="card-top">
-            <div class="kpi-label">当社浸透率</div>
-            <div class="kpi-value">0.6<span class="kpi-unit">%</span></div>
-          </div>
-          <div class="card-description">
-            市場における当社の浸透率は0.6%で、拡大余地が大きい状況です。
-          </div>
-          <div class="chart-area">
-            <div class="chart-label">浸透率の推移（%）</div>
-            <div class="chart-placeholder">
-              <div class="bar-chart">
-                <div class="bar" style="height:30%;">
-                  <div class="bar-label">2022</div>
-                </div>
-                <div class="bar" style="height:45%;">
-                  <div class="bar-label">2023</div>
-                </div>
-                <div class="bar" style="height:58%;">
-                  <div class="bar-label">2024</div>
-                </div>
-                <div class="bar highlight" style="height:80%;">
-                  <div class="bar-label">2025</div>
+          <!-- カード2：棒グラフ -->
+          <div class="card">
+            <div class="card-area-label">KPI Card 02</div>
+            <div class="card-top">
+              <div class="kpi-label">当社浸透率</div>
+              <div class="kpi-value">0.6<span class="kpi-unit">%</span></div>
+            </div>
+            <div class="card-description">
+              市場における当社の浸透率は0.6%で、拡大余地が大きい状況です。
+            </div>
+            <div class="chart-area">
+              <div class="chart-label">浸透率の推移（%）</div>
+              <div class="chart-placeholder">
+                <div class="bar-chart">
+                  <div class="bar" style="height:30%;">
+                    <div class="bar-label">2022</div>
+                  </div>
+                  <div class="bar" style="height:45%;">
+                    <div class="bar-label">2023</div>
+                  </div>
+                  <div class="bar" style="height:58%;">
+                    <div class="bar-label">2024</div>
+                  </div>
+                  <div class="bar highlight" style="height:80%;">
+                    <div class="bar-label">2025</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- カード3：折れ線グラフ（SVG） -->
-        <div class="card">
-          <div class="card-area-label">KPI Card 03</div>
-          <div class="card-top">
-            <div class="kpi-label">AI導入率成長</div>
-            <div class="kpi-value">+18<span class="kpi-unit">%</span></div>
-          </div>
-          <div class="card-description">
-            中小企業のAI導入率は前年比で大きく加速。AI活用ニーズが急速に高まっています。
-          </div>
-          <div class="chart-area">
-            <div class="chart-label">AI導入率の推移</div>
-            <div class="chart-placeholder line-chart">
-              <svg viewBox="0 0 160 70" preserveAspectRatio="none" style="width:90%;height:80%;display:block;margin:auto;">
-                <!-- グリッド線 -->
-                <line x1="0" y1="60" x2="160" y2="60" stroke="#CCCCCC" stroke-width="0.5"/>
-                <line x1="0" y1="40" x2="160" y2="40" stroke="#CCCCCC" stroke-width="0.5"/>
-                <line x1="0" y1="20" x2="160" y2="20" stroke="#CCCCCC" stroke-width="0.5"/>
-                <!-- 折れ線 -->
-                <polyline
-                  points="20,52 80,42 140,18"
-                  fill="none"
-                  stroke="#888888"
-                  stroke-width="2"
-                  stroke-linejoin="round"
-                />
-                <!-- データポイント -->
-                <circle cx="20" cy="52" r="3" fill="#888888"/>
-                <circle cx="80" cy="42" r="3" fill="#888888"/>
-                <circle cx="140" cy="18" r="4" fill="#444444"/>
-                <!-- 軸ラベル -->
-                <text x="20" y="68" font-size="7" fill="#888888" text-anchor="middle">2023</text>
-                <text x="80" y="68" font-size="7" fill="#888888" text-anchor="middle">2024</text>
-                <text x="140" y="68" font-size="7" fill="#888888" text-anchor="middle">2025</text>
-              </svg>
+          <!-- カード3：折れ線グラフ（SVG） -->
+          <div class="card">
+            <div class="card-area-label">KPI Card 03</div>
+            <div class="card-top">
+              <div class="kpi-label">AI導入率成長</div>
+              <div class="kpi-value">+18<span class="kpi-unit">%</span></div>
+            </div>
+            <div class="card-description">
+              中小企業のAI導入率は前年比で大きく加速。AI活用ニーズが急速に高まっています。
+            </div>
+            <div class="chart-area">
+              <div class="chart-label">AI導入率の推移</div>
+              <div class="chart-placeholder line-chart">
+                <svg viewBox="0 0 160 70" preserveAspectRatio="none" style="width:90%;height:80%;display:block;margin:auto;">
+                  <!-- グリッド線 -->
+                  <line x1="0" y1="60" x2="160" y2="60" stroke="#CCCCCC" stroke-width="0.5"/>
+                  <line x1="0" y1="40" x2="160" y2="40" stroke="#CCCCCC" stroke-width="0.5"/>
+                  <line x1="0" y1="20" x2="160" y2="20" stroke="#CCCCCC" stroke-width="0.5"/>
+                  <!-- 折れ線 -->
+                  <polyline
+                    points="20,52 80,42 140,18"
+                    fill="none"
+                    stroke="#888888"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                  <!-- データポイント -->
+                  <circle cx="20" cy="52" r="3" fill="#888888"/>
+                  <circle cx="80" cy="42" r="3" fill="#888888"/>
+                  <circle cx="140" cy="18" r="4" fill="#444444"/>
+                  <!-- 軸ラベル -->
+                  <text x="20" y="68" font-size="7" fill="#888888" text-anchor="middle">2023</text>
+                  <text x="80" y="68" font-size="7" fill="#888888" text-anchor="middle">2024</text>
+                  <text x="140" y="68" font-size="7" fill="#888888" text-anchor="middle">2025</text>
+                </svg>
+              </div>
             </div>
           </div>
-        </div>
 
+        </div>
+        <!-- /.cards-row -->
       </div>
-      <!-- /.cards-row -->
+      <!-- /.content-area -->
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
     </div>
-    <!-- /.content-area -->
   </div>
-  <!-- /.slide -->
+</div>
 </body>
 </html>

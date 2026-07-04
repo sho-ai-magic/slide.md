@@ -4,110 +4,129 @@
 <meta charset="UTF-8">
 <title>SLIDE-PATTERN-staircase-roadmap-layered</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { width: 960px; height: 540px; overflow: hidden; font-family: sans-serif; background: #FFFFFF; display: flex; flex-direction: column; }
-  .area-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.05em; }
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
 </style>
 </head>
 <body>
+<p class="slide-label">[staircase-roadmap-layered]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-<!-- タイトルエリア -->
-<div style="padding:14px 40px 12px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
-  <div class="area-label">Title Area — SLIDE.md 参照</div>
-  <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-</div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
 
-<!-- コンテンツエリア -->
-<div style="flex:1; display:flex; flex-direction:column; padding:16px 36px 12px; gap:10px; overflow:hidden;">
+      <!-- コンテンツエリア -->
+      <div style="flex:1; display:flex; flex-direction:column; padding:32px 72px 24px; gap:20px; overflow:hidden;">
 
-  <!-- サマリー箇条書き -->
-  <div style="flex-shrink:0;">
-    <div class="area-label" style="margin-bottom:6px;">Summary Bullets</div>
-    <div style="background:#F0F0F0; border:1px solid #CCCCCC; border-radius:4px; padding:8px 14px; display:flex; flex-direction:column; gap:4px;">
-      <div style="font-size:10px; color:#555; display:flex; gap:6px;"><span>•</span><span>サマリーポイント1：スライドの要点を簡潔に記述するテキストが入ります。</span></div>
-      <div style="font-size:10px; color:#555; display:flex; gap:6px;"><span>•</span><span>サマリーポイント2：補足情報や背景説明のテキストが入ります。</span></div>
+        <!-- サマリー箇条書き -->
+        <div style="flex-shrink:0;">
+          <div class="area-label" style="margin-bottom:12px;">Summary Bullets</div>
+          <div style="background:#F0F0F0; border:1px solid #CCCCCC; border-radius:8px; padding:16px 28px; display:flex; flex-direction:column; gap:8px;">
+            <div style="font-size:20px; color:#555; display:flex; gap:12px;"><span>•</span><span>サマリーポイント1：スライドの要点を簡潔に記述するテキストが入ります。</span></div>
+            <div style="font-size:20px; color:#555; display:flex; gap:12px;"><span>•</span><span>サマリーポイント2：補足情報や背景説明のテキストが入ります。</span></div>
+          </div>
+        </div>
+
+        <!-- ロードマップエリア -->
+        <div style="flex:1; display:flex; flex-direction:column; gap:12px; min-height:0;">
+          <div class="area-label">Roadmap Area</div>
+
+          <!-- 年度ラベル行 -->
+          <div style="display:flex; align-items:flex-end; gap:8px; flex-shrink:0;">
+            <div style="flex:1; min-width:0;"></div>
+            <div style="flex:1; min-width:0; text-align:center;">
+              <div style="font-size:18px; color:#999; border-bottom:1px solid #CCCCCC; padding-bottom:4px;">FY2021〜</div>
+            </div>
+            <div style="flex:1; min-width:0; text-align:center;">
+              <div style="font-size:18px; color:#888; border-bottom:1px solid #CCCCCC; padding-bottom:4px;">FY2023〜</div>
+            </div>
+            <div style="flex:1; min-width:0; text-align:center;">
+              <div style="font-size:18px; color:#777; border-bottom:1px solid #CCCCCC; padding-bottom:4px;">FY2024〜</div>
+            </div>
+            <div style="flex:1; min-width:0; text-align:center;">
+              <div style="font-size:18px; color:#555; border-bottom:1px solid #CCCCCC; padding-bottom:4px;">FY2027〜</div>
+            </div>
+          </div>
+
+          <!-- ステアケース矢印ブロック行 -->
+          <div style="display:flex; align-items:flex-end; gap:8px; flex-shrink:0;">
+
+            <!-- ブロック1（最低） -->
+            <div style="flex:1; background:#F0F0F0; border:1px solid #CCCCCC; border-radius:8px 8px 0 0; height:120px; padding:12px 16px; display:flex; flex-direction:column; justify-content:flex-end; position:relative; overflow:hidden;">
+              <div style="position:absolute; top:8px; left:12px; font-size:16px; color:#999; text-transform:uppercase;">Step 1</div>
+              <div style="font-size:18px; color:#777; font-weight:bold; line-height:1.4;">ファースト<br>ステップ名</div>
+              <!-- 右向き矢印 -->
+              <div style="position:absolute; right:-16px; top:50%; transform:translateY(-50%); width:0; height:0; border-top:24px solid transparent; border-bottom:24px solid transparent; border-left:16px solid #CCCCCC; z-index:2;"></div>
+            </div>
+
+            <!-- ブロック2 -->
+            <div style="flex:1; background:#E8E8E8; border:1px solid #CCCCCC; border-radius:8px 8px 0 0; height:180px; padding:12px 16px; display:flex; flex-direction:column; justify-content:flex-end; position:relative; overflow:hidden;">
+              <div style="position:absolute; top:8px; left:12px; font-size:16px; color:#999; text-transform:uppercase;">Step 2</div>
+              <div style="font-size:18px; color:#666; font-weight:bold; line-height:1.4;">セカンド<br>ステップ名</div>
+              <div style="position:absolute; right:-16px; top:50%; transform:translateY(-50%); width:0; height:0; border-top:24px solid transparent; border-bottom:24px solid transparent; border-left:16px solid #CCCCCC; z-index:2;"></div>
+            </div>
+
+            <!-- ブロック3（強調） -->
+            <div style="flex:1; background:#DDDDDD; border:1px solid #BBBBBB; border-radius:8px 8px 0 0; height:240px; padding:12px 16px; display:flex; flex-direction:column; justify-content:flex-end; position:relative; overflow:hidden;">
+              <div style="position:absolute; top:8px; left:12px; font-size:16px; color:#888; text-transform:uppercase;">Step 3（現在）</div>
+              <div style="font-size:18px; color:#444; font-weight:bold; line-height:1.4;">サード<br>ステップ名</div>
+              <div style="position:absolute; right:-16px; top:50%; transform:translateY(-50%); width:0; height:0; border-top:24px solid transparent; border-bottom:24px solid transparent; border-left:16px solid #BBBBBB; z-index:2;"></div>
+            </div>
+
+            <!-- ブロック4（最高・最も目立つ） -->
+            <div style="flex:1; background:#C8C8C8; border:1px solid #AAAAAA; border-radius:8px 8px 0 0; height:300px; padding:16px 16px; display:flex; flex-direction:column; justify-content:flex-end; position:relative; overflow:hidden;">
+              <div style="position:absolute; top:8px; left:12px; font-size:16px; color:#777; text-transform:uppercase;">Step 4（目標）</div>
+              <div style="font-size:20px; color:#333; font-weight:bold; line-height:1.4;">フォース<br>ステップ名</div>
+              <!-- 末尾矢印（右向き） -->
+              <div style="position:absolute; right:-20px; top:50%; transform:translateY(-50%); width:0; height:0; border-top:28px solid transparent; border-bottom:28px solid transparent; border-left:20px solid #AAAAAA; z-index:2;"></div>
+            </div>
+
+          </div>
+
+          <!-- 累積レイヤー帯 -->
+          <div style="display:flex; flex-direction:column; gap:6px; flex-shrink:0;">
+            <div class="area-label" style="font-size:18px;">Layer Bands（累積施策帯）</div>
+
+            <!-- レイヤー1（最上段・最も狭い） -->
+            <div style="background:#F0F0F0; border:1px solid #CCCCCC; border-radius:4px; padding:6px 20px; display:flex; align-items:center;">
+              <div style="font-size:18px; color:#666;">累積施策レイヤー1：特定フェーズ以降に適用される施策のテキストが入ります</div>
+            </div>
+
+            <!-- レイヤー2 -->
+            <div style="background:#EBEBEB; border:1px solid #CCCCCC; border-radius:4px; padding:6px 20px; display:flex; align-items:center;">
+              <div style="font-size:18px; color:#555;">累積施策レイヤー2：より広いフェーズにまたがる施策のテキストが入ります</div>
+            </div>
+
+            <!-- レイヤー3（最下段・最も幅広） -->
+            <div style="background:#E5E5E5; border:1px solid #CCCCCC; border-radius:4px; padding:6px 20px; display:flex; align-items:center;">
+              <div style="font-size:18px; color:#444;">累積施策レイヤー3（基盤）：全フェーズを貫く最も広範囲な施策・目標のテキストが入ります</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
     </div>
   </div>
-
-  <!-- ロードマップエリア -->
-  <div style="flex:1; display:flex; flex-direction:column; gap:6px; min-height:0;">
-    <div class="area-label">Roadmap Area</div>
-
-    <!-- 年度ラベル行 -->
-    <div style="display:flex; align-items:flex-end; gap:4px; padding:0 0 0 0; flex-shrink:0;">
-      <div style="flex:1; min-width:0;"></div>
-      <div style="flex:1; min-width:0; text-align:center;">
-        <div style="font-size:9px; color:#999; border-bottom:1px solid #CCCCCC; padding-bottom:2px;">FY2021〜</div>
-      </div>
-      <div style="flex:1; min-width:0; text-align:center;">
-        <div style="font-size:9px; color:#888; border-bottom:1px solid #CCCCCC; padding-bottom:2px;">FY2023〜</div>
-      </div>
-      <div style="flex:1; min-width:0; text-align:center;">
-        <div style="font-size:9px; color:#777; border-bottom:1px solid #CCCCCC; padding-bottom:2px;">FY2024〜</div>
-      </div>
-      <div style="flex:1; min-width:0; text-align:center;">
-        <div style="font-size:9px; color:#555; border-bottom:1px solid #CCCCCC; padding-bottom:2px;">FY2027〜</div>
-      </div>
-    </div>
-
-    <!-- ステアケース矢印ブロック行 -->
-    <div style="display:flex; align-items:flex-end; gap:4px; flex-shrink:0;">
-
-      <!-- ブロック1（最低） -->
-      <div style="flex:1; background:#F0F0F0; border:1px solid #CCCCCC; border-radius:4px 4px 0 0; height:60px; padding:6px 8px; display:flex; flex-direction:column; justify-content:flex-end; position:relative; overflow:hidden;">
-        <div style="position:absolute; top:4px; left:6px; font-size:8px; color:#999; text-transform:uppercase;">Step 1</div>
-        <div style="font-size:9px; color:#777; font-weight:bold; line-height:1.4;">ファースト<br>ステップ名</div>
-        <!-- 右向き矢印 -->
-        <div style="position:absolute; right:-8px; top:50%; transform:translateY(-50%); width:0; height:0; border-top:12px solid transparent; border-bottom:12px solid transparent; border-left:8px solid #CCCCCC; z-index:2;"></div>
-      </div>
-
-      <!-- ブロック2 -->
-      <div style="flex:1; background:#E8E8E8; border:1px solid #CCCCCC; border-radius:4px 4px 0 0; height:90px; padding:6px 8px; display:flex; flex-direction:column; justify-content:flex-end; position:relative; overflow:hidden;">
-        <div style="position:absolute; top:4px; left:6px; font-size:8px; color:#999; text-transform:uppercase;">Step 2</div>
-        <div style="font-size:9px; color:#666; font-weight:bold; line-height:1.4;">セカンド<br>ステップ名</div>
-        <div style="position:absolute; right:-8px; top:50%; transform:translateY(-50%); width:0; height:0; border-top:12px solid transparent; border-bottom:12px solid transparent; border-left:8px solid #CCCCCC; z-index:2;"></div>
-      </div>
-
-      <!-- ブロック3（強調） -->
-      <div style="flex:1; background:#DDDDDD; border:1px solid #BBBBBB; border-radius:4px 4px 0 0; height:120px; padding:6px 8px; display:flex; flex-direction:column; justify-content:flex-end; position:relative; overflow:hidden;">
-        <div style="position:absolute; top:4px; left:6px; font-size:8px; color:#888; text-transform:uppercase;">Step 3（現在）</div>
-        <div style="font-size:9px; color:#444; font-weight:bold; line-height:1.4;">サード<br>ステップ名</div>
-        <div style="position:absolute; right:-8px; top:50%; transform:translateY(-50%); width:0; height:0; border-top:12px solid transparent; border-bottom:12px solid transparent; border-left:8px solid #BBBBBB; z-index:2;"></div>
-      </div>
-
-      <!-- ブロック4（最高・最も目立つ） -->
-      <div style="flex:1; background:#C8C8C8; border:1px solid #AAAAAA; border-radius:4px 4px 0 0; height:150px; padding:8px 8px; display:flex; flex-direction:column; justify-content:flex-end; position:relative; overflow:hidden;">
-        <div style="position:absolute; top:4px; left:6px; font-size:8px; color:#777; text-transform:uppercase;">Step 4（目標）</div>
-        <div style="font-size:10px; color:#333; font-weight:bold; line-height:1.4;">フォース<br>ステップ名</div>
-        <!-- 末尾矢印（右向き） -->
-        <div style="position:absolute; right:-10px; top:50%; transform:translateY(-50%); width:0; height:0; border-top:14px solid transparent; border-bottom:14px solid transparent; border-left:10px solid #AAAAAA; z-index:2;"></div>
-      </div>
-
-    </div>
-
-    <!-- 累積レイヤー帯 -->
-    <div style="display:flex; flex-direction:column; gap:3px; flex-shrink:0;">
-      <div class="area-label" style="font-size:9px;">Layer Bands（累積施策帯）</div>
-
-      <!-- レイヤー1（最上段・最も狭い） -->
-      <div style="background:#F0F0F0; border:1px solid #CCCCCC; border-radius:2px; padding:3px 10px; display:flex; align-items:center;">
-        <div style="font-size:9px; color:#666;">累積施策レイヤー1：特定フェーズ以降に適用される施策のテキストが入ります</div>
-      </div>
-
-      <!-- レイヤー2 -->
-      <div style="background:#EBEBEB; border:1px solid #CCCCCC; border-radius:2px; padding:3px 10px; display:flex; align-items:center;">
-        <div style="font-size:9px; color:#555;">累積施策レイヤー2：より広いフェーズにまたがる施策のテキストが入ります</div>
-      </div>
-
-      <!-- レイヤー3（最下段・最も幅広） -->
-      <div style="background:#E5E5E5; border:1px solid #CCCCCC; border-radius:2px; padding:3px 10px; display:flex; align-items:center;">
-        <div style="font-size:9px; color:#444;">累積施策レイヤー3（基盤）：全フェーズを貫く最も広範囲な施策・目標のテキストが入ります</div>
-      </div>
-    </div>
-
-  </div>
-
 </div>
-
 </body>
 </html>

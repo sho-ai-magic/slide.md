@@ -1,167 +1,154 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-category-toc-simple</title>
-  <style>
-    body {
-      background: #E8E8E8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      font-family: sans-serif;
-      margin: 0;
-    }
-    .slide-label {
-      font-size: 12px;
-      color: #666;
-      margin-bottom: 8px;
-      letter-spacing: 0.05em;
-    }
-    .slide {
-      width: 960px;
-      height: 540px;
-      background: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      overflow: hidden;
-      margin-bottom: 8px;
-      display: flex;
-      flex-direction: column;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999999;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 4px;
-    }
-    .category-heading {
-      font-size: 26px;
-      font-weight: 900;
-      color: #222222;
-      display: inline-block;
-      margin-right: 12px;
-      letter-spacing: -0.01em;
-    }
-    .category-subtitle {
-      font-size: 12px;
-      color: #888888;
-      font-weight: normal;
-    }
-    .bullet-item {
-      display: flex;
-      align-items: flex-start;
-      font-size: 13px;
-      color: #444444;
-      padding: 3px 0;
-    }
-    .bullet-dot {
-      width: 7px;
-      height: 7px;
-      background: #666666;
-      border-radius: 50%;
-      margin-top: 4px;
-      flex-shrink: 0;
-    }
-    .vertical-line {
-      width: 1px;
-      background: #CCCCCC;
-      margin: 0 10px;
-      flex-shrink: 0;
-      align-self: stretch;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-category-toc-simple</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
+
+  .category-heading {
+    font-size: 52px;
+    font-weight: 900;
+    color: #222222;
+    display: inline-block;
+    margin-right: 24px;
+    letter-spacing: -0.01em;
+  }
+  .category-subtitle {
+    font-size: 24px;
+    color: #888888;
+    font-weight: normal;
+  }
+  .bullet-item {
+    display: flex;
+    align-items: flex-start;
+    font-size: 26px;
+    color: #444444;
+    padding: 6px 0;
+  }
+  .bullet-dot {
+    width: 14px;
+    height: 14px;
+    background: #666666;
+    border-radius: 50%;
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+  .vertical-line {
+    width: 2px;
+    background: #CCCCCC;
+    margin: 0 20px;
+    flex-shrink: 0;
+    align-self: stretch;
+  }
+</style>
 </head>
 <body>
-
 <p class="slide-label">[category-toc-simple]</p>
-<div class="slide">
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-  <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
-  <div style="padding: 14px 40px 12px; border-bottom: 1px dashed #CCCCCC; flex-shrink: 0; background: #FAFAFA;">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div style="font-size: 16px; color: #CCCCCC; margin-top: 4px;">スライドタイトルが入ります</div>
-  </div>
-
-  <!-- コンテンツエリア（このパターンが定義する領域） -->
-  <div style="flex: 1; padding: 20px 60px; display: flex; flex-direction: column; justify-content: center; gap: 12px;">
-    <div class="area-label">Category TOC List（Full Width）</div>
-
-    <!-- カテゴリ1 -->
-    <div>
-      <div>
-        <span class="category-heading">Category A</span>
-        <span class="category-subtitle">カテゴリAのサブタイトルが入ります</span>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
-      <div style="display: flex; margin-top: 4px;">
-        <div class="vertical-line"></div>
-        <div style="flex: 1; display: flex; flex-direction: column;">
-          <div class="bullet-item">
-            <div class="bullet-dot" style="margin-right: 8px;"></div>
-            <span>箇条書き項目が入ります</span>
+
+      <!-- コンテンツエリア（このパターンが定義する領域） -->
+      <div style="flex:1; overflow:hidden; padding:40px 120px; display:flex; flex-direction:column; justify-content:center; gap:24px;">
+        <div class="area-label">Category TOC List（Full Width）</div>
+
+        <!-- カテゴリ1 -->
+        <div>
+          <div>
+            <span class="category-heading">Category A</span>
+            <span class="category-subtitle">カテゴリAのサブタイトルが入ります</span>
           </div>
-          <div class="bullet-item">
-            <div class="bullet-dot" style="margin-right: 8px;"></div>
-            <span>箇条書き項目が入ります</span>
-          </div>
-          <div class="bullet-item">
-            <div class="bullet-dot" style="margin-right: 8px;"></div>
-            <span>箇条書き項目が入ります</span>
+          <div style="display:flex; margin-top:8px;">
+            <div class="vertical-line"></div>
+            <div style="flex:1; display:flex; flex-direction:column;">
+              <div class="bullet-item">
+                <div class="bullet-dot" style="margin-right:16px;"></div>
+                <span>箇条書き項目が入ります</span>
+              </div>
+              <div class="bullet-item">
+                <div class="bullet-dot" style="margin-right:16px;"></div>
+                <span>箇条書き項目が入ります</span>
+              </div>
+              <div class="bullet-item">
+                <div class="bullet-dot" style="margin-right:16px;"></div>
+                <span>箇条書き項目が入ります</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- カテゴリ2 -->
-    <div>
-      <div>
-        <span class="category-heading">Category B</span>
-        <span class="category-subtitle">カテゴリBのサブタイトルが入ります</span>
-      </div>
-      <div style="display: flex; margin-top: 4px;">
-        <div class="vertical-line"></div>
-        <div style="flex: 1; display: flex; flex-direction: column;">
-          <div class="bullet-item">
-            <div class="bullet-dot" style="margin-right: 8px;"></div>
-            <span>箇条書き項目が入ります</span>
+        <!-- カテゴリ2 -->
+        <div>
+          <div>
+            <span class="category-heading">Category B</span>
+            <span class="category-subtitle">カテゴリBのサブタイトルが入ります</span>
           </div>
-          <div class="bullet-item">
-            <div class="bullet-dot" style="margin-right: 8px;"></div>
-            <span>箇条書き項目が入ります</span>
-          </div>
-          <div class="bullet-item">
-            <div class="bullet-dot" style="margin-right: 8px;"></div>
-            <span>箇条書き項目が入ります</span>
-          </div>
-          <div class="bullet-item">
-            <div class="bullet-dot" style="margin-right: 8px;"></div>
-            <span>箇条書き項目が入ります</span>
+          <div style="display:flex; margin-top:8px;">
+            <div class="vertical-line"></div>
+            <div style="flex:1; display:flex; flex-direction:column;">
+              <div class="bullet-item">
+                <div class="bullet-dot" style="margin-right:16px;"></div>
+                <span>箇条書き項目が入ります</span>
+              </div>
+              <div class="bullet-item">
+                <div class="bullet-dot" style="margin-right:16px;"></div>
+                <span>箇条書き項目が入ります</span>
+              </div>
+              <div class="bullet-item">
+                <div class="bullet-dot" style="margin-right:16px;"></div>
+                <span>箇条書き項目が入ります</span>
+              </div>
+              <div class="bullet-item">
+                <div class="bullet-dot" style="margin-right:16px;"></div>
+                <span>箇条書き項目が入ります</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <!-- カテゴリ3 -->
-    <div>
-      <div>
-        <span class="category-heading">Category C</span>
-        <span class="category-subtitle">カテゴリCのサブタイトルが入ります</span>
-      </div>
-      <div style="display: flex; margin-top: 4px;">
-        <div class="vertical-line"></div>
-        <div style="flex: 1; display: flex; flex-direction: column;">
-          <div class="bullet-item">
-            <div class="bullet-dot" style="margin-right: 8px;"></div>
-            <span>箇条書き項目が入ります</span>
+        <!-- カテゴリ3 -->
+        <div>
+          <div>
+            <span class="category-heading">Category C</span>
+            <span class="category-subtitle">カテゴリCのサブタイトルが入ります</span>
+          </div>
+          <div style="display:flex; margin-top:8px;">
+            <div class="vertical-line"></div>
+            <div style="flex:1; display:flex; flex-direction:column;">
+              <div class="bullet-item">
+                <div class="bullet-dot" style="margin-right:16px;"></div>
+                <span>箇条書き項目が入ります</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
+      </div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
+    </div>
   </div>
 </div>
-
 </body>
 </html>

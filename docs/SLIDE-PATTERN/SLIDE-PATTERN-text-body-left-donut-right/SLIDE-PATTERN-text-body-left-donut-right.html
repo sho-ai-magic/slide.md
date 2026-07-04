@@ -1,261 +1,134 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-text-body-left-donut-right</title>
-  <style>
-    /* ページ全体のスタイル */
-    body {
-      background: #E8E8E8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      font-family: sans-serif;
-      margin: 0;
-    }
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-text-body-left-donut-right</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
+  /* ここからパターン固有のCSS */
+  .content-area { display: flex; flex: 1; padding: 32px 80px; gap: 64px; overflow: hidden; }
 
-    /* スライドラベル */
-    .slide-label {
-      font-size: 12px;
-      color: #888;
-      margin-bottom: 8px;
-      letter-spacing: 0.05em;
-    }
+  .left-zone { width: 55%; display: flex; flex-direction: column; justify-content: center; gap: 24px; }
+  .left-heading { font-size: 36px; font-weight: bold; color: #333; margin: 0; }
+  .left-divider { border: none; border-top: 1px solid #CCCCCC; margin: 0; }
+  .left-desc { font-size: 26px; color: #555; line-height: 1.7; margin: 0; }
 
-    /* スライド本体 */
-    .slide {
-      width: 960px;
-      height: 540px;
-      background: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
+  .two-col-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; }
+  .col-label { font-size: 24px; font-weight: bold; color: #888; padding-bottom: 8px; border-bottom: 1px solid #DDDDDD; }
+  .list-item { font-size: 24px; color: #555; padding: 4px 0; border-bottom: 1px dotted #E0E0E0; }
 
-    /* タイトルエリア */
-    .slide-title {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      background: #FAFAFA;
-      flex-shrink: 0;
-    }
-
-    .slide-title h1 {
-      font-size: 15px;
-      font-weight: bold;
-      color: #333;
-      margin: 0;
-    }
-
-    /* エリアラベル共通 */
-    .area-label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      display: block;
-      margin-bottom: 3px;
-    }
-
-    /* コンテンツエリア全体 */
-    .content-area {
-      display: flex;
-      flex: 1;
-      padding: 16px 40px;
-      gap: 32px;
-    }
-
-    /* 左エリア（55%） */
-    .left-zone {
-      width: 55%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    .left-heading {
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-      margin: 0;
-    }
-
-    .left-divider {
-      border: none;
-      border-top: 1px solid #CCCCCC;
-      margin: 0;
-    }
-
-    .left-desc {
-      font-size: 13px;
-      color: #555;
-      line-height: 1.7;
-      margin: 0;
-    }
-
-    /* 2カラムリスト */
-    .two-col-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px 16px;
-    }
-
-    .col-label-row {
-      display: contents;
-    }
-
-    .col-label {
-      font-size: 12px;
-      font-weight: bold;
-      color: #888;
-      padding-bottom: 4px;
-      border-bottom: 1px solid #DDDDDD;
-    }
-
-    .list-item {
-      font-size: 12px;
-      color: #555;
-      padding: 2px 0;
-      border-bottom: 1px dotted #E0E0E0;
-    }
-
-    /* 右エリア（45%） */
-    .right-zone {
-      width: 45%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    /* ドーナツグラフ */
-    .donut-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-    }
-
-    /* 凡例 */
-    .legend {
-      display: flex;
-      gap: 16px;
-      font-size: 11px;
-      color: #888;
-      align-items: center;
-    }
-
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .legend-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-  </style>
+  .right-zone { width: 45%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; }
+  .donut-wrap { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .legend { display: flex; gap: 24px; font-size: 22px; color: #888; align-items: center; }
+  .legend-item { display: flex; align-items: center; gap: 8px; }
+  .legend-dot { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; }
+</style>
 </head>
 <body>
+<p class="slide-label">[text-body-left-donut-right]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-  <!-- スライドラベル -->
-  <p class="slide-label">[text-body-left-donut-right]</p>
-
-  <!-- スライド本体 -->
-  <div class="slide">
-
-    <!-- タイトルエリア -->
-    <div class="slide-title">
-      <h1>デジタルサービス利用率の現状と課題</h1>
-    </div>
-
-    <!-- コンテンツエリア -->
-    <div class="content-area">
-
-      <!-- 左エリア（55%） -->
-      <div class="left-zone">
-        <p class="left-heading">利用率60%を達成も、<br>非利用層へのアプローチが課題</p>
-        <hr class="left-divider">
-        <p class="left-desc">
-          2024年度のユーザー調査によると、当社サービスの月次アクティブ利用率は60%に達しました。<br>
-          一方、残り40%の非利用層には「操作の複雑さ」「メリットの未認知」が主因として挙げられています。
-        </p>
-
-        <!-- 2カラムリスト -->
-        <div class="two-col-list">
-          <!-- 列ラベル -->
-          <div class="col-label">利用促進要因</div>
-          <div class="col-label">非利用の主な理由</div>
-
-          <!-- 項目 -->
-          <div class="list-item">・操作が簡単・直感的</div>
-          <div class="list-item">・操作が複雑に感じる</div>
-
-          <div class="list-item">・時間や場所を選ばない</div>
-          <div class="list-item">・メリットを知らない</div>
-
-          <div class="list-item">・コスト削減につながる</div>
-          <div class="list-item">・セキュリティへの不安</div>
-
-          <div class="list-item">・サポートが充実している</div>
-          <div class="list-item">・既存ツールで十分と感じる</div>
-        </div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
 
-      <!-- 右エリア（45%） -->
-      <div class="right-zone">
-        <span class="area-label">利用率（2024年度）</span>
+      <!-- コンテンツエリア -->
+      <div class="content-area">
 
-        <!-- ドーナツグラフSVG -->
-        <div class="donut-wrap">
-          <svg width="150" height="150" viewBox="0 0 150 150">
-            <!-- 背景円（40%のグレー） -->
-            <circle cx="75" cy="75" r="58"
-              fill="none"
-              stroke="#EEEEEE"
-              stroke-width="24"/>
-            <!-- 前景円（60%の濃いグレー） -->
-            <!-- 円周 = 2π×58 ≈ 364.4 / 60% = 218.5 / offset = 364.4×0.25 = 91.1 -->
-            <circle cx="75" cy="75" r="58"
-              fill="none"
-              stroke="#CCCCCC"
-              stroke-width="24"
-              stroke-dasharray="218.5 364.4"
-              stroke-dashoffset="91.1"/>
-            <!-- ドーナツ穴（白抜き） -->
-            <circle cx="75" cy="75" r="46" fill="#FFFFFF"/>
-            <!-- 中央テキスト -->
-            <text x="75" y="70" text-anchor="middle" font-size="11" fill="#888">円グラフの</text>
-            <text x="75" y="84" text-anchor="middle" font-size="11" fill="#888">利用率</text>
-            <text x="75" y="102" text-anchor="middle" font-size="22" fill="#333" font-weight="bold">60%</text>
-          </svg>
-        </div>
+        <!-- 左エリア（55%） -->
+        <div class="left-zone">
+          <p class="left-heading">利用率60%を達成も、<br>非利用層へのアプローチが課題</p>
+          <hr class="left-divider">
+          <p class="left-desc">
+            直近の利用状況調査によると、当社サービスの月次アクティブ利用率は60%に達しました。<br>
+            一方、残り40%の非利用層には「操作の複雑さ」「メリットの未認知」が主因として挙げられています。
+          </p>
 
-        <!-- 凡例 -->
-        <div class="legend">
-          <div class="legend-item">
-            <div class="legend-dot" style="background:#CCCCCC;"></div>
-            <span>利用中（60%）</span>
-          </div>
-          <div class="legend-item">
-            <div class="legend-dot" style="background:#EEEEEE;"></div>
-            <span>未利用（40%）</span>
+          <!-- 2カラムリスト -->
+          <div class="two-col-list">
+            <div class="col-label">利用促進要因</div>
+            <div class="col-label">非利用の主な理由</div>
+
+            <div class="list-item">・操作が簡単・直感的</div>
+            <div class="list-item">・操作が複雑に感じる</div>
+
+            <div class="list-item">・時間や場所を選ばない</div>
+            <div class="list-item">・メリットを知らない</div>
+
+            <div class="list-item">・コスト削減につながる</div>
+            <div class="list-item">・セキュリティへの不安</div>
+
+            <div class="list-item">・サポートが充実している</div>
+            <div class="list-item">・既存ツールで十分と感じる</div>
           </div>
         </div>
 
-      </div><!-- /.right-zone -->
+        <!-- 右エリア（45%） -->
+        <div class="right-zone">
+          <span class="area-label">利用率（サンプル年度）</span>
 
-    </div><!-- /.content-area -->
+          <!-- ドーナツグラフSVG -->
+          <div class="donut-wrap">
+            <svg width="300" height="300" viewBox="0 0 300 300">
+              <!-- 背景円（40%のグレー） -->
+              <circle cx="150" cy="150" r="116"
+                fill="none"
+                stroke="#EEEEEE"
+                stroke-width="48"/>
+              <!-- 前景円（60%の濃いグレー） -->
+              <!-- 円周 = 2π×116 ≈ 728.9 / 60% = 437.3 / offset = 728.9×0.25 = 182.2 -->
+              <circle cx="150" cy="150" r="116"
+                fill="none"
+                stroke="#CCCCCC"
+                stroke-width="48"
+                stroke-dasharray="437.3 728.9"
+                stroke-dashoffset="182.2"/>
+              <!-- ドーナツ穴（白抜き） -->
+              <circle cx="150" cy="150" r="92" fill="#FFFFFF"/>
+              <!-- 中央テキスト -->
+              <text x="150" y="138" text-anchor="middle" font-size="22" fill="#888">円グラフの</text>
+              <text x="150" y="166" text-anchor="middle" font-size="22" fill="#888">利用率</text>
+              <text x="150" y="202" text-anchor="middle" font-size="44" fill="#333" font-weight="bold">60%</text>
+            </svg>
+          </div>
 
-  </div><!-- /.slide -->
+          <!-- 凡例 -->
+          <div class="legend">
+            <div class="legend-item">
+              <div class="legend-dot" style="background:#CCCCCC;"></div>
+              <span>利用中（60%）</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:#EEEEEE;"></div>
+              <span>未利用（40%）</span>
+            </div>
+          </div>
 
+        </div><!-- /.right-zone -->
+
+      </div><!-- /.content-area -->
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
+    </div>
+  </div>
+</div>
 </body>
 </html>

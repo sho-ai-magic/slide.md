@@ -1,6 +1,6 @@
 # SLIDE-PATTERN-two-section-stacked-text
 
-このファイルはスライドのコンテンツエリア（タイトル行より下の領域）のレイアウトパターン定義書です。SLIDE.mdと組み合わせてAIツールに渡すことで、このパターンのスライドを生成できます。タイトルエリア・ページ番号・装飾はSLIDE.mdの `Slide Frame` セクションで定義されるため、このファイルには含みません。
+このファイルはスライドのコンテンツエリア（タイトル行より下の領域）のレイアウトパターン定義書です。SLIDE.mdと組み合わせてAIツールに渡すことで、このパターンのスライドを生成できます。タイトルエリア・フッター（ブランドフッター・ページ番号）・装飾はSLIDE.mdの `Slide Frame` セクションで定義されるため、このファイルには含みません。文言はすべてサンプル（ダミーテキスト）です。
 
 ## Overview
 
@@ -13,34 +13,39 @@
 コンテンツエリアを上下2セクションに均等分割する。上段と下段の間に細い区切り線を設ける。各セクションは左端にアクセントボーダー付きの見出しを持つ。
 
     structure:
+      frame: standard
       layout: content-area-two-section-stacked
-      padding: 20px 48px
+      padding: 40px 96px（高さの約4%）
       gap: 0
       upper-section:
         flex: 1
         border-bottom: 1px solid #E0E0E0
-        padding: 16px 0 16px 0
+        padding: 32px 0 32px 0
         elements:
-          - heading (font-size: 16px, bold, #333, border-left: 3px solid #CCCCCC, padding-left: 10px)
-          - body-text (font-size: 13px, #555, line-height: 1.8, 2〜3行)
+          - heading (font-size: 32px, bold, #333, border-left: 6px solid #CCCCCC, padding-left: 20px)
+          - body-text (font-size: 26px, #555, line-height: 1.8, 2〜3行)
       lower-section:
         flex: 1
-        padding: 16px 0 0 0
+        padding: 32px 0 0 0
         elements:
-          - heading (font-size: 16px, bold, #333, border-left: 3px solid #CCCCCC, padding-left: 10px)
-          - body-text (font-size: 13px, #555, line-height: 1.8, 1行)
-          - numbered-list (ol, font-size: 13px, #555, line-height: 2, 3項目)
+          - heading (font-size: 32px, bold, #333, border-left: 6px solid #CCCCCC, padding-left: 20px)
+          - body-text (font-size: 26px, #555, line-height: 1.8, 1行)
+          - numbered-list (ol, font-size: 26px, #555, line-height: 2, 3項目)
 
 ## Elements（各要素の役割）
 
+※ タイトル（H1）・フッターはSLIDE.mdの Slide Frame で定義されるため、この表には含めない。コンテンツエリアの要素のみを記述する。
+※ 写真は「写真添付エリア（後から実際の写真に差し替え）」、アイコンは「内容に沿ったSVGアイコンを生成して配置」として役割を記述する。
+※ 文字要素には、元スライドの見た目から見積もった1920px基準のフォントサイズの目安を役割欄に添える。
+
 | 要素 | 配置 | 役割 |
 |---|---|---|
-| 上段見出し | 上セクション上部 | 上段の主題を太字・左アクセントボーダー付きで表示 |
-| 上段本文テキスト | 上段見出しの下 | 2〜3行の説明文。背景・概要・問題提起など |
+| 上段見出し | 上セクション上部 | 上段の主題を太字・左アクセントボーダー付きで表示（32px相当） |
+| 上段本文テキスト | 上段見出しの下 | 2〜3行の説明文。背景・概要・問題提起など（26px相当） |
 | 区切り線 | 上段と下段の境界 | 2セクションを視覚的に分離する横線 |
-| 下段見出し | 下セクション上部 | 下段の主題を太字・左アクセントボーダー付きで表示 |
-| 下段本文テキスト | 下段見出しの下 | 1行の補足説明または導入文 |
-| 番号付きリスト | 下段本文の下 | 3項目の手順・ポイント・対応策を番号付きで整理 |
+| 下段見出し | 下セクション上部 | 下段の主題を太字・左アクセントボーダー付きで表示（32px相当） |
+| 下段本文テキスト | 下段見出しの下 | 1行の補足説明または導入文（26px相当） |
+| 番号付きリスト | 下段本文の下 | 3項目の手順・ポイント・対応策を番号付きで整理（26px相当） |
 
 ## Usage Guide（AIへの使い方）
 

@@ -1,126 +1,113 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-numbered-toc</title>
-  <style>
-    body {
-      background: #E8E8E8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      font-family: sans-serif;
-      margin: 0;
-    }
-    .slide-label {
-      font-size: 12px;
-      color: #666;
-      margin-bottom: 8px;
-      letter-spacing: 0.05em;
-    }
-    .slide {
-      width: 960px;
-      height: 540px;
-      background: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      overflow: hidden;
-      margin-bottom: 8px;
-      display: flex;
-      flex-direction: column;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999999;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 6px;
-    }
-    .toc-row {
-      display: flex;
-      align-items: baseline;
-      padding: 9px 0;
-      font-size: 16px;
-      color: #333333;
-    }
-    .toc-number {
-      width: 32px;
-      flex-shrink: 0;
-      font-weight: bold;
-      color: #555555;
-    }
-    .toc-name {
-      flex-shrink: 0;
-      color: #333333;
-    }
-    .toc-dots {
-      flex: 1;
-      border-bottom: 2px dotted #CCCCCC;
-      margin: 0 12px;
-      margin-bottom: 3px;
-    }
-    .toc-page {
-      flex-shrink: 0;
-      color: #777777;
-      font-size: 15px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-numbered-toc</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
+
+  .toc-row {
+    display: flex;
+    align-items: baseline;
+    padding: 18px 0;
+    font-size: 32px;
+    color: #333333;
+  }
+  .toc-number {
+    width: 64px;
+    flex-shrink: 0;
+    font-weight: bold;
+    color: #555555;
+  }
+  .toc-name {
+    flex-shrink: 0;
+    color: #333333;
+  }
+  .toc-dots {
+    flex: 1;
+    border-bottom: 4px dotted #CCCCCC;
+    margin: 0 24px;
+    margin-bottom: 6px;
+  }
+  .toc-page {
+    flex-shrink: 0;
+    color: #777777;
+    font-size: 30px;
+  }
+</style>
 </head>
 <body>
-
 <p class="slide-label">[numbered-toc]</p>
-<div class="slide">
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-  <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
-  <div style="padding: 14px 40px 12px; border-bottom: 1px dashed #CCCCCC; flex-shrink: 0; background: #FAFAFA;">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div style="font-size: 16px; color: #CCCCCC; margin-top: 4px;">スライドタイトルが入ります</div>
-  </div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
 
-  <!-- コンテンツエリア（このパターンが定義する領域） -->
-  <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 24px 80px;">
-    <div class="area-label">Numbered TOC List</div>
+      <!-- コンテンツエリア（このパターンが定義する領域） -->
+      <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 48px 160px;">
+        <div class="area-label">Numbered TOC List</div>
 
-    <div class="toc-row">
-      <span class="toc-number">1.</span>
-      <span class="toc-name">項目名が入ります</span>
-      <span class="toc-dots"></span>
-      <span class="toc-page">3</span>
-    </div>
-    <div class="toc-row">
-      <span class="toc-number">2.</span>
-      <span class="toc-name">項目名が入ります</span>
-      <span class="toc-dots"></span>
-      <span class="toc-page">4</span>
-    </div>
-    <div class="toc-row">
-      <span class="toc-number">3.</span>
-      <span class="toc-name">項目名が入ります</span>
-      <span class="toc-dots"></span>
-      <span class="toc-page">6</span>
-    </div>
-    <div class="toc-row">
-      <span class="toc-number">4.</span>
-      <span class="toc-name">項目名が入ります</span>
-      <span class="toc-dots"></span>
-      <span class="toc-page">8</span>
-    </div>
-    <div class="toc-row">
-      <span class="toc-number">5.</span>
-      <span class="toc-name">項目名が入ります（長い項目名の場合はここまで）</span>
-      <span class="toc-dots"></span>
-      <span class="toc-page">10</span>
-    </div>
-    <div class="toc-row">
-      <span class="toc-number">6.</span>
-      <span class="toc-name">項目名が入ります</span>
-      <span class="toc-dots"></span>
-      <span class="toc-page">14</span>
-    </div>
+        <div class="toc-row">
+          <span class="toc-number">1.</span>
+          <span class="toc-name">項目名が入ります</span>
+          <span class="toc-dots"></span>
+          <span class="toc-page">3</span>
+        </div>
+        <div class="toc-row">
+          <span class="toc-number">2.</span>
+          <span class="toc-name">項目名が入ります</span>
+          <span class="toc-dots"></span>
+          <span class="toc-page">4</span>
+        </div>
+        <div class="toc-row">
+          <span class="toc-number">3.</span>
+          <span class="toc-name">項目名が入ります</span>
+          <span class="toc-dots"></span>
+          <span class="toc-page">6</span>
+        </div>
+        <div class="toc-row">
+          <span class="toc-number">4.</span>
+          <span class="toc-name">項目名が入ります</span>
+          <span class="toc-dots"></span>
+          <span class="toc-page">8</span>
+        </div>
+        <div class="toc-row">
+          <span class="toc-number">5.</span>
+          <span class="toc-name">項目名が入ります（長い項目名の場合はここまで）</span>
+          <span class="toc-dots"></span>
+          <span class="toc-page">10</span>
+        </div>
+        <div class="toc-row">
+          <span class="toc-number">6.</span>
+          <span class="toc-name">項目名が入ります</span>
+          <span class="toc-dots"></span>
+          <span class="toc-page">14</span>
+        </div>
 
+      </div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
+    </div>
   </div>
 </div>
-
 </body>
 </html>

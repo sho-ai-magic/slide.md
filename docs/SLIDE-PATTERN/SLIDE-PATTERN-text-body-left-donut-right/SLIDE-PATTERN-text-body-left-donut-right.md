@@ -1,32 +1,25 @@
 # SLIDE-PATTERN-text-body-left-donut-right
 
-このファイルはスライドのコンテンツエリア（タイトル行より下の領域）のレイアウトパターン定義書です。スライド生成AIや人間のデザイナーが一貫したレイアウトを再現できるよう、構造・要素・使用方法を定義します。
-
----
+このファイルはスライドのコンテンツエリア（タイトル行より下の領域）のレイアウトパターン定義書です。SLIDE.mdと組み合わせてAIツールに渡すことで、このパターンのスライドを生成できます。タイトルエリア・フッター（ブランドフッター・ページ番号）・装飾はSLIDE.mdの `Slide Frame` セクションで定義されるため、このファイルには含みません。文言はすべてサンプル（ダミーテキスト）です。
 
 ## Overview
 
-| 項目 | 内容 |
-|------|------|
-| パターン名 | text-body-left-donut-right |
-| 別名・通称 | 左テキスト＋右ドーナツチャート |
-| 用途 | 左側（55%）に説明テキスト＋2カラムのポイントリスト、右側（45%）に大きなドーナツグラフと中央数値を配置するチャート説明レイアウト |
-| 適したコンテンツ | 利用率・割合・構成比の説明、アンケート結果、市場シェア分析、達成率の報告 |
-| レイアウト種別 | 左右分割（テキスト55%＋グラフ45%） |
+**パターン名：** text-body-left-donut-right
+**概要：** 左側（55%）に説明テキスト＋2カラムのポイントリスト、右側（45%）に大きなドーナツグラフと中央数値を配置するチャート説明レイアウト（左右分割：テキスト55%＋グラフ45%）。
+**適したシーン：** 利用率・割合・構成比の説明、アンケート結果、市場シェア分析、達成率の報告
 
----
+## Structure（構造）
 
-## Structure
+    structure:
+      frame: standard
 
 コンテンツエリアを左のテキストゾーンと右のドーナツグラフゾーンに2分割する構造です。
 
 ```
 ┌──────────────────────────────────────────────┐
-│ タイトルエリア（スライドタイトル）            │
-├───────────────────────────┬──────────────────┤
-│ 見出し（18px・bold）       │                  │
+│ 見出し（36px・bold）       │                  │
 │ ─────────────────────────  │   ドーナツグラフ  │
-│ 説明テキスト（2行）        │   （150×150px）  │
+│ 説明テキスト（2行）        │   （300×300px）  │
 │                           │    中央：数値     │
 │ ┌─────────────┬──────────┐ │                  │
 │ │ ラベルA     │ ラベルB   │ │   凡例テキスト   │
@@ -37,46 +30,46 @@
                  55%                  45%
 ```
 
----
+## Elements（各要素の役割）
 
-## Elements
+※ タイトル（H1）・フッターはSLIDE.mdの Slide Frame で定義されるため、この表には含めない。コンテンツエリアの要素のみを記述する。
+※ 写真は「写真添付エリア（後から実際の写真に差し替え）」、アイコンは「内容に沿ったSVGアイコンを生成して配置」として役割を記述する。
+※ 文字要素には、元スライドの見た目から見積もった1920px基準のフォントサイズの目安を役割欄に添える。
 
 ### コンテンツエリア全体
-- `display: flex; flex: 1; padding: 16px 40px; gap: 32px;`
+- `display: flex; flex: 1; padding: 32px 80px; gap: 64px;`
 
 ### 左エリア（55%）
-- `width: 55%; display: flex; flex-direction: column; justify-content: center; gap: 12px;`
-- 見出し: `font-size: 18px; font-weight: bold; color: #333;`
+- `width: 55%; display: flex; flex-direction: column; justify-content: center; gap: 24px;`
+- 見出し: `font-size: 36px; font-weight: bold; color: #333;`
 - 区切り線: `border: none; border-top: 1px solid #CCCCCC; margin: 0;`
-- 説明テキスト: `font-size: 13px; color: #555; line-height: 1.7;` — 2行
-- 2カラムリスト: `display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px;`
-  - 列ラベル行: `font-size: 12px; font-weight: bold; color: #888;`
-  - 各リスト項目: `font-size: 12px; color: #555; padding: 2px 0; border-bottom: 1px dotted #E0E0E0;` ← 「・テキスト」形式
+- 説明テキスト: `font-size: 26px; color: #555; line-height: 1.7;` — 2行
+- 2カラムリスト: `display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px;`
+  - 列ラベル行: `font-size: 24px; font-weight: bold; color: #888;`
+  - 各リスト項目: `font-size: 24px; color: #555; padding: 4px 0; border-bottom: 1px dotted #E0E0E0;` ← 「・テキスト」形式
 
 ### 右エリア（45%）
-- `width: 45%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;`
+- `width: 45%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;`
 - エリアラベル（`.area-label`）
-- ドーナツSVG（width:150px、height:150px）:
-  - 背景円: `<circle cx="75" cy="75" r="58" fill="none" stroke="#EEEEEE" stroke-width="24"/>`
-  - 前景円（60%分）: `stroke-dasharray="218.5 364.4" stroke-dashoffset="91.1"` ← 60%を塗りつぶす計算式
-  - 内側白円（ドーナツ抜き）: `<circle cx="75" cy="75" r="46" fill="#FFFFFF"/>`
-  - 中央テキスト（説明・数値）: `<text>` タグで2〜3行
-- 凡例: `font-size: 11px; color: #888; display: flex; gap: 12px;`
+- ドーナツSVG（width:300px、height:300px）:
+  - 背景円: `<circle cx="150" cy="150" r="116" fill="none" stroke="#EEEEEE" stroke-width="48"/>`
+  - 前景円（60%分）: `stroke-dasharray="437 728.9" stroke-dashoffset="182.2"` ← 60%を塗りつぶす計算式
+  - 内側白円（ドーナツ抜き）: `<circle cx="150" cy="150" r="92" fill="#FFFFFF"/>`
+  - 中央テキスト（説明・数値）: `<text>` タグで2〜3行（数値44px相当）
+- 凡例: `font-size: 22px; color: #888; display: flex; gap: 24px;`
 
 #### ドーナツSVGのdash計算方法
-- 円周 = 2π × r = 2 × 3.14159 × 58 ≈ 364.4px
-- 60% の弧長 = 364.4 × 0.60 ≈ 218.5px
-- `stroke-dasharray="218.5 364.4"`
-- 12時方向スタートの offset = 364.4 × 0.25 ≈ 91.1px
-- `stroke-dashoffset="91.1"`
+- 円周 = 2π × r = 2 × 3.14159 × 116 ≈ 728.9px
+- 60% の弧長 = 728.9 × 0.60 ≈ 437.3px
+- `stroke-dasharray="437.3 728.9"`
+- 12時方向スタートの offset = 728.9 × 0.25 ≈ 182.2px
+- `stroke-dashoffset="182.2"`
 
----
-
-## Usage Guide
+## Usage Guide（AIへの使い方）
 
 ### 適した場面
 - 単一の割合・比率データをグラフで強調し、その背景を左側で補足説明したい場合
-- 「60%の顧客が〇〇」などのインパクトある数値を大きく見せたい場合
+- インパクトある数値を大きく見せたい場合
 - 定量データ（グラフ）と定性データ（リスト）を同一スライドで組み合わせたい場合
 
 ### 入れるべき情報
@@ -91,6 +84,7 @@
 
 ### 注意点
 - ドーナツグラフは2〜3分割が視認性の上限（それ以上は円グラフや横棒グラフを検討）
-- 中央数値は大きく（font-size:22px以上）して一目で認識できるようにする
+- 中央数値は大きく（44px相当以上）して一目で認識できるようにする
 - 左の2カラムリストの項目数は左右で揃えると整然として見える
 - 説明テキストはグラフの解釈をサポートする内容にする
+- デザインはSLIDE.mdに従ってください。

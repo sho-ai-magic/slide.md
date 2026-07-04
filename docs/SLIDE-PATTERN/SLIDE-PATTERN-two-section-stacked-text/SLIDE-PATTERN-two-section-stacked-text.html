@@ -4,55 +4,64 @@
 <meta charset="UTF-8">
 <title>SLIDE-PATTERN-two-section-stacked-text</title>
 <style>
-  body { background: #E8E8E8; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; font-family: sans-serif; }
-  .slide-label { font-size: 12px; color: #666; margin-bottom: 6px; }
-  .slide { width: 960px; height: 540px; background: #FFFFFF; border: 1px solid #CCCCCC; overflow: hidden; display: flex; flex-direction: column; }
-  .area-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.08em; }
-  /* タイトルエリア */
-  .title-area { padding: 14px 40px 12px; border-bottom: 1px dashed #CCCCCC; flex-shrink: 0; background: #FAFAFA; }
-  /* コンテンツエリア */
-  .content-area { flex: 1; display: flex; flex-direction: column; padding: 20px 48px; gap: 0; overflow: hidden; }
-  /* 上セクション */
-  .section-upper { flex: 1; border-bottom: 1px solid #E0E0E0; padding-bottom: 16px; padding-top: 16px; display: flex; flex-direction: column; gap: 8px; }
-  /* 下セクション */
-  .section-lower { flex: 1; padding-top: 16px; display: flex; flex-direction: column; gap: 8px; }
-  /* 見出し（左アクセントボーダー） */
-  .section-heading { font-size: 16px; font-weight: bold; color: #333; border-left: 3px solid #CCCCCC; padding-left: 10px; line-height: 1.4; }
-  /* 本文テキスト */
-  .section-body { font-size: 13px; color: #555; line-height: 1.8; }
-  /* 番号付きリスト */
-  .section-list { margin: 0; padding-left: 20px; }
-  .section-list li { font-size: 13px; color: #555; line-height: 2; }
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .section-upper { flex: 1; border-bottom: 1px solid #E0E0E0; padding-bottom: 32px; padding-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+  .section-lower { flex: 1; padding-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+  .section-heading { font-size: 32px; font-weight: bold; color: #333; border-left: 6px solid #CCCCCC; padding-left: 20px; line-height: 1.4; }
+  .section-body { font-size: 26px; color: #555; line-height: 1.8; }
+  .section-list { margin: 0; padding-left: 40px; }
+  .section-list li { font-size: 26px; color: #555; line-height: 2; }
 </style>
 </head>
 <body>
 <p class="slide-label">[two-section-stacked-text]</p>
-<div class="slide">
-  <!-- タイトルエリア -->
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-  </div>
-  <!-- コンテンツエリア（上下2セクション） -->
-  <div class="content-area">
-    <!-- 上セクション -->
-    <div class="section-upper">
-      <div class="section-heading">上段の見出しテキストが入ります</div>
-      <div class="section-body">
-        上段の本文テキストが入ります。背景や概要など、導入となる説明文を2〜3行程度で記述します。<br>
-        読みやすい行間で要点を整理し、下段につながる内容を簡潔にまとめてください。<br>
-        補足情報があればこの行に追記します。
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
+
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
-    </div>
-    <!-- 下セクション -->
-    <div class="section-lower">
-      <div class="section-heading">下段の見出しテキストが入ります</div>
-      <div class="section-body">下段の導入文が1行程度入ります。以下のリストへの橋渡しとなる文章です。</div>
-      <ol class="section-list">
-        <li>番号付きリスト1項目目のテキストが入ります</li>
-        <li>番号付きリスト2項目目のテキストが入ります</li>
-        <li>番号付きリスト3項目目のテキストが入ります</li>
-      </ol>
+
+      <!-- コンテンツエリア（上下2セクション） -->
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:40px 96px; gap:0;">
+        <!-- 上セクション -->
+        <div class="section-upper">
+          <div class="section-heading">上段の見出しテキストが入ります</div>
+          <div class="section-body">
+            上段の本文テキストが入ります。背景や概要など、導入となる説明文を2〜3行程度で記述します。<br>
+            読みやすい行間で要点を整理し、下段につながる内容を簡潔にまとめてください。<br>
+            補足情報があればこの行に追記します。
+          </div>
+        </div>
+        <!-- 下セクション -->
+        <div class="section-lower">
+          <div class="section-heading">下段の見出しテキストが入ります</div>
+          <div class="section-body">下段の導入文が1行程度入ります。以下のリストへの橋渡しとなる文章です。</div>
+          <ol class="section-list">
+            <li>番号付きリスト1項目目のテキストが入ります</li>
+            <li>番号付きリスト2項目目のテキストが入ります</li>
+            <li>番号付きリスト3項目目のテキストが入ります</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
     </div>
   </div>
 </div>

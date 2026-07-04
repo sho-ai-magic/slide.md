@@ -1,242 +1,171 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-three-col-icon-card-with-cta</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      width: 960px;
-      height: 540px;
-      overflow: hidden;
-      font-family: sans-serif;
-      background: #FFFFFF;
-      display: flex;
-      flex-direction: column;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-    /* タイトルエリア */
-    .title-area {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      flex-shrink: 0;
-      background: #FAFAFA;
-    }
-    .title-area .title-dummy {
-      font-size: 16px;
-      color: #CCCCCC;
-      margin-top: 4px;
-    }
-    /* コンテンツエリア */
-    .content-area {
-      flex: 1;
-      padding: 16px 48px 20px;
-      display: flex;
-      flex-direction: column;
-    }
-    .content-area > .area-label {
-      margin-bottom: 8px;
-    }
-    /* リード文エリア（2段） */
-    .lead-area {
-      border: 1px dashed #CCCCCC;
-      background: #F0F0F0;
-      padding: 10px 20px;
-      margin-bottom: 20px;
-      border-radius: 3px;
-      flex-shrink: 0;
-      text-align: center;
-    }
-    .lead-area .area-label {
-      margin-bottom: 5px;
-      text-align: left;
-    }
-    .lead-line1 {
-      font-size: 11px;
-      color: #777;
-      margin-bottom: 4px;
-    }
-    .lead-line2 {
-      font-size: 13px;
-      font-weight: bold;
-      color: #555;
-    }
-    .lead-line2 .area-label-inline {
-      font-size: 10px;
-      color: #BBB;
-      font-weight: normal;
-      margin-left: 8px;
-    }
-    /* カードグループ */
-    .cards-wrapper {
-      flex: 1;
-      display: flex;
-      gap: 24px;
-      align-items: flex-start;
-    }
-    /* 各カード */
-    .card {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    /* 円形アイコン */
-    .card-icon-wrap {
-      width: 80px;
-      height: 80px;
-      border: 2px solid #CCCCCC;
-      border-radius: 50%;
-      background: #F0F0F0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 12px;
-      flex-shrink: 0;
-    }
-    .card-icon-wrap .area-label {
-      text-align: center;
-      line-height: 1.3;
-    }
-    /* 主見出し */
-    .card-heading-primary {
-      text-align: center;
-      margin-bottom: 2px;
-      width: 100%;
-    }
-    .card-heading-primary .area-label {
-      margin-bottom: 3px;
-    }
-    .heading-primary-text {
-      font-size: 15px;
-      font-weight: bold;
-      color: #888;
-      line-height: 1.3;
-    }
-    /* 補足見出し */
-    .card-heading-secondary {
-      text-align: center;
-      margin-bottom: 8px;
-      width: 100%;
-    }
-    .card-heading-secondary .area-label {
-      margin-bottom: 2px;
-    }
-    .heading-secondary-text {
-      font-size: 11px;
-      color: #999;
-    }
-    /* 説明テキスト */
-    .card-description {
-      width: 100%;
-      border: 1px dashed #CCCCCC;
-      background: #F8F8F8;
-      padding: 8px 10px;
-      border-radius: 3px;
-    }
-    .card-description .area-label {
-      margin-bottom: 4px;
-    }
-    .description-text {
-      font-size: 10px;
-      color: #777;
-      text-align: center;
-      line-height: 1.6;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-three-col-icon-card-with-cta</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  /* リード文エリア（2段） */
+  .lead-area {
+    border: 1px dashed #CCCCCC;
+    background: #F0F0F0;
+    padding: 20px 40px;
+    margin-bottom: 40px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+  .lead-area .area-label { margin-bottom: 10px; text-align: left; }
+  .lead-line1 { font-size: 22px; color: #777; margin-bottom: 8px; }
+  .lead-line2 { font-size: 26px; font-weight: bold; color: #555; }
+  .lead-line2 .area-label-inline { font-size: 18px; color: #BBB; font-weight: normal; margin-left: 16px; }
+  /* カードグループ */
+  .cards-wrapper { flex: 1; display: flex; gap: 48px; align-items: flex-start; }
+  /* 各カード */
+  .card { flex: 1; display: flex; flex-direction: column; align-items: center; }
+  /* 円形アイコン */
+  .card-icon-wrap {
+    width: 160px;
+    height: 160px;
+    border: 3px solid #CCCCCC;
+    border-radius: 50%;
+    background: #F0F0F0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    flex-shrink: 0;
+  }
+  .card-icon-wrap .area-label { text-align: center; line-height: 1.3; margin-bottom: 0; }
+  /* 主見出し */
+  .card-heading-primary { text-align: center; margin-bottom: 4px; width: 100%; }
+  .card-heading-primary .area-label { margin-bottom: 6px; }
+  .heading-primary-text { font-size: 30px; font-weight: bold; color: #888; line-height: 1.3; }
+  /* 補足見出し */
+  .card-heading-secondary { text-align: center; margin-bottom: 16px; width: 100%; }
+  .card-heading-secondary .area-label { margin-bottom: 4px; }
+  .heading-secondary-text { font-size: 22px; color: #999; }
+  /* 説明テキスト */
+  .card-description {
+    width: 100%;
+    border: 1px dashed #CCCCCC;
+    background: #F8F8F8;
+    padding: 16px 20px;
+    border-radius: 6px;
+  }
+  .card-description .area-label { margin-bottom: 8px; }
+  .description-text { font-size: 20px; color: #777; text-align: center; line-height: 1.6; }
+</style>
 </head>
 <body>
-  <!-- タイトルエリア -->
-  <div class="title-area">
-    <div class="area-label">Title Area — SLIDE.md 参照</div>
-    <div class="title-dummy">スライドタイトルが入ります</div>
-  </div>
+<p class="slide-label">[three-col-icon-card-with-cta]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-  <!-- コンテンツエリア -->
-  <div class="content-area">
-    <div class="area-label">Content Area</div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
 
-    <!-- リード文（2段構成） -->
-    <div class="lead-area">
-      <div class="area-label" style="text-align:left;">Lead Text (2-line)</div>
-      <div class="lead-line1">
-        通常テキスト：前提・状況を説明するリード文（1行目）が入ります。
-        <span class="area-label" style="font-size:9px; color:#BBB;">← Line 1: Plain</span>
+      <!-- コンテンツエリア -->
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:24px 60px;">
+        <div class="area-label">Content Area</div>
+
+        <!-- リード文（2段構成） -->
+        <div class="lead-area">
+          <div class="area-label" style="text-align:left;">Lead Text (2-line)</div>
+          <div class="lead-line1">
+            通常テキスト：前提・状況を説明するリード文（1行目）が入ります。
+            <span class="area-label-inline">← Line 1: Plain</span>
+          </div>
+          <div class="lead-line2">
+            太字・強調テキスト：主要な訴求内容が入ります。
+            <span class="area-label-inline">← Line 2: Bold Accent</span>
+          </div>
+        </div>
+
+        <!-- 3カード -->
+        <div class="cards-wrapper">
+
+          <!-- カード1 -->
+          <div class="card">
+            <div class="card-icon-wrap">
+              <div class="area-label" style="text-align:center;">Circle<br>Icon</div>
+            </div>
+            <div class="card-heading-primary">
+              <div class="area-label">Primary Heading</div>
+              <div class="heading-primary-text">主キーワード<br>または数値</div>
+            </div>
+            <div class="card-heading-secondary">
+              <div class="area-label">Secondary Heading</div>
+              <div class="heading-secondary-text">補足の見出しテキスト</div>
+            </div>
+            <div class="card-description">
+              <div class="area-label">Description</div>
+              <div class="description-text">カードの内容を詳しく説明する<br>2〜3行のテキストが入ります。<br>中央揃えで表示します。</div>
+            </div>
+          </div>
+
+          <!-- カード2 -->
+          <div class="card">
+            <div class="card-icon-wrap">
+              <div class="area-label" style="text-align:center;">Circle<br>Icon</div>
+            </div>
+            <div class="card-heading-primary">
+              <div class="area-label">Primary Heading</div>
+              <div class="heading-primary-text">主キーワード<br>または数値</div>
+            </div>
+            <div class="card-heading-secondary">
+              <div class="area-label">Secondary Heading</div>
+              <div class="heading-secondary-text">補足の見出しテキスト</div>
+            </div>
+            <div class="card-description">
+              <div class="area-label">Description</div>
+              <div class="description-text">カードの内容を詳しく説明する<br>2〜3行のテキストが入ります。<br>中央揃えで表示します。</div>
+            </div>
+          </div>
+
+          <!-- カード3 -->
+          <div class="card">
+            <div class="card-icon-wrap">
+              <div class="area-label" style="text-align:center;">Circle<br>Icon</div>
+            </div>
+            <div class="card-heading-primary">
+              <div class="area-label">Primary Heading</div>
+              <div class="heading-primary-text">主キーワード<br>または数値</div>
+            </div>
+            <div class="card-heading-secondary">
+              <div class="area-label">Secondary Heading</div>
+              <div class="heading-secondary-text">補足の見出しテキスト</div>
+            </div>
+            <div class="card-description">
+              <div class="area-label">Description</div>
+              <div class="description-text">カードの内容を詳しく説明する<br>2〜3行のテキストが入ります。<br>中央揃えで表示します。</div>
+            </div>
+          </div>
+
+        </div><!-- /cards-wrapper -->
+      </div><!-- /content-area -->
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
       </div>
-      <div class="lead-line2">
-        太字・強調テキスト：主要な訴求内容が入ります。
-        <span class="area-label-inline">← Line 2: Bold Accent</span>
-      </div>
+
     </div>
-
-    <!-- 3カード -->
-    <div class="cards-wrapper">
-
-      <!-- カード1 -->
-      <div class="card">
-        <div class="card-icon-wrap">
-          <div class="area-label" style="text-align:center;">Circle<br>Icon</div>
-        </div>
-        <div class="card-heading-primary">
-          <div class="area-label">Primary Heading</div>
-          <div class="heading-primary-text">主キーワード<br>または数値</div>
-        </div>
-        <div class="card-heading-secondary">
-          <div class="area-label">Secondary Heading</div>
-          <div class="heading-secondary-text">補足の見出しテキスト</div>
-        </div>
-        <div class="card-description">
-          <div class="area-label">Description</div>
-          <div class="description-text">カードの内容を詳しく説明する<br>2〜3行のテキストが入ります。<br>中央揃えで表示します。</div>
-        </div>
-      </div>
-
-      <!-- カード2 -->
-      <div class="card">
-        <div class="card-icon-wrap">
-          <div class="area-label" style="text-align:center;">Circle<br>Icon</div>
-        </div>
-        <div class="card-heading-primary">
-          <div class="area-label">Primary Heading</div>
-          <div class="heading-primary-text">主キーワード<br>または数値</div>
-        </div>
-        <div class="card-heading-secondary">
-          <div class="area-label">Secondary Heading</div>
-          <div class="heading-secondary-text">補足の見出しテキスト</div>
-        </div>
-        <div class="card-description">
-          <div class="area-label">Description</div>
-          <div class="description-text">カードの内容を詳しく説明する<br>2〜3行のテキストが入ります。<br>中央揃えで表示します。</div>
-        </div>
-      </div>
-
-      <!-- カード3 -->
-      <div class="card">
-        <div class="card-icon-wrap">
-          <div class="area-label" style="text-align:center;">Circle<br>Icon</div>
-        </div>
-        <div class="card-heading-primary">
-          <div class="area-label">Primary Heading</div>
-          <div class="heading-primary-text">主キーワード<br>または数値</div>
-        </div>
-        <div class="card-heading-secondary">
-          <div class="area-label">Secondary Heading</div>
-          <div class="heading-secondary-text">補足の見出しテキスト</div>
-        </div>
-        <div class="card-description">
-          <div class="area-label">Description</div>
-          <div class="description-text">カードの内容を詳しく説明する<br>2〜3行のテキストが入ります。<br>中央揃えで表示します。</div>
-        </div>
-      </div>
-
-    </div><!-- /cards-wrapper -->
-  </div><!-- /content-area -->
+  </div>
+</div>
 </body>
 </html>

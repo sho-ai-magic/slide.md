@@ -1,180 +1,106 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-sidebar-toc-panel</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: sans-serif;
-      background: #E0E0E0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-    /* スライド本体：960×540px固定 */
-    .slide {
-      width: 960px;
-      height: 540px;
-      background: #FFFFFF;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999999;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 4px;
-    }
-    /* タイトルエリア */
-    .title-area {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      flex-shrink: 0;
-      background: #FAFAFA;
-    }
-    /* コンテンツエリア（左右分割） */
-    .content-area {
-      flex: 1;
-      display: flex;
-      overflow: hidden;
-    }
-    /* 左パネル：強調背景＋セクションラベル */
-    .left-panel {
-      width: 268px; /* 約28% of 960 */
-      flex-shrink: 0;
-      background: #707070;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      position: relative;
-    }
-    .left-panel-label {
-      font-size: 9px;
-      color: rgba(255,255,255,0.5);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      position: absolute;
-      top: 10px;
-      left: 10px;
-    }
-    .section-label {
-      font-size: 24px;
-      font-weight: bold;
-      color: #FFFFFF;
-      letter-spacing: 0.1em;
-      text-align: center;
-    }
-    /* 右パネル：目次項目リスト */
-    .right-panel {
-      flex: 1;
-      background: #FFFFFF;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 30px 50px;
-      gap: 0;
-      position: relative;
-    }
-    .right-panel-label {
-      font-size: 9px;
-      color: #BBBBBB;
-      text-transform: uppercase;
-      position: absolute;
-      top: 10px;
-      right: 12px;
-    }
-    /* 目次項目 */
-    .toc-item {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 12px 0;
-      border-bottom: 1px solid #EEEEEE;
-    }
-    .toc-item:last-child {
-      border-bottom: none;
-    }
-    /* 番号バッジ */
-    .number-badge {
-      width: 32px;
-      height: 32px;
-      background: #AAAAAA;
-      color: #FFFFFF;
-      font-size: 14px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      border-radius: 3px;
-    }
-    /* 目次テキスト */
-    .toc-text {
-      font-size: 16px;
-      color: #333333;
-      font-weight: 500;
-      line-height: 1.3;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-sidebar-toc-panel</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
+
+  /* コンテンツエリア（左右分割） */
+  .content-area { flex: 1; display: flex; overflow: hidden; }
+
+  /* 左パネル：強調背景＋セクションラベル */
+  .left-panel { width: 536px; /* 約28% of 1920 */ flex-shrink: 0; background: #707070; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; position: relative; }
+  .left-panel-label { font-size: 18px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; position: absolute; top: 20px; left: 20px; }
+  .section-label { font-size: 48px; font-weight: bold; color: #FFFFFF; letter-spacing: 0.1em; text-align: center; }
+
+  /* 右パネル：目次項目リスト */
+  .right-panel { flex: 1; background: #FFFFFF; display: flex; flex-direction: column; justify-content: center; padding: 60px 100px; gap: 0; position: relative; }
+  .right-panel-label { font-size: 18px; color: #BBBBBB; text-transform: uppercase; position: absolute; top: 20px; right: 24px; }
+
+  /* 目次項目 */
+  .toc-item { display: flex; align-items: center; gap: 40px; padding: 24px 0; border-bottom: 1px solid #EEEEEE; }
+  .toc-item:last-child { border-bottom: none; }
+
+  /* 番号バッジ */
+  .number-badge { width: 64px; height: 64px; background: #AAAAAA; color: #FFFFFF; font-size: 28px; font-weight: bold; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border-radius: 6px; }
+
+  /* 目次テキスト */
+  .toc-text { font-size: 32px; color: #333333; font-weight: 500; line-height: 1.3; }
+</style>
 </head>
 <body>
-  <div class="slide">
-    <!-- タイトルエリア（SLIDE.mdで定義） -->
-    <div class="title-area">
-      <div class="area-label">Title Area — SLIDE.md 参照</div>
-      <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-    </div>
+<p class="slide-label">[sidebar-toc-panel]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-    <!-- コンテンツエリア（左右分割） -->
-    <div class="content-area">
-
-      <!-- 左パネル：セクションラベル -->
-      <div class="left-panel">
-        <div class="left-panel-label">Left Panel Area</div>
-        <div class="section-label">INDEX</div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
 
-      <!-- 右パネル：目次項目リスト -->
-      <div class="right-panel">
-        <div class="right-panel-label">TOC List Area</div>
+      <!-- コンテンツエリア（左右分割） -->
+      <div class="content-area">
 
-        <div class="toc-item">
-          <div class="number-badge">1</div>
-          <div class="toc-text">月次サマリー</div>
+        <!-- 左パネル：セクションラベル -->
+        <div class="left-panel">
+          <div class="left-panel-label">Left Panel Area</div>
+          <div class="section-label">INDEX</div>
         </div>
 
-        <div class="toc-item">
-          <div class="number-badge">2</div>
-          <div class="toc-text">現状の確認および原因分析</div>
-        </div>
+        <!-- 右パネル：目次項目リスト -->
+        <div class="right-panel">
+          <div class="right-panel-label">TOC List Area</div>
 
-        <div class="toc-item">
-          <div class="number-badge">3</div>
-          <div class="toc-text">進捗状況の確認</div>
-        </div>
+          <div class="toc-item">
+            <div class="number-badge">1</div>
+            <div class="toc-text">月次サマリー</div>
+          </div>
 
-        <div class="toc-item">
-          <div class="number-badge">4</div>
-          <div class="toc-text">2つの課題に対する今後の対策</div>
-        </div>
+          <div class="toc-item">
+            <div class="number-badge">2</div>
+            <div class="toc-text">現状の確認および原因分析</div>
+          </div>
 
-        <div class="toc-item">
-          <div class="number-badge">5</div>
-          <div class="toc-text">次月の実施計画</div>
-        </div>
+          <div class="toc-item">
+            <div class="number-badge">3</div>
+            <div class="toc-text">進捗状況の確認</div>
+          </div>
 
+          <div class="toc-item">
+            <div class="number-badge">4</div>
+            <div class="toc-text">2つの課題に対する今後の対策</div>
+          </div>
+
+          <div class="toc-item">
+            <div class="number-badge">5</div>
+            <div class="toc-text">次月の実施計画</div>
+          </div>
+
+        </div>
+        <!-- /.right-panel -->
       </div>
-      <!-- /.right-panel -->
+      <!-- /.content-area -->
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
     </div>
-    <!-- /.content-area -->
   </div>
-  <!-- /.slide -->
+</div>
 </body>
 </html>

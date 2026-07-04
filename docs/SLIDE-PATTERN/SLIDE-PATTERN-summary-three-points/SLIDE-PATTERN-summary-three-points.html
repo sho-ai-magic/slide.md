@@ -1,145 +1,82 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-summary-three-points</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background: #E8E8E8;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
-      font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-    }
-    .slide-label {
-      font-size: 12px;
-      color: #999;
-      margin-bottom: 10px;
-      letter-spacing: 0.05em;
-    }
-    .slide {
-      width: 960px;
-      height: 540px;
-      background: #FFFFFF;
-      border: 1px solid #CCCCCC;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    /* タイトルエリア */
-    .title-area {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      flex-shrink: 0;
-      background: #FAFAFA;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .title-placeholder {
-      font-size: 16px;
-      color: #CCCCCC;
-      margin-top: 4px;
-    }
-    /* コンテンツエリア */
-    .content-area {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 24px 80px;
-      gap: 16px;
-      flex: 1;
-    }
-    .summary-label {
-      font-size: 11px;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 4px;
-    }
-    /* ポイントアイテム */
-    .point-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 20px;
-      padding: 14px 0;
-      border-bottom: 1px solid #F0F0F0;
-    }
-    .check-icon {
-      width: 28px;
-      height: 28px;
-      border: 2px solid #CCCCCC;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: #888;
-      flex-shrink: 0;
-    }
-    .point-text {
-      flex: 1;
-    }
-    .point-heading {
-      font-size: 15px;
-      font-weight: bold;
-      color: #333;
-      line-height: 1.4;
-    }
-    .point-body {
-      font-size: 13px;
-      color: #666;
-      margin-top: 4px;
-      line-height: 1.5;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-summary-three-points</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
+  /* ここからパターン固有のCSS */
+  .content-area { display: flex; flex-direction: column; justify-content: center; padding: 48px 160px; gap: 32px; flex: 1; overflow: hidden; }
+  .summary-label { font-size: 22px; color: #999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .point-item { display: flex; align-items: flex-start; gap: 40px; padding: 28px 0; border-bottom: 1px solid #F0F0F0; }
+  .check-icon { width: 56px; height: 56px; border: 4px solid #CCCCCC; display: flex; align-items: center; justify-content: center; font-size: 28px; color: #888; flex-shrink: 0; }
+  .point-text { flex: 1; }
+  .point-heading { font-size: 30px; font-weight: bold; color: #333; line-height: 1.4; }
+  .point-body { font-size: 24px; color: #666; margin-top: 8px; line-height: 1.5; }
+</style>
 </head>
 <body>
-  <p class="slide-label">[summary-three-points]</p>
-  <div class="slide">
-    <!-- タイトルエリア -->
-    <div class="title-area">
-      <div class="area-label">Title Area — SLIDE.md 参照</div>
-      <div class="title-placeholder">スライドタイトルが入ります</div>
-    </div>
+<p class="slide-label">[summary-three-points]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-    <!-- コンテンツエリア -->
-    <div class="content-area">
-      <div class="summary-label">Summary</div>
-
-      <!-- ポイント 1 -->
-      <div class="point-item">
-        <div class="check-icon">✓</div>
-        <div class="point-text">
-          <div class="point-heading">顧客体験の向上が売上増加の最大要因</div>
-          <div class="point-body">NPS改善により既存顧客の継続率が前年比+8%向上し、売上にも直結した</div>
-        </div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
 
-      <!-- ポイント 2 -->
-      <div class="point-item">
-        <div class="check-icon">✓</div>
-        <div class="point-text">
-          <div class="point-heading">デジタル化により業務効率が大幅に改善</div>
-          <div class="point-body">手作業の80%をシステムに移行し、1人あたりの処理件数が2.3倍に増加した</div>
+      <!-- コンテンツエリア -->
+      <div class="content-area">
+        <div class="summary-label">Summary</div>
+
+        <!-- ポイント 1 -->
+        <div class="point-item">
+          <div class="check-icon">✓</div>
+          <div class="point-text">
+            <div class="point-heading">顧客体験の向上が売上増加の最大要因</div>
+            <div class="point-body">満足度調査の改善により既存顧客の継続率が前年比で向上し、売上にも直結した</div>
+          </div>
         </div>
+
+        <!-- ポイント 2 -->
+        <div class="point-item">
+          <div class="check-icon">✓</div>
+          <div class="point-text">
+            <div class="point-heading">デジタル化により業務効率が大幅に改善</div>
+            <div class="point-body">手作業の多くをシステムに移行し、1人あたりの処理件数が大きく増加した</div>
+          </div>
+        </div>
+
+        <!-- ポイント 3 -->
+        <div class="point-item">
+          <div class="check-icon">✓</div>
+          <div class="point-text">
+            <div class="point-heading">次四半期は新市場開拓を最優先課題とする</div>
+            <div class="point-body">新規エリアでの展開準備を進め、来期中のローンチを目指す</div>
+          </div>
+        </div>
+
       </div>
 
-      <!-- ポイント 3 -->
-      <div class="point-item">
-        <div class="check-icon">✓</div>
-        <div class="point-text">
-          <div class="point-heading">次四半期は新市場開拓を最優先課題とする</div>
-          <div class="point-body">東南アジア3カ国での展開準備を進め、来期Q1中のローンチを目指す</div>
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
         </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
       </div>
 
     </div>
   </div>
+</div>
 </body>
 </html>

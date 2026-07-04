@@ -4,104 +4,120 @@
 <meta charset="UTF-8">
 <title>SLIDE-PATTERN-four-step-card-flow</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { width: 960px; height: 540px; overflow: hidden; font-family: sans-serif; background: #FFFFFF; display: flex; flex-direction: column; }
-  .area-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.05em; }
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
 </style>
 </head>
 <body>
+<p class="slide-label">[four-step-card-flow]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-<!-- タイトルエリア -->
-<div style="padding:14px 40px 12px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
-  <div class="area-label">Title Area — SLIDE.md 参照</div>
-  <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-</div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
 
-<!-- コンテンツエリア -->
-<div style="flex:1; display:flex; flex-direction:column; padding:16px 32px 14px; gap:10px; overflow:hidden;">
+      <!-- コンテンツエリア -->
+      <div style="flex:1; display:flex; flex-direction:column; padding:24px 60px; gap:20px; overflow:hidden;">
 
-  <!-- リード文 -->
-  <div style="flex-shrink:0;">
-    <div class="area-label" style="margin-bottom:5px;">Lead Text</div>
-    <div style="font-size:11px; color:#666; line-height:1.6; background:#F8F8F8; padding:8px 14px; border-radius:4px; border:1px solid #EEEEEE;">
-      リード文：このプロセスの背景や意義を1〜2文で説明します。全体の流れを把握するための導入テキストが入ります。
+        <!-- リード文 -->
+        <div style="flex-shrink:0;">
+          <div class="area-label" style="margin-bottom:8px;">Lead Text</div>
+          <div style="font-size:22px; color:#666; line-height:1.6; background:#F8F8F8; padding:16px 28px; border-radius:8px; border:1px solid #EEEEEE;">
+            リード文：このプロセスの背景や意義を1〜2文で説明します。全体の流れを把握するための導入テキストが入ります。
+          </div>
+        </div>
+
+        <!-- タイムライン + カードエリア -->
+        <div style="flex:1; display:flex; flex-direction:column; min-height:0; position:relative;">
+          <div class="area-label" style="margin-bottom:12px;">Timeline + 4-Step Cards</div>
+
+          <!-- タイムライン横線とドット -->
+          <div style="position:relative; height:56px; flex-shrink:0; margin:0 40px;">
+            <!-- 横線 -->
+            <div style="position:absolute; top:50%; left:0; right:0; height:2px; background:#CCCCCC; transform:translateY(-50%);"></div>
+            <!-- 4つのドット（等間隔） -->
+            <div style="position:absolute; top:50%; left:12.5%; transform:translate(-50%, -50%); width:24px; height:24px; border-radius:50%; background:#AAAAAA; border:4px solid #FFFFFF;"></div>
+            <div style="position:absolute; top:50%; left:37.5%; transform:translate(-50%, -50%); width:24px; height:24px; border-radius:50%; background:#AAAAAA; border:4px solid #FFFFFF;"></div>
+            <div style="position:absolute; top:50%; left:62.5%; transform:translate(-50%, -50%); width:24px; height:24px; border-radius:50%; background:#AAAAAA; border:4px solid #FFFFFF;"></div>
+            <div style="position:absolute; top:50%; left:87.5%; transform:translate(-50%, -50%); width:24px; height:24px; border-radius:50%; background:#AAAAAA; border:4px solid #FFFFFF;"></div>
+          </div>
+
+          <!-- 4枚のカード -->
+          <div style="flex:1; display:flex; gap:24px; min-height:0;">
+
+            <!-- カード1 -->
+            <div style="flex:1; background:#F0F0F0; border:1px solid #CCCCCC; border-radius:20px; padding:28px 24px 20px; display:flex; flex-direction:column; gap:10px; min-height:0; box-sizing:border-box;">
+              <div style="font-size:18px; color:#AAAAAA; text-transform:uppercase; letter-spacing:0.05em;">STEP</div>
+              <div style="font-size:52px; font-weight:bold; color:#888; line-height:1; letter-spacing:-1px;">01</div>
+              <div style="font-size:24px; color:#555; font-weight:bold; line-height:1.4;">ステップ名が<br>入ります</div>
+              <div style="height:1px; background:#CCCCCC; flex-shrink:0;"></div>
+              <div style="display:flex; flex-direction:column; gap:6px;">
+                <div style="font-size:20px; color:#777; display:flex; gap:10px;"><span style="color:#AAAAAA;">›</span><span>箇条書き詳細1が入ります</span></div>
+                <div style="font-size:20px; color:#777; display:flex; gap:10px;"><span style="color:#AAAAAA;">›</span><span>箇条書き詳細2が入ります</span></div>
+              </div>
+            </div>
+
+            <!-- カード2 -->
+            <div style="flex:1; background:#F0F0F0; border:1px solid #CCCCCC; border-radius:20px; padding:28px 24px 20px; display:flex; flex-direction:column; gap:10px; min-height:0; box-sizing:border-box;">
+              <div style="font-size:18px; color:#AAAAAA; text-transform:uppercase; letter-spacing:0.05em;">STEP</div>
+              <div style="font-size:52px; font-weight:bold; color:#888; line-height:1; letter-spacing:-1px;">02</div>
+              <div style="font-size:24px; color:#555; font-weight:bold; line-height:1.4;">ステップ名が<br>入ります</div>
+              <div style="height:1px; background:#CCCCCC; flex-shrink:0;"></div>
+              <div style="display:flex; flex-direction:column; gap:6px;">
+                <div style="font-size:20px; color:#777; display:flex; gap:10px;"><span style="color:#AAAAAA;">›</span><span>箇条書き詳細1が入ります</span></div>
+                <div style="font-size:20px; color:#777; display:flex; gap:10px;"><span style="color:#AAAAAA;">›</span><span>箇条書き詳細2が入ります</span></div>
+              </div>
+            </div>
+
+            <!-- カード3 -->
+            <div style="flex:1; background:#F0F0F0; border:1px solid #CCCCCC; border-radius:20px; padding:28px 24px 20px; display:flex; flex-direction:column; gap:10px; min-height:0; box-sizing:border-box;">
+              <div style="font-size:18px; color:#AAAAAA; text-transform:uppercase; letter-spacing:0.05em;">STEP</div>
+              <div style="font-size:52px; font-weight:bold; color:#888; line-height:1; letter-spacing:-1px;">03</div>
+              <div style="font-size:24px; color:#555; font-weight:bold; line-height:1.4;">ステップ名が<br>入ります</div>
+              <div style="height:1px; background:#CCCCCC; flex-shrink:0;"></div>
+              <div style="display:flex; flex-direction:column; gap:6px;">
+                <div style="font-size:20px; color:#777; display:flex; gap:10px;"><span style="color:#AAAAAA;">›</span><span>箇条書き詳細1が入ります</span></div>
+                <div style="font-size:20px; color:#777; display:flex; gap:10px;"><span style="color:#AAAAAA;">›</span><span>箇条書き詳細2が入ります</span></div>
+              </div>
+            </div>
+
+            <!-- カード4 -->
+            <div style="flex:1; background:#F0F0F0; border:1px solid #CCCCCC; border-radius:20px; padding:28px 24px 20px; display:flex; flex-direction:column; gap:10px; min-height:0; box-sizing:border-box;">
+              <div style="font-size:18px; color:#AAAAAA; text-transform:uppercase; letter-spacing:0.05em;">STEP</div>
+              <div style="font-size:52px; font-weight:bold; color:#888; line-height:1; letter-spacing:-1px;">04</div>
+              <div style="font-size:24px; color:#555; font-weight:bold; line-height:1.4;">ステップ名が<br>入ります</div>
+              <div style="height:1px; background:#CCCCCC; flex-shrink:0;"></div>
+              <div style="display:flex; flex-direction:column; gap:6px;">
+                <div style="font-size:20px; color:#777; display:flex; gap:10px;"><span style="color:#AAAAAA;">›</span><span>箇条書き詳細1が入ります</span></div>
+                <div style="font-size:20px; color:#777; display:flex; gap:10px;"><span style="color:#AAAAAA;">›</span><span>箇条書き詳細2が入ります</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <!-- /コンテンツエリア -->
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
     </div>
   </div>
-
-  <!-- タイムライン + カードエリア -->
-  <div style="flex:1; display:flex; flex-direction:column; min-height:0; position:relative;">
-    <div class="area-label" style="margin-bottom:6px;">Timeline + 4-Step Cards</div>
-
-    <!-- タイムライン横線とドット -->
-    <div style="position:relative; height:28px; flex-shrink:0; margin:0 20px;">
-      <!-- 横線 -->
-      <div style="position:absolute; top:50%; left:0; right:0; height:1px; background:#CCCCCC; transform:translateY(-50%);"></div>
-      <!-- 4つのドット（等間隔） -->
-      <div style="position:absolute; top:50%; left:12.5%; transform:translate(-50%, -50%); width:12px; height:12px; border-radius:50%; background:#AAAAAA; border:2px solid #FFFFFF;"></div>
-      <div style="position:absolute; top:50%; left:37.5%; transform:translate(-50%, -50%); width:12px; height:12px; border-radius:50%; background:#AAAAAA; border:2px solid #FFFFFF;"></div>
-      <div style="position:absolute; top:50%; left:62.5%; transform:translate(-50%, -50%); width:12px; height:12px; border-radius:50%; background:#AAAAAA; border:2px solid #FFFFFF;"></div>
-      <div style="position:absolute; top:50%; left:87.5%; transform:translate(-50%, -50%); width:12px; height:12px; border-radius:50%; background:#AAAAAA; border:2px solid #FFFFFF;"></div>
-    </div>
-
-    <!-- 4枚のカード -->
-    <div style="flex:1; display:flex; gap:12px; min-height:0;">
-
-      <!-- カード1 -->
-      <div style="flex:1; background:#F0F0F0; border:1px solid #CCCCCC; border-radius:10px; padding:14px 12px 10px; display:flex; flex-direction:column; gap:5px; min-height:0;">
-        <div style="font-size:9px; color:#AAAAAA; text-transform:uppercase; letter-spacing:0.05em;">STEP</div>
-        <div style="font-size:26px; font-weight:bold; color:#888; line-height:1; letter-spacing:-1px;">01</div>
-        <div style="font-size:12px; color:#555; font-weight:bold; line-height:1.4;">ステップ名が<br>入ります</div>
-        <div style="height:1px; background:#CCCCCC; flex-shrink:0;"></div>
-        <div style="display:flex; flex-direction:column; gap:3px;">
-          <div style="font-size:9px; color:#BBBBBB; text-transform:uppercase; margin-bottom:2px;">Bullet List</div>
-          <div style="font-size:10px; color:#777; display:flex; gap:5px;"><span style="color:#AAAAAA;">›</span><span>箇条書き詳細1が入ります</span></div>
-          <div style="font-size:10px; color:#777; display:flex; gap:5px;"><span style="color:#AAAAAA;">›</span><span>箇条書き詳細2が入ります</span></div>
-        </div>
-      </div>
-
-      <!-- カード2 -->
-      <div style="flex:1; background:#F0F0F0; border:1px solid #CCCCCC; border-radius:10px; padding:14px 12px 10px; display:flex; flex-direction:column; gap:5px; min-height:0;">
-        <div style="font-size:9px; color:#AAAAAA; text-transform:uppercase; letter-spacing:0.05em;">STEP</div>
-        <div style="font-size:26px; font-weight:bold; color:#888; line-height:1; letter-spacing:-1px;">02</div>
-        <div style="font-size:12px; color:#555; font-weight:bold; line-height:1.4;">ステップ名が<br>入ります</div>
-        <div style="height:1px; background:#CCCCCC; flex-shrink:0;"></div>
-        <div style="display:flex; flex-direction:column; gap:3px;">
-          <div style="font-size:9px; color:#BBBBBB; text-transform:uppercase; margin-bottom:2px;">Bullet List</div>
-          <div style="font-size:10px; color:#777; display:flex; gap:5px;"><span style="color:#AAAAAA;">›</span><span>箇条書き詳細1が入ります</span></div>
-          <div style="font-size:10px; color:#777; display:flex; gap:5px;"><span style="color:#AAAAAA;">›</span><span>箇条書き詳細2が入ります</span></div>
-        </div>
-      </div>
-
-      <!-- カード3 -->
-      <div style="flex:1; background:#F0F0F0; border:1px solid #CCCCCC; border-radius:10px; padding:14px 12px 10px; display:flex; flex-direction:column; gap:5px; min-height:0;">
-        <div style="font-size:9px; color:#AAAAAA; text-transform:uppercase; letter-spacing:0.05em;">STEP</div>
-        <div style="font-size:26px; font-weight:bold; color:#888; line-height:1; letter-spacing:-1px;">03</div>
-        <div style="font-size:12px; color:#555; font-weight:bold; line-height:1.4;">ステップ名が<br>入ります</div>
-        <div style="height:1px; background:#CCCCCC; flex-shrink:0;"></div>
-        <div style="display:flex; flex-direction:column; gap:3px;">
-          <div style="font-size:9px; color:#BBBBBB; text-transform:uppercase; margin-bottom:2px;">Bullet List</div>
-          <div style="font-size:10px; color:#777; display:flex; gap:5px;"><span style="color:#AAAAAA;">›</span><span>箇条書き詳細1が入ります</span></div>
-          <div style="font-size:10px; color:#777; display:flex; gap:5px;"><span style="color:#AAAAAA;">›</span><span>箇条書き詳細2が入ります</span></div>
-        </div>
-      </div>
-
-      <!-- カード4 -->
-      <div style="flex:1; background:#F0F0F0; border:1px solid #CCCCCC; border-radius:10px; padding:14px 12px 10px; display:flex; flex-direction:column; gap:5px; min-height:0;">
-        <div style="font-size:9px; color:#AAAAAA; text-transform:uppercase; letter-spacing:0.05em;">STEP</div>
-        <div style="font-size:26px; font-weight:bold; color:#888; line-height:1; letter-spacing:-1px;">04</div>
-        <div style="font-size:12px; color:#555; font-weight:bold; line-height:1.4;">ステップ名が<br>入ります</div>
-        <div style="height:1px; background:#CCCCCC; flex-shrink:0;"></div>
-        <div style="display:flex; flex-direction:column; gap:3px;">
-          <div style="font-size:9px; color:#BBBBBB; text-transform:uppercase; margin-bottom:2px;">Bullet List</div>
-          <div style="font-size:10px; color:#777; display:flex; gap:5px;"><span style="color:#AAAAAA;">›</span><span>箇条書き詳細1が入ります</span></div>
-          <div style="font-size:10px; color:#777; display:flex; gap:5px;"><span style="color:#AAAAAA;">›</span><span>箇条書き詳細2が入ります</span></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
 </div>
-
 </body>
 </html>

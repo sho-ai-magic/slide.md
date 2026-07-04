@@ -4,14 +4,18 @@
 <meta charset="UTF-8">
 <title>SLIDE-PATTERN-numbered-list-hexagon-badge</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { width: 960px; height: 540px; overflow: hidden; font-family: sans-serif; background: #FFFFFF; display: flex; flex-direction: column; }
-  .area-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.05em; }
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  .placeholder-box { background: #F0F0F0; border: 2px dashed #CCCCCC; display: flex; align-items: center; justify-content: center; color: #AAAAAA; font-size: 24px; }
 
   /* 六角形バッジ */
   .hexagon {
-    width: 64px;
-    height: 72px;
+    width: 128px;
+    height: 144px;
     background: #E0E0E0;
     position: relative;
     display: flex;
@@ -21,85 +25,100 @@
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   }
   .hexagon-number {
-    font-size: 28px;
+    font-size: 56px;
     font-weight: bold;
-    color: #555;
+    color: #555555;
     position: relative;
     z-index: 1;
   }
 </style>
 </head>
 <body>
+<p class="slide-label">[numbered-list-hexagon-badge]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-<!-- タイトルエリア -->
-<div style="padding:14px 40px 12px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
-  <div class="area-label">Title Area — SLIDE.md 参照</div>
-  <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-</div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
+      </div>
 
-<!-- コンテンツエリア -->
-<div style="flex:1; display:flex; flex-direction:column; padding:16px 60px 14px; gap:10px; overflow:hidden;">
+      <!-- コンテンツエリア -->
+      <div style="display:flex; flex-direction:column; flex:1; overflow:hidden; padding:32px 120px 28px; gap:20px;">
 
-  <!-- リード文 -->
-  <div style="flex-shrink:0;">
-    <div class="area-label" style="margin-bottom:6px;">Lead Text</div>
-    <div style="font-size:12px; color:#555; line-height:1.6; background:#F8F8F8; padding:8px 12px; border-radius:4px; border:1px solid #EEEEEE;">
-      リード文：スライド全体の主旨や前置き説明を1〜2行で記述します。各項目の概要を簡潔にまとめた導入テキストが入ります。
+        <!-- リード文 -->
+        <div style="flex-shrink:0;">
+          <div class="area-label" style="margin-bottom:12px;">Lead Text</div>
+          <div style="font-size:24px; color:#555555; line-height:1.6; background:#F8F8F8; padding:16px 24px; border-radius:8px; border:1px solid #EEEEEE;">
+            リード文：スライド全体の主旨や前置き説明を1〜2行で記述します。各項目の概要を簡潔にまとめた導入テキストが入ります。
+          </div>
+        </div>
+
+        <!-- 番号付きリストエリア -->
+        <div style="flex:1; display:flex; flex-direction:column; gap:0; min-height:0;">
+          <div class="area-label" style="margin-bottom:16px;">Numbered List Area</div>
+
+          <!-- リスト行1 -->
+          <div style="display:flex; align-items:center; gap:48px; padding:20px 0; border-bottom:1px solid #CCCCCC; flex:1; min-height:0;">
+            <!-- 左：六角形バッジ -->
+            <div style="flex-shrink:0; display:flex; align-items:center; justify-content:center; width:160px;">
+              <div class="hexagon">
+                <span class="hexagon-number">1</span>
+              </div>
+            </div>
+            <!-- 右：テキストブロック -->
+            <div style="flex:1; display:flex; flex-direction:column; gap:8px;">
+              <div style="font-size:18px; color:#BBBBBB; text-transform:uppercase;">Item Heading + Body</div>
+              <div style="font-size:26px; color:#666666; font-weight:bold; border-bottom:1px solid #EEEEEE; padding-bottom:4px;">項目1の見出しテキスト</div>
+              <div style="font-size:22px; color:#777777; line-height:1.6;">項目1の説明文が入ります。この項目に関する詳細な説明を2〜3行で記述します。補足情報も含めることができます。</div>
+            </div>
+          </div>
+
+          <!-- リスト行2 -->
+          <div style="display:flex; align-items:center; gap:48px; padding:20px 0; border-bottom:1px solid #CCCCCC; flex:1; min-height:0;">
+            <div style="flex-shrink:0; display:flex; align-items:center; justify-content:center; width:160px;">
+              <div class="hexagon">
+                <span class="hexagon-number">2</span>
+              </div>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; gap:8px;">
+              <div style="font-size:18px; color:#BBBBBB; text-transform:uppercase;">Item Heading + Body</div>
+              <div style="font-size:26px; color:#666666; font-weight:bold; border-bottom:1px solid #EEEEEE; padding-bottom:4px;">項目2の見出しテキスト</div>
+              <div style="font-size:22px; color:#777777; line-height:1.6;">項目2の説明文が入ります。この項目に関する詳細な説明を2〜3行で記述します。補足情報も含めることができます。</div>
+            </div>
+          </div>
+
+          <!-- リスト行3 -->
+          <div style="display:flex; align-items:center; gap:48px; padding:20px 0; border-bottom:1px solid #CCCCCC; flex:1; min-height:0;">
+            <div style="flex-shrink:0; display:flex; align-items:center; justify-content:center; width:160px;">
+              <div class="hexagon">
+                <span class="hexagon-number">3</span>
+              </div>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; gap:8px;">
+              <div style="font-size:18px; color:#BBBBBB; text-transform:uppercase;">Item Heading + Body</div>
+              <div style="font-size:26px; color:#666666; font-weight:bold; border-bottom:1px solid #EEEEEE; padding-bottom:4px;">項目3の見出しテキスト</div>
+              <div style="font-size:22px; color:#777777; line-height:1.6;">項目3の説明文が入ります。この項目に関する詳細な説明を2〜3行で記述します。補足情報も含めることができます。</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
     </div>
   </div>
-
-  <!-- 番号付きリストエリア -->
-  <div style="flex:1; display:flex; flex-direction:column; gap:0; min-height:0;">
-    <div class="area-label" style="margin-bottom:8px;">Numbered List Area</div>
-
-    <!-- リスト行1 -->
-    <div style="display:flex; align-items:center; gap:24px; padding:10px 0; border-bottom:1px solid #CCCCCC; flex:1; min-height:0;">
-      <!-- 左：六角形バッジ -->
-      <div style="flex-shrink:0; display:flex; align-items:center; justify-content:center; width:80px;">
-        <div style="font-size:9px; color:#BBBBBB; text-align:center; margin-bottom:4px; display:none;">Hexagon Badge</div>
-        <div class="hexagon">
-          <span class="hexagon-number">1</span>
-        </div>
-      </div>
-      <!-- 右：テキストブロック -->
-      <div style="flex:1; display:flex; flex-direction:column; gap:4px;">
-        <div style="font-size:9px; color:#BBBBBB; text-transform:uppercase;">Item Heading + Body</div>
-        <div style="font-size:13px; color:#666; font-weight:bold; border-bottom:1px solid #EEEEEE; padding-bottom:2px;">項目1の見出しテキスト</div>
-        <div style="font-size:11px; color:#777; line-height:1.6;">項目1の説明文が入ります。この項目に関する詳細な説明を2〜3行で記述します。補足情報も含めることができます。</div>
-      </div>
-    </div>
-
-    <!-- リスト行2 -->
-    <div style="display:flex; align-items:center; gap:24px; padding:10px 0; border-bottom:1px solid #CCCCCC; flex:1; min-height:0;">
-      <div style="flex-shrink:0; display:flex; align-items:center; justify-content:center; width:80px;">
-        <div class="hexagon">
-          <span class="hexagon-number">2</span>
-        </div>
-      </div>
-      <div style="flex:1; display:flex; flex-direction:column; gap:4px;">
-        <div style="font-size:9px; color:#BBBBBB; text-transform:uppercase;">Item Heading + Body</div>
-        <div style="font-size:13px; color:#666; font-weight:bold; border-bottom:1px solid #EEEEEE; padding-bottom:2px;">項目2の見出しテキスト</div>
-        <div style="font-size:11px; color:#777; line-height:1.6;">項目2の説明文が入ります。この項目に関する詳細な説明を2〜3行で記述します。補足情報も含めることができます。</div>
-      </div>
-    </div>
-
-    <!-- リスト行3 -->
-    <div style="display:flex; align-items:center; gap:24px; padding:10px 0; border-bottom:1px solid #CCCCCC; flex:1; min-height:0;">
-      <div style="flex-shrink:0; display:flex; align-items:center; justify-content:center; width:80px;">
-        <div class="hexagon">
-          <span class="hexagon-number">3</span>
-        </div>
-      </div>
-      <div style="flex:1; display:flex; flex-direction:column; gap:4px;">
-        <div style="font-size:9px; color:#BBBBBB; text-transform:uppercase;">Item Heading + Body</div>
-        <div style="font-size:13px; color:#666; font-weight:bold; border-bottom:1px solid #EEEEEE; padding-bottom:2px;">項目3の見出しテキスト</div>
-        <div style="font-size:11px; color:#777; line-height:1.6;">項目3の説明文が入ります。この項目に関する詳細な説明を2〜3行で記述します。補足情報も含めることができます。</div>
-      </div>
-    </div>
-
-  </div>
-
 </div>
-
 </body>
 </html>

@@ -1,279 +1,180 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SLIDE-PATTERN-staircase-roadmap-with-icons</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: sans-serif;
-      background: #E0E0E0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-    /* スライド本体：960×540px固定 */
-    .slide {
-      width: 960px;
-      height: 540px;
-      background: #FFFFFF;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    .area-label {
-      font-size: 11px;
-      color: #999999;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 4px;
-    }
-    /* タイトルエリア */
-    .title-area {
-      padding: 14px 40px 12px;
-      border-bottom: 1px dashed #CCCCCC;
-      flex-shrink: 0;
-      background: #FAFAFA;
-    }
-    /* コンテンツエリア */
-    .content-area {
-      flex: 1;
-      padding: 14px 40px 10px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      position: relative;
-    }
-    /* リード文 */
-    .lead-area {
-      margin-bottom: 8px;
-      flex-shrink: 0;
-    }
-    .lead-text {
-      font-size: 11px;
-      color: #555555;
-      line-height: 1.6;
-    }
-    /* ステップ図エリア：位置固定のコンテナ */
-    .staircase-area {
-      flex: 1;
-      position: relative;
-      overflow: hidden;
-    }
-    .staircase-area-label {
-      position: absolute;
-      top: 0;
-      right: 0;
-      font-size: 9px;
-      color: #BBBBBB;
-      text-transform: uppercase;
-    }
-    /* 階段ブロック（台形の代わりに長方形で表現） */
-    /* 各ステップは bottom からの高さ・left位置で配置 */
-    .stair-block {
-      position: absolute;
-      background: #888888;
-    }
-    /* 擬似3D感のための影（下部ライン） */
-    .stair-block::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 6px;
-      right: -6px;
-      height: 6px;
-      background: #666666;
-      transform: skewX(0deg);
-    }
-    /* アイコンバッジ（丸形） */
-    .step-badge {
-      position: absolute;
-      width: 56px;
-      height: 56px;
-      background: #F0F0F0;
-      border: 3px solid #AAAAAA;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    .badge-inner-label {
-      font-size: 8px;
-      color: #AAAAAA;
-      text-transform: uppercase;
-      text-align: center;
-      line-height: 1.2;
-    }
-    /* ステップラベル（番号＋テキスト） */
-    .step-label {
-      position: absolute;
-      text-align: left;
-    }
-    .step-number {
-      font-size: 11px;
-      font-weight: bold;
-      color: #555555;
-      margin-bottom: 2px;
-    }
-    .step-name {
-      font-size: 13px;
-      font-weight: bold;
-      color: #333333;
-    }
-    /* 右向き矢印（最終ステップ後） */
-    .end-arrow {
-      position: absolute;
-      width: 0;
-      height: 0;
-      border-top: 22px solid transparent;
-      border-bottom: 22px solid transparent;
-      border-left: 30px solid #888888;
-    }
-    /* サブキャプション（右下） */
-    .sub-caption {
-      position: absolute;
-      bottom: 8px;
-      right: 0;
-      font-size: 13px;
-      font-weight: bold;
-      color: #AAAAAA;
-      text-align: right;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>SLIDE-PATTERN-staircase-roadmap-with-icons</title>
+<style>
+  body { background: #E8E8E8; padding: 40px 20px; font-family: sans-serif; margin: 0; }
+  .slide-label { font-size: 16px; line-height: 1; color: #666; text-align: center; margin: 0 0 12px; }
+  .slide-outer { margin: 0 auto 32px; width: 1440px; /* 1920 × 0.75 */ }
+  .slide-wrapper { width: 1920px; transform-origin: top left; transform: scale(0.75); margin-bottom: -270px; /* 1080 × (1 - 0.75) */ }
+  .slide { width: 1920px; height: 1080px; background: #FFFFFF; border: 1px solid #CCCCCC; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .area-label { font-size: 20px; color: #999999; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+  /* リード文 */
+  .lead-area { margin-bottom: 16px; flex-shrink: 0; }
+  .lead-text { font-size: 22px; color: #555555; line-height: 1.6; }
+  /* ステップ図エリア：位置固定のコンテナ */
+  .staircase-area { flex: 1; position: relative; overflow: hidden; }
+  .staircase-area-label { position: absolute; top: 0; right: 0; font-size: 18px; color: #BBBBBB; text-transform: uppercase; }
+  /* 階段ブロック */
+  .stair-block { position: absolute; background: #888888; }
+  /* アイコンバッジ（丸形プレースホルダー） */
+  .step-badge { position: absolute; width: 112px; height: 112px; background: #F0F0F0; border: 2px dashed #CCCCCC; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .badge-inner-label { font-size: 16px; color: #AAAAAA; text-transform: uppercase; text-align: center; line-height: 1.2; }
+  /* ステップラベル（番号＋テキスト） */
+  .step-label { position: absolute; text-align: left; }
+  .step-number { font-size: 22px; font-weight: bold; color: #555555; margin-bottom: 4px; }
+  .step-name { font-size: 26px; font-weight: bold; color: #333333; }
+  /* 右向き矢印（最終ステップ後） */
+  .end-arrow { position: absolute; width: 0; height: 0; border-top: 44px solid transparent; border-bottom: 44px solid transparent; border-left: 60px solid #888888; }
+  /* サブキャプション（右下） */
+  .sub-caption { position: absolute; bottom: 16px; right: 0; font-size: 26px; font-weight: bold; color: #AAAAAA; text-align: right; }
+</style>
 </head>
 <body>
-  <div class="slide">
-    <!-- タイトルエリア（SLIDE.mdで定義） -->
-    <div class="title-area">
-      <div class="area-label">Title Area — SLIDE.md 参照</div>
-      <div style="font-size:16px; color:#CCCCCC; margin-top:4px;">スライドタイトルが入ります</div>
-    </div>
+<p class="slide-label">[staircase-roadmap-with-icons]</p>
+<div class="slide-outer">
+  <div class="slide-wrapper">
+    <div class="slide">
 
-    <!-- コンテンツエリア -->
-    <div class="content-area">
-      <div class="area-label">Content Area</div>
-
-      <!-- リード文 -->
-      <div class="lead-area">
-        <div class="lead-text">
-          リード文が入ります。4つのステップを通じてプロセスの全体像を説明します。左下から右上へ段階的に進む流れをご確認ください。
-        </div>
+      <!-- タイトルエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:28px 80px 24px; border-bottom:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA;">
+        <div class="area-label">Title Area — SLIDE.md 参照</div>
+        <div style="font-size:32px; color:#CCCCCC; margin-top:8px;">スライドタイトルが入ります</div>
       </div>
 
-      <!-- 階段ステップ図エリア -->
-      <div class="staircase-area">
-        <div class="staircase-area-label">Staircase Flow Area</div>
+      <!-- コンテンツエリア -->
+      <div style="flex:1; padding:28px 80px 20px; display:flex; flex-direction:column; overflow:hidden; position:relative;">
 
-        <!--
-          階段構造（4段）
-          ステップ幅: 各200px, 重なり: 0
-          高さ: step1=70px, step2=120px, step3=170px, step4=220px
-          left: step1=40, step2=200, step3=360, step4=520
-          bottom: 20px固定 (staircase-area の bottom基準)
-        -->
-
-        <!-- ステップ1ブロック -->
-        <div class="stair-block" style="
-          left: 30px; bottom: 20px;
-          width: 210px; height: 70px;
-        "></div>
-
-        <!-- ステップ2ブロック -->
-        <div class="stair-block" style="
-          left: 230px; bottom: 20px;
-          width: 210px; height: 130px;
-        "></div>
-
-        <!-- ステップ3ブロック -->
-        <div class="stair-block" style="
-          left: 430px; bottom: 20px;
-          width: 210px; height: 190px;
-        "></div>
-
-        <!-- ステップ4ブロック -->
-        <div class="stair-block" style="
-          left: 630px; bottom: 20px;
-          width: 210px; height: 250px;
-        "></div>
-
-        <!-- 右向き矢印（最終ステップの右） -->
-        <div class="end-arrow" style="
-          left: 848px; bottom: 134px;
-        "></div>
-
-        <!-- ステップ1 アイコンバッジ -->
-        <div class="step-badge" style="
-          left: 107px; bottom: 76px;
-        ">
-          <div class="badge-inner-label">Icon<br>Area</div>
+        <!-- リード文 -->
+        <div class="lead-area">
+          <div class="lead-text">
+            リード文が入ります。4つのステップを通じてプロセスの全体像を説明します。左下から右上へ段階的に進む流れをご確認ください。
+          </div>
         </div>
 
-        <!-- ステップ2 アイコンバッジ -->
-        <div class="step-badge" style="
-          left: 307px; bottom: 136px;
-        ">
-          <div class="badge-inner-label">Icon<br>Area</div>
-        </div>
+        <!-- 階段ステップ図エリア -->
+        <div class="staircase-area">
+          <div class="staircase-area-label">Staircase Flow Area</div>
 
-        <!-- ステップ3 アイコンバッジ -->
-        <div class="step-badge" style="
-          left: 507px; bottom: 196px;
-        ">
-          <div class="badge-inner-label">Icon<br>Area</div>
-        </div>
+          <!--
+            階段構造（4段）
+            ステップ幅: 各420px, 重なり: 0
+            高さ: step1=100px, step2=180px, step3=260px, step4=340px
+            left: step1=60, step2=460, step3=860, step4=1260
+            bottom: 24px固定 (staircase-area の bottom基準)
+          -->
 
-        <!-- ステップ4 アイコンバッジ -->
-        <div class="step-badge" style="
-          left: 707px; bottom: 256px;
-        ">
-          <div class="badge-inner-label">Icon<br>Area</div>
-        </div>
+          <!-- ステップ1ブロック -->
+          <div class="stair-block" style="
+            left: 60px; bottom: 24px;
+            width: 420px; height: 100px;
+          "></div>
 
-        <!-- ステップ1 ラベル -->
-        <div class="step-label" style="
-          left: 30px; bottom: 148px;
-        ">
-          <div class="step-number">01：</div>
-          <div class="step-name">ステップ名A</div>
-        </div>
+          <!-- ステップ2ブロック -->
+          <div class="stair-block" style="
+            left: 460px; bottom: 24px;
+            width: 420px; height: 180px;
+          "></div>
 
-        <!-- ステップ2 ラベル -->
-        <div class="step-label" style="
-          left: 230px; bottom: 210px;
-        ">
-          <div class="step-number">02：</div>
-          <div class="step-name">ステップ名B</div>
-        </div>
+          <!-- ステップ3ブロック -->
+          <div class="stair-block" style="
+            left: 860px; bottom: 24px;
+            width: 420px; height: 260px;
+          "></div>
 
-        <!-- ステップ3 ラベル -->
-        <div class="step-label" style="
-          left: 430px; bottom: 268px;
-        ">
-          <div class="step-number">03：</div>
-          <div class="step-name">ステップ名C</div>
-        </div>
+          <!-- ステップ4ブロック -->
+          <div class="stair-block" style="
+            left: 1260px; bottom: 24px;
+            width: 420px; height: 340px;
+          "></div>
 
-        <!-- ステップ4 ラベル（最上段） -->
-        <div class="step-label" style="
-          left: 680px; bottom: 330px;
-        ">
-          <div class="step-number">04：</div>
-          <div class="step-name">ステップ名D</div>
-        </div>
+          <!-- 右向き矢印（最終ステップの右） -->
+          <div class="end-arrow" style="
+            left: 1696px; bottom: 172px;
+          "></div>
 
-        <!-- サブキャプション（右下） -->
-        <div class="sub-caption">
-          Process Flow — 4 STEPS
-        </div>
+          <!-- ステップ1 アイコンバッジ -->
+          <div class="step-badge" style="
+            left: 214px; bottom: 116px;
+          ">
+            <div class="badge-inner-label">アイコン<br>(SVG生成)</div>
+          </div>
 
+          <!-- ステップ2 アイコンバッジ -->
+          <div class="step-badge" style="
+            left: 614px; bottom: 196px;
+          ">
+            <div class="badge-inner-label">アイコン<br>(SVG生成)</div>
+          </div>
+
+          <!-- ステップ3 アイコンバッジ -->
+          <div class="step-badge" style="
+            left: 1014px; bottom: 276px;
+          ">
+            <div class="badge-inner-label">アイコン<br>(SVG生成)</div>
+          </div>
+
+          <!-- ステップ4 アイコンバッジ -->
+          <div class="step-badge" style="
+            left: 1414px; bottom: 356px;
+          ">
+            <div class="badge-inner-label">アイコン<br>(SVG生成)</div>
+          </div>
+
+          <!-- ステップ1 ラベル -->
+          <div class="step-label" style="
+            left: 60px; bottom: 240px;
+          ">
+            <div class="step-number">01：</div>
+            <div class="step-name">ステップ名A</div>
+          </div>
+
+          <!-- ステップ2 ラベル -->
+          <div class="step-label" style="
+            left: 460px; bottom: 320px;
+          ">
+            <div class="step-number">02：</div>
+            <div class="step-name">ステップ名B</div>
+          </div>
+
+          <!-- ステップ3 ラベル -->
+          <div class="step-label" style="
+            left: 860px; bottom: 400px;
+          ">
+            <div class="step-number">03：</div>
+            <div class="step-name">ステップ名C</div>
+          </div>
+
+          <!-- ステップ4 ラベル（最上段） -->
+          <div class="step-label" style="
+            left: 1360px; bottom: 480px;
+          ">
+            <div class="step-number">04：</div>
+            <div class="step-name">ステップ名D</div>
+          </div>
+
+          <!-- サブキャプション（右下） -->
+          <div class="sub-caption">
+            Process Flow — 4 STEPS
+          </div>
+
+        </div>
+        <!-- /.staircase-area -->
       </div>
-      <!-- /.staircase-area -->
+      <!-- /.content-area -->
+
+      <!-- フッターエリア（SLIDE.mdの Slide Frame で定義） -->
+      <div style="padding:16px 80px 20px; border-top:1px dashed #CCCCCC; flex-shrink:0; background:#FAFAFA; display:flex; justify-content:space-between; align-items:flex-end;">
+        <div>
+          <div class="area-label" style="margin-bottom:4px;">Footer Area — SLIDE.md 参照</div>
+          <div style="font-size:18px; color:#CCCCCC;">ブランドフッター</div>
+        </div>
+        <div style="font-size:18px; color:#CCCCCC;">ページ番号</div>
+      </div>
+
     </div>
-    <!-- /.content-area -->
   </div>
-  <!-- /.slide -->
+</div>
 </body>
 </html>
