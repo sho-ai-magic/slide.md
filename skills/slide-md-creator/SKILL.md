@@ -369,8 +369,8 @@ HTMLの `<style>` タグ内で以下のカスタムプロパティを定義す�
       --color-text:       [SLIDE.mdのTextカラー];
       --color-text-sub:   [Textカラーより少し薄い色];    /* 例：#444746 */
       --color-text-muted: [さらに薄い色];               /* 例：#5E5E5E */
-      --color-surface:    #FFFFFF;
-      --color-border:     rgba(0,0,0,0.04);
+      --color-surface:    [カード背景色。明色デザインは#FFFFFF、暗色デザインはBackgroundより一段明るい色];
+      --color-border:     [カード枠線色。明色デザインはrgba(0,0,0,0.04)、暗色デザインはrgba(255,255,255,0.08)];
       --font-display:     [SLIDE.mdの見出しフォント], system-ui, sans-serif;
       --font-mono:        'Roboto Mono', monospace;
       --gradient-main: linear-gradient(90deg, [Primary], [Secondary], [Accent]);
@@ -390,9 +390,11 @@ HTMLの `<style>` タグ内で以下のカスタムプロパティを定義す�
       overflow: hidden;
     }
 
+**グラデーションが「なし」のデザインの場合**：`--gradient-main` / `--gradient-vert` には新たにグラデーションを作らず、**Primaryカラーの単色**を設定する（例：`--gradient-main: #0B57D0;`）。`background: var(--gradient-main)` もグラデーションテキストもそのまま単色として描画されるため、以降のページ仕様の `var(--gradient-main)` / `var(--gradient-vert)` は読み替え不要でそのまま使える。ソースにないグラデーションを勝手に追加しないこと。
+
 #### 全ページ共通の装飾要素
 
-すべてのスライド（ページ1を除く）に以下を適用する：
+すべてのスライド（ページ1を除く）に以下を適用する。ただし、**SLIDE.mdで対応する定義が「なし」となっている要素は適用しない**（例：Background Accentが「なし」なら（A）を置かない、縦バーが「なし」なら（B）を置かない、ブランドフッターが「なし」なら（D）を置かない）：
 
 **（A）背景アクセント丸**
 スライドの隅に `position:absolute` の半透明グラデーション円を2〜3個配置する。例：
@@ -416,21 +418,23 @@ HTMLの `<style>` タグ内で以下のカスタムプロパティを定義す�
       <span style="font-family:var(--font-mono);font-size:16px;font-weight:800;line-height:1;
         background:var(--gradient-main);-webkit-background-clip:text;background-clip:text;
         -webkit-text-fill-color:transparent;">0X</span>
-      <span style="font-family:var(--font-mono);font-size:12px;color:#9AA0A6;">/ 6</span>
+      <span style="font-family:var(--font-mono);font-size:12px;color:var(--color-text-muted);">/ 6</span>
     </div>
 
 **（D）ブランドフッター（左下）**
 ページ2を除く全ページ左下に表示：
 
     <div style="position:absolute;left:[左右余白];bottom:34px;display:flex;align-items:center;gap:10px;z-index:2;">
-      <span style="font-size:13px;font-weight:700;color:#9AA0A6;letter-spacing:0.02em;">[ブランド名またはデザインシステム名]</span>
+      <span style="font-size:13px;font-weight:700;color:var(--color-text-muted);letter-spacing:0.02em;">[ブランド名またはデザインシステム名]</span>
     </div>
 
 **（E）カードコンポーネント**
-コンテンツをカード形式で表示する場合の標準スタイル：
+コンテンツをカード形式で表示する場合の標準スタイル（角丸・影・枠線はSLIDE.mdのComponent Styleの値を使う）：
 
-    background:#FFFFFF; border:1px solid rgba(0,0,0,0.04); border-radius:22px;
+    background:var(--color-surface); border:1px solid var(--color-border); border-radius:22px;
     box-shadow:0 1px 3px rgba(60,64,67,0.08),0 4px 16px rgba(60,64,67,0.05); padding:36px;
+
+以降のページ仕様に出てくる「白背景カード」は、すべてこの（E）標準カードスタイル（`var(--color-surface)`）を指す。暗色デザインの場合は影を控えめにする（またはなしにする）。
 
 - JavaScriptは使用しない
 - `<section class="slide">` を `.slide-wrapper` 内に置き、各ページを縦に並べる
@@ -446,7 +450,7 @@ HTMLの `<style>` タグ内で以下のカスタムプロパティを定義す�
     │                                     Style Sheet / v1.0 · 16:9    │
     ├─────────────────────────────────────────────────────────────────────┤
     │  [基本カラーパレット 行]                                              │
-    │  ブランドの主要色 | ベースカラー（背景・テキスト・枠線）| データ・状態カラー │
+    │  ブランドの主要色 | ベースカラー（背景・テキスト・枠線）| データ・状態カラー（あれば） │
     ├────────────────────┬─────────────────────────┬──────────────────────┤
     │ スライドで使うパーツ │ タイポグラフィ            │ Do & Don't           │
     │ （flex:1.6）       │ （flex:1.05）            │ （flex:1）           │
@@ -457,12 +461,12 @@ HTMLの `<style>` タグ内で以下のカスタムプロパティを定義す�
 
 **実装の詳細：**
 
-- **ヘッダー**：左にデザインシステム名をグラデーションテキスト（`font-size:48px; font-weight:800; background:var(--gradient-main); -webkit-background-clip:text; -webkit-text-fill-color:transparent`）で表示し、右に「Style Sheet / v1.0 · 16:9」を `font-size:17px; color:#9AA0A6` で表示する
+- **ヘッダー**：左にデザインシステム名をグラデーションテキスト（`font-size:48px; font-weight:800; background:var(--gradient-main); -webkit-background-clip:text; -webkit-text-fill-color:transparent`）で表示し、右に「Style Sheet / v1.0 · 16:9」を `font-size:17px; color:var(--color-text-muted)` で表示する
 - **カラーパレット行**：グループ（「ブランドの主要色」「ベースカラー」など）に分けてカラーカードを横一列に表示する。**全カードの横幅は統一**する — グループをまたいで全カードを1つの `display:grid; grid-template-columns:repeat(N,1fr) [グループ間スペーサー20px] repeat(M,1fr)` に配置し、グループ間にスペーサー列を挟む。ラベル行も同じ `grid-template-columns` を使い `grid-column` でspan指定して位置を一致させる。各カラーカード：`border-radius:11px; box-shadow:0 1px 2px rgba(60,64,67,0.06),0 2px 7px rgba(60,64,67,0.04); overflow:hidden` で囲み、上部にスウォッチ（`height:68px`）、下部にカラー名（`font-size:17px; font-weight:700`）とHEXコード（`font-size:15px; font-family:var(--font-mono); color:#5E5E5E`）を縦並び
 - **下段3カラム**：flexboxで `flex:1.6 / flex:1.05 / flex:1` に分割し、各カラムを白背景カード（`border-radius:20px; box-shadow:0 1px 3px rgba(60,64,67,0.08),0 4px 16px rgba(60,64,67,0.05)`）で囲む
 - **下段左「スライドで使うパーツ」**：`display:grid; grid-template-columns:1fr 1fr; gap:14px 28px; align-content:space-between` で2列グリッドに配置し、コンテンツが上詰めにならないよう上下均等に分散する。ソースに特定のコンテンツがなくても、デザインシステムの雰囲気・カラー・フォントに合わせて **ボタン・タイトルバー・番号付きリスト・箇条書き・カード・チップ/ラベル・仕切り線・ページ番号** の8パーツを必ず生成する
 - **下段中「タイポグラフィ」**：タイプスケール（表紙タイトル→大見出し→中見出し→小見出し→本文大→本文小→キャプション）を `display:flex; flex-direction:column; justify-content:space-between; flex:1` で均等配置し、各行を `display:flex; justify-content:space-between` で左にサンプルテキスト・右にウェイト情報を表示する。下部にフォント名確認ブロックを追加する。さらに「レイアウト」としてスライドサイズ・余白・整列をドット線区切りで記載する
-- **下段右「Do & Don't」**：上半分に緑背景（`#E6F4EA`）のDo欄、下半分に赤背景（`#FCE8E6`）のDon't欄を配置する。DoアイコンはSuccessカラーの丸（`width:30px; height:30px`）に `font-size:18px` で `✓`、Don'tアイコンは赤丸（`width:30px; height:30px`）に `font-size:18px` で `✕` を表示する。Do/Don'tラベルは `font-size:20px; font-weight:800`、本文テキストは `font-size:18px; line-height:1.5`
+- **下段右「Do & Don't」**：上半分に緑背景（`#E6F4EA`）のDo欄、下半分に赤背景（`#FCE8E6`）のDon't欄を配置する。Doアイコンは緑（`#1E8E3E`）の丸（`width:30px; height:30px`）に `font-size:18px` で `✓`、Don'tアイコンは赤（`#D93025`）の丸（`width:30px; height:30px`）に `font-size:18px` で `✕` を表示する。この緑・赤はデザインシステムに依存しない意味色（正解・不正解）として固定でよいが、暗色デザインの場合は欄の背景を緑・赤の12〜18%透明に置き換える。Do/Don'tラベルは `font-size:20px; font-weight:800`、本文テキストは `font-size:18px; line-height:1.5`
 - **セクション見出し**：各カラムの左上に `width:6px; height:28px; border-radius:3px; background:var(--gradient-vert)` の縦バー＋タイトルを `font-size:26px; font-weight:800` で表示する
 - このページには全ページ共通のブランドフッター・ページ番号は**適用しない**（ページ1はそれ自体が仕様書のため）
 
@@ -491,7 +495,7 @@ HTMLの `<style>` タグ内で以下のカスタムプロパティを定義す�
 
 - `display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:0 160px`
 - ロゴやブランドのシンボル（`width:96px; height:96px; margin-bottom:30px`）を上部に表示する（SVGアイコンがない場合はグラデーション円で代替）
-- アイキャッチテキスト（`font-size:16px; font-weight:700; letter-spacing:0.32em; text-transform:uppercase; color:#9AA0A6`）でカテゴリや概要を表示する
+- アイキャッチテキスト（`font-size:16px; font-weight:700; letter-spacing:0.32em; text-transform:uppercase; color:var(--color-text-muted)`）でカテゴリや概要を表示する
 - メインタイトル `h1`：グラデーションテキスト（`font-size:118px; font-weight:800; letter-spacing:-0.03em; line-height:1; background:var(--gradient-main); -webkit-background-clip:text; -webkit-text-fill-color:transparent`）
 - サブタイトル：`font-size:30px; font-weight:500; color:var(--color-text-sub); margin-top:30px`
 - グラデーションライン：`width:340px; height:10px; border-radius:999px; background:var(--gradient-main); margin:46px 0`
@@ -502,7 +506,7 @@ HTMLの `<style>` タグ内で以下のカスタムプロパティを定義す�
 - `display:flex; flex-direction:column; justify-content:center; padding:0 140px`
 - 背景装飾として巨大な透明数字を右側に `position:absolute; right:90px; top:50%; transform:translateY(-50%)` で配置：`font-family:var(--font-mono); font-size:480px; font-weight:800; opacity:0.10; background:var(--gradient-vert); -webkit-background-clip:text; -webkit-text-fill-color:transparent`
 - コンテンツ本体：`display:flex; align-items:stretch; gap:28px` で左に `width:10px; border-radius:5px; background:var(--gradient-vert)` の縦バー、右に以下を縦並び
-  - セクション番号：`font-family:var(--font-mono); font-size:18px; font-weight:700; letter-spacing:0.28em; color:#9AA0A6; text-transform:uppercase`
+  - セクション番号：`font-family:var(--font-mono); font-size:18px; font-weight:700; letter-spacing:0.28em; color:var(--color-text-muted); text-transform:uppercase`
   - 大見出し `h1`：`font-size:96px; font-weight:800; letter-spacing:-0.03em; line-height:1.04`
   - 説明テキスト：`font-size:24px; font-weight:500; color:var(--color-text-sub); line-height:1.6; max-width:920px`
 

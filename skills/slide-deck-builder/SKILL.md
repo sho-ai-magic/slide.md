@@ -9,6 +9,25 @@ description: プレゼンの内容（テキスト・Markdown・PDF等）を入�
 
 生成されたSLIDE-DECK.mdにはデザインシステムとスライドパターンの定義がすべて埋め込まれるため、AIツールにこのファイル1枚を渡すだけでスライドを生成できる。
 
+## STEP 0：シナリオ入力の確認
+
+`slide-scenario-creator` で作成したシナリオがあるかを最初に確認する。
+
+1. 入力として `SLIDE-SCENARIO-*.md` が渡されたか、またはカレントディレクトリの `SLIDE-SCENARIO/` フォルダにファイルがあるかを確認する（複数ある場合は一覧を提示して選んでもらう）
+2. シナリオがある場合、冒頭の Brief から `title` / `audience` / `purpose` / `slide_count` を読み取り、以下のように要約して確認する：
+
+> 「シナリオ `SLIDE-SCENARIO-{name}.md` を読み込みました。以下の内容でスライドを設計します。
+>
+> - タイトル：[title]
+> - 対象者：[audience]
+> - 目的：[purpose]
+> - 枚数：[slide_count]
+>
+> よろしいですか？」
+
+3. 承認を得たら **STEP 1 のヒアリングをスキップ** する。シナリオの Storyline・Agenda を STEP 2 のプレゼン内容として使用し、STEP 3 へ進む
+4. シナリオがない場合は、従来どおり STEP 1 へ進む
+
 ## STEP 1：ブリーフ入力
 
 プレゼンの基本情報を1問ずつヒアリングする。
@@ -34,8 +53,12 @@ description: プレゼンの内容（テキスト・Markdown・PDF等）を入�
 > 1. 状況報告・定例報告
 > 2. 提案・新サービス説明
 > 3. 教育・研修・勉強会
-> 4. イベント・発表
-> 5. その他（自由に入力してください）」
+> 4. 意思決定を求める（承認・予算獲得など）
+> 5. イベント・発表
+> 6. マニュアル・手順書
+> 7. その他（自由に入力してください）」
+
+（この選択肢は `slide-scenario-creator` の「①資料の目的」と共通。変更する場合は両スキルを揃えること）
 
 ### 質問4：枚数（質問3の回答を受け取った後）
 
@@ -67,7 +90,7 @@ description: プレゼンの内容（テキスト・Markdown・PDF等）を入�
 
 **何も提供されていない場合**、以下のように尋ねる：
 
-> 「プレゼンの内容を教えてください。アウトライン・箇条書き・文章・MarkdownファイルなどどんなKei式でも構いません。」
+> 「プレゼンの内容を教えてください。アウトライン・箇条書き・文章・Markdownファイルなどどんな形式でも構いません。」
 
 内容を受け取ったら「受け取りました。デザインシステムを確認します。」と伝え、STEP 3へ進む。
 
@@ -93,13 +116,19 @@ description: プレゼンの内容（テキスト・Markdown・PDF等）を入�
 
 選ばれたファイルを読み込む。
 
-### 1件も見つからない場合
+### 1件も見つからない場合（プラグイン同梱サンプルへのフォールバック)
+
+カレントディレクトリに1件も見つからない場合、この SKILL.md ファイルのあるフォルダから見て `../../docs/SLIDE-md/SLIDE-md-*/SLIDE.md`（プラグインとしてインストールした場合に同梱されるサンプルデザインシステム）を検索する。
+
+見つかったら「複数件見つかった場合」と同じ形式で一覧を提示し、選ばれたフォルダ（SLIDE.md と sample.html）をカレントディレクトリの `SLIDE-md/` にコピーしてから読み込む（以後のプロジェクトで再利用できるようにするため）。
+
+プラグイン同梱サンプルも見つからない場合：
 
 > 「デザインシステム（SLIDE.md）が `SLIDE-md/` フォルダに見つかりませんでした。`slide-md-creator` スキルでSLIDE.mdを先に生成してから、このスキルを再度呼び出してください。」
 
 → スキルを終了する。
 
-選択されたSLIDE.mdの全内容（Overview・Colors・Typography・Layout・Slide Frame・Do/Don't の全セクション）を読み込んで保持し、STEP 4へ進む。
+選択されたSLIDE.mdの全内容（Overview・Colors・Typography・Layout・Slide Frame・Component Style・Do/Don't の全セクション）を読み込んで保持し、STEP 4へ進む。
 
 ## STEP 4：アウトライン生成と確認
 
@@ -108,6 +137,7 @@ STEP 1のブリーフとSTEP 2のコンテンツをもとにスライド構成�
 ### 生成ルール
 
 - STEP 1で指定した枚数を目安にする（「おまかせ」の場合は内容量に応じて7〜15枚）
+- シナリオ（SLIDE-SCENARIO）から開始した場合は、Brief の `goal`（相手にどうしてほしいか）・`structure`（構成の型）と各アジェンダ項目の「想定枚数」を尊重して構成する
 - 必ず「表紙」と「まとめ・クロージング」を含める
 - セクションタイトルスライドで内容を章立てする
 - 各スライドにスライドの種類（表紙 / セクション見出し / 箇条書き / データ / まとめ 等）を明記する
@@ -132,9 +162,13 @@ STEP 1のブリーフとSTEP 2のコンテンツをもとにスライド構成�
 
 ## STEP 5：パターン自動割り当てと確認
 
-`SLIDE-PATTERN/SLIDE-PATTERN-INDEX.md` を読み込む。
+カレントディレクトリの `SLIDE-PATTERN/SLIDE-PATTERN-INDEX.md` を読み込む。
 
-### 読み込めない場合
+### 読み込めない場合（プラグイン同梱パターンへのフォールバック）
+
+カレントディレクトリに見つからない場合、この SKILL.md ファイルのあるフォルダから見て `../../docs/SLIDE-PATTERN/SLIDE-PATTERN-INDEX.md`（プラグインとしてインストールした場合に同梱されるパターン集）を読み込む。この場合、STEP 6 でのパターン定義ファイルの読み込みも同じ場所の `SLIDE-PATTERN-{name}/SLIDE-PATTERN-{name}.md` から行う。
+
+プラグイン同梱パターンも見つからない場合：
 
 > 「`SLIDE-PATTERN/SLIDE-PATTERN-INDEX.md` が見つかりませんでした。`SLIDE-PATTERN/` フォルダにスライドパターンが存在するか確認し、存在する場合は `slide-pattern-creator` スキルを呼び出してインデックスを生成してください。」
 
@@ -187,7 +221,9 @@ SLIDE-PATTERN-INDEX.md に記載された各パターンの「概要」と「適
 - 日本語タイトルの場合：主要キーワードをローマ字またはアルファベットで表現する（例：「2026年度 営業戦略」→ `2026-eigyo`、「新製品発表」→ `new-product`）
 - 変換が難しい場合：`deck-YYYYMMDD` 形式を使う（例：`deck-20260604`）
 
-出力先：カレントディレクトリ内の `SLIDE-DECK-{name}/SLIDE-DECK-{name}.md`
+出力先：カレントディレクトリ内の `SLIDE-DECK/` フォルダの中に `SLIDE-DECK-{name}/` フォルダを作成して保存する：
+
+    SLIDE-DECK/SLIDE-DECK-{name}/SLIDE-DECK-{name}.md
 
 ### 生成の手順
 
@@ -203,7 +239,7 @@ SLIDE-PATTERN-INDEX.md に記載された各パターンの「概要」と「適
 以下のテンプレートに従って出力する。各 `[　]` に実際の値を入れる。YAMLはコードブロックではなく4スペースインデントで記述する。
 
 ---
-出力ファイル：SLIDE-DECK-{name}/SLIDE-DECK-{name}.md
+出力ファイル：SLIDE-DECK/SLIDE-DECK-{name}/SLIDE-DECK-{name}.md
 
 # SLIDE-DECK-{name}
 
@@ -223,7 +259,7 @@ SLIDE-PATTERN-INDEX.md に記載された各パターンの「概要」と「適
 
 以下はSLIDE.mdのデザインシステム定義です。全スライドのデザインはこの定義に従ってください。
 
-[STEP 3で読み込んだSLIDE.mdの全内容をここにそのまま貼り付ける。Overview・Colors・Typography・Layout・Slide Frame・Do/Don'tのすべてのセクションを含める]
+[STEP 3で読み込んだSLIDE.mdの全内容をここにそのまま貼り付ける。Overview・Colors・Typography・Layout・Slide Frame・Component Style・Do/Don'tのすべてのセクションを含める]
 
 ---
 
@@ -294,6 +330,6 @@ SLIDE-PATTERN-INDEX.md に記載された各パターンの「概要」と「適
 
 SLIDE-DECK.md生成後、以下のようにユーザーに伝える：
 
-> 「`SLIDE-DECK-{name}/SLIDE-DECK-{name}.md` を生成しました。
+> 「`SLIDE-DECK/SLIDE-DECK-{name}/SLIDE-DECK-{name}.md` を生成しました。
 >
 > このファイル1枚をAIツールに添付するだけでスライドを生成できます。デザインシステムと使用したスライドパターン（[N]件）の定義がすべて1ファイルにまとめられています。」
