@@ -365,7 +365,7 @@ SLIDE.mdで定義したデザイントークン（色・フォント・余白）
 
 1920×1080pxの大きなキャンバスを有効に使い、スカスカな印象にならないよう以下を守ること：
 
-- **見出しは大きく**：ページ内の主見出し（h1相当）は最低 `54px`、表紙タイトルは `100px` 以上を基準とする
+- **見出しは大きく**：ページ内の主見出し（h1相当）は最低 `62px`、表紙タイトルは `100px` 以上を基準とする
 - **本文・説明テキストは読みやすく**：本文は最低 `18px`、カード内説明は `18〜22px` を基準とする（1920px基準でこのサイズ。0.75スケール後でも14〜16px相当になる）
 - **コンテンツがキャンバスを埋める**：余白は設計上必要な呼吸感のためにとるが、コンテンツエリアが上下左右に偏らず、スライド全体に広がるようにする
 - **カード・リストアイテムは縦に広げる**：`flex:1` や `min-height:0` を活用して、コンテンツカードがスライドの縦方向を埋めるようにする
@@ -397,16 +397,18 @@ HTMLの `<style>` タグ内で以下のカスタムプロパティを定義す�
 
     :root {
       --color-primary:    [SLIDE.mdのPrimaryカラー];
-      --color-secondary:  [SLIDE.mdのSecondaryカラー];  /* グラデーション中間色 */
-      --color-accent:     [SLIDE.mdのAccentカラー];     /* グラデーション終端色 */
-      --color-background: [SLIDE.mdのBackgroundカラー];
-      --color-text:       [SLIDE.mdのTextカラー];
-      --color-text-sub:   [Textカラーより少し薄い色];    /* 例：#444746 */
-      --color-text-muted: [さらに薄い色];               /* 例：#5E5E5E */
-      --color-surface:    [カード背景色。明色デザインは#FFFFFF、暗色デザインはBackgroundより一段明るい色];
-      --color-border:     [カード枠線色。明色デザインはrgba(0,0,0,0.04)、暗色デザインはrgba(255,255,255,0.08)];
+      --color-secondary:  [SLIDE.mdのSecondaryカラー];
+      --color-accent:     [SLIDE.mdのAccentカラー];
+      --color-background: [SLIDE.mdのBackgroundカラー（canvas等）];
+      --color-text:       [SLIDE.mdのTextカラー（ink等）];
+      --color-text-sub:   [SLIDE.mdのText Subカラー（body等）];
+      --color-text-muted: [SLIDE.mdのText Mutedカラー（muted等）];
+      --color-surface:    [SLIDE.mdのsurface-cardカラー。定義がなければBackground+8%暗くした値];
+      --color-surface-soft: [SLIDE.mdのsurface-softカラー。定義がなければBackground+4%暗くした値];
+      --color-border:     [SLIDE.mdのhairline/borderカラー。定義がなければrgba(0,0,0,0.08)];
       --font-display:     [SLIDE.mdの見出しフォント], system-ui, sans-serif;
-      --font-mono:        'Roboto Mono', monospace;
+      --font-body:        [SLIDE.mdの本文フォント（見出しと異なる場合）], system-ui, sans-serif;
+      --font-mono:        [SLIDE.mdのモノスペースフォント / 'DM Mono'], monospace;
       --gradient-main: linear-gradient(90deg, [Primary], [Secondary], [Accent]);
       --gradient-vert: linear-gradient(180deg, [Primary], [Secondary], [Accent]);
       --slide-padding-v:  [SLIDE.mdの上下余白];
@@ -425,6 +427,11 @@ HTMLの `<style>` タグ内で以下のカスタムプロパティを定義す�
     }
 
 **グラデーションが「なし」のデザインの場合**：`--gradient-main` / `--gradient-vert` には新たにグラデーションを作らず、**Primaryカラーの単色**を設定する（例：`--gradient-main: #0B57D0;`）。`background: var(--gradient-main)` もグラデーションテキストもそのまま単色として描画されるため、以降のページ仕様の `var(--gradient-main)` / `var(--gradient-vert)` は読み替え不要でそのまま使える。ソースにないグラデーションを勝手に追加しないこと。
+
+**重要：カード・サーフェスの背景色について**
+- カードの背景は **白（#ffffff）を使わない**。`var(--color-surface)`（surface-card相当）または `var(--color-surface-soft)` を使う
+- ボーダーは `rgba(0,0,0,0.04)` を使わず、`var(--color-border)`（hairline相当）を使う
+- これによりウォームトーン・ナチュラルなデザインが保たれる
 
 #### 全ページ共通の装飾要素
 
@@ -463,12 +470,14 @@ HTMLの `<style>` タグ内で以下のカスタムプロパティを定義す�
     </div>
 
 **（E）カードコンポーネント**
-コンテンツをカード形式で表示する場合の標準スタイル（角丸・影・枠線はSLIDE.mdのComponent Styleの値を使う）：
+コンテンツをカード形式で表示する場合の標準スタイル（角丸・影・枠線はSLIDE.mdのComponent Styleの値があればそちらを優先し、なければ以下を目安にする）：
 
-    background:var(--color-surface); border:1px solid var(--color-border); border-radius:22px;
-    box-shadow:0 1px 3px rgba(60,64,67,0.08),0 4px 16px rgba(60,64,67,0.05); padding:36px;
+    background:var(--color-surface); border:1px solid var(--color-border); border-radius:16px;
+    box-shadow:0 1px 2px rgba(0,0,0,0.04),0 2px 8px rgba(0,0,0,0.03); padding:36px;
 
-以降のページ仕様に出てくる「白背景カード」は、すべてこの（E）標準カードスタイル（`var(--color-surface)`）を指す。暗色デザインの場合は影を控えめにする（またはなしにする）。
+- `--color-surface` は白（#fff）ではなくSLIDE.mdのsurface-card相当の色（ウォームホワイト・クリーム系）を使う
+- `--color-border` は `rgba(0,0,0,0.04)` ではなくSLIDE.mdのhairline相当の色（ウォームグレー系）を使う
+- 以降のページ仕様に出てくる「白背景カード」は、すべてこの（E）標準カードスタイルを指す。暗色デザインの場合は影を控えめにする（またはなしにする）
 
 - JavaScriptは使用しない
 - `<section class="slide">` を `.slide-wrapper` 内に置き、各ページを縦に並べる
@@ -496,11 +505,11 @@ HTMLの `<style>` タグ内で以下のカスタムプロパティを定義す�
 **実装の詳細：**
 
 - **ヘッダー**：左にデザインシステム名をグラデーションテキスト（`font-size:48px; font-weight:800; background:var(--gradient-main); -webkit-background-clip:text; -webkit-text-fill-color:transparent`）で表示し、右に「Style Sheet / v1.0 · 16:9」を `font-size:17px; color:var(--color-text-muted)` で表示する
-- **カラーパレット行**：グループ（「ブランドの主要色」「ベースカラー」など）に分けてカラーカードを横一列に表示する。**全カードの横幅は統一**する — グループをまたいで全カードを1つの `display:grid; grid-template-columns:repeat(N,1fr) [グループ間スペーサー20px] repeat(M,1fr)` に配置し、グループ間にスペーサー列を挟む。ラベル行も同じ `grid-template-columns` を使い `grid-column` でspan指定して位置を一致させる。各カラーカード：`border-radius:11px; box-shadow:0 1px 2px rgba(60,64,67,0.06),0 2px 7px rgba(60,64,67,0.04); overflow:hidden` で囲み、上部にスウォッチ（`height:68px`）、下部にカラー名（`font-size:17px; font-weight:700`）とHEXコード（`font-size:15px; font-family:var(--font-mono); color:#5E5E5E`）を縦並び
-- **下段3カラム**：flexboxで `flex:1.6 / flex:1.05 / flex:1` に分割し、各カラムを白背景カード（`border-radius:20px; box-shadow:0 1px 3px rgba(60,64,67,0.08),0 4px 16px rgba(60,64,67,0.05)`）で囲む
-- **下段左「スライドで使うパーツ」**：`display:grid; grid-template-columns:1fr 1fr; gap:14px 28px; align-content:space-between` で2列グリッドに配置し、コンテンツが上詰めにならないよう上下均等に分散する。ソースに特定のコンテンツがなくても、デザインシステムの雰囲気・カラー・フォントに合わせて **ボタン・タイトルバー・番号付きリスト・箇条書き・カード・チップ/ラベル・仕切り線・ページ番号** の8パーツを必ず生成する
-- **下段中「タイポグラフィ」**：タイプスケール（表紙タイトル→大見出し→中見出し→小見出し→本文大→本文小→キャプション）を `display:flex; flex-direction:column; justify-content:space-between; flex:1` で均等配置し、各行を `display:flex; justify-content:space-between` で左にサンプルテキスト・右にウェイト情報を表示する。下部にフォント名確認ブロックを追加する。さらに「レイアウト」としてスライドサイズ・余白・整列をドット線区切りで記載する
-- **下段右「Do & Don't」**：上半分に緑背景（`#E6F4EA`）のDo欄、下半分に赤背景（`#FCE8E6`）のDon't欄を配置する。Doアイコンは緑（`#1E8E3E`）の丸（`width:30px; height:30px`）に `font-size:18px` で `✓`、Don'tアイコンは赤（`#D93025`）の丸（`width:30px; height:30px`）に `font-size:18px` で `✕` を表示する。この緑・赤はデザインシステムに依存しない意味色（正解・不正解）として固定でよいが、暗色デザインの場合は欄の背景を緑・赤の12〜18%透明に置き換える。Do/Don'tラベルは `font-size:20px; font-weight:800`、本文テキストは `font-size:18px; line-height:1.5`
+- **カラーパレット行**：ブランドに合わせた主要色（**10〜12色**程度）を1行に収める。色をグループ（例：Brand / Accent / Text / Surface など機能別に3〜4グループ）に分け、グループ間を `width:1px; background:var(--color-border)` の縦線セパレーターで区切る。**実装方法：** 全体を `display:flex; gap:16px; align-items:stretch` で横並びにし、各グループを `display:flex; gap:10px` でまとめる。各カラーカード：`border-radius:10px; overflow:hidden; flex:1` で囲み、上部にスウォッチ（`height:76px`）、下部に `padding:8px 10px` でカラー名（`font-size:18px; font-weight:700`）とHEXコード（`font-size:15px; font-family:var(--font-mono); color:var(--color-text-muted)`）を縦並び。**選色の目安：** Brand系3色・Accent系2色・Text系3色・Surface系3色（計11色）など。StatusカラーやOn-Dark系など多すぎると1行に収まらないため省く。
+- **下段3カラム**：flexboxで `flex:1.6 / flex:1 / flex:0.85` に分割し、各カラムを `background:var(--color-surface); border:1px solid var(--color-border); border-radius:16px` のカードで囲む（白背景は使わない）
+- **下段左「スライドで使うパーツ」**：`display:grid; grid-template-columns:1fr 1fr; gap:14px 28px; align-content:space-between` で2列グリッドに配置し、コンテンツが上詰めにならないよう上下均等に分散する。ソースに特定のコンテンツがなくても、デザインシステムの雰囲気・カラー・フォントに合わせて **ボタン・タイトルバー・番号付きリスト・箇条書き・カード・チップ/ラベル・仕切り線・ページ番号** の8パーツを必ず生成する。各パーツのサイズ基準：パーツラベル `font-size:15px; font-weight:700`、ボタン `font-size:18px; padding:14px 28px; border-radius:999px`、番号・アイコン円 `width:30px; height:30px`、箇条書きドット `width:10px; height:10px`、リストテキスト `font-size:18px`
+- **下段中「タイポグラフィ」**：タイプスケール（表紙タイトル→大見出し→中見出し→小見出し→本文大→本文小→キャプション、計7段階）を `display:flex; flex-direction:column; justify-content:space-between; flex:1` で均等配置し、各行を `display:flex; justify-content:space-between` で左にサンプルテキスト・右に `font-size:15px; font-family:var(--font-mono)` でウェイト・サイズ情報を表示する。下部にフォント名確認ブロックを追加する。さらに「レイアウト」としてスライドサイズ・余白・整列をドット線区切りで記載する
+- **下段右「Do & Don't」**：上半分にDo欄（背景はSLIDE.mdのSuccess系の薄い色、なければ `#E6F4EA`）、下半分にDon't欄（背景はPrimaryカラーの薄い色、なければ `#FCE8E6`）を配置する。DoアイコンはSuccessカラーの丸（`width:34px; height:34px`）に `font-size:18px` で `✓`、Don'tアイコンはPrimaryカラーの丸（`width:34px; height:34px`）に `font-size:18px` で `✕` を表示する。Do/Don'tラベルは `font-size:22px; font-weight:800`、本文テキストは `font-size:18px; line-height:1.55`
 - **セクション見出し**：各カラムの左上に `width:6px; height:28px; border-radius:3px; background:var(--gradient-vert)` の縦バー＋タイトルを `font-size:26px; font-weight:800` で表示する
 - このページには全ページ共通のブランドフッター・ページ番号は**適用しない**（ページ1はそれ自体が仕様書のため）
 
@@ -547,29 +556,29 @@ HTMLの `<style>` タグ内で以下のカスタムプロパティを定義す�
 **ページ4（箇条書き）**
 
 - `display:flex; flex-direction:column; padding:[上下余白] [左右余白]`
-- 見出しエリア：縦バー＋`h1`（`font-size:54px; font-weight:800; letter-spacing:-0.02em`）を `display:flex; align-items:center; gap:16px; margin-bottom:14px` で横並び
-- サブテキスト：`font-size:22px; font-weight:500; color:var(--color-text-muted); margin-bottom:54px; margin-left:24px`
-- リストエリア：`display:flex; flex-direction:column; gap:26px`
-- 各リストアイテム：白背景カード（`border-radius:18px`）内に左側にグラデーション円の番号（`width:54px; height:54px; border-radius:50%; background:var(--gradient-main); color:#fff; font-weight:800; font-size:24px; box-shadow:0 4px 12px rgba([Secondary-RGB],0.3)`）、右側に見出し（`font-size:28px; font-weight:700`）と説明文（`font-size:19px; color:var(--color-text-muted); line-height:1.55`）を配置
+- 見出しエリア：縦バー＋`h1`（`font-size:62px; font-weight:800; letter-spacing:-0.02em`）を `display:flex; align-items:center; gap:16px; margin-bottom:14px` で横並び
+- サブテキスト：`font-size:24px; font-weight:500; color:var(--color-text-muted); margin-bottom:48px; margin-left:24px`
+- リストエリア：`display:flex; gap:20px; flex:1; min-height:0`（横並び。カード数が3なら横3列、4以上なら縦リストに変える）
+- 各リストアイテム：`background:var(--color-surface); border:1px solid var(--color-border); border-radius:14px; padding:32px 36px; flex:1` のカード内に縦並びで、番号円（`width:64px; height:64px; border-radius:50%; background:var(--gradient-main); color:#fff; font-weight:800; font-size:26px`）・見出し（`font-size:30px; font-weight:700; margin-top:20px`）・説明文（`font-size:21px; color:var(--color-text-muted); line-height:1.6; margin-top:12px`）を配置（白背景は使わない）
 
 **ページ5（グラフ）**
 
 - `display:flex; flex-direction:column; padding:[上下余白] [左右余白]`
-- 見出しエリア：縦バー＋`h1`＋サブテキスト（ページ4と同構造）
+- 見出しエリア：縦バー＋`h1`（`font-size:62px`）＋サブテキスト（ページ4と同構造）
 - グラフエリア：`display:flex; gap:40px; flex:1; min-height:0`
-  - **棒グラフ（`flex:1.3`）**：白背景カード（`border-radius:22px`）内に縦棒を `align-items:flex-end` で並べる。最新月のバーのみグラデーション（`background:var(--gradient-vert); box-shadow:0 4px 12px rgba([Secondary-RGB],0.3)`）を使用し強調する。他のバーはPrimaryカラーのアルファ値違いで濃淡をつける
-  - **ドーナツグラフ（`flex:1`）**：白背景カード内に `conic-gradient` で円グラフを実装（外円`width:280px; height:280px`）。中心は白背景（`border-radius:50%; width:154px; height:154px`）に主要値（`font-size:44px; font-weight:800`）と凡例ラベル（`font-size:18px`）を表示する。右側に凡例をカラーブロック付きで縦列する
+  - **棒グラフ（`flex:1.3`）**：`background:var(--color-surface-soft); border:1px solid var(--color-border); border-radius:16px` のカード内に縦棒を `align-items:flex-end` で並べる。最新月のバーのみグラデーション（`background:var(--gradient-vert); box-shadow:0 4px 12px rgba([Secondary-RGB],0.3)`）を使用し強調する。他のバーはPrimaryカラーのアルファ値違いで濃淡をつける
+  - **ドーナツグラフ（`flex:1`）**：`background:var(--color-surface-soft); border:1px solid var(--color-border); border-radius:16px` のカード内に `conic-gradient` で円グラフを実装（外円`width:280px; height:280px`）。中心は `background:var(--color-background); border-radius:50%; width:160px; height:160px` に主要値（`font-size:44px; font-weight:800`）と凡例ラベル（`font-size:18px`）を表示する。右側に凡例をカラーブロック付きで縦列する
 
 **ページ6（まとめ）**
 
 - `display:flex; flex-direction:column; padding:[上下余白] [左右余白]`
-- 見出しエリア：縦バー＋`h1`＋サブテキスト（ページ4と同構造）
+- 見出しエリア：縦バー＋`h1`（`font-size:62px`）＋サブテキスト（ページ4と同構造）
 - カードエリア：`display:flex; gap:32px; flex:1; min-height:0`
-- 各カード（白背景・`border-radius:22px`・`padding:40px 36px`）内に縦並びで：
-  - アイコン正方形：`width:64px; height:64px; border-radius:18px`（背景はPrimary/Secondary/Accentカラーを10〜15%透明にした色、中に1〜2文字のブランドカラーの漢字や英字を `font-size:30px; font-weight:800` で表示）
-  - 見出し：`font-size:30px; font-weight:800; letter-spacing:-0.01em`
-  - 説明文：`font-size:20px; color:var(--color-text-muted); line-height:1.6`
-- CTAボタン：`display:flex; justify-content:center; margin-top:50px` に `padding:16px 36px; border-radius:999px; background:var(--gradient-main); color:#fff; font-size:24px; font-weight:700; box-shadow:0 6px 20px rgba([Secondary-RGB],0.35)` で締めのメッセージを表示する
+- 各カード（`background:var(--color-surface); border:1px solid var(--color-border); border-radius:16px; padding:48px 40px`）内に縦並びで（白背景は使わない）：
+  - アイコン正方形：`width:72px; height:72px; border-radius:18px`（背景はPrimary/Secondary/Accentカラーを10〜15%透明にした色、中に1〜2文字のブランドカラーの漢字や英字を `font-size:32px; font-weight:800` で表示）
+  - 見出し：`font-size:34px; font-weight:800; letter-spacing:-0.01em; margin-top:24px`
+  - 説明文：`font-size:22px; color:var(--color-text-muted); line-height:1.6; margin-top:14px`
+- CTAボタン：`display:flex; justify-content:center; margin-top:44px` に `padding:20px 60px; border-radius:999px; background:var(--gradient-main); color:#fff; font-size:28px; font-weight:700; box-shadow:0 6px 20px rgba([Secondary-RGB],0.35)` で締めのメッセージを表示する
 
 ### 生成完了の通知
 
