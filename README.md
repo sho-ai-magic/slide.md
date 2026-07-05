@@ -300,7 +300,8 @@ Step 6: SLIDE-DECK.md を Claude Design などのAIツールへ → スライド
 
 **→ <a href="https://sho-ai-magic.github.io/slide.md/" target="_blank">https://sho-ai-magic.github.io/slide.md/</a>**
 
-![SLIDE-PATTERN ギャラリー](docs/Gallery2.png)
+![SLIDE-PATTERN ギャラリー 1](docs/Gallery01.png)
+![SLIDE-PATTERN ギャラリー 2](docs/Gallery02.png)
 
 ## 生成サンプル
 
