@@ -26,6 +26,40 @@ description: 既存のスライド・画像・Webサイトからデザインシ�
 
 受け取った入力を解析し、以下の要素を読み取る。読み取れた内容をユーザーに箇条書きで提示する。
 
+### 複数ソース・複数ページの並列処理
+
+**ソース（URL・画像・ファイル）が2つ以上ある、またはWebサイトから複数ページを取得する必要がある場合は、Agentツールを使って並列で分析する。**
+
+#### ケース1：ユーザーが複数のソースを提供した場合
+
+各ソースに対して独立したサブエージェントを同時に起動する：
+
+    # 例：URL 2つ + 画像 1枚が提供された場合
+    Agent(subagent_type="general-purpose", prompt="以下のURLを取得し、Colors・Typography・Layout・Component Styleの情報をMarkdownで返せ: https://example.com/")
+    Agent(subagent_type="general-purpose", prompt="以下のURLを取得し、Colors・Typography・Layout・Component Styleの情報をMarkdownで返せ: https://example.com/about")
+    Agent(subagent_type="general-purpose", prompt="添付画像 logo.png からColors・Typography・Component Styleの情報をMarkdownで返せ")
+
+- 全サブエージェントの結果が揃ってから情報を統合して1つの分析結果を作成する
+- 矛盾する値がある場合はより多くのソースで確認できた値を優先し、確認が取れない項目はSTEP 3でユーザーに確認する
+
+#### ケース2：単一URLだがブランドを理解するために複数ページを読む必要がある場合
+
+トップページだけでは情報が不足している場合（例：カラーが読み取れない、CSSが取得できない）、関連ページを並列取得する：
+
+    # 例：トップ・プロダクト・Aboutページを同時取得
+    Agent(subagent_type="general-purpose", prompt="https://example.com/ を取得してデザイン情報（Colors・Typography・Layout）をMarkdownで返せ")
+    Agent(subagent_type="general-purpose", prompt="https://example.com/product を取得してデザイン情報（Colors・Typography・Layout）をMarkdownで返せ")
+    Agent(subagent_type="general-purpose", prompt="https://example.com/about を取得してデザイン情報（Colors・Typography・Layout）をMarkdownで返せ")
+
+- 並列取得するページ数は最大3〜4ページを目安にする
+- すべての結果を受け取ってから統合分析に進む
+
+#### ケース3：ソースが1つだけの場合
+
+並列化は不要。通常のWebFetch・Readで分析して進める。
+
+---
+
 ### 分析する要素
 
 **Colors（カラー）**
