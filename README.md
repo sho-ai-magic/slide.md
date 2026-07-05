@@ -1,5 +1,7 @@
 # SLIDE.md
 
+*[English version here](README.en.md)*
+
 **AIとスライドを作るための設計書フォーマットと、それを生成するClaude Codeスキルパッケージ。**
 
 ![アイキャッチ](docs/slide-sample-01.png)
@@ -106,6 +108,27 @@ AIツール（Claude Design、NotebookLM、Google Slides等）にスライドを
 （AIへのプロンプト例と注意点）
 ```
 
+### SLIDE-SCENARIO-{name}.md（任意）
+
+スライドの中身（シナリオ）の定義ファイル。`slide-scenario-creator` との壁打ちで作成します。`slide-deck-builder` がこのファイルを見つけると、ブリーフのヒアリングをスキップしてシナリオの内容から設計書を作ります。
+
+```markdown
+# SLIDE-SCENARIO-{name}
+
+## Brief
+（タイトル・対象者・目的・ゴール・構成の型・枚数）
+
+## Storyline
+（資料全体のストーリーを2〜4文で）
+
+## Agenda
+### 1. アジェンダ項目名
+（キーメッセージ・理解してもらいたいこと・根拠・想定枚数）
+
+## Notes（任意）
+（補強が必要な箇所・レビューでの指摘履歴など）
+```
+
 ### SLIDE-DECK.md
 
 AIツールに渡す最終的な設計書ファイル。`SLIDE.md` と使用する `SLIDE-PATTERN-*.md` の内容をすべて埋め込み、スライド1枚ごとのコンテンツひな型を記述します。このファイル1枚をAIツールに渡すだけでスライドが生成できます。
@@ -128,27 +151,6 @@ AIツールに渡す最終的な設計書ファイル。`SLIDE.md` と使用す�
 
 ### Slide 2 — …
 （スライド枚数分くり返す）
-```
-
-### SLIDE-SCENARIO-{name}.md（任意）
-
-スライドの中身（シナリオ）の定義ファイル。`slide-scenario-creator` との壁打ちで作成します。`slide-deck-builder` がこのファイルを見つけると、ブリーフのヒアリングをスキップしてシナリオの内容から設計書を作ります。
-
-```markdown
-# SLIDE-SCENARIO-{name}
-
-## Brief
-（タイトル・対象者・目的・ゴール・構成の型・枚数）
-
-## Storyline
-（資料全体のストーリーを2〜4文で）
-
-## Agenda
-### 1. アジェンダ項目名
-（キーメッセージ・理解してもらいたいこと・根拠・想定枚数）
-
-## Notes（任意）
-（補強が必要な箇所・レビューでの指摘履歴など）
 ```
 
 ---
