@@ -224,6 +224,27 @@ SLIDE-PATTERN-INDEX.md に記載された各パターンの「概要」と「適
 - iframe の `src` には各パターンのスケルトンHTMLを指定する。カレントディレクトリにある場合はプレビューHTMLから見た相対パス（`../SLIDE-PATTERN/SLIDE-PATTERN-{name}/SLIDE-PATTERN-{name}.html`）、プラグイン同梱パターンを使っている場合はその絶対パスを指定する
 - JavaScriptは使用しない（iframeとCSSのみで完結させる）
 
+**表示にはローカルサーバーが必須（file://直開きでは表示できない）：**
+
+`pattern-preview.html` は同一階層にない別のローカルHTMLファイルをiframeで読み込む構成のため、`file://` で直接開くとブラウザのセキュリティ制限によりiframeの中身が空白になる（ダブルクリックで開いた場合や、プレビューパネルがファイルパスをそのまま渡す場合に起きる）。表示確認は必ず `http://` 経由で行う。
+
+1. カレントディレクトリの `.claude/launch.json` を確認し、カレントディレクトリ全体（`SLIDE-DECK/` と `SLIDE-PATTERN/` の両方を含む親フォルダ）を配信する設定が無ければ追記する（既存の設定は消さず末尾に追加する）。無ければ以下の形式で新規作成する：
+
+       {
+         "version": "0.0.1",
+         "configurations": [
+           {
+             "name": "patterns-root",
+             "runtimeExecutable": "python3",
+             "runtimeArgs": ["-m", "http.server", "{空いているポート番号}", "--directory", "{カレントディレクトリの絶対パス}"],
+             "port": {空いているポート番号}
+           }
+         ]
+       }
+
+2. そのサーバーを起動し、`http://localhost:{port}/SLIDE-DECK/pattern-preview.html` を開いて表示を確認する
+3. ユーザーへの提示時にも、直接ファイルを開くのではなく上記のローカルサーバー経由で開くよう明記する
+
 ### 提示形式
 
 > 「各スライドにパターンを割り当てました。
@@ -234,10 +255,10 @@ SLIDE-PATTERN-INDEX.md に記載された各パターンの「概要」と「適
 > | Slide 2 | アジェンダ | `{pattern-name}` |
 > ...
 >
-> **`SLIDE-DECK/pattern-preview.html` をブラウザで開くと、割り当てたパターンと代替候補をサムネイルで確認できます。**
+> **`SLIDE-DECK/pattern-preview.html` で、割り当てたパターンと代替候補をサムネイルで確認できます（`file://` で直接開くとサムネイルが空白になるため、ローカルサーバー『{launch.jsonの設定名}』を起動してから開いてください）。**
 > 変更したいものがあれば「Slide番号 → 変更先のパターン名（または 候補A / 候補B）」の形式で教えてください。この割り当てでよいですか？」
 
-HTMLのプレビュー表示機能が使える環境（Claude Code のプレビュー等）では、生成後にそのまま表示してよい。
+HTMLのプレビュー表示機能が使える環境（Claude Code のプレビュー等）では、上記のローカルサーバーを起動した上で該当URLを開き、生成後にそのまま表示してよい。
 
 変更があれば反映し、**pattern-preview.html も再生成してから**再提示する。承認を得たらSTEP 6へ進む。
 
