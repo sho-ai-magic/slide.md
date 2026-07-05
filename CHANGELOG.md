@@ -1,5 +1,48 @@
 # CHANGELOG
 
+## [1.2.0] - 2026-07-05
+
+### Added
+
+**Claude Code プラグイン対応**
+- `.claude-plugin/`（plugin.json・marketplace.json）を追加し、`/plugin` コマンドだけでインストールできるように
+- slide-deck-builder に、プラグイン同梱ファイル（サンプルデザインシステム・スライドパターン）へのフォールバックを追加（カレントディレクトリにファイルがなくても同梱サンプルで動作する）
+- プラグイン化とフォールバックの仕組みは [skanehira さんのフォーク slide-plugin](https://github.com/skanehira/slide-plugin) に着想を得ました。ありがとうございます
+
+**新スキル slide-scenario-creator（4つ目のスキル）**
+- スライドの中身（シナリオ・構成案）をClaudeとの壁打ちで作成するスキルを追加
+- シナリオ作成・レビュー（良い点→改善点→デビルズアドボケイトの3段階）・ペルソナ設定の3モード構成
+- 出力：`SLIDE-SCENARIO/SLIDE-SCENARIO-{name}.md`・`PERSONA/PERSONA-{name}.md`
+
+**slide-deck-builder**
+- STEP 0 を追加：`SLIDE-SCENARIO-*.md` があればブリーフのヒアリングをスキップし、シナリオの内容から設計書を作成
+
+**スライドパターンの拡充**
+- パターンを 99 種類 → 127 種類に拡充（10件＋18件を新規追加）
+- フレームなしパターン（`frame: none`）のルールを追加（表紙・セクション区切り・締め等の全面レイアウトに対応）
+
+### Changed
+
+**スライドパターン**
+- 旧形式パターン98件を新仕様（1920×1080・0.75倍スケール表示）に統一し、ギャラリーを新旧両対応に
+- slide-pattern-creator の再現度を向上（比率・ギャップ・フォントサイズ・角丸の再現ルールを強化）
+
+### Fixed
+
+**スキル間の整合性**
+- slide-deck-builder：SLIDE-DECK.md に埋め込むSLIDE.mdのセクション一覧に `Component Style` が抜けていた問題を修正
+- slide-deck-builder：出力先を `SLIDE-DECK/SLIDE-DECK-{name}/` に統一（他スキルと同じ2階層フォルダ構成に）
+- slide-deck-builder：「目的」の選択肢を slide-scenario-creator と統一（7択に拡張）
+- slide-pattern-creator：SLIDE-PATTERN-INDEX.md を新規作成する場合もカテゴリ見出し付きの形式で生成するよう修正（slide-deck-builder のパターン検索がカテゴリに依存するため）
+
+**sample.html 生成仕様の汎用化（slide-md-creator）**
+- グラデーション「なし」のデザインに対応（`--gradient-main` / `--gradient-vert` をPrimary単色にする読み替えルールを追加。ソースにないグラデーションを追加しないことを明記）
+- ハードコードされていたグレー文字色・カード背景色・枠線色をデザイントークン（`--color-text-muted` / `--color-surface` / `--color-border`）参照に変更し、暗色デザインに対応
+- SLIDE.mdで「なし」と定義された装飾（背景アクセント・縦バー・ブランドフッター）はサンプルに適用しないルールを明記
+- 未定義の「Successカラー」参照を修正し、Do/Don'tアイコンの色を明示（緑 `#1E8E3E` / 赤 `#D93025`）
+
+---
+
 ## [1.1.1] - 2026-06-29
 
 ### Added
