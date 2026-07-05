@@ -196,9 +196,37 @@ SLIDE-PATTERN-INDEX.md に記載された各パターンの「概要」と「適
 | Q&A | ❓ Q&A・FAQ |
 | プロフィール・登壇者 | 👤 プロフィール |
 
+### パターンプレビュー（pattern-preview.html）の生成
+
+割り当て表をテキストで見せるだけでは、ユーザーはどんなレイアウトが選ばれたのかイメージできない。割り当てが決まったら、**提示と同時に `SLIDE-DECK/pattern-preview.html` を生成する**（`SLIDE-DECK/` フォルダがなければ作成する。このファイルは使い捨ての確認用のため、既存のものがあれば上書きしてよい）。
+
+**プレビューの構成：**
+
+- ページ冒頭に見出しとひとこと説明：「各スライドに割り当てたレイアウトパターンのプレビューです。変更したい場合は『Slide 番号 → パターン名（または 候補A / 候補B）』の形式で伝えてください。」
+- 冒頭見出しの右側に、パターンギャラリーへのショートカットボタンを配置する：`<a href="https://sho-ai-magic.github.io/slide.md/" target="_blank">` で「全パターンをギャラリーで見る ↗」というボタン（例：`padding:10px 20px; border-radius:999px; background:#1A73E8; color:#FFF; font-size:14px; font-weight:700; text-decoration:none`）。候補以外のパターンから選びたいときはギャラリーで全127種類を確認できる
+- スライド1枚につき1つのカード（行）を縦に並べる。各カードの内容：
+  - **左側の情報欄**：スライド番号・種類・スライドタイトル・割り当てパターン名（`code` 表記）・INDEXに書かれた概要の1行
+  - **右側のサムネイル列**：先頭に**割り当てパターン**のサムネイル、その右に**同カテゴリの代替候補2〜3個**のサムネイルを並べる（カテゴリ内のパターンが少ない場合はある分だけでよい。他スライドと候補が重複してもよい）。各サムネイルの下にパターン名を添え、候補には「候補A」「候補B」のラベルを付ける。割り当てパターンのサムネイルは枠を強調色（例：`border:3px solid #1A73E8`）にし、「割り当て」バッジを付けて区別する
+- ユーザーが「Slide 3 → 候補B」のようにラベルで指定した場合は、該当するパターン名に読み替えて反映する
+
+**サムネイルの実装（画像は作らず、既存のスケルトンHTMLをiframeで縮小埋め込みする）：**
+
+    .thumb {
+      width: 384px; height: 236px; overflow: hidden; position: relative;
+      border: 1px solid #DDD; border-radius: 8px; background: #FFF;
+    }
+    .thumb iframe {
+      width: 1540px; height: 940px; border: 0;
+      transform: scale(0.25); transform-origin: top left;
+      pointer-events: none;
+    }
+
+- iframe の `src` には各パターンのスケルトンHTMLを指定する。カレントディレクトリにある場合はプレビューHTMLから見た相対パス（`../SLIDE-PATTERN/SLIDE-PATTERN-{name}/SLIDE-PATTERN-{name}.html`）、プラグイン同梱パターンを使っている場合はその絶対パスを指定する
+- JavaScriptは使用しない（iframeとCSSのみで完結させる）
+
 ### 提示形式
 
-> 「各スライドにパターンを割り当てました。変更したいものがあれば「Slide番号 → 変更先のパターン名」の形式で教えてください。
+> 「各スライドにパターンを割り当てました。
 >
 > | スライド | 種類 | 割り当てパターン |
 > |---|---|---|
@@ -206,9 +234,12 @@ SLIDE-PATTERN-INDEX.md に記載された各パターンの「概要」と「適
 > | Slide 2 | アジェンダ | `{pattern-name}` |
 > ...
 >
-> この割り当てでよいですか？」
+> **`SLIDE-DECK/pattern-preview.html` をブラウザで開くと、割り当てたパターンと代替候補をサムネイルで確認できます。**
+> 変更したいものがあれば「Slide番号 → 変更先のパターン名（または 候補A / 候補B）」の形式で教えてください。この割り当てでよいですか？」
 
-変更があれば反映し、承認を得たらSTEP 6へ進む。
+HTMLのプレビュー表示機能が使える環境（Claude Code のプレビュー等）では、生成後にそのまま表示してよい。
+
+変更があれば反映し、**pattern-preview.html も再生成してから**再提示する。承認を得たらSTEP 6へ進む。
 
 ## STEP 6：SLIDE-DECK.md の生成
 
