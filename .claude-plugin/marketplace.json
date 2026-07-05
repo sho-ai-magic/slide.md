@@ -1,0 +1,14 @@
+{
+  "name": "slide-md",
+  "description": "AIとスライドを作るための設計書フォーマット「SLIDE.md」のプラグイン配布用マーケットプレイス",
+  "owner": {
+    "name": "sho"
+  },
+  "plugins": [
+    {
+      "name": "slide-md",
+      "source": "./",
+      "description": "スライド設計書フォーマット SLIDE.md 一式（4スキル＋サンプルデザインシステム10種類＋スライドパターン127種類）"
+    }
+  ]
+}

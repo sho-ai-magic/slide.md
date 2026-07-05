@@ -1,0 +1,14 @@
+{
+  "name": "slide-md",
+  "displayName": "SLIDE.md",
+  "version": "1.2.0",
+  "description": "AIとスライドを作るための設計書フォーマット「SLIDE.md」と、それを生成する4つのスキル（デザインシステム生成・レイアウトパターン抽出・シナリオ壁打ち・デッキ設計書生成）。サンプルデザインシステム10種類とスライドパターン127種類を同梱。",
+  "author": {
+    "name": "sho",
+    "url": "https://github.com/sho-ai-magic"
+  },
+  "homepage": "https://sho-ai-magic.github.io/slide.md/",
+  "repository": "https://github.com/sho-ai-magic/slide.md",
+  "license": "MIT",
+  "keywords": ["slides", "presentation", "design-system", "slide-md", "japanese"]
+}

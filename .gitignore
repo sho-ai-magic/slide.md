@@ -1,0 +1,3 @@
+# Claude Code のローカル個人設定（コミットしない）
+**/.claude/settings.local.json
+.DS_Store
